@@ -1,0 +1,2965 @@
+{
+  "version": "26",
+  "scrapedAt": "2024-12-12T00:00:00Z",
+  "source": "huddle.gg",
+  "playbooks": [
+{
+  "id": "eagles-off",
+  "name": "Eagles",
+  "type": "offense",
+  "category": "team",
+  "formationGroups": [
+    {
+      "name": "Goal Line",
+      "formations": [
+        {
+          "name": "Normal",
+          "slug": "goal-line-normal",
+          "plays": [
+            {
+              "id": "eagles-off-goal-line-normal-fb-dive",
+              "name": "FB DIVE",
+              "slug": "fb-dive",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-goal-line-normal-hb-counter-wk",
+              "name": "HB COUNTER WK",
+              "slug": "hb-counter-wk",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-goal-line-normal-hb-dive",
+              "name": "HB DIVE",
+              "slug": "hb-dive",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-goal-line-normal-hb-split-o",
+              "name": "HB SPLIT O",
+              "slug": "hb-split-o",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-goal-line-normal-hb-sting",
+              "name": "HB STING",
+              "slug": "hb-sting",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-goal-line-normal-pa-power-o",
+              "name": "PA POWER O",
+              "slug": "pa-power-o",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-goal-line-normal-pa-spot",
+              "name": "PA SPOT",
+              "slug": "pa-spot",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-goal-line-normal-pa-sprint-hb-flat",
+              "name": "PA SPRINT HB FLAT",
+              "slug": "pa-sprint-hb-flat",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-goal-line-normal-pa-waggle",
+              "name": "PA WAGGLE",
+              "slug": "pa-waggle",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-goal-line-normal-power-o",
+              "name": "POWER O",
+              "slug": "power-o",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-goal-line-normal-qb-sneak",
+              "name": "QB SNEAK",
+              "slug": "qb-sneak",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-goal-line-normal-strong-toss",
+              "name": "STRONG TOSS",
+              "slug": "strong-toss",
+              "type": "run"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gun",
+      "formations": [
+        {
+          "name": "Bunch Quads",
+          "slug": "gun-bunch-quads",
+          "plays": [
+            {
+              "id": "eagles-off-gun-bunch-quads-bunch-trail",
+              "name": "BUNCH TRAIL",
+              "slug": "bunch-trail",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-quads-drag-under",
+              "name": "DRAG UNDER",
+              "slug": "drag-under",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-quads-inside-post",
+              "name": "INSIDE POST",
+              "slug": "inside-post",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-quads-qb-draw",
+              "name": "QB DRAW",
+              "slug": "qb-draw",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-bunch-quads-spacing",
+              "name": "SPACING",
+              "slug": "spacing",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-quads-spot",
+              "name": "SPOT",
+              "slug": "spot",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Bunch X Nasty",
+          "slug": "gun-bunch-x-nasty",
+          "plays": [
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-choice-shallow-dig",
+              "name": "CHOICE SHALLOW DIG",
+              "slug": "choice-shallow-dig",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-corner-out-dig",
+              "name": "CORNER OUT DIG",
+              "slug": "corner-out-dig",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-counter-y",
+              "name": "COUNTER Y",
+              "slug": "counter-y",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-double-outs",
+              "name": "DOUBLE OUTS",
+              "slug": "double-outs",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-drive-y-corner",
+              "name": "DRIVE Y CORNER",
+              "slug": "drive-y-corner",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-inside-zone",
+              "name": "INSIDE ZONE",
+              "slug": "inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-mesh-corner",
+              "name": "MESH CORNER",
+              "slug": "mesh-corner",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-mesh-hb-sneak",
+              "name": "MESH HB SNEAK",
+              "slug": "mesh-hb-sneak",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-mesh-spot",
+              "name": "MESH SPOT",
+              "slug": "mesh-spot",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-mtn-china-cross",
+              "name": "MTN CHINA CROSS",
+              "slug": "mtn-china-cross",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-mtn-smash-sluggo",
+              "name": "MTN SMASH SLUGGO",
+              "slug": "mtn-smash-sluggo",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-mtn-speed-dig-under",
+              "name": "MTN SPEED DIG UNDER",
+              "slug": "mtn-speed-dig-under",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-smash-return",
+              "name": "SMASH RETURN",
+              "slug": "smash-return",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-spacing-switch",
+              "name": "SPACING SWITCH",
+              "slug": "spacing-switch",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-y-flat-goalline",
+              "name": "Y FLAT GOALLINE",
+              "slug": "y-flat-goalline",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-z-mesh-goalline",
+              "name": "Z MESH GOALLINE",
+              "slug": "z-mesh-goalline",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-z-spot",
+              "name": "Z SPOT",
+              "slug": "z-spot",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-bunch-x-nasty-z-spot-goalline",
+              "name": "Z SPOT GOALLINE",
+              "slug": "z-spot-goalline",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Deuce Close",
+          "slug": "gun-deuce-close",
+          "plays": [
+            {
+              "id": "eagles-off-gun-deuce-close-bench-dig-curl",
+              "name": "BENCH DIG CURL",
+              "slug": "bench-dig-curl",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-deuce-close-bench-x-dig",
+              "name": "BENCH X DIG",
+              "slug": "bench-x-dig",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-deuce-close-corner-n-gos",
+              "name": "CORNER N GOS",
+              "slug": "corner-n-gos",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-deuce-close-inside-zone-split",
+              "name": "INSIDE ZONE SPLIT",
+              "slug": "inside-zone-split",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-deuce-close-lead-read-option",
+              "name": "LEAD READ OPTION",
+              "slug": "lead-read-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-deuce-close-mesh-spot",
+              "name": "MESH SPOT",
+              "slug": "mesh-spot",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-deuce-close-mtn-wr-corner",
+              "name": "MTN WR CORNER",
+              "slug": "mtn-wr-corner",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-deuce-close-mtn-y-corner",
+              "name": "MTN Y CORNER",
+              "slug": "mtn-y-corner",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-deuce-close-mtn-y-option",
+              "name": "MTN Y OPTION",
+              "slug": "mtn-y-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-deuce-close-rpo-peek-stick",
+              "name": "RPO PEEK STICK",
+              "slug": "rpo-peek-stick",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-deuce-close-rpo-read-flat-wheel",
+              "name": "RPO READ FLAT WHEEL",
+              "slug": "rpo-read-flat-wheel",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-deuce-close-spacing-switch",
+              "name": "SPACING SWITCH",
+              "slug": "spacing-switch",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Doubles Off Close Wk",
+          "slug": "gun-doubles-off-close-wk",
+          "plays": [
+            {
+              "id": "eagles-off-gun-doubles-off-close-wk-counter-y",
+              "name": "COUNTER Y",
+              "slug": "counter-y",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-doubles-off-close-wk-double-post",
+              "name": "DOUBLE POST",
+              "slug": "double-post",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-doubles-off-close-wk-hb-slip-screen",
+              "name": "HB SLIP SCREEN",
+              "slug": "hb-slip-screen",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-doubles-off-close-wk-inside-zone",
+              "name": "INSIDE ZONE",
+              "slug": "inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-doubles-off-close-wk-mtn-mesh-rail",
+              "name": "MTN MESH RAIL",
+              "slug": "mtn-mesh-rail",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-doubles-off-close-wk-mtn-stick-x-replace",
+              "name": "MTN STICK X REPLACE",
+              "slug": "mtn-stick-x-replace",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-doubles-off-close-wk-mtn-te-mid-screen",
+              "name": "MTN TE MID SCREEN",
+              "slug": "mtn-te-mid-screen",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-doubles-off-close-wk-pa-y-cross",
+              "name": "PA Y CROSS",
+              "slug": "pa-y-cross",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-doubles-off-close-wk-pivot-in-seams",
+              "name": "PIVOT IN SEAMS",
+              "slug": "pivot-in-seams",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-doubles-off-close-wk-rpo-read-bubble",
+              "name": "RPO READ BUBBLE",
+              "slug": "rpo-read-bubble",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-doubles-off-close-wk-x-dagger",
+              "name": "X DAGGER",
+              "slug": "x-dagger",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-doubles-off-close-wk-y-lead-read-option",
+              "name": "Y LEAD READ OPTION",
+              "slug": "y-lead-read-option",
+              "type": "run"
+            }
+          ]
+        },
+        {
+          "name": "Empty Base Flex",
+          "slug": "gun-empty-base-flex",
+          "plays": [
+            {
+              "id": "eagles-off-gun-empty-base-flex-all-hitch",
+              "name": "ALL HITCH",
+              "slug": "all-hitch",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-base-flex-hoss-y-juke",
+              "name": "HOSS Y JUKE",
+              "slug": "hoss-y-juke",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-base-flex-jailbreak-slot-screen",
+              "name": "JAILBREAK SLOT SCREEN",
+              "slug": "jailbreak-slot-screen",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-base-flex-levels-switch",
+              "name": "LEVELS SWITCH",
+              "slug": "levels-switch",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-base-flex-middle-hi-lo",
+              "name": "MIDDLE HI LO",
+              "slug": "middle-hi-lo",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-base-flex-redzone-up",
+              "name": "REDZONE UP",
+              "slug": "redzone-up",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-base-flex-rpo-alert-draw-stick",
+              "name": "RPO ALERT DRAW STICK",
+              "slug": "rpo-alert-draw-stick",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-empty-base-flex-shock-wr-option",
+              "name": "SHOCK WR OPTION",
+              "slug": "shock-wr-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-empty-base-flex-stick",
+              "name": "STICK",
+              "slug": "stick",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-base-flex-stick-n-nod",
+              "name": "STICK N NOD",
+              "slug": "stick-n-nod",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-base-flex-trail-shake",
+              "name": "TRAIL SHAKE",
+              "slug": "trail-shake",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-base-flex-y-corner",
+              "name": "Y CORNER",
+              "slug": "y-corner",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Empty Trey Stack",
+          "slug": "gun-empty-trey-stack",
+          "plays": [
+            {
+              "id": "eagles-off-gun-empty-trey-stack-bench-corner",
+              "name": "BENCH CORNER",
+              "slug": "bench-corner",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-trey-stack-curl-flat-salem",
+              "name": "CURL FLAT SALEM",
+              "slug": "curl-flat-salem",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-trey-stack-curl-switch",
+              "name": "CURL SWITCH",
+              "slug": "curl-switch",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-trey-stack-fade-out",
+              "name": "FADE OUT",
+              "slug": "fade-out",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-trey-stack-jailbreak-screen",
+              "name": "JAILBREAK SCREEN",
+              "slug": "jailbreak-screen",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-trey-stack-levels",
+              "name": "LEVELS",
+              "slug": "levels",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-trey-stack-post-wheel",
+              "name": "POST WHEEL",
+              "slug": "post-wheel",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-trey-stack-qb-draw",
+              "name": "QB DRAW",
+              "slug": "qb-draw",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-empty-trey-stack-smash-seam",
+              "name": "SMASH SEAM",
+              "slug": "smash-seam",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-trey-stack-stick-n-nod",
+              "name": "STICK N NOD",
+              "slug": "stick-n-nod",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-trey-stack-y-stick",
+              "name": "Y STICK",
+              "slug": "y-stick",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-empty-trey-stack-z-under",
+              "name": "Z UNDER",
+              "slug": "z-under",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Normal Y Off",
+          "slug": "gun-normal-y-off",
+          "plays": [
+            {
+              "id": "eagles-off-gun-normal-y-off-45-quick-base",
+              "name": "45 QUICK BASE",
+              "slug": "45-quick-base",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-corner-strike",
+              "name": "CORNER STRIKE",
+              "slug": "corner-strike",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-curl-combo",
+              "name": "CURL COMBO",
+              "slug": "curl-combo",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-double-dig",
+              "name": "DOUBLE DIG",
+              "slug": "double-dig",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-four-verticals",
+              "name": "FOUR VERTICALS",
+              "slug": "four-verticals",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-hb-slip-screen",
+              "name": "HB SLIP SCREEN",
+              "slug": "hb-slip-screen",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-inside-zone",
+              "name": "INSIDE ZONE",
+              "slug": "inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-read-counter-bash",
+              "name": "READ COUNTER BASH",
+              "slug": "read-counter-bash",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-read-option",
+              "name": "READ OPTION",
+              "slug": "read-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-rpo-peek-slant",
+              "name": "RPO PEEK SLANT",
+              "slug": "rpo-peek-slant",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-slant-flat",
+              "name": "SLANT FLAT",
+              "slug": "slant-flat",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-stick-slot-option",
+              "name": "STICK SLOT OPTION",
+              "slug": "stick-slot-option",
+              "type": "run"
+            }
+          ]
+        },
+        {
+          "name": "Normal Y Off Close",
+          "slug": "gun-normal-y-off-close",
+          "plays": [
+            {
+              "id": "eagles-off-gun-normal-y-off-close-cheat-flat-x-post",
+              "name": "CHEAT FLAT X POST",
+              "slug": "cheat-flat-x-post",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-cheat-inside-zone",
+              "name": "CHEAT INSIDE ZONE",
+              "slug": "cheat-inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-cheat-slot-fade",
+              "name": "CHEAT SLOT FADE",
+              "slug": "cheat-slot-fade",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-cheat-te-angle",
+              "name": "CHEAT TE ANGLE",
+              "slug": "cheat-te-angle",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-cheat-te-screen",
+              "name": "CHEAT TE SCREEN",
+              "slug": "cheat-te-screen",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-fk-jet-y-wheel",
+              "name": "FK JET Y WHEEL",
+              "slug": "fk-jet-y-wheel",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-inside-zone",
+              "name": "INSIDE ZONE",
+              "slug": "inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-jet-touch-pass",
+              "name": "JET TOUCH PASS",
+              "slug": "jet-touch-pass",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-mtn-angle-y-wheel",
+              "name": "MTN ANGLE Y WHEEL",
+              "slug": "mtn-angle-y-wheel",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-mtn-hb-angle",
+              "name": "MTN HB ANGLE",
+              "slug": "mtn-hb-angle",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-mtn-hb-swing",
+              "name": "MTN HB SWING",
+              "slug": "mtn-hb-swing",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-mtn-snag-curls",
+              "name": "MTN SNAG CURLS",
+              "slug": "mtn-snag-curls",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-mtn-switch-corner",
+              "name": "MTN SWITCH CORNER",
+              "slug": "mtn-switch-corner",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-mtn-te-middle-screen",
+              "name": "MTN TE MIDDLE SCREEN",
+              "slug": "mtn-te-middle-screen",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-pa-snag",
+              "name": "PA SNAG",
+              "slug": "pa-snag",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-read-counter-bash",
+              "name": "READ COUNTER BASH",
+              "slug": "read-counter-bash",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-read-option",
+              "name": "READ OPTION",
+              "slug": "read-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-rpo-alert-cheat-bubble",
+              "name": "RPO ALERT CHEAT BUBBLE",
+              "slug": "rpo-alert-cheat-bubble",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-rpo-glance-post",
+              "name": "RPO GLANCE POST",
+              "slug": "rpo-glance-post",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-y-sail",
+              "name": "Y-SAIL",
+              "slug": "y-sail",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-normal-y-off-close-zone-fake-jet",
+              "name": "ZONE FAKE JET",
+              "slug": "zone-fake-jet",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Slot Right",
+          "slug": "gun-slot-right",
+          "plays": [
+            {
+              "id": "eagles-off-gun-slot-right-counter-y",
+              "name": "COUNTER Y",
+              "slug": "counter-y",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-fake-screen-wheel",
+              "name": "FAKE SCREEN WHEEL",
+              "slug": "fake-screen-wheel",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-hb-iso",
+              "name": "HB ISO",
+              "slug": "hb-iso",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-hb-slip-screen",
+              "name": "HB SLIP SCREEN",
+              "slug": "hb-slip-screen",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-inside-zone-split",
+              "name": "INSIDE ZONE SPLIT",
+              "slug": "inside-zone-split",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-pa-bubble",
+              "name": "PA BUBBLE",
+              "slug": "pa-bubble",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-pa-deep-choice",
+              "name": "PA DEEP CHOICE",
+              "slug": "pa-deep-choice",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-pa-mtn-slide",
+              "name": "PA MTN SLIDE",
+              "slug": "pa-mtn-slide",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-pa-se-screen",
+              "name": "PA SE SCREEN",
+              "slug": "pa-se-screen",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-pa-wheel",
+              "name": "PA WHEEL",
+              "slug": "pa-wheel",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-qb-slot-option",
+              "name": "QB SLOT OPTION",
+              "slug": "qb-slot-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-read-option",
+              "name": "READ OPTION",
+              "slug": "read-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-rpo-alert-bubble",
+              "name": "RPO ALERT BUBBLE",
+              "slug": "rpo-alert-bubble",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-rpo-glance-post",
+              "name": "RPO GLANCE POST",
+              "slug": "rpo-glance-post",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-rpo-read-wr-screen",
+              "name": "RPO READ WR SCREEN",
+              "slug": "rpo-read-wr-screen",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-rpo-read-y-flat",
+              "name": "RPO READ Y FLAT",
+              "slug": "rpo-read-y-flat",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-slants",
+              "name": "SLANTS",
+              "slug": "slants",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-speed-option",
+              "name": "SPEED OPTION",
+              "slug": "speed-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-verticals",
+              "name": "VERTICALS",
+              "slug": "verticals",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-slot-right-y-lead-read-opt",
+              "name": "Y LEAD READ OPT",
+              "slug": "y-lead-read-opt",
+              "type": "run"
+            }
+          ]
+        },
+        {
+          "name": "Spread Flex Wk",
+          "slug": "gun-spread-flex-wk",
+          "plays": [
+            {
+              "id": "eagles-off-gun-spread-flex-wk-corner-strike",
+              "name": "CORNER STRIKE",
+              "slug": "corner-strike",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-double-cross",
+              "name": "DOUBLE CROSS",
+              "slug": "double-cross",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-double-slants",
+              "name": "DOUBLE SLANTS",
+              "slug": "double-slants",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-four-verticals",
+              "name": "FOUR VERTICALS",
+              "slug": "four-verticals",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-hb-base",
+              "name": "HB BASE",
+              "slug": "hb-base",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-hb-slip-screen",
+              "name": "HB SLIP SCREEN",
+              "slug": "hb-slip-screen",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-hitch-seam",
+              "name": "HITCH SEAM",
+              "slug": "hitch-seam",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-inside-zone",
+              "name": "INSIDE ZONE",
+              "slug": "inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-orbit-stick-n-nod",
+              "name": "ORBIT STICK N NOD",
+              "slug": "orbit-stick-n-nod",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-orbit-y-sail",
+              "name": "ORBIT Y SAIL",
+              "slug": "orbit-y-sail",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-orbit-y-stick",
+              "name": "ORBIT Y STICK",
+              "slug": "orbit-y-stick",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-pa-read",
+              "name": "PA READ",
+              "slug": "pa-read",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-redzone-hb-scissors",
+              "name": "REDZONE HB SCISSORS",
+              "slug": "redzone-hb-scissors",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-rpo-peek-slant",
+              "name": "RPO PEEK SLANT",
+              "slug": "rpo-peek-slant",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-rpo-read-bubble",
+              "name": "RPO READ BUBBLE",
+              "slug": "rpo-read-bubble",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-slot-outs",
+              "name": "SLOT OUTS",
+              "slug": "slot-outs",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-spot-y-cross",
+              "name": "SPOT Y CROSS",
+              "slug": "spot-y-cross",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-spread-flex-wk-under",
+              "name": "UNDER",
+              "slug": "under",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Stack Y Off",
+          "slug": "gun-stack-y-off",
+          "plays": [
+            {
+              "id": "eagles-off-gun-stack-y-off-corner-strike",
+              "name": "CORNER STRIKE",
+              "slug": "corner-strike",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-stack-y-off-curl-flats",
+              "name": "CURL FLATS",
+              "slug": "curl-flats",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-stack-y-off-fake-jet-hb-seam",
+              "name": "FAKE JET HB SEAM",
+              "slug": "fake-jet-hb-seam",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-stack-y-off-fake-jet-pass-power",
+              "name": "FAKE JET PASS POWER",
+              "slug": "fake-jet-pass-power",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-stack-y-off-hb-slip-screen",
+              "name": "HB SLIP SCREEN",
+              "slug": "hb-slip-screen",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-stack-y-off-jet-pass-fk-zone",
+              "name": "JET PASS FK ZONE",
+              "slug": "jet-pass-fk-zone",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-stack-y-off-jet-touch-pass",
+              "name": "JET TOUCH PASS",
+              "slug": "jet-touch-pass",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-stack-y-off-levels",
+              "name": "LEVELS",
+              "slug": "levels",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-stack-y-off-pa-jet-sweep",
+              "name": "PA JET SWEEP",
+              "slug": "pa-jet-sweep",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-stack-y-off-trap-alert-omaha",
+              "name": "TRAP ALERT OMAHA",
+              "slug": "trap-alert-omaha",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-stack-y-off-zone-alert-omaha",
+              "name": "ZONE ALERT OMAHA",
+              "slug": "zone-alert-omaha",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-stack-y-off-zone-fake-jet",
+              "name": "ZONE FAKE JET",
+              "slug": "zone-fake-jet",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Tight Y Off",
+          "slug": "gun-tight-y-off",
+          "plays": [
+            {
+              "id": "eagles-off-gun-tight-y-off-0-1-trap",
+              "name": "0 1 TRAP",
+              "slug": "0-1-trap",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-fake-jet-hb-seam",
+              "name": "FAKE JET HB SEAM",
+              "slug": "fake-jet-hb-seam",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-flood-drive",
+              "name": "FLOOD DRIVE",
+              "slug": "flood-drive",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-hb-slip-screen",
+              "name": "HB SLIP SCREEN",
+              "slug": "hb-slip-screen",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-inside-zone",
+              "name": "INSIDE ZONE",
+              "slug": "inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-jet-touch-pass",
+              "name": "JET TOUCH PASS",
+              "slug": "jet-touch-pass",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-mtn-mesh-spot",
+              "name": "MTN MESH SPOT",
+              "slug": "mtn-mesh-spot",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-mtn-outside-zone",
+              "name": "MTN OUTSIDE ZONE",
+              "slug": "mtn-outside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-mtn-slash-wheel-cross",
+              "name": "MTN SLASH WHEEL CROSS",
+              "slug": "mtn-slash-wheel-cross",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-mtn-slot-choice",
+              "name": "MTN SLOT CHOICE",
+              "slug": "mtn-slot-choice",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-mtn-spot-y-quick",
+              "name": "MTN SPOT Y QUICK",
+              "slug": "mtn-spot-y-quick",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-mtn-y-corner",
+              "name": "MTN Y-CORNER",
+              "slug": "mtn-y-corner",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-pa-go-slot-cross",
+              "name": "PA GO SLOT CROSS",
+              "slug": "pa-go-slot-cross",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-read-option",
+              "name": "READ OPTION",
+              "slug": "read-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-redzone-scissors",
+              "name": "REDZONE SCISSORS",
+              "slug": "redzone-scissors",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-rpo-peek-slant",
+              "name": "RPO PEEK SLANT",
+              "slug": "rpo-peek-slant",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-te-corner",
+              "name": "TE CORNER",
+              "slug": "te-corner",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-zone-fake-jet",
+              "name": "ZONE FAKE JET",
+              "slug": "zone-fake-jet",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Tight Y Off Wk",
+          "slug": "gun-tight-y-off-wk",
+          "plays": [
+            {
+              "id": "eagles-off-gun-tight-y-off-wk-0-1-trap",
+              "name": "0 1 TRAP",
+              "slug": "0-1-trap",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-wk-curls",
+              "name": "CURLS",
+              "slug": "curls",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-wk-dig-hb-option",
+              "name": "DIG HB OPTION",
+              "slug": "dig-hb-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-wk-flanker-spot",
+              "name": "FLANKER SPOT",
+              "slug": "flanker-spot",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-wk-hammer-dagger",
+              "name": "HAMMER DAGGER",
+              "slug": "hammer-dagger",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-wk-hb-slip-screen",
+              "name": "HB SLIP SCREEN",
+              "slug": "hb-slip-screen",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-wk-outside-zone",
+              "name": "OUTSIDE ZONE",
+              "slug": "outside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-wk-pa-jailbreak-screen",
+              "name": "PA JAILBREAK SCREEN",
+              "slug": "pa-jailbreak-screen",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-wk-post-wheel-drag",
+              "name": "POST WHEEL DRAG",
+              "slug": "post-wheel-drag",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-wk-rpo-zone-alert-glance",
+              "name": "RPO ZONE ALERT GLANCE",
+              "slug": "rpo-zone-alert-glance",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-wk-rpo-zone-alert-omaha",
+              "name": "RPO ZONE ALERT OMAHA",
+              "slug": "rpo-zone-alert-omaha",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-wk-shallow-cross",
+              "name": "SHALLOW CROSS",
+              "slug": "shallow-cross",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-wk-tackle-trap",
+              "name": "TACKLE TRAP",
+              "slug": "tackle-trap",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-wk-wr-under",
+              "name": "WR UNDER",
+              "slug": "wr-under",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-tight-y-off-wk-y-lead-read-option",
+              "name": "Y LEAD READ OPTION",
+              "slug": "y-lead-read-option",
+              "type": "run"
+            }
+          ]
+        },
+        {
+          "name": "Trey Open",
+          "slug": "gun-trey-open",
+          "plays": [
+            {
+              "id": "eagles-off-gun-trey-open-corner-strike",
+              "name": "CORNER STRIKE",
+              "slug": "corner-strike",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-dagger-deep-curl",
+              "name": "DAGGER DEEP CURL",
+              "slug": "dagger-deep-curl",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-double-ins",
+              "name": "DOUBLE INS",
+              "slug": "double-ins",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-four-verticals",
+              "name": "FOUR VERTICALS",
+              "slug": "four-verticals",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-h-mtn-flood-h-sneak",
+              "name": "H MTN FLOOD H-SNEAK",
+              "slug": "h-mtn-flood-h-sneak",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-h-mtn-mesh",
+              "name": "H MTN MESH",
+              "slug": "h-mtn-mesh",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-h-mtn-x-shallow-cross",
+              "name": "H MTN X SHALLOW CROSS",
+              "slug": "h-mtn-x-shallow-cross",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-hb-slip-screen",
+              "name": "HB SLIP SCREEN",
+              "slug": "hb-slip-screen",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-inside-zone",
+              "name": "INSIDE ZONE",
+              "slug": "inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-jet-new-orleans",
+              "name": "JET NEW ORLEANS",
+              "slug": "jet-new-orleans",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-levels-switch",
+              "name": "LEVELS SWITCH",
+              "slug": "levels-switch",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-pa-read",
+              "name": "PA READ",
+              "slug": "pa-read",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-read-option",
+              "name": "READ OPTION",
+              "slug": "read-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-rpo-alert-draw-stick",
+              "name": "RPO ALERT DRAW STICK",
+              "slug": "rpo-alert-draw-stick",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-shock-h-option",
+              "name": "SHOCK H OPTION",
+              "slug": "shock-h-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-slants",
+              "name": "SLANTS",
+              "slug": "slants",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-slot-drive",
+              "name": "SLOT DRIVE",
+              "slug": "slot-drive",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-stick",
+              "name": "STICK",
+              "slug": "stick",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-wr-mid-screen",
+              "name": "WR MID SCREEN",
+              "slug": "wr-mid-screen",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-y-corner",
+              "name": "Y CORNER",
+              "slug": "y-corner",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trey-open-y-drag",
+              "name": "Y-DRAG",
+              "slug": "y-drag",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Trips TE",
+          "slug": "gun-trips-te",
+          "plays": [
+            {
+              "id": "eagles-off-gun-trips-te-cheat-clearout-seam",
+              "name": "CHEAT CLEAROUT SEAM",
+              "slug": "cheat-clearout-seam",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-cheat-flood-divide",
+              "name": "CHEAT FLOOD DIVIDE",
+              "slug": "cheat-flood-divide",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-cheat-inside-zone",
+              "name": "CHEAT INSIDE ZONE",
+              "slug": "cheat-inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-cross-under",
+              "name": "CROSS UNDER",
+              "slug": "cross-under",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-curl-flat",
+              "name": "CURL FLAT",
+              "slug": "curl-flat",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-flood",
+              "name": "FLOOD",
+              "slug": "flood",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-hb-counter",
+              "name": "HB COUNTER",
+              "slug": "hb-counter",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-hb-mid-draw",
+              "name": "HB MID DRAW",
+              "slug": "hb-mid-draw",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-hb-slip-screen",
+              "name": "HB SLIP SCREEN",
+              "slug": "hb-slip-screen",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-mtn-fk-screen-wheel",
+              "name": "MTN FK SCREEN WHEEL",
+              "slug": "mtn-fk-screen-wheel",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-mtn-hb-swing",
+              "name": "MTN HB SWING",
+              "slug": "mtn-hb-swing",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-mtn-levels-y-corner",
+              "name": "MTN LEVELS Y-CORNER",
+              "slug": "mtn-levels-y-corner",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-orbit-cross-screen",
+              "name": "ORBIT CROSS SCREEN",
+              "slug": "orbit-cross-screen",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-orbit-pa-hb-wheel",
+              "name": "ORBIT PA HB WHEEL",
+              "slug": "orbit-pa-hb-wheel",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-orbit-rpo-alert-screen",
+              "name": "ORBIT RPO ALERT SCREEN",
+              "slug": "orbit-rpo-alert-screen",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-pa-slot-corner",
+              "name": "PA SLOT CORNER",
+              "slug": "pa-slot-corner",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-read-option",
+              "name": "READ OPTION",
+              "slug": "read-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-slot-quick-flat",
+              "name": "SLOT QUICK FLAT",
+              "slug": "slot-quick-flat",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-speed-option",
+              "name": "SPEED OPTION",
+              "slug": "speed-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-te-screen",
+              "name": "TE SCREEN",
+              "slug": "te-screen",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-verticals",
+              "name": "VERTICALS",
+              "slug": "verticals",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Trips TE Flex",
+          "slug": "gun-trips-te-flex",
+          "plays": [
+            {
+              "id": "eagles-off-gun-trips-te-flex-dagger",
+              "name": "DAGGER",
+              "slug": "dagger",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-flex-hb-angle",
+              "name": "HB ANGLE",
+              "slug": "hb-angle",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-flex-hb-slip-screen",
+              "name": "HB SLIP SCREEN",
+              "slug": "hb-slip-screen",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-flex-levels-sail",
+              "name": "LEVELS SAIL",
+              "slug": "levels-sail",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-flex-mtn-fork-h-choice",
+              "name": "MTN FORK H CHOICE",
+              "slug": "mtn-fork-h-choice",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-flex-mtn-hitch-n-go",
+              "name": "MTN HITCH N GO",
+              "slug": "mtn-hitch-n-go",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-flex-mtn-y-post",
+              "name": "MTN Y POST",
+              "slug": "mtn-y-post",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-flex-outside-zone",
+              "name": "OUTSIDE ZONE",
+              "slug": "outside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-flex-pa-fork",
+              "name": "PA FORK",
+              "slug": "pa-fork",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-flex-pa-shot-crossers",
+              "name": "PA SHOT CROSSERS",
+              "slug": "pa-shot-crossers",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-flex-post-rail",
+              "name": "POST RAIL",
+              "slug": "post-rail",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-flex-read-option",
+              "name": "READ OPTION",
+              "slug": "read-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-flex-rpo-zone-alert-omaha",
+              "name": "RPO ZONE ALERT OMAHA",
+              "slug": "rpo-zone-alert-omaha",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-flex-verticals",
+              "name": "VERTICALS",
+              "slug": "verticals",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-trips-te-flex-y-out-n-up",
+              "name": "Y OUT N UP",
+              "slug": "y-out-n-up",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Wing",
+          "slug": "gun-wing",
+          "plays": [
+            {
+              "id": "eagles-off-gun-wing-hb-angle",
+              "name": "HB ANGLE",
+              "slug": "hb-angle",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-wing-inside-zone",
+              "name": "INSIDE ZONE",
+              "slug": "inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-wing-mtn-qb-g-down",
+              "name": "MTN QB G DOWN",
+              "slug": "mtn-qb-g-down",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-mtn-qb-zone",
+              "name": "MTN QB ZONE",
+              "slug": "mtn-qb-zone",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-mtn-redzone-hb-scissors",
+              "name": "MTN REDZONE HB SCISSORS",
+              "slug": "mtn-redzone-hb-scissors",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-wing-pa-boot",
+              "name": "PA BOOT",
+              "slug": "pa-boot",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-pa-fork",
+              "name": "PA FORK",
+              "slug": "pa-fork",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-qb-zone",
+              "name": "QB ZONE",
+              "slug": "qb-zone",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-read-option",
+              "name": "READ OPTION",
+              "slug": "read-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-wing-slot-2-buc",
+              "name": "SLOT 2 BUC",
+              "slug": "slot-2-buc",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-speed-option",
+              "name": "SPEED OPTION",
+              "slug": "speed-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-wing-spot-te-seam",
+              "name": "SPOT TE SEAM",
+              "slug": "spot-te-seam",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-stick",
+              "name": "STICK",
+              "slug": "stick",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-te-attack",
+              "name": "TE ATTACK",
+              "slug": "te-attack",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-y-drive-clown",
+              "name": "Y DRIVE CLOWN",
+              "slug": "y-drive-clown",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Wing Slot Wk",
+          "slug": "gun-wing-slot-wk",
+          "plays": [
+            {
+              "id": "eagles-off-gun-wing-slot-wk-four-verticals",
+              "name": "FOUR VERTICALS",
+              "slug": "four-verticals",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-slot-wk-hb-base",
+              "name": "HB BASE",
+              "slug": "hb-base",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-wing-slot-wk-inside-zone",
+              "name": "INSIDE ZONE",
+              "slug": "inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-wing-slot-wk-mtn-hb-wheel",
+              "name": "MTN HB WHEEL",
+              "slug": "mtn-hb-wheel",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-wing-slot-wk-mtn-inside-zone",
+              "name": "MTN INSIDE ZONE",
+              "slug": "mtn-inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-wing-slot-wk-mtn-pa-slot-option",
+              "name": "MTN PA SLOT OPTION",
+              "slug": "mtn-pa-slot-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-wing-slot-wk-mtn-pa-verticals",
+              "name": "MTN PA VERTICALS",
+              "slug": "mtn-pa-verticals",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-slot-wk-mtn-read-option",
+              "name": "MTN READ OPTION",
+              "slug": "mtn-read-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-wing-slot-wk-mtn-te-lead-read-opt",
+              "name": "MTN TE LEAD READ OPT",
+              "slug": "mtn-te-lead-read-opt",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-wing-slot-wk-pa-bubble-y-over",
+              "name": "PA BUBBLE Y OVER",
+              "slug": "pa-bubble-y-over",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-slot-wk-pa-dagger",
+              "name": "PA DAGGER",
+              "slug": "pa-dagger",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-slot-wk-rpo-alert-bubble",
+              "name": "RPO ALERT BUBBLE",
+              "slug": "rpo-alert-bubble",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-slot-wk-rpo-peek-post",
+              "name": "RPO PEEK POST",
+              "slug": "rpo-peek-post",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-slot-wk-rpo-peek-slant",
+              "name": "RPO PEEK SLANT",
+              "slug": "rpo-peek-slant",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-slot-wk-slants",
+              "name": "SLANTS",
+              "slug": "slants",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Wing Stack",
+          "slug": "gun-wing-stack",
+          "plays": [
+            {
+              "id": "eagles-off-gun-wing-stack-four-verticals",
+              "name": "FOUR VERTICALS",
+              "slug": "four-verticals",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-stack-inside-zone",
+              "name": "INSIDE ZONE",
+              "slug": "inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-wing-stack-mesh-spot",
+              "name": "MESH SPOT",
+              "slug": "mesh-spot",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-stack-ohio-spacing",
+              "name": "OHIO SPACING",
+              "slug": "ohio-spacing",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-stack-pa-read",
+              "name": "PA READ",
+              "slug": "pa-read",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-stack-power-o",
+              "name": "POWER O",
+              "slug": "power-o",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-wing-stack-read-option",
+              "name": "READ OPTION",
+              "slug": "read-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-wing-stack-smash-drive",
+              "name": "SMASH DRIVE",
+              "slug": "smash-drive",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-wing-stack-stick",
+              "name": "STICK",
+              "slug": "stick",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Y Off Trio Close",
+          "slug": "gun-y-off-trio-close",
+          "plays": [
+            {
+              "id": "eagles-off-gun-y-off-trio-close-0-1-trap",
+              "name": "0 1 TRAP",
+              "slug": "0-1-trap",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-boomerang-mesh-z-rail",
+              "name": "BOOMERANG MESH Z RAIL",
+              "slug": "boomerang-mesh-z-rail",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-boomerang-pa-x-over",
+              "name": "BOOMERANG PA X OVER",
+              "slug": "boomerang-pa-x-over",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-boomerang-rpo-alert-swing",
+              "name": "BOOMERANG RPO ALERT SWING",
+              "slug": "boomerang-rpo-alert-swing",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-counter-y",
+              "name": "COUNTER Y",
+              "slug": "counter-y",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-empty-mtn-flood-h-trail",
+              "name": "EMPTY MTN FLOOD H-TRAIL",
+              "slug": "empty-mtn-flood-h-trail",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-empty-mtn-mesh-flat",
+              "name": "EMPTY MTN MESH FLAT",
+              "slug": "empty-mtn-mesh-flat",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-empty-mtn-salem",
+              "name": "EMPTY MTN SALEM",
+              "slug": "empty-mtn-salem",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-flood",
+              "name": "FLOOD",
+              "slug": "flood",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-mtn-inside-zone",
+              "name": "MTN INSIDE ZONE",
+              "slug": "mtn-inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-mtn-mesh-rail",
+              "name": "MTN MESH RAIL",
+              "slug": "mtn-mesh-rail",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-mtn-pa-cross-switch",
+              "name": "MTN PA CROSS SWITCH",
+              "slug": "mtn-pa-cross-switch",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-outside-zone",
+              "name": "OUTSIDE ZONE",
+              "slug": "outside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-pa-power-shallow-cross",
+              "name": "PA POWER SHALLOW CROSS",
+              "slug": "pa-power-shallow-cross",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-pa-toss-lead-swing-crosser",
+              "name": "PA TOSS LEAD SWING CROSSER",
+              "slug": "pa-toss-lead-swing-crosser",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-pin-pull-toss",
+              "name": "PIN PULL TOSS",
+              "slug": "pin-pull-toss",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-power-o",
+              "name": "POWER O",
+              "slug": "power-o",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-gun-y-off-trio-close-smash-return",
+              "name": "SMASH RETURN",
+              "slug": "smash-return",
+              "type": "pass"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hail Mary",
+      "formations": [
+        {
+          "name": "Hail Mary",
+          "slug": "hail-mary-hail-mary",
+          "plays": [
+            {
+              "id": "eagles-off-hail-mary-hail-mary-goal-post",
+              "name": "GOAL POST",
+              "slug": "goal-post",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-hail-mary-hail-mary-hail-mary",
+              "name": "HAIL MARY",
+              "slug": "hail-mary",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-hail-mary-hail-mary-shot-save-clock",
+              "name": "SHOT SAVE CLOCK",
+              "slug": "shot-save-clock",
+              "type": "pass"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "I Form",
+      "formations": [
+        {
+          "name": "Pro",
+          "slug": "i-form-pro",
+          "plays": [
+            {
+              "id": "eagles-off-i-form-pro-bench",
+              "name": "BENCH",
+              "slug": "bench",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-pro-corner-strike",
+              "name": "CORNER STRIKE",
+              "slug": "corner-strike",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-pro-cross-in",
+              "name": "CROSS IN",
+              "slug": "cross-in",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-pro-curls",
+              "name": "CURLS",
+              "slug": "curls",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-pro-fb-dive",
+              "name": "FB DIVE",
+              "slug": "fb-dive",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-i-form-pro-fb-fake-hb-flip",
+              "name": "FB FAKE HB FLIP",
+              "slug": "fb-fake-hb-flip",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-i-form-pro-goal-line-fade",
+              "name": "GOAL LINE FADE",
+              "slug": "goal-line-fade",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-pro-hb-counter-wk",
+              "name": "HB COUNTER WK",
+              "slug": "hb-counter-wk",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-i-form-pro-hb-slip-screen",
+              "name": "HB SLIP SCREEN",
+              "slug": "hb-slip-screen",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-i-form-pro-hb-stretch-alert-x-smoke",
+              "name": "HB STRETCH ALERT X SMOKE",
+              "slug": "hb-stretch-alert-x-smoke",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-i-form-pro-inside-zone",
+              "name": "INSIDE ZONE",
+              "slug": "inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-i-form-pro-iso",
+              "name": "ISO",
+              "slug": "iso",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-i-form-pro-iso-weak",
+              "name": "ISO WEAK",
+              "slug": "iso-weak",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-i-form-pro-mesh",
+              "name": "MESH",
+              "slug": "mesh",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-pro-pa-boot",
+              "name": "PA BOOT",
+              "slug": "pa-boot",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-pro-pa-comeback-slide",
+              "name": "PA COMEBACK SLIDE",
+              "slug": "pa-comeback-slide",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-pro-pa-scissors",
+              "name": "PA SCISSORS",
+              "slug": "pa-scissors",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-pro-pa-weak-flood",
+              "name": "PA WEAK FLOOD",
+              "slug": "pa-weak-flood",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-pro-quick-slants",
+              "name": "QUICK SLANTS",
+              "slug": "quick-slants",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-pro-texas",
+              "name": "TEXAS",
+              "slug": "texas",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-pro-z-spot",
+              "name": "Z SPOT",
+              "slug": "z-spot",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Tight",
+          "slug": "i-form-tight",
+          "plays": [
+            {
+              "id": "eagles-off-i-form-tight-26-duo",
+              "name": "26 DUO",
+              "slug": "26-duo",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-tight-goal-line-fade",
+              "name": "GOAL LINE FADE",
+              "slug": "goal-line-fade",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-tight-hb-blast",
+              "name": "HB BLAST",
+              "slug": "hb-blast",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-i-form-tight-iso",
+              "name": "ISO",
+              "slug": "iso",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-i-form-tight-pa-boot",
+              "name": "PA BOOT",
+              "slug": "pa-boot",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-tight-pa-power-o",
+              "name": "PA POWER O",
+              "slug": "pa-power-o",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-i-form-tight-pa-te-corner",
+              "name": "PA TE CORNER",
+              "slug": "pa-te-corner",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-i-form-tight-power-o",
+              "name": "POWER O",
+              "slug": "power-o",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-i-form-tight-z-slant",
+              "name": "Z SLANT",
+              "slug": "z-slant",
+              "type": "pass"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Pistol",
+      "formations": [
+        {
+          "name": "Deuce",
+          "slug": "pistol-deuce",
+          "plays": [
+            {
+              "id": "eagles-off-pistol-deuce-bench",
+              "name": "BENCH",
+              "slug": "bench",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-hb-counter",
+              "name": "HB COUNTER",
+              "slug": "hb-counter",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-hb-split-dive",
+              "name": "HB SPLIT DIVE",
+              "slug": "hb-split-dive",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-hb-stretch",
+              "name": "HB STRETCH",
+              "slug": "hb-stretch",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-hitch-corners",
+              "name": "HITCH CORNERS",
+              "slug": "hitch-corners",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-inside-cross",
+              "name": "INSIDE CROSS",
+              "slug": "inside-cross",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-pa-te-wheel",
+              "name": "PA TE WHEEL",
+              "slug": "pa-te-wheel",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-rpo-alert-te-flat",
+              "name": "RPO ALERT TE FLAT",
+              "slug": "rpo-alert-te-flat",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-short-post",
+              "name": "SHORT POST",
+              "slug": "short-post",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Deuce Close",
+          "slug": "pistol-deuce-close",
+          "plays": [
+            {
+              "id": "eagles-off-pistol-deuce-close-bench",
+              "name": "BENCH",
+              "slug": "bench",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-close-counter-y",
+              "name": "COUNTER Y",
+              "slug": "counter-y",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-close-hb-dive",
+              "name": "HB DIVE",
+              "slug": "hb-dive",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-close-hb-stretch",
+              "name": "HB STRETCH",
+              "slug": "hb-stretch",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-close-inside-zone-split",
+              "name": "INSIDE ZONE SPLIT",
+              "slug": "inside-zone-split",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-close-mesh-spot",
+              "name": "MESH SPOT",
+              "slug": "mesh-spot",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-close-pa-boot-y-leak",
+              "name": "PA BOOT Y LEAK",
+              "slug": "pa-boot-y-leak",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-close-pa-z-over",
+              "name": "PA Z OVER",
+              "slug": "pa-z-over",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-deuce-close-y-lead-read-option",
+              "name": "Y LEAD READ OPTION",
+              "slug": "y-lead-read-option",
+              "type": "run"
+            }
+          ]
+        },
+        {
+          "name": "Full House TE",
+          "slug": "pistol-full-house-te",
+          "plays": [
+            {
+              "id": "eagles-off-pistol-full-house-te-cntr-lead",
+              "name": "CNTR LEAD",
+              "slug": "cntr-lead",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-pistol-full-house-te-hb-dive",
+              "name": "HB DIVE",
+              "slug": "hb-dive",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-pistol-full-house-te-mtn-0-1-trap",
+              "name": "MTN 0 1 TRAP",
+              "slug": "mtn-0-1-trap",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-pistol-full-house-te-mtn-power-o",
+              "name": "MTN POWER O",
+              "slug": "mtn-power-o",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-pistol-full-house-te-pa-comeback",
+              "name": "PA COMEBACK",
+              "slug": "pa-comeback",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-full-house-te-pa-cross",
+              "name": "PA CROSS",
+              "slug": "pa-cross",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-full-house-te-pa-te-corner",
+              "name": "PA TE CORNER",
+              "slug": "pa-te-corner",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-full-house-te-read-option",
+              "name": "READ OPTION",
+              "slug": "read-option",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-pistol-full-house-te-x-slant",
+              "name": "X SLANT",
+              "slug": "x-slant",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Wing Flex Close",
+          "slug": "pistol-wing-flex-close",
+          "plays": [
+            {
+              "id": "eagles-off-pistol-wing-flex-close-hb-zone-wk",
+              "name": "HB ZONE WK",
+              "slug": "hb-zone-wk",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-pistol-wing-flex-close-mtn-dig-gos",
+              "name": "MTN DIG GOS",
+              "slug": "mtn-dig-gos",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-wing-flex-close-mtn-fork-h-choice",
+              "name": "MTN FORK H-CHOICE",
+              "slug": "mtn-fork-h-choice",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-wing-flex-close-mtn-slot-comeback",
+              "name": "MTN SLOT COMEBACK",
+              "slug": "mtn-slot-comeback",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-wing-flex-close-pa-boot-lt",
+              "name": "PA BOOT LT",
+              "slug": "pa-boot-lt",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-wing-flex-close-pa-boot-y-sail",
+              "name": "PA BOOT Y SAIL",
+              "slug": "pa-boot-y-sail",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-wing-flex-close-wide-zone",
+              "name": "WIDE ZONE",
+              "slug": "wide-zone",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-wing-flex-close-wr-under",
+              "name": "WR UNDER",
+              "slug": "wr-under",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-pistol-wing-flex-close-zone-alert-wr-screen",
+              "name": "ZONE ALERT WR SCREEN",
+              "slug": "zone-alert-wr-screen",
+              "type": "pass"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Singleback",
+      "formations": [
+        {
+          "name": "Ace Double Wing",
+          "slug": "singleback-ace-double-wing",
+          "plays": [
+            {
+              "id": "eagles-off-singleback-ace-double-wing-hb-counter-wk",
+              "name": "HB COUNTER WK",
+              "slug": "hb-counter-wk",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-ace-double-wing-hb-dive",
+              "name": "HB DIVE",
+              "slug": "hb-dive",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-ace-double-wing-hb-smash",
+              "name": "HB SMASH",
+              "slug": "hb-smash",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-ace-double-wing-hb-stretch",
+              "name": "HB STRETCH",
+              "slug": "hb-stretch",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-ace-double-wing-pa-ctr-waggle",
+              "name": "PA CTR WAGGLE",
+              "slug": "pa-ctr-waggle",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-ace-double-wing-pa-te-cross",
+              "name": "PA TE CROSS",
+              "slug": "pa-te-cross",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-ace-double-wing-te-corners",
+              "name": "TE CORNERS",
+              "slug": "te-corners",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-ace-double-wing-te-shake",
+              "name": "TE SHAKE",
+              "slug": "te-shake",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Deuce",
+          "slug": "singleback-deuce",
+          "plays": [
+            {
+              "id": "eagles-off-singleback-deuce-ace-posts",
+              "name": "ACE POSTS",
+              "slug": "ace-posts",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-deuce-counter-y",
+              "name": "COUNTER Y",
+              "slug": "counter-y",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-deuce-curl-flats",
+              "name": "CURL FLATS",
+              "slug": "curl-flats",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-deuce-hb-blunt-dive",
+              "name": "HB BLUNT DIVE",
+              "slug": "hb-blunt-dive",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-deuce-hb-dive",
+              "name": "HB DIVE",
+              "slug": "hb-dive",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-deuce-inside-zone-split",
+              "name": "INSIDE ZONE SPLIT",
+              "slug": "inside-zone-split",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-deuce-mtn-hb-toss",
+              "name": "MTN HB TOSS",
+              "slug": "mtn-hb-toss",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-deuce-mtn-pa-power-o",
+              "name": "MTN PA POWER O",
+              "slug": "mtn-pa-power-o",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-deuce-mtn-power-o",
+              "name": "MTN POWER O",
+              "slug": "mtn-power-o",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-deuce-pa-boot-roll",
+              "name": "PA BOOT ROLL",
+              "slug": "pa-boot-roll",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-deuce-pa-dig",
+              "name": "PA DIG",
+              "slug": "pa-dig",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-deuce-quick-slants",
+              "name": "QUICK SLANTS",
+              "slug": "quick-slants",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Wing",
+          "slug": "singleback-wing",
+          "plays": [
+            {
+              "id": "eagles-off-singleback-wing-26-duo-alert-x-smoke",
+              "name": "26 DUO ALERT X SMOKE",
+              "slug": "26-duo-alert-x-smoke",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-close-pa-cross",
+              "name": "CLOSE PA CROSS",
+              "slug": "close-pa-cross",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-close-pa-post",
+              "name": "CLOSE PA POST",
+              "slug": "close-pa-post",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-close-zone-strg",
+              "name": "CLOSE ZONE STRG",
+              "slug": "close-zone-strg",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-curl-combo",
+              "name": "CURL COMBO",
+              "slug": "curl-combo",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-drive",
+              "name": "DRIVE",
+              "slug": "drive",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-hb-blunt-dive",
+              "name": "HB BLUNT DIVE",
+              "slug": "hb-blunt-dive",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-wing-hb-stretch-alert-smoke",
+              "name": "HB STRETCH ALERT SMOKE",
+              "slug": "hb-stretch-alert-smoke",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-wing-hb-toss-crack",
+              "name": "HB TOSS CRACK",
+              "slug": "hb-toss-crack",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-wing-mtn-h-zone-wk",
+              "name": "MTN H ZONE WK",
+              "slug": "mtn-h-zone-wk",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-mtn-pa-fk-slide",
+              "name": "MTN PA FK SLIDE",
+              "slug": "mtn-pa-fk-slide",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-mtn-pa-poco-slide",
+              "name": "MTN PA POCO SLIDE",
+              "slug": "mtn-pa-poco-slide",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-pa-boot-lt",
+              "name": "PA BOOT LT",
+              "slug": "pa-boot-lt",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-spacing",
+              "name": "SPACING",
+              "slug": "spacing",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-te-attack",
+              "name": "TE ATTACK",
+              "slug": "te-attack",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-y-stick",
+              "name": "Y STICK",
+              "slug": "y-stick",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-z-spot",
+              "name": "Z SPOT",
+              "slug": "z-spot",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-zone-split-alert-lookie",
+              "name": "ZONE SPLIT ALERT LOOKIE",
+              "slug": "zone-split-alert-lookie",
+              "type": "pass"
+            }
+          ]
+        },
+        {
+          "name": "Wing Tight",
+          "slug": "singleback-wing-tight",
+          "plays": [
+            {
+              "id": "eagles-off-singleback-wing-tight-26-duo",
+              "name": "26 DUO",
+              "slug": "26-duo",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-tight-fake-hb-zone-qb-boot",
+              "name": "FAKE HB ZONE QB BOOT",
+              "slug": "fake-hb-zone-qb-boot",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-wing-tight-hb-dive",
+              "name": "HB DIVE",
+              "slug": "hb-dive",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-wing-tight-hb-inside-zone",
+              "name": "HB INSIDE ZONE",
+              "slug": "hb-inside-zone",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-wing-tight-hb-stretch",
+              "name": "HB STRETCH",
+              "slug": "hb-stretch",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-wing-tight-jet-sweep",
+              "name": "JET SWEEP",
+              "slug": "jet-sweep",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-wing-tight-mesh-spot",
+              "name": "MESH SPOT",
+              "slug": "mesh-spot",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-tight-pa-boot-flood",
+              "name": "PA BOOT FLOOD",
+              "slug": "pa-boot-flood",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-tight-pa-boot-slide",
+              "name": "PA BOOT SLIDE",
+              "slug": "pa-boot-slide",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-tight-pa-fl-stretch",
+              "name": "PA FL STRETCH",
+              "slug": "pa-fl-stretch",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-wing-tight-pa-jet-sweep",
+              "name": "PA JET SWEEP",
+              "slug": "pa-jet-sweep",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-singleback-wing-tight-pa-y-drag-wheel",
+              "name": "PA Y-DRAG WHEEL",
+              "slug": "pa-y-drag-wheel",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-tight-sluggo-seam",
+              "name": "SLUGGO SEAM",
+              "slug": "sluggo-seam",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-tight-y-stick",
+              "name": "Y STICK",
+              "slug": "y-stick",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-singleback-wing-tight-zone-fake-jet",
+              "name": "ZONE FAKE JET",
+              "slug": "zone-fake-jet",
+              "type": "pass"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Strong",
+      "formations": [
+        {
+          "name": "Wing",
+          "slug": "strong-wing",
+          "plays": [
+            {
+              "id": "eagles-off-strong-wing-fb-dive",
+              "name": "FB DIVE",
+              "slug": "fb-dive",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-strong-wing-hb-counter-wk",
+              "name": "HB COUNTER WK",
+              "slug": "hb-counter-wk",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-strong-wing-hb-dive",
+              "name": "HB DIVE",
+              "slug": "hb-dive",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-strong-wing-hb-stretch",
+              "name": "HB STRETCH",
+              "slug": "hb-stretch",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-strong-wing-mtn-power-o",
+              "name": "MTN POWER O",
+              "slug": "mtn-power-o",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-strong-wing-mtn-zone-wk",
+              "name": "MTN ZONE WK",
+              "slug": "mtn-zone-wk",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-strong-wing-pa-mtn-power",
+              "name": "PA MTN POWER",
+              "slug": "pa-mtn-power",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-strong-wing-pa-slide",
+              "name": "PA SLIDE",
+              "slug": "pa-slide",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-strong-wing-pa-sprint-hb-flat",
+              "name": "PA SPRINT HB FLAT",
+              "slug": "pa-sprint-hb-flat",
+              "type": "run"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Wildcat",
+      "formations": [
+        {
+          "name": "Trips Over",
+          "slug": "wildcat-trips-over",
+          "plays": [
+            {
+              "id": "eagles-off-wildcat-trips-over-blast-rt",
+              "name": "BLAST RT",
+              "slug": "blast-rt",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-wildcat-trips-over-counter",
+              "name": "COUNTER",
+              "slug": "counter",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-wildcat-trips-over-jet-sweep",
+              "name": "JET SWEEP",
+              "slug": "jet-sweep",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-wildcat-trips-over-pa-jet-cross",
+              "name": "PA JET CROSS",
+              "slug": "pa-jet-cross",
+              "type": "pass"
+            },
+            {
+              "id": "eagles-off-wildcat-trips-over-pa-jet-sweep",
+              "name": "PA JET SWEEP",
+              "slug": "pa-jet-sweep",
+              "type": "run"
+            },
+            {
+              "id": "eagles-off-wildcat-trips-over-power",
+              "name": "POWER",
+              "slug": "power",
+              "type": "run"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+  ]
+}
