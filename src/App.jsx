@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { db, addToMyPlays, removeFromMyPlays } from './lib/db'
-import { playbooks } from './data/playbooks'
+import { db } from './lib/db'
 import PlaybookBrowser from './components/PlaybookBrowser'
 import MyPlaysheet from './components/MyPlaysheet'
 
