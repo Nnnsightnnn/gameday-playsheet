@@ -103,8 +103,8 @@ function PlaybookBrowser({ side }) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search plays..."
-            className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg
-                       text-white placeholder-gray-500 focus:outline-none focus:border-green-500"
+            className="w-full px-5 py-4 glass-card rounded-xl text-white placeholder-gray-500
+                       focus:outline-none focus:border-green-500/50 focus:shadow-lg focus:shadow-green-500/10"
           />
           {searchQuery && (
             <button
@@ -132,18 +132,18 @@ function PlaybookBrowser({ side }) {
                 return (
                   <div
                     key={play.id}
-                    className="flex items-center justify-between p-3 bg-gray-800 rounded-lg hover:bg-gray-750"
+                    className="glass-card flex items-center justify-between p-4 rounded-xl group"
                   >
                     <div className="flex items-center gap-3">
-                      <span className={`px-2 py-1 rounded text-xs font-medium ${
+                      <span className={`px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wide ${
                         play.type === 'run'
-                          ? 'bg-orange-900 text-orange-300'
-                          : 'bg-blue-900 text-blue-300'
+                          ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30'
+                          : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
                       }`}>
                         {play.type}
                       </span>
                       <div>
-                        <div className="font-medium">{play.name}</div>
+                        <div className="font-medium group-hover:text-white transition-colors">{play.name}</div>
                         <div className="text-sm text-gray-400">
                           {play.playbook} → {play.formationGroup} → {play.formation}
                         </div>
@@ -152,10 +152,10 @@ function PlaybookBrowser({ side }) {
                     <button
                       onClick={() => handleAddPlay(play, play.formation, play.formationGroup, play.playbook)}
                       disabled={isAdded}
-                      className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                      className={`px-5 py-2 rounded-xl font-medium transition-all duration-200 ${
                         isAdded
-                          ? 'bg-green-900 text-green-400 cursor-default'
-                          : 'bg-green-600 hover:bg-green-500 text-white'
+                          ? 'bg-green-500/20 text-green-400 border border-green-500/30 cursor-default'
+                          : 'bg-green-600 hover:bg-green-500 hover:shadow-lg hover:shadow-green-500/25 text-white'
                       }`}
                     >
                       {isAdded ? '✓ Added' : '+ Add'}
@@ -179,8 +179,8 @@ function PlaybookBrowser({ side }) {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search plays across all playbooks..."
-          className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg
-                     text-white placeholder-gray-500 focus:outline-none focus:border-green-500"
+          className="w-full px-5 py-4 glass-card rounded-xl text-white placeholder-gray-500
+                     focus:outline-none focus:border-green-500/50 focus:shadow-lg focus:shadow-green-500/10"
         />
       </div>
 
@@ -282,10 +282,9 @@ function PlaybookBrowser({ side }) {
                   <button
                     key={name}
                     onClick={() => handlePlaybookSelect(name)}
-                    className="p-3 bg-gray-800 rounded-lg hover:bg-gray-700
-                               transition-colors text-center text-sm font-medium"
+                    className="glass-card p-4 rounded-xl text-center text-sm font-medium group"
                   >
-                    {name}
+                    <span className="group-hover:text-green-400 transition-colors">{name}</span>
                   </button>
                 ))}
               </div>
@@ -307,11 +306,12 @@ function PlaybookBrowser({ side }) {
                     <button
                       key={group.name}
                       onClick={() => handleFormationGroupSelect(group.name)}
-                      className="p-4 bg-gray-800 rounded-lg hover:bg-gray-700
-                                 transition-colors text-center"
+                      className="glass-card p-4 rounded-xl text-left group overflow-hidden"
                     >
-                      <div className="font-medium">{group.name}</div>
-                      <div className="text-sm text-gray-400 mt-1">
+                      <div className="transition-transform duration-300 group-hover:-translate-y-1">
+                        <div className="font-medium group-hover:text-green-400 transition-colors">{group.name}</div>
+                      </div>
+                      <div className="text-sm text-gray-500 mt-1 transition-all duration-300 group-hover:text-gray-300">
                         {group.formations.length} formations
                       </div>
                     </button>
@@ -330,11 +330,10 @@ function PlaybookBrowser({ side }) {
                   <button
                     key={formation.slug}
                     onClick={() => setSelectedFormation(formation.name)}
-                    className="p-4 bg-gray-800 rounded-lg hover:bg-gray-700
-                               transition-colors text-left"
+                    className="glass-card p-4 rounded-xl text-left group"
                   >
-                    <div className="font-medium">{formation.name}</div>
-                    <div className="text-sm text-gray-400 mt-1">
+                    <div className="font-medium group-hover:text-green-400 transition-colors">{formation.name}</div>
+                    <div className="text-sm text-gray-500 mt-1 group-hover:text-gray-300 transition-colors">
                       {formation.plays.length} plays
                     </div>
                   </button>
@@ -353,25 +352,25 @@ function PlaybookBrowser({ side }) {
                   return (
                     <div
                       key={play.id}
-                      className="flex items-center justify-between p-3 bg-gray-800 rounded-lg hover:bg-gray-750"
+                      className="glass-card flex items-center justify-between p-4 rounded-xl group"
                     >
                       <div className="flex items-center gap-3">
-                        <span className={`px-2 py-1 rounded text-xs font-medium ${
+                        <span className={`px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wide ${
                           play.type === 'run'
-                            ? 'bg-orange-900 text-orange-300'
-                            : 'bg-blue-900 text-blue-300'
+                            ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30'
+                            : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
                         }`}>
                           {play.type}
                         </span>
-                        <span className="font-medium">{play.name}</span>
+                        <span className="font-medium group-hover:text-white transition-colors">{play.name}</span>
                       </div>
                       <button
                         onClick={() => handleAddPlay(play, selectedFormation, selectedFormationGroup, selectedPlaybookName)}
                         disabled={isAdded}
-                        className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                        className={`px-5 py-2 rounded-xl font-medium transition-all duration-200 ${
                           isAdded
-                            ? 'bg-green-900 text-green-400 cursor-default'
-                            : 'bg-green-600 hover:bg-green-500 text-white'
+                            ? 'bg-green-500/20 text-green-400 border border-green-500/30 cursor-default'
+                            : 'bg-green-600 hover:bg-green-500 hover:shadow-lg hover:shadow-green-500/25 text-white'
                         }`}
                       >
                         {isAdded ? '✓ Added' : '+ Add'}
