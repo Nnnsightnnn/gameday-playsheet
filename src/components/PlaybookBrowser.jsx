@@ -71,7 +71,7 @@ function PlaybookBrowser({ side }) {
       formation: formation,
       playName: play.name,
       playType: play.type
-    })
+    }, side)
   }
 
   const handleCategoryChange = (category) => {

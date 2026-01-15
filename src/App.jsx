@@ -12,11 +12,13 @@ function App() {
   const myPlaysCount = useLiveQuery(() => db.myPlays.count(), [], 0)
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen stadium-lights-bg text-white">
       {/* Header */}
-      <header className="bg-gray-800 border-b border-gray-700 px-6 py-4">
+      <header className="bg-gray-800/80 backdrop-blur-sm border-b border-gray-700/50 px-6 py-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-green-400">🏈 Gameday Playsheet</h1>
+          <h1 className="text-2xl font-black tracking-tight text-green-400 hero-title uppercase">
+            Gameday Playsheet
+          </h1>
           <div className="flex items-center gap-4">
             <span className="text-sm text-gray-400">
               {myPlaysCount} plays in your playsheet
@@ -26,23 +28,23 @@ function App() {
       </header>
 
       {/* Tab Navigation */}
-      <nav className="bg-gray-800 px-6 py-2 flex gap-4 border-b border-gray-700">
+      <nav className="bg-gray-800/60 backdrop-blur-sm px-6 py-2 flex gap-4 border-b border-gray-700/50">
         <button
           onClick={() => setActiveTab('browse')}
-          className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+          className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
             activeTab === 'browse'
-              ? 'bg-green-600 text-white'
-              : 'text-gray-400 hover:text-white hover:bg-gray-700'
+              ? 'bg-green-600 text-white nav-glow-active'
+              : 'text-gray-400 hover:text-white hover:bg-gray-700 nav-glow'
           }`}
         >
           Browse Plays
         </button>
         <button
           onClick={() => setActiveTab('playsheet')}
-          className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+          className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
             activeTab === 'playsheet'
-              ? 'bg-green-600 text-white'
-              : 'text-gray-400 hover:text-white hover:bg-gray-700'
+              ? 'bg-green-600 text-white nav-glow-active'
+              : 'text-gray-400 hover:text-white hover:bg-gray-700 nav-glow'
           }`}
         >
           My Playsheet ({myPlaysCount})
