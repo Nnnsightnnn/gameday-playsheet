@@ -16,7 +16,7 @@ function DroppableSituationTab({ situation, isActive, onClick, isDraggingActive 
     <button
       ref={setNodeRef}
       onClick={onClick}
-      className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-all duration-300 min-h-[44px] situation-tab-glow ${
+      className={`px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 ${
         isOver && isValidDropTarget
           ? `${situation.color} text-white ring-2 ring-white scale-105 shadow-lg`
           : isActive
@@ -35,15 +35,31 @@ function DroppableSituationTab({ situation, isActive, onClick, isDraggingActive 
 }
 
 function SituationTabs({ situations, activeSituation, onSituationChange, isDragging = false }) {
+  // Group situations by category for better organization
+  const allTab = situations.find(s => s.tag === null)
+  const otherTabs = situations.filter(s => s.tag !== null)
+
   return (
-    <div className="situation-tabs-container">
+    <div className="situation-tabs-container laminated-premium paper-stack-shadow rounded-lg p-3">
       {isDragging && (
-        <div className="text-xs text-green-400 mb-2 animate-pulse">
-          Drop on a situation tab to assign tag
+        <div className="text-xs text-green-400 mb-2 animate-pulse relative z-10">
+          Drop on a tag to assign it to selected play(s)
         </div>
       )}
-      <div className="situation-tabs flex gap-2 overflow-x-auto pb-2">
-        {situations.map(situation => (
+      <div className="situation-tabs flex flex-wrap gap-2 relative z-10">
+        {/* All tab first */}
+        {allTab && (
+          <DroppableSituationTab
+            situation={allTab}
+            isActive={activeSituation?.id === allTab.id}
+            onClick={() => onSituationChange(allTab)}
+            isDraggingActive={isDragging}
+          />
+        )}
+        {/* Divider */}
+        <div className="w-px bg-gray-700 mx-1 self-stretch" />
+        {/* Other tabs */}
+        {otherTabs.map(situation => (
           <DroppableSituationTab
             key={situation.id}
             situation={situation}

@@ -149,7 +149,7 @@ function DragHandle({ listeners, attributes }) {
   )
 }
 
-function PlayCard({ play, onRemove, onRating, compact = false }) {
+function PlayCard({ play, onRemove, onRating, compact = false, selectionMode = false, isSelected = false, onSelect }) {
   const [showTagSelector, setShowTagSelector] = useState(false)
   const [showAdjustmentEditor, setShowAdjustmentEditor] = useState(false)
   const [expanded, setExpanded] = useState(false)
@@ -168,6 +168,15 @@ function PlayCard({ play, onRemove, onRating, compact = false }) {
     data: { play },
   })
 
+  // Handle click - in selection mode, toggle selection; otherwise expand
+  const handleCardClick = () => {
+    if (selectionMode && onSelect) {
+      onSelect()
+    } else {
+      setExpanded(!expanded)
+    }
+  }
+
   const style = {
     transform: CSS.Translate.toString(transform),
     opacity: isDragging ? 0.8 : 1,
@@ -180,20 +189,43 @@ function PlayCard({ play, onRemove, onRating, compact = false }) {
       <div
         ref={setNodeRef}
         style={style}
-        className={`play-card laminated-card-shine relative p-3 rounded-lg transition-all min-h-[48px] ${
+        className={`play-card laminated-premium relative p-3 rounded-lg transition-all min-h-[48px] ${
           play.playType === 'pass'
             ? 'bg-gray-800 border-l-4 border-blue-500'
             : 'bg-gray-800 border-l-4 border-orange-500'
-        } ${isDragging ? 'shadow-2xl ring-2 ring-green-500' : 'hover:bg-gray-750'}`}
+        } ${isDragging ? 'shadow-2xl ring-2 ring-green-500' : 'hover:bg-gray-750'} ${
+          isSelected ? 'ring-2 ring-green-500 bg-green-900/20' : ''
+        }`}
       >
         <div className="flex items-start gap-1">
+          {/* Selection Checkbox (shown in selection mode) */}
+          {selectionMode && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                onSelect && onSelect()
+              }}
+              className={`shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
+                isSelected
+                  ? 'bg-green-600 border-green-600 text-white'
+                  : 'border-gray-500 hover:border-green-500'
+              }`}
+            >
+              {isSelected && (
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              )}
+            </button>
+          )}
+
           {/* Drag Handle */}
           <DragHandle listeners={listeners} attributes={attributes} />
 
           {/* Card Content */}
           <div
             className="flex-1 min-w-0 cursor-pointer"
-            onClick={() => setExpanded(!expanded)}
+            onClick={handleCardClick}
           >
             <div className="flex items-start justify-between gap-2">
               <div className="flex-1 min-w-0">
@@ -323,7 +355,7 @@ function PlayCard({ play, onRemove, onRating, compact = false }) {
     <div
       ref={setNodeRef}
       style={style}
-      className={`play-card laminated-card-shine px-4 py-3 flex items-center justify-between relative overflow-hidden ${
+      className={`play-card laminated-premium px-4 py-3 flex items-center justify-between relative overflow-hidden ${
         isDragging ? 'shadow-2xl ring-2 ring-green-500 bg-gray-800' : 'hover:bg-gray-750'
       }`}
     >
