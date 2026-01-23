@@ -89,3 +89,8 @@ export async function updateGameContext(updates) {
 export async function clearGameContext() {
   return await db.gameContext.delete(GAME_CONTEXT_ID);
 }
+
+// Defensive adjustments helper - updates only the defensiveAdjustments field
+export async function updateDefensiveAdjustments(id, adjustments) {
+  return await db.myPlays.update(id, { defensiveAdjustments: adjustments });
+}

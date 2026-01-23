@@ -1,21 +1,27 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { useDraggable } from '@dnd-kit/core'
 import { CSS } from '@dnd-kit/utilities'
 import { updatePlayNotes } from '../lib/db'
+import DefensiveAdjustmentsPanel, { QuickTipBadge } from './DefensiveAdjustmentsPanel'
+import AdjustmentEditor from './AdjustmentEditor'
+import { SITUATION_TAGS } from '../data/defensiveConstants'
 
-// Preset tags with colors
-const PRESET_TAGS = [
-  { name: 'money', color: 'bg-green-600' },
-  { name: 'red zone', color: 'bg-red-600' },
-  { name: '3rd down', color: 'bg-yellow-600' },
-  { name: 'goal line', color: 'bg-purple-600' },
-  { name: '2 min', color: 'bg-blue-600' },
-  { name: 'opener', color: 'bg-cyan-600' },
-]
+// Use situation tags from constants (for backwards compatibility, map to PRESET_TAGS format)
+const PRESET_TAGS = SITUATION_TAGS
 
 function TagSelector({ play, onClose }) {
   const [customTag, setCustomTag] = useState('')
   const currentTags = play.tags || []
+
+  // Close on Escape key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', handleEscape)
+    return () => document.removeEventListener('keydown', handleEscape)
+  }, [onClose])
 
   const handleToggleTag = async (tagName) => {
     const newTags = currentTags.includes(tagName)
@@ -31,71 +37,95 @@ function TagSelector({ play, onClose }) {
     }
   }
 
-  return (
-    <div className="absolute right-0 top-full mt-1 z-20 bg-gray-700 rounded-lg shadow-xl p-3 min-w-64">
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-sm font-medium">Tags</span>
-        <button onClick={onClose} className="text-gray-400 hover:text-white">x</button>
-      </div>
-
-      <div className="flex flex-wrap gap-2 mb-3">
-        {PRESET_TAGS.map(tag => (
-          <button
-            key={tag.name}
-            onClick={() => handleToggleTag(tag.name)}
-            className={`px-2 py-1 rounded text-xs font-medium transition-all ${
-              currentTags.includes(tag.name)
-                ? `${tag.color} text-white ring-2 ring-white`
-                : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
-            }`}
-          >
-            {tag.name}
-          </button>
-        ))}
-      </div>
-
-      <div className="flex gap-2">
-        <input
-          type="text"
-          value={customTag}
-          onChange={(e) => setCustomTag(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleAddCustomTag()}
-          placeholder="Custom tag..."
-          className="flex-1 px-2 py-1 bg-gray-600 rounded text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
-        />
-        <button
-          onClick={handleAddCustomTag}
-          className="px-2 py-1 bg-green-600 hover:bg-green-500 rounded text-sm"
-        >
-          Add
-        </button>
-      </div>
-
-      {currentTags.filter(t => !PRESET_TAGS.some(p => p.name === t)).length > 0 && (
-        <div className="mt-2 pt-2 border-t border-gray-600">
-          <div className="text-xs text-gray-400 mb-1">Custom tags:</div>
-          <div className="flex flex-wrap gap-1">
-            {currentTags
-              .filter(t => !PRESET_TAGS.some(p => p.name === t))
-              .map(tag => (
-                <span
-                  key={tag}
-                  className="px-2 py-0.5 bg-gray-500 rounded text-xs flex items-center gap-1"
-                >
-                  {tag}
-                  <button
-                    onClick={() => handleToggleTag(tag)}
-                    className="hover:text-red-400"
-                  >
-                    x
-                  </button>
-                </span>
-              ))}
-          </div>
+  const modal = (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+      onClick={onClose}
+    >
+      <div
+        className="bg-gray-800 rounded-lg shadow-2xl p-4 w-full max-w-sm mx-4"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex justify-between items-center mb-3">
+          <span className="font-medium text-white">Tags</span>
+          <button onClick={onClose} className="text-gray-400 hover:text-white text-lg leading-none">×</button>
         </div>
-      )}
+
+        {/* Play Name */}
+        <div className="text-sm text-gray-400 mb-3 pb-2 border-b border-gray-700">
+          {play.playName}
+        </div>
+
+        <div className="flex flex-wrap gap-2 mb-3">
+          {PRESET_TAGS.map(tag => (
+            <button
+              key={tag.name}
+              onClick={() => handleToggleTag(tag.name)}
+              className={`px-2 py-1 rounded text-xs font-medium transition-all ${
+                currentTags.includes(tag.name)
+                  ? `${tag.color} text-white ring-2 ring-white`
+                  : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+              }`}
+            >
+              {tag.name}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={customTag}
+            onChange={(e) => setCustomTag(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleAddCustomTag()}
+            placeholder="Custom tag..."
+            className="flex-1 px-2 py-1.5 bg-gray-700 rounded text-sm text-white focus:outline-none focus:ring-1 focus:ring-green-500"
+          />
+          <button
+            onClick={handleAddCustomTag}
+            className="px-3 py-1.5 bg-green-600 hover:bg-green-500 rounded text-sm text-white"
+          >
+            Add
+          </button>
+        </div>
+
+        {currentTags.filter(t => !PRESET_TAGS.some(p => p.name === t)).length > 0 && (
+          <div className="mt-3 pt-3 border-t border-gray-700">
+            <div className="text-xs text-gray-400 mb-2">Custom tags:</div>
+            <div className="flex flex-wrap gap-1">
+              {currentTags
+                .filter(t => !PRESET_TAGS.some(p => p.name === t))
+                .map(tag => (
+                  <span
+                    key={tag}
+                    className="px-2 py-1 bg-gray-600 rounded text-xs flex items-center gap-1 text-white"
+                  >
+                    {tag}
+                    <button
+                      onClick={() => handleToggleTag(tag)}
+                      className="hover:text-red-400 ml-1"
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+            </div>
+          </div>
+        )}
+
+        <div className="mt-4 pt-3 border-t border-gray-700 flex justify-end">
+          <button
+            onClick={onClose}
+            className="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white rounded text-sm transition-colors"
+          >
+            Done
+          </button>
+        </div>
+      </div>
     </div>
   )
+
+  return createPortal(modal, document.body)
 }
 
 // Drag handle icon (6 dots)
@@ -121,8 +151,10 @@ function DragHandle({ listeners, attributes }) {
 
 function PlayCard({ play, onRemove, onRating, compact = false }) {
   const [showTagSelector, setShowTagSelector] = useState(false)
+  const [showAdjustmentEditor, setShowAdjustmentEditor] = useState(false)
   const [expanded, setExpanded] = useState(false)
   const tags = play.tags || []
+  const isDefense = play.side === 'defense'
 
   // Setup draggable
   const {
@@ -184,6 +216,10 @@ function PlayCard({ play, onRemove, onRating, compact = false }) {
                     )}
                   </div>
                 )}
+                {/* Quick tip for defensive plays in collapsed view */}
+                {isDefense && !expanded && play.defensiveAdjustments?.quickTip && (
+                  <QuickTipBadge quickTip={play.defensiveAdjustments.quickTip} />
+                )}
               </div>
               {play.rating && (
                 <div className="flex gap-0.5">
@@ -205,6 +241,14 @@ function PlayCard({ play, onRemove, onRating, compact = false }) {
                 <div className="text-xs text-gray-400 mb-2">
                   {play.playbook} / {play.formation}
                 </div>
+
+                {/* Defensive Adjustments Panel */}
+                {isDefense && play.defensiveAdjustments && (
+                  <div className="mb-3">
+                    <DefensiveAdjustmentsPanel adjustments={play.defensiveAdjustments} />
+                  </div>
+                )}
+
                 <div className="flex items-center gap-2 flex-wrap">
                   {/* Rating Stars */}
                   <div className="flex gap-0.5">
@@ -235,6 +279,28 @@ function PlayCard({ play, onRemove, onRating, compact = false }) {
                       <TagSelector play={play} onClose={() => setShowTagSelector(false)} />
                     )}
                   </div>
+
+                  {/* Adjustments Button (defense only) */}
+                  {isDefense && (
+                    <div className="relative">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          setShowAdjustmentEditor(!showAdjustmentEditor)
+                        }}
+                        className={`px-2 py-1 rounded text-xs transition-colors ${
+                          play.defensiveAdjustments?.shading || play.defensiveAdjustments?.quickTip
+                            ? 'bg-red-900/50 text-red-400 hover:bg-red-900'
+                            : 'text-gray-400 hover:text-white hover:bg-gray-700'
+                        }`}
+                      >
+                        Adjustments
+                      </button>
+                      {showAdjustmentEditor && (
+                        <AdjustmentEditor play={play} onClose={() => setShowAdjustmentEditor(false)} />
+                      )}
+                    </div>
+                  )}
 
                   {/* Remove Button */}
                   <button
@@ -272,7 +338,7 @@ function PlayCard({ play, onRemove, onRating, compact = false }) {
         }`}>
           {play.playType || 'play'}
         </span>
-        <div>
+        <div className="flex-1 min-w-0">
           <div className="font-medium">{play.playName}</div>
           <div className="text-sm text-gray-400">
             {play.playbook} / {play.formation}
@@ -290,6 +356,16 @@ function PlayCard({ play, onRemove, onRating, compact = false }) {
                   </span>
                 )
               })}
+            </div>
+          )}
+          {/* Quick tip for defensive plays */}
+          {isDefense && play.defensiveAdjustments?.quickTip && (
+            <QuickTipBadge quickTip={play.defensiveAdjustments.quickTip} />
+          )}
+          {/* Defensive Adjustments Panel */}
+          {isDefense && play.defensiveAdjustments && (
+            <div className="mt-2">
+              <DefensiveAdjustmentsPanel adjustments={play.defensiveAdjustments} />
             </div>
           )}
         </div>
@@ -325,6 +401,28 @@ function PlayCard({ play, onRemove, onRating, compact = false }) {
             <TagSelector play={play} onClose={() => setShowTagSelector(false)} />
           )}
         </div>
+
+        {/* Adjustments Button (defense only) */}
+        {isDefense && (
+          <div className="relative">
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                setShowAdjustmentEditor(!showAdjustmentEditor)
+              }}
+              className={`px-2 py-1 rounded transition-colors ${
+                play.defensiveAdjustments?.shading || play.defensiveAdjustments?.quickTip
+                  ? 'bg-red-900/50 text-red-400 hover:bg-red-900'
+                  : 'text-gray-400 hover:text-white hover:bg-gray-700'
+              }`}
+            >
+              Adjustments
+            </button>
+            {showAdjustmentEditor && (
+              <AdjustmentEditor play={play} onClose={() => setShowAdjustmentEditor(false)} />
+            )}
+          </div>
+        )}
 
         {/* Remove Button */}
         <button
