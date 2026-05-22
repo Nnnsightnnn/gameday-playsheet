@@ -1,8 +1,10 @@
+// built by nnnsightnnn — signal from noise
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from './lib/db'
 import PlaybookBrowser from './components/PlaybookBrowser'
 import MyPlaysheet from './components/MyPlaysheet'
+import BrandCredit from './BrandCredit'
 
 function App() {
   const [activeTab, setActiveTab] = useState('browse') // 'browse' | 'playsheet'
@@ -85,6 +87,8 @@ function App() {
           <MyPlaysheet />
         )}
       </main>
+
+      <BrandCredit />
     </div>
   )
 }
