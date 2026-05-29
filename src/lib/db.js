@@ -56,12 +56,15 @@ function freshSheetSeed() {
 
 export async function getSheetAssignments() {
   const row = await db.sheetAssignments.get(SHEET_ID);
-  if (row) return row;
-  // First-run: seed the table with the sample call sheet so new users see
-  // a populated playsheet, then return a fresh copy.
-  const seeded = freshSheetSeed();
-  await db.sheetAssignments.put(seeded);
-  return freshSheetSeed();
+  return row || freshSheetSeed();
+}
+
+// Idempotent seeder — call once at app start, outside useLiveQuery context.
+// useLiveQuery forbids readwrite transactions inside its querier.
+export async function ensureSheetAssignmentsSeeded() {
+  const row = await db.sheetAssignments.get(SHEET_ID);
+  if (row) return;
+  await db.sheetAssignments.put(freshSheetSeed());
 }
 
 export async function saveSheetAssignments(assignments) {

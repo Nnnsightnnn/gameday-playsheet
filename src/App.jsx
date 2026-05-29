@@ -10,6 +10,7 @@ import {
   saveSheetAssignments,
   getSheetSettings,
   saveSheetSettings,
+  ensureSheetAssignmentsSeeded,
 } from './lib/db'
 import { SITUATIONS } from './data/situations'
 import Coordinator from './components/laminated/Coordinator'
@@ -28,6 +29,11 @@ const DEFAULT_TWEAKS = {
 }
 
 function App() {
+  // ── first-run seed for sheet assignments (writes outside liveQuery) ─────
+  useEffect(() => {
+    ensureSheetAssignmentsSeeded()
+  }, [])
+
   // ── playbook data (loaded once from /data/playbooks.json) ────────────────
   const [playbooks, setPlaybooks] = useState([])
   const [pbLoading, setPbLoading] = useState(true)
