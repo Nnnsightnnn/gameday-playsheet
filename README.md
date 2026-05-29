@@ -1,20 +1,57 @@
-# React + Vite
+# Gameday Playsheet
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Football play management for sideline use. Build a custom playsheet from NFL/college playbooks, track in-game performance, and dial defensive adjustments on the fly.
 
-Currently, two official plugins are available:
+Live: **https://nnnsightnnn.github.io/gameday-playsheet/**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack
 
-## React Compiler
+React 19 · Vite 7 · Tailwind CSS 4 · Dexie (IndexedDB) · `@dnd-kit`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Local development
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev          # vite dev server (http://localhost:5173)
+npm run lint         # ESLint
+npm run build        # production build to ./dist
+npm run preview      # preview the production build locally
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Convenience wrapper for background dev:
 
+```bash
+./scripts/dev.sh start    # spawn vite in background, write .dev.pid
+./scripts/dev.sh stop     # kill it
+```
+
+## Repo layout
+
+```
+src/              React app (components, hooks, lib, data)
+public/data/      Playbook JSON (consumed at runtime)
+tools/scraper/    Python scraper that generates public/data/playbooks.json
+scripts/          Dev helper scripts
+.github/workflows # GitHub Pages deploy (Actions)
+```
+
+## Deployment
+
+Pushes to `main` trigger `.github/workflows/pages.yml`, which builds with Vite and publishes `dist/` via the `actions/deploy-pages` flow. The Vite `base` is set to `/gameday-playsheet/` to match the Pages URL.
+
+To enable Pages on the repo (one-time): **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+## Data refresh
+
+Playbooks are scraped from huddle.gg. To regenerate `public/data/playbooks.json`:
+
+```bash
+cd tools/scraper
+python3 -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+python scrape_huddle.py
+cp output/playbooks.json ../../public/data/playbooks.json
+```
 
 ---
 

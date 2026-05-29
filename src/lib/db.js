@@ -1,4 +1,5 @@
 import Dexie from 'dexie';
+import { SHEET_SEED } from '../data/seed';
 
 export const db = new Dexie('GamedayPlaysheet');
 
@@ -29,6 +30,69 @@ db.version(3).stores({
   playPerformance: '++id, sessionId, playId, callCount, successCount, yardsGained, notes',
   gameContext: 'id'
 });
+
+// Version 4: Add sheetAssignments table for the laminated call-sheet
+// One record keyed by id ('sheet') containing { offense: { [situationId]: [plays] }, defense: {...} }
+db.version(4).stores({
+  myPlays: '++id, playId, playbook, formationGroup, formation, playName, playType, side, tags, notes, rating, addedAt',
+  gameSessions: '++id, opponent, date, result, notes',
+  playPerformance: '++id, sessionId, playId, callCount, successCount, yardsGained, notes',
+  gameContext: 'id',
+  sheetAssignments: 'id',
+  sheetSettings: 'id'
+});
+
+// Sheet assignments helpers — fresh-object factories so the module-level
+// defaults are never aliased into the live React state.
+const SHEET_ID = 'sheet';
+
+function freshSheetSeed() {
+  return {
+    id: SHEET_ID,
+    offense: structuredClone(SHEET_SEED.offense),
+    defense: structuredClone(SHEET_SEED.defense),
+  };
+}
+
+export async function getSheetAssignments() {
+  const row = await db.sheetAssignments.get(SHEET_ID);
+  if (row) return row;
+  // First-run: seed the table with the sample call sheet so new users see
+  // a populated playsheet, then return a fresh copy.
+  const seeded = freshSheetSeed();
+  await db.sheetAssignments.put(seeded);
+  return freshSheetSeed();
+}
+
+export async function saveSheetAssignments(assignments) {
+  return await db.sheetAssignments.put({ ...assignments, id: SHEET_ID });
+}
+
+// Sheet settings (team name, side, tweaks)
+const SETTINGS_ID = 'settings';
+
+function freshDefaultSettings() {
+  return {
+    id: SETTINGS_ID,
+    team: 'Sentinels',
+    side: 'offense',
+    tweaks: {
+      paper: ['#f4efe2', '#e7e0cf', '#d8cfb8', '#1c1a14'],
+      accent: '#2f7d4f',
+      density: 'regular',
+      gloss: true,
+    },
+  };
+}
+
+export async function getSheetSettings() {
+  const row = await db.sheetSettings.get(SETTINGS_ID);
+  return row || freshDefaultSettings();
+}
+
+export async function saveSheetSettings(settings) {
+  return await db.sheetSettings.put({ ...settings, id: SETTINGS_ID });
+}
 
 // Helper to add a play to my playsheet
 export async function addToMyPlays(play, side) {

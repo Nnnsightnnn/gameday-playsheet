@@ -9,6 +9,8 @@ lerna-debug.log*
 
 node_modules
 dist
+dist-*/
+dist.*/
 dist-ssr
 *.local
 
@@ -23,3 +25,26 @@ dist-ssr
 *.sln
 *.sw?
 .dev.pid
+
+# Local Claude / context — keep local
+.claude/
+CLAUDE.md
+SKILL.md
+SCOPE.md
+PUBLISH.md
+REDESIGN-BRIEF.md
+
+# Brand assets — keep local (built-by badges force-added for README)
+.brand/
+
+# Python (tools/scraper)
+__pycache__/
+*.py[cod]
+*.egg-info/
+tools/scraper/venv/
+tools/scraper/output/
+
+# Local Antigravity bridge — keep local
+AGENTS.md
+CLAUDE.md
+CLAUDE.md

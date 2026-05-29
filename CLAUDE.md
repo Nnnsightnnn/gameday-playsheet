@@ -14,7 +14,8 @@ Gameday Playsheet - Football play management application.
   /lib/         - Database layer (db.js - Dexie)
   /data/        - Playbook utilities
   /hooks/       - Custom hooks
-/scraper/       - Python web scrapers (huddle.gg)
+/tools/scraper/ - Python web scrapers (huddle.gg)
+/scripts/       - Dev helper scripts (dev.sh)
 /public/data/   - Static playbook JSON
 /.claude/       - Context system
 ```
