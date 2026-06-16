@@ -2,7 +2,7 @@
 
 import { toPx } from '../../lib/field/fieldConfig';
 
-const R = 22;
+const R = 17;
 
 export default function PlayerToken({
   player,
@@ -23,19 +23,19 @@ export default function PlayerToken({
       style={{ cursor: 'grab', touchAction: 'none', opacity: dimmed ? 0.5 : 1 }}
     >
       {selected && (
-        <circle r={R + 6} fill="none" stroke="var(--token-sel)" strokeWidth={3} />
+        <circle r={R + 5} fill="none" stroke="var(--token-sel)" strokeWidth={3} />
       )}
       <circle
         r={R}
         fill={fill}
         stroke={invalid ? 'var(--token-bad)' : 'rgba(0,0,0,0.35)'}
-        strokeWidth={invalid ? 4 : 2}
+        strokeWidth={invalid ? 3.5 : 2}
       />
       <text
         className="token__label"
         textAnchor="middle"
         dy="-1"
-        fontSize="16"
+        fontSize="13"
         fontWeight="700"
         fill="#fff"
       >
@@ -44,8 +44,8 @@ export default function PlayerToken({
       <text
         className="token__num"
         textAnchor="middle"
-        dy="14"
-        fontSize="10"
+        dy="12"
+        fontSize="8.5"
         fill="rgba(255,255,255,0.85)"
       >
         {player.jersey}

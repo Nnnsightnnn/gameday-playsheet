@@ -18,20 +18,6 @@ import FormationLibraryDrawer from './FormationLibraryDrawer';
 
 const BALL_X = { left: HASH_LEFT_X, middle: 0.5, right: HASH_RIGHT_X };
 
-// Snap a raw x to the nearest of the three legal ball spots.
-function nearestSpot(x) {
-  let best = 'middle';
-  let bestD = Infinity;
-  for (const [spot, val] of Object.entries(BALL_X)) {
-    const d = Math.abs(x - val);
-    if (d < bestD) {
-      bestD = d;
-      best = spot;
-    }
-  }
-  return best;
-}
-
 export default function FormationPlanner({ side }) {
   // One editor per side so both stay live on the field at once.
   const offense = useFormationEditor('offense');
@@ -97,16 +83,11 @@ export default function FormationPlanner({ side }) {
   const selected = allPlayers.find((p) => p.id === selectedId) || null;
 
   const handleMove = (id, point) => {
-    if (id === '__ball__') {
-      setBallSpot(nearestSpot(point.x));
-      return;
-    }
     editorFor(teamById[id]).move(id, point);
   };
 
   // Tap a token: select, swap with the selected same-team token, or deselect.
   const handleTap = (id) => {
-    if (id === '__ball__') return;
     const team = teamById[id];
     const ed = editorFor(team);
     const other = editorFor(team === 'offense' ? 'defense' : 'offense');
@@ -210,8 +191,8 @@ export default function FormationPlanner({ side }) {
             onTap={handleTap}
           />
           <p className="planner__hint">
-            Editing <b>{side}</b> · drag the ball to set the hash · tap two
-            teammates to swap · tap one to edit position &amp; number
+            Editing <b>{side}</b> · set the ball hash above · tap two teammates
+            to swap · tap one to edit position &amp; number
           </p>
         </div>
 

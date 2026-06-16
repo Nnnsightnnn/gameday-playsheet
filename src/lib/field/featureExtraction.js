@@ -32,10 +32,10 @@ export function classifyOffense(players, ballX = 0.5) {
   const nTE = tes.length;
   const personnel = `${nBacks}${nTE}`;
 
-  const qy = qb ? qb.y : 0.05;
+  const qy = qb ? qb.y : 0.08;
   const qx = qb ? qb.x : 0.5;
-  const shotgun = qy >= 0.13;
-  const underCenter = qy <= 0.075;
+  const shotgun = qy >= 0.22;
+  const underCenter = qy <= 0.12;
 
   let backfield;
   if (nBacks === 0) {

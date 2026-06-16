@@ -13,7 +13,8 @@ export const FIELD = { widthYds: 53.333, halfDepthYds: 15 };
 
 // SVG viewBox space the board is drawn in. SVG scales this to the rendered size,
 // so these are not pixels — getScreenCTM() handles the device mapping.
-export const BOARD = { w: 1000, h: 660 };
+// Taller than wide-feeling so backfield depth has room to separate cleanly.
+export const BOARD = { w: 1000, h: 900 };
 
 // A player is "on the line" when |y| is within this band (~0.5 yd each way).
 export const ON_LINE_EPS = 0.033;

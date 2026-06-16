@@ -23,7 +23,7 @@ export default function FieldBoard({
   const svgRef = useRef(null);
   const startDrag = usePointerDrag({ svgRef, snap, onMove, onTap });
 
-  const ball = toPx({ x: BALL_SPOT_X[ballSpot] ?? 0.5, y: 0 });
+  const spot = toPx({ x: BALL_SPOT_X[ballSpot] ?? 0.5, y: 0 });
 
   return (
     <svg
@@ -34,15 +34,10 @@ export default function FieldBoard({
     >
       <FieldBackground />
 
-      {/* the ball — drag left/right to set the hash spot */}
-      <g
-        className="ball"
-        transform={`translate(${ball.px} ${ball.py})`}
-        onPointerDown={(e) => startDrag(e, '__ball__', 'offense')}
-        style={{ cursor: 'ew-resize', touchAction: 'none' }}
-      >
-        <ellipse rx={11} ry={7} fill="#7a3b18" stroke="#2a1408" strokeWidth={1.5} />
-        <line x1={-5} x2={5} y1={0} y2={0} stroke="#fff" strokeWidth={1.5} />
+      {/* ball spot — a bright hash notch on the LOS marking where the ball sits */}
+      <g className="ballspot" transform={`translate(${spot.px} ${spot.py})`}>
+        <line x1={0} x2={0} y1={-16} y2={16} stroke="var(--turf-los)" strokeWidth={5} />
+        <polygon points="-8,-26 8,-26 0,-16" fill="var(--turf-los)" />
       </g>
 
       {players.map((p) => (
