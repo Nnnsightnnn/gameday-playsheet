@@ -1,38 +1,97 @@
 // Formation Planner — match an extracted feature set against a named library.
-// Each library entry has a `sig` of feature constraints; the score is the
-// fraction of those constraints the arrangement satisfies (1 = perfect).
+//
+// Each library entry has a `sig` of feature constraints. The score is a
+// WEIGHTED, GRADED fraction of those constraints the arrangement satisfies:
+// numeric ranges give partial credit by distance (a count one off still scores
+// well), and the structural axes that define a formation (backfield, front,
+// personnel, package) are weighted above cosmetic ones (strong side, spacing).
+// This keeps the closest real name stable as the user nudges tokens around.
 
-// A constraint value may be a string (exact match), an array (membership),
-// or a {min,max} range object.
-function satisfies(value, constraint) {
-  if (constraint == null) return true;
-  if (Array.isArray(constraint)) return constraint.includes(value);
+// Relative importance of each feature key. Unlisted keys default to 1.
+const WEIGHTS = {
+  // offense
+  backfield: 3,
+  personnel: 2.5,
+  strength: 2,
+  nBacks: 1.5,
+  nTE: 1.5,
+  nWR: 1,
+  teAttach: 0.75,
+  spacing: 1.25,
+  strongSide: 0.5,
+  // defense
+  front: 3,
+  pkg: 2.5,
+  shell: 2,
+  dl: 1.5,
+  lb: 1.5,
+  nDB: 1.5,
+  frontTag: 0.75,
+};
+
+// Graded satisfaction in [0,1]. Strings/arrays are exact membership (1 or 0);
+// {min,max} ranges give full credit inside the band and decay with distance
+// outside it, so a count that's one off still contributes ~0.5.
+function gradedSatisfy(value, constraint) {
+  if (constraint == null) return 1;
+  if (Array.isArray(constraint)) return constraint.includes(value) ? 1 : 0;
   if (typeof constraint === 'object') {
-    if (constraint.min != null && value < constraint.min) return false;
-    if (constraint.max != null && value > constraint.max) return false;
-    return true;
+    if (typeof value !== 'number') return 0;
+    let dist = 0;
+    if (constraint.min != null && value < constraint.min) {
+      dist = constraint.min - value;
+    } else if (constraint.max != null && value > constraint.max) {
+      dist = value - constraint.max;
+    }
+    return Math.max(0, 1 - 0.5 * dist);
   }
-  return value === constraint;
+  return value === constraint ? 1 : 0;
 }
 
+// Weighted graded score in [0,1] for one library entry, plus the feature keys
+// that fully matched (the "drivers" we can surface to explain the call).
 export function scoreEntry(features, entry) {
   const keys = Object.keys(entry.sig || {});
-  if (keys.length === 0) return 0;
-  let hit = 0;
+  if (keys.length === 0) return { score: 0, drivers: [] };
+  let num = 0;
+  let den = 0;
+  const drivers = [];
   for (const k of keys) {
-    if (satisfies(features[k], entry.sig[k])) hit += 1;
+    const w = WEIGHTS[k] ?? 1;
+    const s = gradedSatisfy(features[k], entry.sig[k]);
+    num += w * s;
+    den += w;
+    if (s >= 0.999) drivers.push(k);
   }
-  return hit / keys.length;
+  return { score: den ? num / den : 0, drivers };
 }
 
-// Returns { name, score } for the best library match on this side, or null.
-export function matchLibrary(features, library, side, threshold = 0.75) {
+// Best library match on this side. Returns the closest real name even when it
+// falls below `threshold` (flagged `lowConfidence`), so the panel always lands
+// on a canonical name rather than blanking out. Includes the runner-up.
+export function matchLibrary(features, library, side, threshold = 0.7) {
+  if (!features) return null;
   const candidates = (library || []).filter((e) => e.side === side);
-  let best = null;
-  for (const entry of candidates) {
-    const score = scoreEntry(features, entry);
-    if (!best || score > best.score) best = { name: entry.name, score };
-  }
-  if (!best || best.score < threshold) return null;
-  return best;
+  if (!candidates.length) return null;
+
+  const ranked = candidates
+    .map((e) => {
+      const { score, drivers } = scoreEntry(features, e);
+      return { name: e.name, aliases: e.aliases || [], score, drivers };
+    })
+    .sort((a, b) => b.score - a.score);
+
+  const best = ranked[0];
+  const runnerUp = ranked[1] && ranked[1].score > 0 ? ranked[1] : null;
+
+  return {
+    name: best.name,
+    aliases: best.aliases,
+    score: best.score,
+    drivers: best.drivers,
+    lowConfidence: best.score < threshold,
+    runnerUp: runnerUp
+      ? { name: runnerUp.name, score: runnerUp.score }
+      : null,
+  };
 }
