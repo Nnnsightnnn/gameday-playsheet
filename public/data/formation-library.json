@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "note": "Named formations matched by feature signature (see featureExtraction.js). sig values: string=exact, array=any-of, {min,max}=range.",
+  "formations": [
+    { "name": "Pro I", "side": "offense", "sig": { "backfield": "I-Form", "personnel": ["21", "22"] } },
+    { "name": "Power I", "side": "offense", "sig": { "backfield": "I-Form", "nTE": { "min": 2 } } },
+    { "name": "Singleback Ace", "side": "offense", "sig": { "backfield": "Singleback", "strength": "2x2" } },
+    { "name": "Singleback Trips", "side": "offense", "sig": { "backfield": "Singleback", "strength": "3x1" } },
+    { "name": "Gun Doubles", "side": "offense", "sig": { "backfield": "Gun", "strength": "2x2", "nBacks": 1 } },
+    { "name": "Gun Trips", "side": "offense", "sig": { "backfield": "Gun", "strength": "3x1", "nBacks": 1 } },
+    { "name": "Gun Trey / Trips Open", "side": "offense", "sig": { "backfield": "Gun", "strength": "3x1", "personnel": "10" } },
+    { "name": "Empty Spread", "side": "offense", "sig": { "backfield": "Empty", "strength": "3x2" } },
+    { "name": "Empty Quads", "side": "offense", "sig": { "backfield": "Empty", "strength": ["4x1", "4x0"] } },
+    { "name": "Pistol Strong", "side": "offense", "sig": { "backfield": "Pistol", "nBacks": { "min": 1 } } },
+    { "name": "Goal Line Heavy", "side": "offense", "sig": { "backfield": ["I-Form", "Singleback"], "nTE": { "min": 2 }, "nWR": { "max": 1 } } },
+
+    { "name": "4-3 Base", "side": "defense", "sig": { "front": "4-3", "pkg": "Base" } },
+    { "name": "4-3 Cover 2", "side": "defense", "sig": { "front": "4-3", "pkg": "Base", "shell": "2-High" } },
+    { "name": "3-4 Base", "side": "defense", "sig": { "front": "3-4", "pkg": "Base" } },
+    { "name": "Nickel", "side": "defense", "sig": { "pkg": "Nickel" } },
+    { "name": "Nickel 4-2-5", "side": "defense", "sig": { "front": "4-2", "pkg": "Nickel" } },
+    { "name": "Dime", "side": "defense", "sig": { "pkg": "Dime" } },
+    { "name": "Quarter / Prevent", "side": "defense", "sig": { "pkg": "Quarter" } },
+    { "name": "Bear / 46 Front", "side": "defense", "sig": { "front": ["4-3", "5-2"], "pkg": "Heavy" } },
+    { "name": "Goal Line", "side": "defense", "sig": { "dl": { "min": 5 } } }
+  ]
+}

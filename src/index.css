@@ -815,6 +815,49 @@ body:has(.drawer--on) .tweaks__fab { display: none; }
 .vrow--warn { border-color: rgba(255,210,74,0.35); background: rgba(255,210,74,0.07); }
 .vrow--ok { cursor: default; color: #8a866f; }
 
+/* formation discovery */
+.disc {
+  background: rgba(10,10,7,0.6);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 14px;
+}
+.disc__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #807c66;
+}
+.disc__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.3px;
+  color: var(--accent);
+  margin: 4px 0 10px;
+  line-height: 1.05;
+}
+.disc__chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.disc__chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.06);
+  color: #cfc9b4;
+}
+.disc__match {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: #d8d2bd;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 10px;
+}
+.disc__match b { color: #efeadb; }
+.disc__pct { font-family: var(--font-mono); color: oklch(0.78 0.16 150); }
+.disc__match--none { color: #807c66; }
+
 .picker {
   background: rgba(10,10,7,0.7);
   border: 1px solid rgba(255,255,255,0.08);

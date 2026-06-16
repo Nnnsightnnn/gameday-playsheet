@@ -6,21 +6,21 @@ const R = 22;
 
 export default function PlayerToken({
   player,
-  side,
   selected,
+  dimmed,
   invalid,
   onPointerDown,
 }) {
   const { px, py } = toPx(player);
-  const fill =
-    side === 'offense' ? 'var(--token-off)' : 'var(--token-def)';
+  const team = player.team || 'offense';
+  const fill = team === 'offense' ? 'var(--token-off)' : 'var(--token-def)';
 
   return (
     <g
       className="token"
       transform={`translate(${px} ${py})`}
       onPointerDown={onPointerDown}
-      style={{ cursor: 'grab', touchAction: 'none' }}
+      style={{ cursor: 'grab', touchAction: 'none', opacity: dimmed ? 0.5 : 1 }}
     >
       {selected && (
         <circle r={R + 6} fill="none" stroke="var(--token-sel)" strokeWidth={3} />

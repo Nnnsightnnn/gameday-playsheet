@@ -2,18 +2,18 @@
 // Distinguishes a drag (token moved past a threshold) from a tap (select/swap).
 //
 // Usage:
-//   const startDrag = usePointerDrag({ svgRef, snap, side, onMove, onTap })
-//   <g onPointerDown={(e) => startDrag(e, token.id)} />
+//   const startDrag = usePointerDrag({ svgRef, snap, onMove, onTap })
+//   <g onPointerDown={(e) => startDrag(e, token.id, token.team)} />
 
 import { useCallback } from 'react';
 import { toField, snapPoint } from '../lib/field/fieldConfig';
 
 const TAP_THRESHOLD = 6; // client px of movement before it counts as a drag
 
-export function usePointerDrag({ svgRef, snap = true, side = 'offense', onMove, onTap }) {
-  // client coords → normalized field point
+export function usePointerDrag({ svgRef, snap = true, onMove, onTap }) {
+  // client coords → normalized field point, clamped to the dragged side's half
   const clientToField = useCallback(
-    (clientX, clientY) => {
+    (clientX, clientY, side) => {
       const svg = svgRef.current;
       if (!svg) return null;
       const pt = svg.createSVGPoint();
@@ -22,11 +22,11 @@ export function usePointerDrag({ svgRef, snap = true, side = 'offense', onMove, 
       const loc = pt.matrixTransform(svg.getScreenCTM().inverse());
       return snapPoint(toField({ px: loc.x, py: loc.y }), { snap, side });
     },
-    [svgRef, snap, side],
+    [svgRef, snap],
   );
 
   const startDrag = useCallback(
-    (e, id) => {
+    (e, id, side = 'offense') => {
       e.preventDefault();
       const state = { startX: e.clientX, startY: e.clientY, moved: false };
 
@@ -34,7 +34,7 @@ export function usePointerDrag({ svgRef, snap = true, side = 'offense', onMove, 
         const dist = Math.hypot(ev.clientX - state.startX, ev.clientY - state.startY);
         if (!state.moved && dist > TAP_THRESHOLD) state.moved = true;
         if (state.moved) {
-          const point = clientToField(ev.clientX, ev.clientY);
+          const point = clientToField(ev.clientX, ev.clientY, side);
           if (point) onMove?.(id, point);
         }
       };
