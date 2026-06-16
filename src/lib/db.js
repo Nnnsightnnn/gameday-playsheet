@@ -1,5 +1,6 @@
 import Dexie from 'dexie';
 import { SHEET_SEED } from '../data/seed';
+import { starterFormations } from './field/formationFactory';
 
 export const db = new Dexie('GamedayPlaysheet');
 
@@ -40,6 +41,17 @@ db.version(4).stores({
   gameContext: 'id',
   sheetAssignments: 'id',
   sheetSettings: 'id'
+});
+
+// Version 5: Formation Planner — saved field formations (multi-row, string PK)
+db.version(5).stores({
+  myPlays: '++id, playId, playbook, formationGroup, formation, playName, playType, side, tags, notes, rating, addedAt',
+  gameSessions: '++id, opponent, date, result, notes',
+  playPerformance: '++id, sessionId, playId, callCount, successCount, yardsGained, notes',
+  gameContext: 'id',
+  sheetAssignments: 'id',
+  sheetSettings: 'id',
+  formations: 'id, side, name, updatedAt'
 });
 
 // Sheet assignments helpers — fresh-object factories so the module-level
@@ -160,4 +172,42 @@ export async function clearGameContext() {
 // Defensive adjustments helper - updates only the defensiveAdjustments field
 export async function updateDefensiveAdjustments(id, adjustments) {
   return await db.myPlays.update(id, { defensiveAdjustments: adjustments });
+}
+
+// ── Formation Planner helpers ───────────────────────────────────────────────
+
+export async function getFormations(side) {
+  const all = await db.formations.orderBy('updatedAt').reverse().toArray();
+  return side ? all.filter((f) => f.side === side) : all;
+}
+
+export async function getFormation(id) {
+  return await db.formations.get(id);
+}
+
+export async function saveFormation(formation) {
+  const now = new Date().toISOString();
+  const row = {
+    ...formation,
+    updatedAt: now,
+    createdAt: formation.createdAt || now,
+  };
+  await db.formations.put(row);
+  return row;
+}
+
+export async function deleteFormation(id) {
+  return await db.formations.delete(id);
+}
+
+// Attach a saved formation to a play already in myPlays (no migration needed).
+export async function linkFormationToPlay(myPlayId, formationId) {
+  return await db.myPlays.update(myPlayId, { formationId });
+}
+
+// Idempotent seeder — call once at app start, outside useLiveQuery context.
+export async function ensureFormationsSeeded() {
+  const count = await db.formations.count();
+  if (count > 0) return;
+  await db.formations.bulkPut(starterFormations());
 }

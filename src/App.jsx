@@ -11,6 +11,7 @@ import {
   getSheetSettings,
   saveSheetSettings,
   ensureSheetAssignmentsSeeded,
+  ensureFormationsSeeded,
 } from './lib/db'
 import { SITUATIONS } from './data/situations'
 import Coordinator from './components/laminated/Coordinator'
@@ -18,6 +19,7 @@ import Sheet from './components/laminated/Sheet'
 import PlayBank from './components/laminated/PlayBank'
 import Toast from './components/laminated/Toast'
 import TweaksPanel from './components/laminated/TweaksPanel'
+import FormationPlanner from './components/planner/FormationPlanner'
 import BrandCredit from './BrandCredit'
 
 const DENSITY_SLOTS = { compact: 3, regular: 4, comfy: 5 }
@@ -32,6 +34,7 @@ function App() {
   // ── first-run seed for sheet assignments (writes outside liveQuery) ─────
   useEffect(() => {
     ensureSheetAssignmentsSeeded()
+    ensureFormationsSeeded()
   }, [])
 
   // ── playbook data (loaded once from /data/playbooks.json) ────────────────
@@ -64,6 +67,7 @@ function App() {
   const team = settings?.team ?? 'Sentinels'
   const side = settings?.side ?? 'offense'
   const tweaks = settings?.tweaks ?? DEFAULT_TWEAKS
+  const view = settings?.view ?? 'sheet'
 
   const ctx = ctxRow ?? { down: 1, distance: 10, fieldSide: 'own', yardLine: 25 }
   const assignments = useMemo(
@@ -107,6 +111,8 @@ function App() {
       tweaks: { ...tweaks, [key]: val },
     })
   const setCtx = (patch) => updateGameContext(patch)
+  const setView = (v) =>
+    saveSheetSettings({ ...(settings || {}), team, side, tweaks, view: v })
 
   const openDrawer = (situationId) => {
     setTargetId(situationId || situations[0].id)
@@ -170,6 +176,21 @@ function App() {
         liveSituations={liveText}
       />
 
+      <div className="viewswitch">
+        <button
+          className={'view-tab' + (view === 'sheet' ? ' view-tab--on' : '')}
+          onClick={() => setView('sheet')}
+        >
+          Call Sheet
+        </button>
+        <button
+          className={'view-tab' + (view === 'planner' ? ' view-tab--on' : '')}
+          onClick={() => setView('planner')}
+        >
+          Formation Planner
+        </button>
+      </div>
+
       <div className="sides">
         <button
           className={
@@ -189,51 +210,59 @@ function App() {
         >
           Defense
         </button>
-        <div
-          style={{
-            marginLeft: 'auto',
-            alignSelf: 'flex-end',
-            paddingBottom: 6,
-            fontFamily: 'var(--font-mono)',
-            fontSize: 11,
-            letterSpacing: 1,
-            color: '#8a866f',
-            transform: 'translateY(-2px)',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {totalCalls} {side} calls on the sheet
-        </div>
+        {view === 'sheet' && (
+          <div
+            style={{
+              marginLeft: 'auto',
+              alignSelf: 'flex-end',
+              paddingBottom: 6,
+              fontFamily: 'var(--font-mono)',
+              fontSize: 11,
+              letterSpacing: 1,
+              color: '#8a866f',
+              transform: 'translateY(-2px)',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {totalCalls} {side} calls on the sheet
+          </div>
+        )}
       </div>
 
-      <Sheet
-        situations={situations}
-        assignments={sideAssign}
-        liveIds={liveIds}
-        slotCount={slotCount}
-        gloss={tweaks.gloss}
-        onAdd={openDrawer}
-        onRemove={removePlay}
-      />
+      {view === 'planner' ? (
+        <FormationPlanner side={side} />
+      ) : (
+        <>
+          <Sheet
+            situations={situations}
+            assignments={sideAssign}
+            liveIds={liveIds}
+            slotCount={slotCount}
+            gloss={tweaks.gloss}
+            onAdd={openDrawer}
+            onRemove={removePlay}
+          />
 
-      <div className="foot">
-        Set the down, distance &amp; field position — the live block lights up.
-        Tap any slot to call from the play bank.
-      </div>
+          <div className="foot">
+            Set the down, distance &amp; field position — the live block lights up.
+            Tap any slot to call from the play bank.
+          </div>
 
-      <PlayBank
-        key={side}
-        open={drawerOpen}
-        side={side}
-        playbooks={playbooks}
-        loading={pbLoading}
-        situations={situations}
-        targetId={targetId}
-        setTargetId={setTargetId}
-        assignedIds={assignedIds}
-        onAdd={addPlay}
-        onClose={closeDrawer}
-      />
+          <PlayBank
+            key={side}
+            open={drawerOpen}
+            side={side}
+            playbooks={playbooks}
+            loading={pbLoading}
+            situations={situations}
+            targetId={targetId}
+            setTargetId={setTargetId}
+            assignedIds={assignedIds}
+            onAdd={addPlay}
+            onClose={closeDrawer}
+          />
+        </>
+      )}
 
       <Toast toast={toast} />
 
