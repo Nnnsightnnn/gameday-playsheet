@@ -45,6 +45,25 @@ export default function DiscoveryPanel({ side, features, match }) {
         </div>
       )}
 
+      {side === 'defense' && features.alignments?.length > 0 && (
+        <div className="disc__front">
+          <div className="disc__label">front · techniques &amp; gaps</div>
+          <div className="disc__tech">
+            {features.alignments.map((al) => (
+              <span key={al.id} className="disc__tech-item">
+                <b>{al.label}</b> {al.tech}
+                <i> {al.gap}</i>
+              </span>
+            ))}
+          </div>
+          {features.gapsCovered?.length > 0 && (
+            <div className="disc__gaps">
+              DL gaps: {features.gapsCovered.join(' · ')}
+            </div>
+          )}
+        </div>
+      )}
+
       {side === 'defense' && features.inferredCoverages?.length > 0 && (
         <div className="disc__cov">
           <span className="disc__cov-shell">{features.shell} shell</span>

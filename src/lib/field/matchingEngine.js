@@ -79,7 +79,9 @@ export function matchLibrary(features, library, side, threshold = 0.7) {
       const { score, drivers } = scoreEntry(features, e);
       return { name: e.name, aliases: e.aliases || [], score, drivers };
     })
-    .sort((a, b) => b.score - a.score);
+    // Best score wins; ties break toward the MORE SPECIFIC match (more
+    // satisfied constraints) so "4-3 Over" outranks the subset "4-3 Base".
+    .sort((a, b) => b.score - a.score || b.drivers.length - a.drivers.length);
 
   const best = ranked[0];
   const runnerUp = ranked[1] && ranked[1].score > 0 ? ranked[1] : null;

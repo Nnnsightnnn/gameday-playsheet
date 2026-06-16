@@ -24,7 +24,6 @@
     { "name": "4-3 Base", "side": "defense", "sig": { "front": "4-3", "pkg": "Base" } },
     { "name": "4-3 Over", "side": "defense", "sig": { "front": "4-3", "frontTag": "over", "pkg": "Base" } },
     { "name": "4-3 Under", "side": "defense", "sig": { "front": "4-3", "frontTag": "under", "pkg": "Base" } },
-    { "name": "4-3 Cover-2 Look", "side": "defense", "aliases": ["Tampa 2 look"], "sig": { "front": "4-3", "pkg": "Base", "shell": "2-High" } },
     { "name": "3-4 Base", "side": "defense", "sig": { "front": "3-4", "pkg": "Base" } },
     { "name": "Tite Front", "side": "defense", "aliases": ["Mint", "404"], "sig": { "frontTag": "tite", "dl": 3 } },
     { "name": "Bear / 46 Front", "side": "defense", "aliases": ["46", "Double-Eagle"], "sig": { "frontTag": "bear" } },

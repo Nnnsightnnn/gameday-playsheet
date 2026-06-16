@@ -67,10 +67,17 @@ export default function FormationPlanner({ side }) {
     [valOff, valDef],
   );
 
-  // Live formation discovery for the active side.
+  // Live formation discovery for the active side. Defense is read against the
+  // offense's line so DL techniques/gaps align to the real blockers.
   const features = useMemo(
-    () => classifyFormation(active.players, side, ballSpotX(ruleset, ballSpot)),
-    [active.players, side, ruleset, ballSpot],
+    () =>
+      classifyFormation(
+        active.players,
+        side,
+        ballSpotX(ruleset, ballSpot),
+        side === 'defense' ? offense.players : null,
+      ),
+    [active.players, side, ruleset, ballSpot, offense.players],
   );
   const match = useMemo(
     () => matchLibrary(features, library, side),

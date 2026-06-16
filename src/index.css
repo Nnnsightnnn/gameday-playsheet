@@ -864,6 +864,31 @@ body:has(.drawer--on) .tweaks__fab { display: none; }
   margin-top: 3px;
 }
 .disc__alias b { color: #cfc9b4; }
+.disc__front {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.disc__tech { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.disc__tech-item {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(239,91,91,0.1);
+  color: #e7c4be;
+}
+.disc__tech-item b { color: #efeadb; font-weight: 700; }
+.disc__tech-item i {
+  font-style: normal;
+  color: oklch(0.78 0.16 150);
+}
+.disc__gaps {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #9a9580;
+  margin-top: 6px;
+}
 .disc__cov {
   margin-top: 10px;
   padding-top: 10px;

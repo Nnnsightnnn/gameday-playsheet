@@ -12,6 +12,7 @@
 // matcher (matchingEngine.js) scores against.
 
 import { ON_LINE_EPS } from './fieldConfig';
+import { alignFront } from './gapAlignment';
 
 // 1 y-unit = 15 yds (fieldConfig). Handy yard→unit conversions for the few
 // places a real-world distance (not a relative one) is the honest signal —
@@ -35,13 +36,6 @@ const STRENGTH_WORD = {
 
 function abbr(side) {
   return side === 'left' ? 'Lt' : side === 'right' ? 'Rt' : '';
-}
-
-function median(nums) {
-  if (!nums.length) return 0;
-  const s = [...nums].sort((a, b) => a - b);
-  const m = Math.floor(s.length / 2);
-  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
 }
 
 // ── Offense ────────────────────────────────────────────────────────────────
@@ -210,7 +204,7 @@ function receiverSpacing(receivers, ballX, strongSide) {
 
 // ── Defense ──────────────────────────────────────────────────────────────
 
-export function classifyDefense(players) {
+export function classifyDefense(players, oppLine = null, ballX = 0.5) {
   const dlT = players.filter((p) => p.pos === 'DL');
   const lbT = players.filter((p) => p.pos === 'LB');
   const dbs = players.filter(
@@ -252,7 +246,9 @@ export function classifyDefense(players) {
     (p) => p.x >= 0.3 && p.x <= 0.7 && Math.abs(p.y) <= 5 * YD,
   ).length;
 
-  const frontTag = defensiveFrontTag(dlT, lbT, dbs, deepCount, boxCount);
+  // Gap & technique read of the down linemen, against the real O-line when it
+  // is on the board (the planner passes the offense in), else a standard line.
+  const { alignments, gapsCovered, frontTag } = alignFront(dlT, oppLine, ballX);
   const pressureLook = detectPressure(lbT, dbs);
 
   // Honest coverage handling: alignment yields the SHELL with confidence, but
@@ -280,6 +276,8 @@ export function classifyDefense(players) {
     lb,
     nDB,
     deepCount,
+    alignments,
+    gapsCovered,
     chips: [
       front,
       tagWord,
@@ -302,42 +300,6 @@ function capitalize(s) {
   return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
 }
 
-// Best-effort structural tag on the front. Approximate — a low-weight modifier
-// in matching, never the primary signal.
-function defensiveFrontTag(dlT, lbT, dbs, deepCount, boxCount) {
-  const dl = dlT.length;
-  if (!dl) return 'base';
-  const xs = dlT.map((p) => p.x).sort((a, b) => a - b);
-  const spread = xs[xs.length - 1] - xs[0];
-
-  // Tite/odd-stack: 3 down clustered tight over the center (ends inside).
-  if (dl === 3 && spread < 0.13) return 'tite';
-
-  // Wide-9: a big gap between the outermost DL (the ends) and the interior.
-  if (dl >= 4) {
-    const gaps = [];
-    for (let i = 1; i < xs.length; i += 1) gaps.push(xs[i] - xs[i - 1]);
-    const edgeGap = Math.max(gaps[0], gaps[gaps.length - 1]);
-    const interiorGap = median(gaps.slice(1, -1).length ? gaps.slice(1, -1) : gaps);
-    if (edgeGap > 0.1 && edgeGap > 2 * interiorGap) return 'wide-9';
-  }
-
-  // Bear / 46: heavy box, three interior DL covering the guards, low shell.
-  if (dl >= 4 && boxCount >= 8 && deepCount <= 1) {
-    const interior = dlT.filter((p) => Math.abs(p.x - 0.5) < 0.1).length;
-    if (interior >= 3) return 'bear';
-  }
-
-  // Over / Under: a shifted 4-3 front. Center of mass off the midline tells us
-  // which way the line slid.
-  if (dl === 4 && lbT.length === 3) {
-    const com = dlT.reduce((s, p) => s + p.x, 0) / dl;
-    if (com > 0.52) return 'over';
-    if (com < 0.48) return 'under';
-  }
-  return 'base';
-}
-
 // A pressure *look* (not a guaranteed blitz): mugged inside LBs straddling the
 // center, or a defensive back walked up onto the line.
 function detectPressure(lbT, dbs) {
@@ -351,8 +313,8 @@ function detectPressure(lbT, dbs) {
   return walkedUp;
 }
 
-export function classifyFormation(players, side, ballX = 0.5) {
+export function classifyFormation(players, side, ballX = 0.5, oppLine = null) {
   return side === 'defense'
-    ? classifyDefense(players)
+    ? classifyDefense(players, oppLine, ballX)
     : classifyOffense(players, ballX);
 }
