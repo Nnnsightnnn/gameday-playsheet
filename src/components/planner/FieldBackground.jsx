@@ -104,40 +104,46 @@ function FieldBackgroundBase({ ruleset = 'nfl', ballSpot = 'middle' }) {
         );
       })}
 
-      {/* hash corridor guides — faint full-height dashed line down each hash
-          column; the active ball-spot column glows in the LOS color */}
-      {columns.map(({ px, active }) => (
-        <line
-          key={`hc-${px.toFixed(0)}`}
-          x1={px}
-          x2={px}
-          y1={0}
-          y2={h}
-          stroke={active ? 'var(--turf-los)' : 'var(--turf-line)'}
-          strokeWidth={active ? 2 : 1}
-          strokeDasharray="2 14"
-          opacity={active ? 0.7 : 0.3}
-        />
+      {/* Both hash columns. Each is a group translated to its column X so it
+          smoothly slides when the ruleset (NFL ↔ NCAA) changes the spacing.
+          A faint full-height dashed corridor guide + a tick on every yard line;
+          the active ball-spot column glows in the LOS color. */}
+      {columns.map(({ px, active }, i) => (
+        <g
+          key={`hashcol-${i}`}
+          className="hashcol"
+          style={{
+            transform: `translateX(${px}px)`,
+            transition: 'transform 0.25s ease',
+          }}
+        >
+          <line
+            x1={0}
+            x2={0}
+            y1={0}
+            y2={h}
+            stroke={active ? 'var(--turf-los)' : 'var(--turf-line)'}
+            strokeWidth={active ? 2 : 1.5}
+            strokeDasharray="2 14"
+            opacity={active ? 0.75 : 0.45}
+          />
+          {yardYs.map((y) => {
+            const py = toPx({ x: 0, y }).py;
+            return (
+              <line
+                key={`t-${y.toFixed(3)}`}
+                x1={-tick / 2}
+                x2={tick / 2}
+                y1={py}
+                y2={py}
+                stroke={active ? 'var(--turf-los)' : 'var(--turf-line)'}
+                strokeWidth={active ? 4 : 3.5}
+                opacity={active ? 1 : 0.95}
+              />
+            );
+          })}
+        </g>
       ))}
-
-      {/* hash mark ticks along each yard line */}
-      {yardYs.map((y) =>
-        columns.map(({ px, active }) => {
-          const py = toPx({ x: 0, y }).py;
-          return (
-            <line
-              key={`hash-${y.toFixed(3)}-${px.toFixed(0)}`}
-              x1={px - tick / 2}
-              x2={px + tick / 2}
-              y1={py}
-              y2={py}
-              stroke={active ? 'var(--turf-los)' : 'var(--turf-line)'}
-              strokeWidth={active ? 4 : 3}
-              opacity={active ? 0.95 : 0.85}
-            />
-          );
-        }),
-      )}
 
       {/* line of scrimmage */}
       <line

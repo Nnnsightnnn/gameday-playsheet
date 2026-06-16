@@ -34,7 +34,13 @@ export default function FieldBoard({
       <FieldBackground ruleset={ruleset} ballSpot={ballSpot} />
 
       {/* ball spot — a bright hash notch on the LOS marking where the ball sits */}
-      <g className="ballspot" transform={`translate(${spot.px} ${spot.py})`}>
+      <g
+        className="ballspot"
+        style={{
+          transform: `translate(${spot.px}px, ${spot.py}px)`,
+          transition: 'transform 0.25s ease',
+        }}
+      >
         <line x1={0} x2={0} y1={-16} y2={16} stroke="var(--turf-los)" strokeWidth={5} />
         <polygon points="-8,-26 8,-26 0,-16" fill="var(--turf-los)" />
       </g>
