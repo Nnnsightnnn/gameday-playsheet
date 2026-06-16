@@ -8,15 +8,13 @@ import { validateFormation } from '../../lib/field/rulesEngine';
 import { classifyFormation } from '../../lib/field/featureExtraction';
 import { matchLibrary } from '../../lib/field/matchingEngine';
 import { normalizePlayers } from '../../lib/field/formationFactory';
-import { HASH_LEFT_X, HASH_RIGHT_X } from '../../lib/field/fieldConfig';
+import { ballSpotX } from '../../lib/field/fieldConfig';
 import { useFormationEditor } from '../../hooks/useFormationEditor';
 import FieldBoard from './FieldBoard';
 import ValidationPanel from './ValidationPanel';
 import PositionPicker from './PositionPicker';
 import DiscoveryPanel from './DiscoveryPanel';
 import FormationLibraryDrawer from './FormationLibraryDrawer';
-
-const BALL_X = { left: HASH_LEFT_X, middle: 0.5, right: HASH_RIGHT_X };
 
 export default function FormationPlanner({ side }) {
   // One editor per side so both stay live on the field at once.
@@ -71,8 +69,8 @@ export default function FormationPlanner({ side }) {
 
   // Live formation discovery for the active side.
   const features = useMemo(
-    () => classifyFormation(active.players, side, BALL_X[ballSpot]),
-    [active.players, side, ballSpot],
+    () => classifyFormation(active.players, side, ballSpotX(ruleset, ballSpot)),
+    [active.players, side, ruleset, ballSpot],
   );
   const match = useMemo(
     () => matchLibrary(features, library, side),
@@ -186,6 +184,7 @@ export default function FormationPlanner({ side }) {
             snap={snap}
             selectedId={selectedId}
             byPlayer={byPlayer}
+            ruleset={ruleset}
             ballSpot={ballSpot}
             onMove={handleMove}
             onTap={handleTap}

@@ -3,12 +3,10 @@
 // usePointerDrag; taps bubble up for select/swap.
 
 import { useRef } from 'react';
-import { BOARD, HASH_LEFT_X, HASH_RIGHT_X, toPx } from '../../lib/field/fieldConfig';
+import { BOARD, ballSpotX, toPx } from '../../lib/field/fieldConfig';
 import { usePointerDrag } from '../../hooks/usePointerDrag';
 import FieldBackground from './FieldBackground';
 import PlayerToken from './PlayerToken';
-
-const BALL_SPOT_X = { left: HASH_LEFT_X, middle: 0.5, right: HASH_RIGHT_X };
 
 export default function FieldBoard({
   players,
@@ -16,6 +14,7 @@ export default function FieldBoard({
   snap,
   selectedId,
   byPlayer,
+  ruleset,
   ballSpot,
   onMove,
   onTap,
@@ -23,7 +22,7 @@ export default function FieldBoard({
   const svgRef = useRef(null);
   const startDrag = usePointerDrag({ svgRef, snap, onMove, onTap });
 
-  const spot = toPx({ x: BALL_SPOT_X[ballSpot] ?? 0.5, y: 0 });
+  const spot = toPx({ x: ballSpotX(ruleset, ballSpot), y: 0 });
 
   return (
     <svg
@@ -32,7 +31,7 @@ export default function FieldBoard({
       viewBox={`0 0 ${BOARD.w} ${BOARD.h}`}
       preserveAspectRatio="xMidYMid meet"
     >
-      <FieldBackground />
+      <FieldBackground ruleset={ruleset} ballSpot={ballSpot} />
 
       {/* ball spot — a bright hash notch on the LOS marking where the ball sits */}
       <g className="ballspot" transform={`translate(${spot.px} ${spot.py})`}>

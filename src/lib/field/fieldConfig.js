@@ -19,9 +19,32 @@ export const BOARD = { w: 1000, h: 900 };
 // A player is "on the line" when |y| is within this band (~0.5 yd each way).
 export const ON_LINE_EPS = 0.033;
 
-// NFL hash marks: 70'9" (≈23.58 yds) from each sideline.
-export const HASH_LEFT_X = 23.58 / FIELD.widthYds; // ≈ 0.4422
-export const HASH_RIGHT_X = 1 - HASH_LEFT_X; // ≈ 0.5578
+// Hash marks differ by ruleset (field is 160 ft = 53.333 yds wide):
+//   NFL  — 70'9" from each sideline → the two rows sit 18.5 ft apart.
+//   NCAA — 60'0" from each sideline → the two rows sit 40 ft apart (much wider,
+//          which is why college schemes "field vs boundary").
+const FIELD_WIDTH_FT = 160;
+export const HASHES = {
+  nfl: { left: 70.75 / FIELD_WIDTH_FT, right: 1 - 70.75 / FIELD_WIDTH_FT }, // 0.4422 / 0.5578
+  ncaa: { left: 60 / FIELD_WIDTH_FT, right: 1 - 60 / FIELD_WIDTH_FT }, //     0.375  / 0.625
+};
+
+// Hash columns {left,right} for a ruleset.
+export function hashX(ruleset = 'nfl') {
+  return HASHES[ruleset] || HASHES.nfl;
+}
+
+// Normalized x of the ball for a ruleset + spot ('left' | 'middle' | 'right').
+export function ballSpotX(ruleset = 'nfl', spot = 'middle') {
+  const h = hashX(ruleset);
+  if (spot === 'left') return h.left;
+  if (spot === 'right') return h.right;
+  return 0.5;
+}
+
+// NFL hash columns kept as named exports for back-compatible imports.
+export const HASH_LEFT_X = HASHES.nfl.left; // ≈ 0.4422
+export const HASH_RIGHT_X = HASHES.nfl.right; // ≈ 0.5578
 
 // Yard lines every 5 yds → every 5/15 of a y-unit.
 export const YARD_STEP_Y = 5 / FIELD.halfDepthYds; // ≈ 0.3333

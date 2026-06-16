@@ -1,16 +1,17 @@
-// Presentational SVG field: turf, yard lines, hash marks, line of scrimmage.
-// Pure / memoized — no interactivity.
+// Presentational SVG field: turf, yard lines, ruleset-aware hash marks, the
+// line of scrimmage, and (when the ball is on a hash) field/boundary shading.
+// Pure / memoized — re-renders only when ruleset or ballSpot change.
 
 import { memo } from 'react';
 import {
   BOARD,
   YARD_STEP_Y,
-  HASH_LEFT_X,
-  HASH_RIGHT_X,
+  hashX,
+  ballSpotX,
   toPx,
 } from '../../lib/field/fieldConfig';
 
-function FieldBackgroundBase() {
+function FieldBackgroundBase({ ruleset = 'nfl', ballSpot = 'middle' }) {
   const { w, h } = BOARD;
   const losY = toPx({ x: 0, y: 0 }).py;
 
@@ -21,13 +22,71 @@ function FieldBackgroundBase() {
     if (y >= -1 && y <= 1) yardYs.push(y);
   }
 
-  const hashLeftPx = HASH_LEFT_X * w;
-  const hashRightPx = HASH_RIGHT_X * w;
-  const tick = 10;
+  const hash = hashX(ruleset);
+  const hashLeftPx = hash.left * w;
+  const hashRightPx = hash.right * w;
+  const tick = 12;
+
+  // Ball on a hash → the larger side of the field is the wide "field" side,
+  // the smaller is the "boundary". Shade them so the room is visible at a glance.
+  const onHash = ballSpot === 'left' || ballSpot === 'right';
+  const ballPx = ballSpotX(ruleset, ballSpot) * w;
+  const fieldIsRight = ballPx < w / 2; // ball left of center → field is to the right
+
+  const columns = [
+    { px: hashLeftPx, active: ballSpot === 'left' },
+    { px: hashRightPx, active: ballSpot === 'right' },
+  ];
 
   return (
     <g className="board__bg">
       <rect x={0} y={0} width={w} height={h} fill="var(--turf)" rx={10} />
+
+      {/* field / boundary shading (only when the ball is on a hash) */}
+      {onHash && (
+        <>
+          <rect
+            x={fieldIsRight ? ballPx : 0}
+            y={0}
+            width={fieldIsRight ? w - ballPx : ballPx}
+            height={h}
+            fill="var(--turf-line)"
+            opacity={0.06}
+          />
+          <rect
+            x={fieldIsRight ? 0 : ballPx}
+            y={0}
+            width={fieldIsRight ? ballPx : w - ballPx}
+            height={h}
+            fill="#000"
+            opacity={0.1}
+          />
+          <text
+            x={fieldIsRight ? w - 16 : 16}
+            y={30}
+            textAnchor={fieldIsRight ? 'end' : 'start'}
+            fontSize={20}
+            fontWeight={700}
+            fill="var(--turf-line)"
+            opacity={0.55}
+            style={{ letterSpacing: 2 }}
+          >
+            FIELD
+          </text>
+          <text
+            x={fieldIsRight ? 16 : w - 16}
+            y={30}
+            textAnchor={fieldIsRight ? 'start' : 'end'}
+            fontSize={20}
+            fontWeight={700}
+            fill="var(--turf-line)"
+            opacity={0.4}
+            style={{ letterSpacing: 2 }}
+          >
+            BDRY
+          </text>
+        </>
+      )}
 
       {/* yard lines */}
       {yardYs.map((y) => {
@@ -45,19 +104,36 @@ function FieldBackgroundBase() {
         );
       })}
 
+      {/* hash corridor guides — faint full-height dashed line down each hash
+          column; the active ball-spot column glows in the LOS color */}
+      {columns.map(({ px, active }) => (
+        <line
+          key={`hc-${px.toFixed(0)}`}
+          x1={px}
+          x2={px}
+          y1={0}
+          y2={h}
+          stroke={active ? 'var(--turf-los)' : 'var(--turf-line)'}
+          strokeWidth={active ? 2 : 1}
+          strokeDasharray="2 14"
+          opacity={active ? 0.7 : 0.3}
+        />
+      ))}
+
       {/* hash mark ticks along each yard line */}
       {yardYs.map((y) =>
-        [hashLeftPx, hashRightPx].map((hx) => {
+        columns.map(({ px, active }) => {
           const py = toPx({ x: 0, y }).py;
           return (
             <line
-              key={`hash-${y.toFixed(3)}-${hx.toFixed(0)}`}
-              x1={hx - tick / 2}
-              x2={hx + tick / 2}
+              key={`hash-${y.toFixed(3)}-${px.toFixed(0)}`}
+              x1={px - tick / 2}
+              x2={px + tick / 2}
               y1={py}
               y2={py}
-              stroke="var(--turf-line)"
-              strokeWidth={3}
+              stroke={active ? 'var(--turf-los)' : 'var(--turf-line)'}
+              strokeWidth={active ? 4 : 3}
+              opacity={active ? 0.95 : 0.85}
             />
           );
         }),
