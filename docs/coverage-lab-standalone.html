@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coverage Lab — CFB 27 Defensive Study Model</title>
+<style>
+  :root{
+    --bg:#0b0f14; --panel:#111827; --panel2:#0f172a; --line:#1f2937;
+    --txt:#e5e7eb; --dim:#9ca3af; --dim2:#6b7280;
+    --green:#16a34a; --green2:#22c55e;
+    --off:#94a3b8; --def:#ef4444;
+    --deep:#60a5fa; --under:#34d399; --man:#fbbf24; --match:#c084fc; --rob:#f472b6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font:14px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;}
+  header{padding:14px 18px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#0f172a,#0b0f14);
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:20}
+  header h1{margin:0;font-size:16px;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+  header h1 span{color:var(--green2)}
+  .sub{color:var(--dim2);font-size:12px}
+  .modes{margin-left:auto;display:flex;gap:6px}
+  button,select{font:inherit;color:var(--txt);background:var(--panel);border:1px solid var(--line);
+    border-radius:8px;padding:6px 10px;cursor:pointer}
+  button:hover,select:hover{border-color:#374151}
+  button.on{background:var(--green);border-color:var(--green2);color:#04140a;font-weight:700}
+  .wrap{display:grid;grid-template-columns:250px minmax(0,1fr) 400px;gap:14px;padding:14px;align-items:start}
+  @media(max-width:1500px){.wrap{grid-template-columns:230px minmax(0,1fr);}
+    .rail-r{grid-column:1/-1}}
+  @media(max-width:900px){.wrap{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px}
+  .card h3{margin:0 0 8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim2);font-weight:700}
+  .grp{margin-bottom:10px}
+  .grp .lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--green2);margin:8px 0 4px;font-weight:700}
+  .pick{display:block;width:100%;text-align:left;padding:6px 9px;margin-bottom:3px;border-radius:7px;
+    background:transparent;border:1px solid transparent;color:var(--dim);font-size:13px}
+  .pick:hover{background:#0f172a;color:var(--txt)}
+  .pick.on{background:#052e16;border-color:var(--green);color:#bbf7d0;font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:5px}
+  .chip{padding:5px 9px;border-radius:999px;font-size:12px;background:var(--panel2);border:1px solid var(--line);color:var(--dim)}
+  .chip:hover{color:var(--txt)}
+  .chip.on{background:#052e16;border-color:var(--green);color:#bbf7d0;font-weight:600}
+  .fieldwrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px}
+  .fields{display:flex;gap:10px;flex-wrap:wrap}
+  .fieldbox{flex:1 1 420px;min-width:320px}
+  .fieldbox h4{margin:0 0 6px;font-size:13px;display:flex;align-items:center;gap:8px}
+  .fieldbox h4 b{color:var(--green2)}
+  svg{width:100%;height:auto;display:block;border-radius:10px;background:#0d1b12}
+  .controls{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+  input[type=range]{flex:1;min-width:160px;accent-color:var(--green2)}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;font-size:11px;color:var(--dim2)}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:4px;vertical-align:middle}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{text-align:left;padding:6px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--dim2);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+  td.pos{white-space:nowrap;font-weight:700;font-size:12px}
+  tr.diff td{background:#1c1917}
+  tr.diff td.pos{color:#fbbf24}
+  .tag{display:inline-block;padding:1px 6px;border-radius:5px;font-size:10px;font-weight:700;letter-spacing:.04em}
+  .callout{border-left:3px solid var(--green);background:#052e16;border-radius:0 8px 8px 0;padding:10px 12px;margin-bottom:12px}
+  .callout .k{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--green2);font-weight:700;display:block;margin-bottom:3px}
+  .callout.warn{border-color:#f59e0b;background:#1c1408}
+  .callout.warn .k{color:#fbbf24}
+  ul{margin:4px 0 0;padding-left:18px}
+  li{margin-bottom:3px;color:var(--dim)}
+  li b{color:var(--txt)}
+  .kv{display:grid;grid-template-columns:88px 1fr;gap:4px 10px;font-size:12.5px}
+  .kv .k{color:var(--dim2);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding-top:2px;font-weight:700}
+  .kv .v{color:var(--txt)}
+  .muted{color:var(--dim2);font-size:11.5px;line-height:1.5}
+  .split2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  footer{padding:16px 18px;color:var(--dim2);font-size:11px;border-top:1px solid var(--line);margin-top:10px}
+  a{color:var(--green2)}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Coverage <span>Lab</span></h1>
+  <div class="sub">CFB 27 · defensive play-caller's model · ball on left hash (boundary left / field right)</div>
+  <div class="modes">
+    <button id="mStudy" class="on">Study</button>
+    <button id="mCompare">Compare</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- LEFT RAIL -->
+  <div class="rail-l">
+    <div class="card">
+      <h3>Coverage</h3>
+      <div id="covList"></div>
+    </div>
+    <div class="card" id="covBBox" style="display:none">
+      <h3>Compare Against</h3>
+      <div id="covListB"></div>
+    </div>
+  </div>
+
+  <!-- CENTER -->
+  <div>
+    <div class="card">
+      <h3>Offensive Picture</h3>
+      <div class="grp"><div class="lbl">Formation</div><div class="chips" id="formChips"></div></div>
+      <div class="grp"><div class="lbl">Route Concept</div><div class="chips" id="cptChips"></div></div>
+      <div class="muted" id="cptNote"></div>
+    </div>
+
+    <div class="fieldwrap">
+      <div class="fields" id="fields"></div>
+      <div class="controls">
+        <button id="play">▶ Snap</button>
+        <input type="range" id="scrub" min="0" max="1000" value="0">
+        <span class="muted" id="phase" style="width:190px">Pre-snap</span>
+        <button id="loop" class="on">Loop</button>
+      </div>
+      <div class="legend">
+        <span><i style="background:var(--deep)"></i>Deep zone</span>
+        <span><i style="background:var(--under)"></i>Underneath zone</span>
+        <span><i style="background:var(--man)"></i>Man / MEG</span>
+        <span><i style="background:var(--match)"></i>Match (converts)</span>
+        <span><i style="background:var(--rob)"></i>Robber / hole</span>
+        <span><i style="background:var(--def)"></i>Rush</span>
+        <span><i style="background:var(--off)"></i>Offense</span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h3>Assignment Sheet <span id="diffNote" class="muted"></span></h3>
+      <div id="rulesTable"></div>
+    </div>
+  </div>
+
+  <!-- RIGHT RAIL -->
+  <div class="rail-r">
+    <div id="diffBox"></div>
+    <div class="card">
+      <h3>Identity</h3>
+      <div class="kv" id="identity"></div>
+    </div>
+    <div class="card">
+      <h3>CFB 27 Layer</h3>
+      <div id="cfb27"></div>
+    </div>
+    <div class="card">
+      <h3>Stress Points &amp; Call Logic</h3>
+      <div id="stress"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Real-football rules sourced from MatchQuarters (Cody Alexander), X&amp;O Labs, Weekly Spiral, All Eyes DB Camp, Throw Deep Publishing, The Read Optional's Book of Fangio.
+  CFB 27 in-game checks sourced from collegefootball.gg's defensive-adjustment breakdown, the CFB 27 wiki defense guide, and EA's gameplay deep dive.
+  Where the game's naming diverges from coaching naming, both are shown.
+</footer>
+
+<script>
+/* ============================================================
+   GEOMETRY
+   ============================================================ */
+const FW = 53.33, TOPY = 8, BOTY = 25, YD = 12.6;
+const VW = FW*YD, VH = (TOPY+BOTY)*YD;
+// downfield is UP the screen: offense backfield at the bottom, defense looking up
+const px = x => x*YD, py = y => VH - (y+TOPY)*YD;
+const BALL = 20.0;              // left hash (college hashes: 20.0 / 33.33)
+const HASH_L = 20.0, HASH_R = 33.33;
+const lerp=(a,b,t)=>a+(b-a)*t;
+const lp=(A,B,t)=>({x:lerp(A.x,B.x,t),y:lerp(A.y,B.y,t)});
+const ease=t=>1-Math.pow(1-t,2);
+
+/* ============================================================
+   FORMATIONS   (side L = boundary, side R = field)
+   ============================================================ */
+const FORMS = {
+  doubles:{name:'Doubles 2x2', desc:'Gun 2x2. Balanced. The cleanest picture for isolating a Quarters-vs-Palms trigger.',
+    strong:'R',
+    recs:[{k:'L1',id:'X',x:3.5,y:0},{k:'L2',id:'H',x:10.5,y:-0.8},
+          {k:'R2',id:'Y',x:40,y:-0.8},{k:'R1',id:'Z',x:48.5,y:0}],
+    back:{k:'RB',id:'RB',x:23,y:-5.6}},
+  trips:{name:'Trips Field 3x1', desc:'3 to the field, X isolated into the boundary. This is where Solo / Poach / Stubbie / Cover 9 live.',
+    strong:'R',
+    recs:[{k:'L1',id:'X',x:3.5,y:0},{k:'R1',id:'Z',x:50,y:0},{k:'R2',id:'Y',x:44.5,y:-0.8},{k:'R3',id:'H',x:38.5,y:-0.8}],
+    back:{k:'RB',id:'RB',x:17,y:-5.6}},
+  bunch:{name:'Bunch Field', desc:'Compressed 3-man surface. Forces the Box / Bingo / Point Triangle family in CFB 27.',
+    strong:'R',
+    recs:[{k:'L1',id:'X',x:3.5,y:0},{k:'R1',id:'Z',x:44.5,y:-1.6},{k:'R2',id:'Y',x:41,y:0},{k:'R3',id:'H',x:37.5,y:-1.6}],
+    back:{k:'RB',id:'RB',x:17,y:-5.6}},
+  stack:{name:'Stack 2x2', desc:'Slot stacked behind the outside receiver. Kills press leverage and triggers Combo / Triangle checks.',
+    strong:'R',
+    recs:[{k:'L1',id:'X',x:3.5,y:0},{k:'L2',id:'H',x:10.5,y:-0.8},{k:'R1',id:'Z',x:45,y:0},{k:'R2',id:'Y',x:45,y:-3.2}],
+    back:{k:'RB',id:'RB',x:23,y:-5.6}},
+  pro:{name:'Pro 2x1 (Iso X)', desc:'TE attached, X alone into the boundary. The 1-Receiver check side — Solo / Solo Cut / MEG.',
+    strong:'R',
+    recs:[{k:'L1',id:'X',x:3.5,y:0},{k:'R2',id:'Y',x:25.4,y:0},{k:'R1',id:'Z',x:47.5,y:0}],
+    back:{k:'RB',id:'RB',x:20,y:-5.6}}
+};
+
+/* ============================================================
+   ROUTES
+   ============================================================ */
+// out = +1 if the receiver's outward direction is +x
+const ROUTES = {
+  go:      o=>[[0,0],[0.4*o,7],[0.7*o,20]],
+  seam:    o=>[[0,0],[-1.2*o,7],[-1.6*o,20]],
+  bender:  o=>[[0,0],[-1.5*o,8],[-5*o,19]],
+  post:    o=>[[0,0],[0.2*o,8],[-8*o,19]],
+  corner:  o=>[[0,0],[-0.6*o,8],[6.5*o,17]],
+  wheel:   o=>[[0,0],[3.2*o,1.2],[4.2*o,15]],
+  out:     o=>[[0,0],[0.2*o,10],[6.5*o,10.6]],
+  flat:    o=>[[0,0],[3.4*o,2.6],[7.5*o,3.8]],
+  arrow:   o=>[[0,0],[3.0*o,2.2],[7.0*o,3.4]],
+  bubble:  o=>[[0,0],[1.6*o,-2.2],[6.0*o,-0.4]],
+  swing:   o=>[[0,0],[5*o,-2.4],[10*o,-0.6]],
+  hitch:   o=>[[0,0],[0,6.5],[0.6*o,5.4]],
+  curl:    o=>[[0,0],[0,11],[-1.2*o,9.8]],
+  dig:     o=>[[0,0],[0,13],[-11*o,13.4]],
+  drag:    o=>[[0,0],[-3*o,3.2],[-15*o,4.2]],
+  slant:   o=>[[0,0],[-2*o,2.2],[-9*o,7.5]],
+  stalk:   o=>[[0,0],[0,1.4],[0,2.2]],
+  check:   o=>[[0,0],[1.5*o,-1],[4*o,1.5]]
+};
+const VERT=['go','seam','bender','post','corner','wheel'];
+const OUTB=['out','flat','arrow','bubble','swing'];
+const INB =['dig','drag','slant'];
+const SHRT=['hitch','curl','stalk','check'];
+const cls = r => VERT.includes(r)?'VERT' : OUTB.includes(r)?'OUT' : INB.includes(r)?'IN' : SHRT.includes(r)?'SHORT':'NONE';
+
+/* ============================================================
+   CONCEPTS
+   ============================================================ */
+const CPTS = {
+  verts:{name:'4 Verticals', note:'Every match coverage looks nearly identical here — vertical releases trigger man rules everywhere. Use this to see the seam math, not the trigger differences.',
+    r:{L1:'go',L2:'seam',R1:'go',R2:'seam',R3:'bender',RB:'check'}},
+  curlflat:{name:'Curl–Flat / Stick', note:'THE trigger concept. #2 breaks out. Quarters and Palms diverge completely right here — watch the corner.',
+    r:{L1:'curl',L2:'flat',R1:'curl',R2:'flat',R3:'flat',RB:'check'}},
+  smash:{name:'Smash', note:'#1 hitch, #2 corner. The classic high-low on any squatting flat defender and any single deep-half player.',
+    r:{L1:'hitch',L2:'corner',R1:'hitch',R2:'corner',R3:'flat',RB:'check'}},
+  flood:{name:'Flood / Sail', note:'Three levels to one side. Punishes 3-deep rotation away from the flood and any coverage with only one underneath defender to that side.',
+    r:{L1:'drag',L2:'check',R1:'go',R2:'out',R3:'flat',RB:'swing'}},
+  mesh:{name:'Mesh', note:'Two shallow crossers under a corner route. Man beater — watch how the man coverages tangle and the zone coverages pass it off.',
+    r:{L1:'drag',L2:'corner',R1:'corner',R2:'drag',R3:'drag',RB:'swing'}},
+  dagger:{name:'Dagger', note:'#2 seam clears the hook, #1 digs in behind it. The Buzz safety exists to take this away.',
+    r:{L1:'dig',L2:'seam',R1:'dig',R2:'seam',R3:'check',RB:'check'}},
+  bubble:{name:'Bubble / Now RPO', note:'Pre-snap numbers game. Whichever defender is the force/flat player determines whether the QB pulls it.',
+    r:{L1:'stalk',L2:'bubble',R1:'stalk',R2:'bubble',R3:'bubble',RB:'check'}},
+  wheel:{name:'Post–Wheel (Switch)', note:'Switch release. Breaks any coverage where two defenders must trade responsibility on the fly.',
+    r:{L1:'post',L2:'wheel',R1:'post',R2:'wheel',R3:'seam',RB:'check'}}
+};
+
+/* ============================================================
+   LANDMARKS
+   ============================================================ */
+const LM = {
+  third:s=>({x:s==='L'?9:44.5,y:16.5}),
+  midThird:()=>({x:26.6,y:17.5}),
+  half:s=>({x:s==='L'?13.3:40,y:16.5}),
+  qtrOut:s=>({x:s==='L'?7:46.5,y:15}),
+  qtrIn:s=>({x:s==='L'?19.5:33.5,y:15}),
+  flat:s=>({x:s==='L'?6.5:46.5,y:5.5}),
+  curl:s=>({x:s==='L'?12:41,y:10.5}),
+  hook:d=>({x:BALL+d*6.2,y:9.5}),
+  hole:()=>({x:BALL+2,y:7.5}),
+  tampa:()=>({x:26.6,y:20.5})
+};
+
+/* ============================================================
+   CONTEXT + PATH MATH
+   ============================================================ */
+function makeCtx(formKey,cptKey){
+  const F=FORMS[formKey], C=CPTS[cptKey];
+  const byKey={}; const recs=[];
+  F.recs.forEach(r=>{
+    const side=r.k[0], o = side==='R'?1:-1;
+    const route=C.r[r.k]||'hitch';
+    const rr={...r,side,o,route,cl:cls(route)};
+    rr.path=ROUTES[route](o).map(p=>({x:r.x+p[0],y:r.y+p[1]}));
+    byKey[r.k]=rr; recs.push(rr);
+  });
+  const b=F.back, bo = b.x>=BALL?1:-1, broute=C.r.RB||'check';
+  const bb={...b,side:b.x>=BALL?'R':'L',o:bo,route:broute,cl:cls(broute)};
+  bb.path=ROUTES[broute](bo).map(p=>({x:b.x+p[0],y:b.y+p[1]}));
+  byKey.RB=bb; recs.push(bb);
+  const strong=F.strong, weak = strong==='R'?'L':'R';
+  return {form:formKey,F,C,byKey,recs,strong,weak,
+    has:k=>!!byKey[k],
+    g:k=>byKey[k],
+    clOf:k=>byKey[k]?byKey[k].cl:'NONE',
+    end:k=>byKey[k]?byKey[k].path[byKey[k].path.length-1]:{x:BALL,y:8},
+    n:(s,i)=>byKey[s+i]
+  };
+}
+function atT(path,t){
+  if(t<=0) return {...path[0]};
+  const seg=path.length-1, ft=Math.min(1,t)*seg, i=Math.min(seg-1,Math.floor(ft));
+  return lp(path[i],path[i+1],ft-i);
+}
+
+/* ============================================================
+   COVERAGE DEFINITIONS
+   Each defender: {p:label, type, align:{x,y}, rule, res:{mode,...}}
+   mode: 'zone'  -> target
+         'man'   -> key (receiver), offset
+         'match' -> zoneTarget + key + trigT  (zone until trigger, then man)
+   ============================================================ */
+const T_MATCH = 0.34;
+
+const zone=(p,t,rule,ty)=>({p,type:ty||'under',res:{mode:'zone',target:t},rule});
+const man =(p,k,rule,off)=>({p,type:'man',res:{mode:'man',key:k,off:off||{x:-0.9,y:0.9}},rule});
+const match=(p,k,t,rule,ty)=>({p,type:ty||'match',res:{mode:'match',key:k,target:t},rule});
+
+function apex(c,side,num,depth){
+  const r=c.n(side,num);
+  if(!r) return {x: side==='L'?BALL-6.5:BALL+6.5, y:depth||4.6};
+  const o = side==='R'?1:-1;
+  const tight = Math.abs(r.x-BALL) < 7;          // attached TE / compressed split
+  return {x: r.x + (tight ? o*2.4 : -o*2.6), y:depth||4.6};
+}
+function overTop(c,key,d){ const r=c.g(key); if(!r) return LM.half('R');
+  return {x:r.x - r.o*2.2, y:d||14}; }
+function squeeze(c,key,d){ const r=c.g(key); if(!r) return LM.curl('R');
+  return {x:r.x - r.o*1.4, y:d||12}; }
+function cbAlign(c,key,depth){ const r=c.g(key); if(!r) return {x:BALL,y:7};
+  return {x:r.x + r.o*1.4, y:depth||7}; }
+
+/* ---- shared quarters-side logic (reused by C4, Palms, C6, C9, Solo) ---- */
+function quartersSide(c,side,out,opts){
+  opts=opts||{};
+  const one=c.n(side,1), two=c.n(side,2), three=c.n(side,3);
+  const cbKey=side+'1';
+  // CORNER
+  if(opts.palms && two && two.cl==='OUT'){
+    out.push(match('CB '+side,side+'2',squeeze(c,side+'2',7),
+      'PALMS TRIGGER FIRED — #2 broke out inside 5. Come off #1 and trap #2. Safety now owns #1 over the top.'));
+  }else if(opts.meg){
+    out.push(man('CB '+side,cbKey,'MEG — man everywhere he goes on #1, no depth trigger. You are alone unless the poach shows.'));
+  }else if(one && one.cl==='VERT'){
+    out.push(match('CB '+side,cbKey,cbAlign(c,cbKey),'#1 released vertical → carry him man, stay on top with outside leverage. Read is #1 only.'));
+  }else{
+    out.push(zone('CB '+side,squeeze(c,cbKey,11.5),
+      '#1 broke off / went under → squeeze and rob him from on top. Do NOT chase #2; that is Palms, not Quarters.','deep'));
+  }
+  // SAFETY
+  const sLbl='S '+side;
+  if(opts.palms && two && two.cl==='OUT'){
+    out.push(zone(sLbl,overTop(c,cbKey,15),'Corner jumped #2 → you rotate over the top and cap #1. You are the new deep player on the outside.','deep'));
+  }else if(two && two.cl==='VERT'){
+    out.push(match(sLbl,side+'2',{x:apex(c,side,2).x,y:12},'#2 released vertical past the backer level → lock him man up the seam. That is your run/pass key answered.'));
+  }else if(two){
+    out.push(zone(sLbl,{x:(one?one.x:BALL)+(one?-one.o*3.5:0),y:11.5},
+      '#2 not vertical → he is a run key. Come off him, cap #1 from the inside and be the extra alley/force hat.','deep'));
+  }else{
+    out.push(zone(sLbl,overTop(c,cbKey,14),'No #2 this side → play top-down on #1, fold to the alley on run.','deep'));
+  }
+  // APEX
+  const apexLbl='NB '+side;
+  if(two && two.cl==='OUT'){
+    out.push(match(apexLbl,side+'2',LM.curl(side),'#2 to the flat → you have him. Squeeze the throwing lane, tackle in front.'));
+  }else if(three && three.cl==='OUT'){
+    out.push(match(apexLbl,side+'3',LM.curl(side),'#2 went vertical to the safety → you drop off and take #3 to the flat.'));
+  }else{
+    out.push(zone(apexLbl,LM.curl(side),'#2 vertical → wall/collision him to the safety, then settle in curl and rob the in-breaker.'));
+  }
+}
+
+function coverTwoSide(c,side,out,label){
+  const cbKey=side+'1';
+  out.push(zone('CB '+side,LM.flat(side),
+    (label||'Cloud')+' — jam and funnel #1 inside, then settle in the hard flat. You are the FORCE player on run to your side.'));
+  out.push(zone('S '+side,LM.half(side),
+    'Deep half. Everything vertical on your side is yours — #1 and the #2 seam. Do not squat, do not peek.','deep'));
+  const two=c.n(side,2);
+  if(two){
+    out.push(zone('NB '+side,LM.curl(side),'Wall #2 inside, carry the seam as far as you can, then settle curl-hook.'));
+  }else{
+    out.push(zone('NB '+side,LM.hook(side==='L'?-1:1),'No #2 — collapse to hook, be the extra fitter.'));
+  }
+}
+
+/* ---- coverage table ---- */
+const COV = {
+
+/* ================= COVER 3 FAMILY ================= */
+c3sky:{name:'Cover 3 Sky', fam:'Cover 3', shell:'1-high (rotate from 2)',
+  one:'3-deep / 4-under, with the STRONG SAFETY rotated down to the FLAT as the force player.',
+  runfit:'SS is force/contain to the call side.',
+  cfb:{menu:'Cover 3 (Sky / base)', checks:[
+    ['Stack','Seam (default) · Combo · Zone It'],
+    ['Bunch','Skate (default) · Skinny · Skinny Meg · Zone It'],
+    ['Trips','Skinny (default) · Skinny Meg · Zone It']],
+    tips:['Skate widens the drops toward the bunch — your answer to Flood.',
+          'Skinny Meg locks the backside corner in true man; use it when the X is the only real threat.',
+          'Zone Drops: Flats 5-8 keeps the SS honest in the alley. Do not let the game default him to 0.']},
+  stress:['4 Verticals — two seams on one FS.','Deep crossers behind an over-widened SS.','Boundary fade 1-on-1.'],
+  call:'Base early down when you want an 8-man box picture without leaving the deep middle open. Set the roll to the passing strength.',
+  build:c=>{const o=[],S=c.strong,W=c.weak,sd=S==='R'?1:-1;
+    o.push(zone('CB L',LM.third('L'),'Deep outside third. Bail on the snap, squeeze anything vertical inside, keep width on the comeback.','deep'));
+    o.push(zone('CB R',LM.third('R'),'Deep outside third. Bail on the snap, squeeze anything vertical inside, keep width on the comeback.','deep'));
+    o.push(zone('FS',LM.midThird(),'Deep middle third. Read the QB. Post and dig are yours over the top.','deep'));
+    o.push(zone('SS ('+S+')',LM.flat(S),'SKY — rotate down to the FLAT. Pass: expand and jump anything out there. Run: you are FORCE, set the edge.'));
+    o.push(zone('NB '+W,LM.curl(W),'Weak curl-flat. Collision #2, then settle.'));
+    o.push(zone('MIKE',LM.hook(sd),'Strong hook. Wall #3 / the crosser, carry any vertical up the middle to the FS.'));
+    o.push(zone('WILL',LM.hook(-sd),'Weak hook. Feel the drag, rob the dig, expand to weak #2 on a true drop-back.'));
+    return o;}},
+
+c3cloud:{name:'Cover 3 Cloud', fam:'Cover 3', shell:'1-high (corner rolls)',
+  one:'Same 3-deep skeleton, but the CORNER rolls down as the flat/force player and a safety replaces him in the deep outside third.',
+  runfit:'Call-side CB is force.',
+  cfb:{menu:'Cover 3 with a Cloud Flat drop on the call-side corner', checks:[
+    ['Any','Set the call-side CB to Cloud Flat (sinks 8-10) or Hard Flat (shallow, kills the quick out)'],
+    ['Trips','Skinny / Skinny Meg still govern the match side']],
+    tips:['In CFB 27 you build Cloud manually with the corner zone-drop rather than a named play in most books.',
+          'Cloud to the boundary is nearly free — less grass behind him.']},
+  stress:['Corner route behind the squatted CB — that is the whole point of Smash.','Deep comeback on the replacing safety.'],
+  call:'To the boundary, or as a change-up when the offense has been reading your flat defender for RPOs.',
+  build:c=>{const o=[],S=c.strong,W=c.weak,sd=S==='R'?1:-1, cl=W; // cloud to boundary/weak
+    o.push(zone('CB '+cl,LM.flat(cl),'CLOUD — you are the flat/force player. Squeeze #1 off the line, then sit. Nothing outside you on the run.'));
+    o.push(zone('S '+cl,LM.third(cl),'You replaced the corner. Deep outside third — the corner route behind the cloud corner is YOURS.','deep'));
+    o.push(zone('CB '+S,LM.third(S),'Deep outside third, normal Cover 3 rules.','deep'));
+    o.push(zone('FS',LM.midThird(),'Deep middle third. Read the QB. Post and dig are yours over the top.','deep'));
+    o.push(zone('NB '+S,LM.flat(S),'Strong curl-flat and force to your side, since the safety did not roll down over here.'));
+    o.push(zone('MIKE',LM.hook(sd),'Strong hook. Carry #3 vertical to the FS, then settle and take away the dig.'));
+    o.push(zone('WILL',LM.hook(-sd),'Weak hook to curl. You have no cloud help on your side — expand fast on any #2 out.'));
+    return o;}},
+
+c3buzz:{name:'Cover 3 Buzz', fam:'Cover 3', shell:'1-high (rotate from 2)',
+  one:'Identical to Sky except the rotated safety BUZZES to the hook/curl window instead of the flat. He robs in-breakers; someone else has the flat.',
+  runfit:'Force passes to the overhang/CB who inherited the flat. Buzz is a pass-down call, not a run-support call.',
+  cfb:{menu:'Cover 3 (Buzz variant — set safety zone drop to Buzz Flat 5-7 / hook)', checks:[
+    ['Any','Buzz Flat on the rolling safety = sits 5-7 yds; Hard Flat = shallow; Cloud Flat = sinks 8-10'],
+    ['Trips','Skinny keeps the match rules alive underneath']],
+    tips:['Buzz is the single best in-game answer to Dagger and to any spot/snag concept sitting in the hook.',
+          'Pair with Zone Strategy = Aggressive on the underneath to make him actually jump the dig.']},
+  stress:['Quick out / hard flat thrown before the flat replacement arrives.','Wheel routes.','Naked boot away from the roll.'],
+  call:'2nd and 3rd-and-long vs mesh / drive / spot / dagger teams. You are trading the flat to buy the hook window.',
+  build:c=>{const o=[],S=c.strong,W=c.weak,sd=S==='R'?1:-1;
+    o.push(zone('CB L',LM.third('L'),'Deep outside third. Bail on the snap, squeeze anything vertical inside, keep width on the comeback.','deep'));
+    o.push(zone('CB R',LM.third('R'),'Deep outside third. Bail on the snap, squeeze anything vertical inside, keep width on the comeback.','deep'));
+    o.push(zone('FS',LM.midThird(),'Deep middle third. Read the QB. Post and dig are yours over the top.','deep'));
+    o.push(zone('SS ('+S+')',{x:LM.curl(S).x-(S==='R'?3:-3),y:8.5},'BUZZ — drop INSIDE to the hook/curl window, not the flat. Rob the dig, drag and spot. No force responsibility.','rob'));
+    o.push(zone('NB '+S,LM.flat(S),'You inherited the FLAT because the safety buzzed inside. Get out there fast or the quick out is free.'));
+    o.push(zone('MIKE',LM.hook(sd),'Strong hook — now doubled up with the buzz safety on anything sitting inside.'));
+    o.push(zone('WILL',LM.hook(-sd),'Weak hook. Feel the drag, rob the dig, expand to weak #2 on a true drop-back.'));
+    return o;}},
+
+c3match:{name:'Cover 3 Match (Rip/Liz)', fam:'Cover 3', shell:'1-high, disguised from 2',
+  one:'Cover 3 that plays MAN against vertical routes and ZONE against everything else. Corner is MOD on #1; the overhang carries #2 vertical or converts to seam-hook.',
+  runfit:'Rolled safety to the call side, same as Sky.',
+  cfb:{menu:'Cover 3 Match / "Seam" and "Skinny" checks', checks:[
+    ['Stack','Seam (default match) · Combo (swap on release) · Zone It (kills matching)'],
+    ['Bunch','Skate · Skinny · Skinny Meg · Zone It'],
+    ['Trips','Skinny (default) · Skinny Meg · Zone It']],
+    tips:['Skinny = the seam defender takes #2 outside/vertical. This is the true Rip/Liz rule in CFB 27.',
+          'Skinny Meg adds: backside corner skips the depth trigger and plays pure man on every route.',
+          'If you get shredded by quick game, hit Zone It — match rules are useless before routes declare.']},
+  stress:['Quick game / RPO thrown before routes declare vertical.','Option and choice routes sitting exactly at the conversion depth.','Naked boot away from the roll.'],
+  call:'Your base MOFC call. Built specifically because spot-drop Cover 3 cannot handle 4 verticals.',
+  build:c=>{const o=[],S=c.strong,W=c.weak,sd=S==='R'?1:-1;
+    ['L','R'].forEach(sd2=>{
+      const one=c.n(sd2,1);
+      if(one&&one.cl==='VERT') o.push(match('CB '+sd2,sd2+'1',LM.third(sd2),'MOD — #1 went vertical past 10-12, so he is now man. Stay width-conscious of the third.'));
+      else o.push(zone('CB '+sd2,LM.third(sd2),'MOD — #1 stayed shallow, so you stay ZONE. Sink, rob the curl, never chase.','deep'));
+    });
+    o.push(zone('FS',LM.midThird(),'Deep middle third. Post/dig over the top of whoever is carrying #2.','deep'));
+    const two=c.n(S,2);
+    if(two&&two.cl==='VERT') o.push(match('SS/NB '+S,S+'2',LM.curl(S),'MATCH — #2 released vertical → CARRY HIM MAN up the seam. This is the rule that kills 4 verts.'));
+    else o.push(zone('SS/NB '+S,LM.curl(S),'SEAM-HOOK CONVERSION — #2 did not go vertical, so pass him off and re-read the next threat into your zone.'));
+    o.push(zone('NB '+W,LM.curl(W),'Weak curl-flat, same match rule on weak #2.'));
+    o.push(zone('MIKE',LM.hook(sd),'Strong hook. Match #3 vertical — carry him to the FS, otherwise settle and rob the crosser.'));
+    o.push(zone('WILL',LM.hook(-sd),'Weak hook. Wall anything crossing your face, then get width to the weak curl on a true drop-back.'));
+    return o;}},
+
+/* ================= QUARTERS FAMILY ================= */
+c4:{name:'Cover 4 (Quarters / Sky)', fam:'Quarters', shell:'2-high',
+  one:'4-deep, 3-under. Corner ALWAYS has #1. Safety reads #2: vertical = lock him, not vertical = he is a run key, come fill.',
+  runfit:'Both safeties are true 8th/9th run defenders. Corners force on the perimeter.',
+  cfb:{menu:'Cover 4', checks:[
+    ['Stack','Quarters (default) · Zone It · Triangle (3-over-2 bracket)'],
+    ['Bunch','Box (default, quadrants) · Bingo (Box + CB locks #1 if he stays outside) · Point Triangle · Zone It'],
+    ['Trips','Quarters (default) · Stress (all-verts converts to even spacing) · Zone It'],
+    ['1 Receiver','Solo (default — weak CB locks iso, weak S free to poach) · Solo Cut · Quarters']],
+    tips:['Stress is the trips check that stops the 4-verts spacing bind. Learn it.',
+          'Box vs bunch beats trying to match individual receivers out of a pile.',
+          'Zone It is your panic button when the AI matches wrong on rub releases.']},
+  stress:['Flat / quick game — both DBs are reading vertical.','Play-action to #2 (baits the safety run key).','Deep out and comeback vs a soft corner.'],
+  call:'Base early down vs balanced or run-heavy sets. You get an extra hat to the run while staying 2-high.',
+  build:c=>{const o=[];quartersSide(c,'L',o,{});quartersSide(c,'R',o,{});
+    const three=c.n(c.strong,3), two=c.n(c.strong,2), hk=LM.hook(c.strong==='R'?1:-1);
+    o.push(three&&three.cl==='VERT'
+      ? match('MIKE',c.strong+'3',hk,'#3 pushed vertical → wall and carry him until the backside safety poaches.')
+      : (three&&three.cl==='OUT'&&two&&two.cl==='OUT')
+        ? match('MIKE',c.strong+'3',hk,'Your apex got occupied by #2 to the flat, so YOU have to expand to #3. This is how flood finds the soft spot — get out there.')
+        : zone('MIKE',hk,'Hook to the strength, rob the in-breaker, feel #3 underneath.'));
+    return o;}},
+
+palms:{name:'Palms / 2-Read', fam:'Quarters', shell:'2-high (identical to Quarters)',
+  one:'Same picture as Quarters, opposite reaction to #2. If #2 breaks OUT inside 5, the CORNER comes off #1 and traps #2 while the SAFETY rotates over the top to cap #1.',
+  runfit:'The corner becomes the force player whenever #2 declares short — a different fit than base Quarters despite the identical alignment.',
+  cfb:{menu:'Palms (a Cover 4 variant)', checks:[
+    ['Stack','Palms (default) · Triangle · Zone It'],
+    ['Bunch','Box (default) · Bingo · Point Triangle · Zone It'],
+    ['Trips','Stubbie (default — CB MEG #1, apex/S share #2 and #3) · Zone It'],
+    ['1 Receiver','Solo (default) · Solo Cut · Quarters']],
+    tips:['Palms is your answer to bubble, stick-flat and speed-out RPOs WITHOUT changing the picture the QB sees.',
+          'Stubbie is the trips version — do not expect true Palms rules to three receivers.',
+          'The AI corner will bite hard on the out. Expect to get burned by out-and-up.']},
+  stress:['Double moves off the out — out-and-up, whip/pivot.','Hard corner and deep comeback by #1 punishing the safety\'s late rotation.','Switch/rub releases that scramble who is "#2".'],
+  call:'Vs spread teams living on quick-game to the slot. Same shell as Quarters, so the QB cannot pre-snap you.',
+  build:c=>{const o=[];quartersSide(c,'L',o,{palms:true});quartersSide(c,'R',o,{palms:true});
+    const three=c.n(c.strong,3), two=c.n(c.strong,2), hk=LM.hook(c.strong==='R'?1:-1);
+    o.push(three&&three.cl==='VERT'
+      ? match('MIKE',c.strong+'3',hk,'#3 pushed vertical → wall and carry him until the backside safety poaches.')
+      : (three&&three.cl==='OUT'&&two&&two.cl==='OUT')
+        ? match('MIKE',c.strong+'3',hk,'Your apex got occupied by #2 to the flat, so YOU have to expand to #3. This is how flood finds the soft spot — get out there.')
+        : zone('MIKE',hk,'Hook to the strength, rob the in-breaker, feel #3 underneath.'));
+    return o;}},
+
+solo:{name:'Cover 4 Solo / Poach', fam:'Quarters', shell:'2-high vs 3x1',
+  one:'Quarters to trips with the BACKSIDE safety keying #3: if #3 goes vertical he poaches the middle; if #3 stays short he rotates to help the isolated backside corner.',
+  runfit:'Trips-side safety fits the alley; backside safety is late help either way.',
+  cfb:{menu:'Cover 4 → "Solo" / "Solo Cut" check on the 1-Receiver side', checks:[
+    ['1 Receiver','Solo (default) — weak CB locks the iso, weak S free to poach'],
+    ['1 Receiver','Solo Cut — weak S takes short in-breakers, CB is freed'],
+    ['1 Receiver','Quarters — both play standard match, NO poach help'],
+    ['Trips side','Stubbie / Quarters / Stress apply independently']],
+    tips:['If the offense keeps #3 in to block, your poach never happens and the X is truly alone. That is the trade.',
+          'Solo = safety cheats pre-snap. Poach = he reacts post-snap. Solo tips the coverage; Poach does not.']},
+  stress:['Offense strips your help by keeping #3 in, then takes a deep shot at the isolated X.','Any 1-on-1 the backside CB loses.'],
+  call:'Vs trips when you need 4-over-3 to the field without giving up the box. Requires a corner who can live alone.',
+  build:c=>{const o=[],S=c.strong,W=c.weak;
+    quartersSide(c,S,o,{});
+    o.push(man('CB '+W,W+'1','MEG / lock the isolated X. Your help is CONDITIONAL — it only shows if #3 goes vertical.'));
+    const three=c.n(S,3);
+    if(three&&three.cl==='VERT'){
+      o.push(zone('S '+W,{x:26.6,y:14},'POACH — #3 released vertical, so rob the deep middle. You are now the free player over #3.','rob'));
+    }else{
+      o.push(zone('S '+W,overTop(c,W+'1',15),'#3 did NOT go vertical → forget the poach, rotate over the top and help your isolated corner.','deep'));
+    }
+    o.push(zone('NB '+W,LM.hook(W==='R'?1:-1),'Weak hook, fold to the run.'));
+    o.push(zone('MIKE',LM.hook(S==='R'?1:-1),'Wall #3 underneath, carry him until the poach shows.'));
+    return o;}},
+
+c6:{name:'Cover 6 (Quarter-Quarter-Half)', fam:'Split-field', shell:'2-high, split',
+  one:'QUARTERS to the passing strength / field, COVER 2 to the boundary. In EA terms: Cover 4 on the strong side, Cover 2 on the weak side.',
+  runfit:'Quarters side gets the extra safety hat. Cover 2 side forces with the corner.',
+  cfb:{menu:'Cover 6', checks:[
+    ['Stack','Quarters (default) · Zone It · Triangle — these govern the QUARTERS side only'],
+    ['Bunch','Box · Bingo · Point Triangle · Zone It'],
+    ['Trips','Stubbie (default) · Zone It'],
+    ['Note','The Cover 2 half has no match checks — it is a pure cloud/half read']],
+    tips:['Default Cover 6 in the game vs stack: CB follows #1 deep, S matches #2 vertical, flat defender takes #2 to the flat, underneath takes #3.',
+          'Triangle turns the stack side into a 3-over-2 with the safety bracketing whoever goes deeper.']},
+  stress:['Deep corner / out stressing the lone half-safety on the Cover 2 side.','Quick game to the quarters-side flat.','The seam where the two shells meet in the middle.'],
+  call:'Vs teams that isolate a dominant X on the backside — quarters/match to the receiver-heavy side, two-deep double on the isolated side.',
+  build:c=>{const o=[],S=c.strong,W=c.weak;
+    quartersSide(c,S,o,{});
+    coverTwoSide(c,W,o,'Cover 2 half');
+    o.push(zone('MIKE',LM.hook(S==='R'?1:-1),'Hook to the split. You are the stitch between the two shells — do not lose the crosser through the middle.'));
+    return o;}},
+
+c9:{name:'Cover 9 (flipped Cover 6)', fam:'Split-field', shell:'2-high, split',
+  one:'The mirror of Cover 6: COVER 2 to the passing STRENGTH, QUARTERS to the weak/single-receiver side. Safeties are offset, which is your pre-snap tell.',
+  runfit:'Corner forces to the strength; quarters safety is the extra hat weak.',
+  cfb:{menu:'Cover 9', checks:[
+    ['Strong side','Cover 2 rules — CB cloud/flat + safety deep half. No match checks.'],
+    ['Weak side','Quarters / Solo checks apply.'],
+    ['Note','Vs 3x1 the backside safety adds to the strength, creating a 5-over-3 count.']],
+    tips:['Cover 9 is the answer when the trips side is the problem and the single receiver is not.',
+          'It is strong vs RPOs to the field because the cloud corner is a true force defender there.',
+          'AMBIGUITY: in Vic Fangio\'s NFL numbering, "Cover 9" means weak-rotation Cover 3 — a 3-deep coverage, nothing like this. EA uses the flipped-Cover-6 meaning.']},
+  stress:['The isolated backside receiver gets quarters, not a double — a great X can win there.','Deep out on the half-safety over trips.'],
+  call:'Vs trips when the field side is the offense\'s engine. Cloud the strength, keep quarters run support into the boundary.',
+  build:c=>{const o=[],S=c.strong,W=c.weak;
+    coverTwoSide(c,S,o,'Cover 2 half');
+    quartersSide(c,W,o,{});
+    o.push(zone('MIKE',LM.hook(S==='R'?1:-1),'Hook to the strength, help underneath the cloud corner on the #3 flat.'));
+    return o;}},
+
+/* ================= COVER 2 / MAN FAMILY ================= */
+c2:{name:'Cover 2 (zone)', fam:'Cover 2', shell:'2-high',
+  one:'2-deep, 5-under. Corners jam and funnel then play the hard flat. Mike sits in a SHALLOW hook — that is the whole difference from Tampa 2.',
+  runfit:'Both corners force. Best perimeter run-support zone you own.',
+  cfb:{menu:'Cover 2', checks:[
+    ['Any','Zone drops are the real adjustment: Flats 0-5 to squat, 10-15 to sink under the corner route'],
+    ['Any','Set Zone Strategy Conservative if the seam keeps hurting you']],
+    tips:['CFB 27 known bug: Cover 2 shells sometimes align completely differently vs the same formation. Check your own shell pre-snap every play.',
+          'If you see 4 verts, your Mike must get depth or you are dead in the seam.']},
+  stress:['4 Verticals — the #2 seam splits the two safeties over a shallow Mike. This is the #1 vulnerability.','Smash — corner route behind the jammed CB.','Deep out / comeback on an aggressive flat corner.'],
+  call:'Run-heavy or short-yardage downs when you want both corners in the fit and you do not fear the deep seam.',
+  build:c=>{const o=[],S=c.strong,sd=S==='R'?1:-1;
+    coverTwoSide(c,'L',o); coverTwoSide(c,'R',o);
+    o.push(zone('MIKE',{x:BALL+1.5,y:9},'SHALLOW hook, roughly 8-10 yards. You are NOT the deep middle player — that is Tampa 2.'));
+    return o;}},
+
+tampa2:{name:'Tampa 2', fam:'Cover 2', shell:'2-high → effectively 3-deep',
+  one:'Cover 2 underneath, but the MIKE sprints to 18-25 yards splitting the safeties and takes the deep middle. That single drop turns 2-deep into 3-deep.',
+  runfit:'Corners force. Safeties fold late. Mike is gone — your box is a man light on pass reads.',
+  cfb:{menu:'Cover 2 with the Mike dropped to a deep hook/middle zone drop (25-30)', checks:[
+    ['Any','Manually set the Mike\'s hook drop to 20-30 yards to build true Tampa'],
+    ['Any','Community "Mable-style" macro: Flat zones 25, Curl-Flats 5, outside CBs Cloud Flat, safeties deep halves']],
+    tips:['You need a rangy MLB rating or the deep middle drop is cosmetic.',
+          'This is one of the more useful custom macros to save in one of the 10 CFB 27 adjustment slots.']},
+  stress:['The Tampa 2 hole — anything at 15-20 yards beside the Mike. Dagger\'s dig lives here.','RB wheel/seam when the Mike is occupied.','Requires the front four to rush alone.'],
+  call:'Obvious pass with a rangy Mike, especially vs deep-crosser offenses.',
+  build:c=>{const o=[];
+    coverTwoSide(c,'L',o); coverTwoSide(c,'R',o);
+    o.push(zone('MIKE',LM.tampa(),'TAMPA — sprint the deep middle to 18-25 yards. You are the third deep defender. Deny the post and skinny seam.','deep'));
+    return o;}},
+
+c2man:{name:'Cover 2 Man (Cover 5)', fam:'Man', shell:'2-high',
+  one:'Same 2-deep shell as Cover 2, but the five underneath defenders are in MAN, trailing with help over the top.',
+  runfit:'Weak — man defenders chase. Safeties fold late.',
+  cfb:{menu:'Cover 2 Man', checks:[
+    ['Stack','Lock (default, no switching) · Combo (nearest two swap on release) · Triangle (3-on-2 bracket)'],
+    ['Bunch','Point Combo (middle man locks, other two swap) · Point Triangle (4-on-3 with safety bracket) · Lock'],
+    ['Any','Cross Man is back in CFB 27 for cleaner matchup handling']],
+    tips:['Combo is the whole reason stacks stop beating you — without it your two defenders collide.',
+          'Point Triangle vs bunch is the single strongest man check in the game.']},
+  stress:['Pick / rub / mesh — the classic man beaters.','Deep dig or post into the seam between the two halves.','Scramble drill.'],
+  call:'3rd-and-medium when you want man pressure with insurance. Lower risk than Cover 1 or 0.',
+  build:c=>{const o=[];
+    o.push(zone('S L',LM.half('L'),'Deep half — but play HELP, not zone. Break on whoever your man defender is trailing.','deep'));
+    o.push(zone('S R',LM.half('R'),'Deep half — help over the top. Trust the trail technique underneath.','deep'));
+    ['L','R'].forEach(s=>{
+      if(c.n(s,1)) o.push(man('CB '+s,s+'1','Man on #1. Trail inside-out, you have a half-safety over the top so you can be aggressive at the line.'));
+      if(c.n(s,2)) o.push(man('NB '+s,s+'2','Man on #2. Inside leverage, funnel him into the safety help. Never let him cross your face clean.'));
+      if(c.n(s,3)) o.push(man('SAM',s+'3','Man on #3. Expect the rub — this is the receiver bunch and stack concepts are built to free.'));
+    });
+    o.push(man('MIKE','RB','Man on the back. If he stays in to protect, become the rat and rob the first crosser through the middle.'));
+    return o;}},
+
+c1:{name:'Cover 1 (Robber / Hole)', fam:'Man', shell:'1-high',
+  one:'Man across the board, one FS in the deep middle, and one free "rat" reading the QB in the hole underneath. That rat is the 11th man in the run fit.',
+  runfit:'Best man run-fit you have — the rat is an extra body.',
+  cfb:{menu:'Man Coverage / Cover 1 (Hole, Robber)', checks:[
+    ['Stack','Lock · Combo · Triangle'],
+    ['Bunch','Point Combo · Point Triangle · Lock'],
+    ['Any','Bracket a receiver by assigning a second defender individually']],
+    tips:['Known CFB 27 bug: Cover 1 Hole occasionally aligns like a different shell. Verify pre-snap.',
+          'Nomenclature: RAT = the DE dropping off a blitz, LURK = LB opposite the back, HOLE = SS, CROSS = weak safety.']},
+  stress:['Pick / rub concepts and mesh.','Deep crossers.','A mobile QB pulls the rat and the FS out of position.'],
+  call:'Money down. Kills crossing routes and RPO reads, disguises pressure.',
+  build:c=>{const o=[];
+    o.push(zone('FS',LM.midThird(),'Deep middle. Read the QB\'s drop and eyes. You are the only thing behind everybody.','deep'));
+    o.push(zone('SS (Hole)',LM.hole(),'RAT / HOLE — sit in the middle under the FS, read the QB, jump any in-breaker your man defenders are trailing.','rob'));
+    ['L','R'].forEach(s=>{
+      if(c.n(s,1)) o.push(man('CB '+s,s+'1','MEG on #1. Your only help is the FS over the top and the rat on anything breaking inside.'));
+      if(c.n(s,2)) o.push(man('NB '+s,s+'2','MEG on #2. Play inside leverage and drive everything back toward the rat in the hole.'));
+      if(c.n(s,3)) o.push(man('SAM',s+'3','MEG on #3. You are the most likely victim of a rub — communicate the switch or take the pick.'));
+    });
+    o.push(man('MIKE','RB','Man on the back. Carry him out of the backfield; if he protects, you become a second robber.'));
+    return o;}},
+
+c0:{name:'Cover 0', fam:'Man', shell:'0-high',
+  one:'Man on everybody, nobody deep, nobody in the hole. Every other defender rushes. Cover 1 with the rat and the free safety sent.',
+  runfit:'Every man defender fits alone. Leverage is everything.',
+  cfb:{menu:'Cover 0 / Man Blitz', checks:[
+    ['Stack','Lock · Combo · Triangle'],
+    ['Bunch','Point Combo · Point Triangle · Lock'],
+    ['Any','Press every defender or you have given away free releases with zero help']],
+    tips:['Best in the red zone — the field is already shrunk so the "no help deep" cost is smaller.',
+          'If they hot-route to slants, you lose. Have a plan for the sight adjust.']},
+  stress:['Hot / sight-adjust slants beating the blitz.','Any 1-on-1 loss is a touchdown.','Screens if the rush overpursues.'],
+  call:'Desperation pressure, red zone, or a decisive man-talent edge.',
+  build:c=>{const o=[];
+    ['L','R'].forEach(s=>{
+      if(c.n(s,1)) o.push(man('CB '+s,s+'1','Man on #1 with zero help anywhere. Press, squeeze, and take away the slant first.'));
+      if(c.n(s,2)) o.push(man('NB '+s,s+'2','Man on #2 with zero help. Trail tight — there is nothing behind you and nothing inside you.'));
+      if(c.n(s,3)) o.push(man('SAM',s+'3','Man on #3 with zero help. Expect a rub; you have to fight through it, not around it.'));
+    });
+    o.push(man('SS','RB','Man on the back. If he releases, you are a coverage player; if he blocks, add to the rush.'));
+    o.push(zone('FS',{x:BALL+3.5,y:2.2},'RUSHING — you are the extra hat that makes this Cover 0. Get home or this is a touchdown.','rush'));
+    o.push(zone('MIKE',{x:BALL-2,y:2.2},'RUSHING the A gap. The whole call is a bet that pressure beats the sight adjust.','rush'));
+    return o;}},
+
+c2invert:{name:'Cover 2 Invert / Trap', fam:'Cover 2', shell:'2-high (disguise)',
+  one:'Cover 2 with the CORNER and SAFETY trading jobs: the safety rolls down into the flat/force, the corner bails to the deep half. Trap is the conditional version — it only inverts if #2 breaks out.',
+  runfit:'The SAFETY is the force player — structurally different from every other Cover 2 variant.',
+  cfb:{menu:'Cover 2 with inverted zone assignments (safety → Hard/Buzz Flat, CB → Deep Half)', checks:[
+    ['Any','Assign the CB a Deep Half zone and the safety a Flat zone individually'],
+    ['Any','Roll Coverage lets you show one shell and rotate at or after the snap']],
+    tips:['This is the best in-game bait vs an opponent who reads your flat defender pre-snap for RPOs.',
+          'Roll Coverage targeting (WR1 / Pass Strength / Field / Boundary / Fastest) is how you aim the disguise.']},
+  stress:['Quick hitch-seam or smash thrown before the bailing corner reaches depth.','Motion that forces you to tip the disguise early.'],
+  call:'Change-up only. Not a base call. Use it once the opponent has proven he is reading your force player.',
+  build:c=>{const o=[],S=c.strong,W=c.weak;
+    ['L','R'].forEach(s=>{
+      const two=c.n(s,2);
+      const trap = two && two.cl==='OUT';
+      if(trap){
+        o.push(match('CB '+s,s+'2',LM.flat(s),'TRAP TRIGGER — #2 broke outside, so drop #1 to the safety and jump the out underneath.'));
+      }else{
+        o.push(zone('CB '+s,LM.half(s),'INVERT — bail from your Cover 2 look to the DEEP HALF. You are now the safety.','deep'));
+      }
+    });
+    o.push(zone('S '+S,LM.flat(S),'INVERT — roll DOWN to the flat. You are the force player now, not the corner.'));
+    o.push(zone('S '+W,LM.half(W),'Deep half on your side (or flat if you are running full invert both ways).','deep'));
+    o.push(zone('NB '+S,LM.curl(S),'Curl-hook. Wall #2 inside so the rolling safety can play over the top of the out.'));
+    o.push(zone('MIKE',{x:BALL+1.5,y:9},'Short hook at 8-10. Same as base Cover 2 — the invert changes the perimeter, not the middle.'));
+    return o;}}
+};
+
+/* ---- family grouping ---- */
+const FAMS=[
+  ['Cover 3 Family',['c3sky','c3cloud','c3buzz','c3match']],
+  ['Quarters Family',['c4','palms','solo','c6','c9']],
+  ['Cover 2 Family',['c2','tampa2','c2invert']],
+  ['Man Family',['c2man','c1','c0']]
+];
+
+/* ---- known head-to-head callouts ---- */
+const DIFFS={
+  'c4|palms':'Same shell, opposite reaction to the same stimulus. In QUARTERS the corner\'s man is always #1 — only the safety\'s technique flips on #2. In PALMS, #2 breaking out flips BOTH: corner comes off #1 to trap #2, safety rotates over the top to cap #1. Run Curl–Flat to see it; run 4 Verticals and they are identical.',
+  'c6|c9':'Which side gets the two-high half. COVER 6 = Quarters to the passing strength, Cover 2 to the single side. COVER 9 = the mirror — Cover 2 clouded to the strength, Quarters weak. Your pre-snap tell in-game is offset safeties.',
+  'c3sky|c3buzz':'One landmark. SKY\'s rotated safety goes to the FLAT and is the force player. BUZZ\'s rotated safety goes INSIDE to the hook/curl and robs in-breakers, giving the flat to somebody else. Buzz buys you the dig and mesh window and costs you the perimeter run fit.',
+  'c3sky|c3cloud':'Who rolls down. SKY rolls the SAFETY to the flat. CLOUD rolls the CORNER to the flat and replaces him deep with a safety. Cloud is stronger vs the quick perimeter, weaker vs the corner route behind it.',
+  'c3sky|c3match':'Spot-drop vs pattern-match. SKY defenders drop to a fixed landmark regardless of routes. MATCH defenders decide man-or-zone off the receiver\'s stem: vertical = man (MOD/MEG), everything else = zone. Match fixes the 4-verts problem Sky cannot solve.',
+  'c2|tampa2':'The Mike\'s drop depth. COVER 2 Mike sits at 8-10 in a shallow hook. TAMPA 2 Mike sprints to 18-25 and becomes a third deep defender. Everything else is identical.',
+  'c2|c2man':'Identical two-deep shell, opposite underneath. COVER 2 is five zone droppers reading the QB. COVER 2 MAN is five man defenders trailing with help over the top.',
+  'c1|c0':'The rat and the free safety. COVER 1 keeps a deep-middle FS plus a robber in the hole. COVER 0 sends both. That is the entire difference.',
+  'c1|c3match':'Cover 1 is man on everybody regardless of route. Cover 3 Match only converts to man when the route declares vertical — it is zone against quick game and man against verticals.',
+  'c4|solo':'Solo is Quarters with a decision attached to the backside safety. In base Quarters he plays his side. In SOLO he keys #3: vertical = poach the middle, not vertical = rotate and help the isolated corner. You gain a 4-over-3 to trips and you gamble on the backside.',
+  'c2|c2invert':'The corner and the safety trade jobs. Base Cover 2: CB = flat/force, S = deep half. Invert: S = flat/force, CB = deep half. Built to bait an RPO read of your force player.',
+  'c4|c6':'Cover 6 is Quarters on one half only. The other half converts to Cover 2 — corner squats as force, safety takes the whole deep half alone.',
+  'palms|c6':'Palms is a full-field 2-read. Cover 6 hard-splits the field: match rules one side, pure cloud/half the other. Cover 6 gives up the match answer on the two-deep side in exchange for a true double on the isolated receiver.'
+};
+function diffFor(a,b){ return DIFFS[a+'|'+b]||DIFFS[b+'|'+a]||null; }
+
+/* ============================================================
+   STATE + UI
+   ============================================================ */
+let ST={cov:'c4',covB:'palms',form:'doubles',cpt:'curlflat',mode:'study',t:0,playing:false,loop:true};
+
+function el(t,c,h){const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;}
+
+function buildCovList(target,key){
+  target.innerHTML='';
+  FAMS.forEach(([fam,ids])=>{
+    target.appendChild(el('div','lbl',fam));
+    ids.forEach(id=>{
+      const b=el('button','pick'+(ST[key]===id?' on':''),COV[id].name);
+      b.onclick=()=>{ST[key]=id;render();};
+      target.appendChild(b);
+    });
+  });
+}
+function buildChips(){
+  const fc=document.getElementById('formChips'); fc.innerHTML='';
+  Object.keys(FORMS).forEach(k=>{
+    const b=el('button','chip'+(ST.form===k?' on':''),FORMS[k].name);
+    b.onclick=()=>{ST.form=k;render();}; fc.appendChild(b);
+  });
+  const cc=document.getElementById('cptChips'); cc.innerHTML='';
+  Object.keys(CPTS).forEach(k=>{
+    const b=el('button','chip'+(ST.cpt===k?' on':''),CPTS[k].name);
+    b.onclick=()=>{ST.cpt=k;render();}; cc.appendChild(b);
+  });
+  document.getElementById('cptNote').textContent=CPTS[ST.cpt].note;
+}
+
+/* ---- SVG rendering ---- */
+const NS='http://www.w3.org/2000/svg';
+function svgEl(n,a){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;}
+
+const TYPE_COLOR={deep:'#60a5fa',under:'#34d399',man:'#fbbf24',match:'#c084fc',rob:'#f472b6',rush:'#ef4444'};
+
+function drawField(svg){
+  svg.appendChild(svgEl('rect',{x:0,y:0,width:VW,height:VH,fill:'#0d1b12'}));
+  for(let y=-5;y<=25;y+=5){
+    svg.appendChild(svgEl('line',{x1:0,y1:py(y),x2:VW,y2:py(y),stroke:y===0?'#e5e7eb':'#1d3b24',
+      'stroke-width':y===0?2.2:1}));
+    if(y>0){const t=svgEl('text',{x:5,y:py(y)-4,fill:'#2b5236','font-size':10,'font-weight':'700'});
+      t.textContent=y;svg.appendChild(t);
+      const t2=svgEl('text',{x:VW-16,y:py(y)-4,fill:'#2b5236','font-size':10,'font-weight':'700'});
+      t2.textContent=y;svg.appendChild(t2);}
+  }
+  [HASH_L,HASH_R].forEach(hx=>{
+    for(let y=-7;y<=24;y+=1){
+      svg.appendChild(svgEl('line',{x1:px(hx)-3.5,y1:py(y),x2:px(hx)+3.5,y2:py(y),stroke:'#1d3b24','stroke-width':1.1}));
+    }
+  });
+  svg.appendChild(svgEl('line',{x1:px(26.665),y1:0,x2:px(26.665),y2:VH,stroke:'#132a1b','stroke-width':1,'stroke-dasharray':'3 7'}));
+  const b1=svgEl('text',{x:7,y:py(-6.6),fill:'#3f6b4d','font-size':10,'letter-spacing':'1.5','font-weight':'700'});
+  b1.textContent='BOUNDARY';
+  const b2=svgEl('text',{x:VW-42,y:py(-6.6),fill:'#3f6b4d','font-size':10,'letter-spacing':'1.5','font-weight':'700'});
+  b2.textContent='FIELD';
+  svg.appendChild(b1);svg.appendChild(b2);
+}
+
+function defPos(d,c,t){
+  const r=d.res;
+  if(r.mode==='zone'){
+    return lp(d.align,r.target,ease(Math.min(1,t*1.15)));
+  }
+  if(r.mode==='man'){
+    const rec=c.g(r.key); if(!rec) return d.align;
+    const rp=atT(rec.path,Math.max(0,t-0.10));
+    const tgt={x:rp.x+r.off.x, y:rp.y+r.off.y};
+    return lp(d.align,tgt,ease(Math.min(1,t*2.2)));
+  }
+  if(r.mode==='match'){
+    if(t<T_MATCH) return lp(d.align,r.target,ease(t/T_MATCH)*0.3);
+    const rec=c.g(r.key); if(!rec) return r.target;
+    const from=lp(d.align,r.target,0.3);
+    const rp=atT(rec.path,Math.max(0,t-0.08));
+    const tgt={x:rp.x-0.9,y:rp.y+0.9};
+    return lp(from,tgt,ease(Math.min(1,(t-T_MATCH)/(1-T_MATCH)*1.6)));
+  }
+  return d.align;
+}
+
+function alignFor(d,c){
+  // derive pre-snap alignment from label if not explicitly set
+  const p=d.p;
+  if(d.align) return d.align;
+  let m;
+  if((m=p.match(/^CB\s*([LR])/))) return cbAlign(c,m[1]+'1',7);
+  if((m=p.match(/^(NB|SS\/NB)\s*([LR])/))) return apex(c,m[2],2,4.8);
+  if((m=p.match(/^S\s*([LR])/))) { const s=m[1]; const two=c.n(s,2);
+    return {x: two? two.x-(s==='R'?1:-1)*2 : (s==='L'?13.3:40), y:11.5}; }
+  if(p.startsWith('FS')) return {x:26.6,y:12.5};
+  if(p.startsWith('SS')) { const s=c.strong; const two=c.n(s,2);
+    return {x: two? two.x-(s==='R'?1:-1)*2.4 : (s==='R'?38:14), y:10.5}; }
+  if(p.startsWith('MIKE')) return {x:BALL+1.8,y:5.2};
+  if(p.startsWith('WILL')) return {x:BALL-3.6,y:5.2};
+  if(p.startsWith('SAM')) { const s=c.strong; return {x: s==='R'?BALL+7:BALL-7, y:5.0}; }
+  return {x:BALL,y:6};
+}
+
+function buildDefense(covId,c){
+  const arr=COV[covId].build(c);
+  const seen={};
+  arr.forEach(d=>{ let base=d.p; let n=1; while(seen[d.p]){ d.p=base+' ('+(++n)+')'; } seen[d.p]=1;
+    d.align=alignFor(d,c); });
+  return arr;
+}
+
+function renderField(box,covId,c,defs){
+  const svg=svgEl('svg',{viewBox:`0 0 ${VW} ${VH}`});
+  drawField(svg);
+  // route paths (faint)
+  c.recs.forEach(r=>{
+    const pts=r.path.map(p=>`${px(p.x)},${py(p.y)}`).join(' ');
+    svg.appendChild(svgEl('polyline',{points:pts,fill:'none',stroke:'#64748b','stroke-width':1.6,'stroke-dasharray':'3 4',opacity:.8}));
+  });
+  // OL
+  const OL=[16.6,18.3,20,21.7,23.4];
+  OL.forEach(x=>svg.appendChild(svgEl('rect',{x:px(x)-4.5,y:py(0)-4.5,width:9,height:9,fill:'#2b3a4d',
+    stroke:'#475569','stroke-width':1,rx:1.5})));
+  // QB
+  svg.appendChild(svgEl('circle',{cx:px(BALL),cy:py(-5),r:7,fill:'#1e293b',stroke:'#94a3b8','stroke-width':1.5}));
+  const qt=svgEl('text',{x:px(BALL),y:py(-5)+3,fill:'#cbd5e1','font-size':8.5,'text-anchor':'middle','font-weight':'700'});
+  qt.textContent='QB'; svg.appendChild(qt);
+  // rushers (generic 4 DL) — drawn under the skill players
+  [15.6,18.2,22.2,25.2].forEach(x=>{
+    svg.appendChild(svgEl('circle',{cx:px(x),cy:py(1.4),r:6.5,fill:'#2a0c0c',stroke:'#ef4444','stroke-width':1.5}));
+  });
+  // receivers
+  const recNodes=[];
+  c.recs.forEach(r=>{
+    const g=svgEl('g',{});
+    const ci=svgEl('circle',{r:8,fill:'#1e293b',stroke:'#cbd5e1','stroke-width':1.8});
+    const tx=svgEl('text',{fill:'#f1f5f9','font-size':8.5,'text-anchor':'middle',dy:3,'font-weight':'700'});
+    tx.textContent=r.id;
+    g.appendChild(ci);g.appendChild(tx);svg.appendChild(g);recNodes.push({r,g,ci,tx});
+  });
+  // defenders
+  const defNodes=[];
+  defs.forEach(d=>{
+    const col=TYPE_COLOR[d.type]||'#34d399';
+    const g=svgEl('g',{});
+    const tail=svgEl('polyline',{points:'',fill:'none',stroke:col,'stroke-width':1.6,opacity:.55});
+    const ci=svgEl('circle',{r:11,fill:'#0b1220',stroke:col,'stroke-width':2});
+    const tx=svgEl('text',{fill:col,'font-size':7,'text-anchor':'middle',dy:2.6,'font-weight':'700'});
+    tx.textContent=d.p.replace(/\s*\(\d\)/,'').replace('SS/NB','SS').replace(/\s*\(.*\)/,'').replace(/\s+/g,'');
+    g.appendChild(tail);g.appendChild(ci);g.appendChild(tx);svg.appendChild(g);
+    defNodes.push({d,g,ci,tx,tail});
+  });
+  box.appendChild(svg);
+  return {svg,recNodes,defNodes,c,defs};
+}
+
+function tick(scene,t){
+  scene.recNodes.forEach(n=>{
+    const p=atT(n.r.path,t);
+    n.ci.setAttribute('cx',px(p.x));n.ci.setAttribute('cy',py(p.y));
+    n.tx.setAttribute('x',px(p.x));n.tx.setAttribute('y',py(p.y));
+  });
+  scene.defNodes.forEach(n=>{
+    const p=defPos(n.d,scene.c,t);
+    n.ci.setAttribute('cx',px(p.x));n.ci.setAttribute('cy',py(p.y));
+    n.tx.setAttribute('x',px(p.x));n.tx.setAttribute('y',py(p.y));
+    const pts=[];
+    for(let s=0;s<=t;s+=0.06){const q=defPos(n.d,scene.c,s);pts.push(px(q.x)+','+py(q.y));}
+    const q=defPos(n.d,scene.c,t);pts.push(px(q.x)+','+py(q.y));
+    n.tail.setAttribute('points',pts.join(' '));
+    const fired = n.d.res.mode==='match' && t>=T_MATCH;
+    n.ci.setAttribute('stroke-width', fired?3:2);
+  });
+}
+
+/* ---- panels ---- */
+function rulesTable(defsA,defsB){
+  const t=el('table');
+  t.innerHTML='<thead><tr><th style="width:74px">Pos</th><th style="width:60px">Type</th><th>Rule</th></tr></thead>';
+  const tb=el('tbody');
+  defsA.forEach((d,i)=>{
+    const b=defsB?defsB.find(x=>x.p===d.p):null;
+    const different = b ? (b.rule!==d.rule) : false;
+    const tr=el('tr',different?'diff':'');
+    const col=TYPE_COLOR[d.type]||'#34d399';
+    tr.appendChild(el('td','pos',`<span style="color:${col}">${d.p}</span>`));
+    tr.appendChild(el('td','',`<span class="tag" style="background:${col}22;color:${col}">${d.type.toUpperCase()}</span>`));
+    tr.appendChild(el('td','',d.rule));
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb);
+  return t;
+}
+
+function renderPanels(){
+  const A=COV[ST.cov];
+  // identity
+  const idv=document.getElementById('identity');
+  idv.innerHTML=`
+    <div class="k">Coverage</div><div class="v"><b>${A.name}</b></div>
+    <div class="k">Family</div><div class="v">${A.fam}</div>
+    <div class="k">Shell</div><div class="v">${A.shell}</div>
+    <div class="k">In one line</div><div class="v">${A.one}</div>
+    <div class="k">Run fit</div><div class="v">${A.runfit}</div>`;
+  // cfb27
+  const cb=document.getElementById('cfb27');
+  let h=`<div class="muted" style="margin-bottom:8px">In-game menu: <b style="color:#e5e7eb">${A.cfb.menu}</b></div>`;
+  h+='<table><thead><tr><th style="width:86px">Vs.</th><th>Available checks</th></tr></thead><tbody>';
+  A.cfb.checks.forEach(([k,v])=>{h+=`<tr><td class="pos">${k}</td><td>${v}</td></tr>`;});
+  h+='</tbody></table><ul style="margin-top:8px">'+A.cfb.tips.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+  cb.innerHTML=h;
+  // stress
+  document.getElementById('stress').innerHTML=
+    '<div class="muted" style="margin-bottom:4px">What you are giving up</div><ul>'+
+    A.stress.map(x=>'<li>'+x+'</li>').join('')+'</ul>'+
+    '<div class="callout" style="margin-top:10px"><span class="k">When you call it</span>'+A.call+'</div>';
+}
+
+/* ---- main render ---- */
+let SCENES=[];
+function render(){
+  buildCovList(document.getElementById('covList'),'cov');
+  buildCovList(document.getElementById('covListB'),'covB');
+  document.getElementById('covBBox').style.display = ST.mode==='compare'?'block':'none';
+  buildChips();
+
+  const c=makeCtx(ST.form,ST.cpt);
+  const fields=document.getElementById('fields'); fields.innerHTML=''; SCENES=[];
+
+  const ids = ST.mode==='compare' ? [ST.cov,ST.covB] : [ST.cov];
+  const defsAll = ids.map(id=>buildDefense(id,c));
+
+  ids.forEach((id,i)=>{
+    const box=el('div','fieldbox');
+    box.appendChild(el('h4','',`<b>${COV[id].name}</b> <span class="muted">${COV[id].fam} · ${COV[id].shell}</span>`));
+    const holder=el('div');
+    box.appendChild(holder);
+    fields.appendChild(box);
+    SCENES.push(renderField(holder,id,c,defsAll[i]));
+  });
+
+  // rules
+  document.getElementById('rulesTable').innerHTML='';
+  if(ST.mode==='compare'){
+    const wrap=el('div','split2');
+    const a=el('div'),b=el('div');
+    a.appendChild(el('div','lbl',COV[ST.cov].name));
+    a.appendChild(rulesTable(defsAll[0],defsAll[1]));
+    b.appendChild(el('div','lbl',COV[ST.covB].name));
+    b.appendChild(rulesTable(defsAll[1],defsAll[0]));
+    wrap.appendChild(a);wrap.appendChild(b);
+    document.getElementById('rulesTable').appendChild(wrap);
+    document.getElementById('diffNote').textContent=' — highlighted rows differ between the two calls';
+  }else{
+    document.getElementById('rulesTable').appendChild(rulesTable(defsAll[0],null));
+    document.getElementById('diffNote').textContent='';
+  }
+
+  // diff callout
+  const db=document.getElementById('diffBox');
+  if(ST.mode==='compare'){
+    const d=diffFor(ST.cov,ST.covB);
+    const changed=defsAll[0].filter(x=>{const y=defsAll[1].find(z=>z.p===x.p);return y&&y.rule!==x.rule;}).map(x=>x.p);
+    db.innerHTML=`<div class="callout"><span class="k">The one difference</span>${
+      d || 'No preset writeup for this pair. Compare the assignment sheets below — the highlighted rows are where the two calls actually diverge.'}</div>`+
+      (changed.length?`<div class="callout warn"><span class="k">Diverging on this snap</span>${changed.join(' · ')} — against <b>${CPTS[ST.cpt].name}</b> out of <b>${FORMS[ST.form].name}</b>.</div>`
+        :`<div class="callout warn"><span class="k">Diverging on this snap</span>Nothing. Against <b>${CPTS[ST.cpt].name}</b> these two calls play identically. Change the concept to find the trigger.</div>`);
+  } else db.innerHTML='';
+
+  renderPanels();
+  setT(ST.t);
+}
+
+function setT(t){
+  ST.t=t;
+  SCENES.forEach(s=>tick(s,t));
+  document.getElementById('scrub').value=Math.round(t*1000);
+  const ph = t<0.02?'Pre-snap alignment'
+    : t<T_MATCH?'Stems / read phase — rules not yet triggered'
+    : t<0.6?'★ TRIGGER — match rules firing'
+    : t<0.85?'Routes declared / coverage settled':'Ball out';
+  document.getElementById('phase').textContent=ph;
+}
+
+const DUR=2900;
+let raf=null, startStamp=0;
+function frame(now){
+  if(!ST.playing) return;
+  let t=(now-startStamp)/DUR;
+  if(t>=1){
+    if(ST.loop){ startStamp=now; t=0; }
+    else { setT(1); pause(); return; }
+  }
+  setT(t);
+  raf=requestAnimationFrame(frame);
+}
+function play(){
+  ST.playing=true;
+  document.getElementById('play').textContent='❚❚ Pause';
+  startStamp=performance.now()-ST.t*DUR;
+  raf=requestAnimationFrame(frame);
+}
+function pause(){ST.playing=false;document.getElementById('play').textContent='▶ Snap';if(raf)cancelAnimationFrame(raf);}
+
+document.getElementById('play').onclick=()=>{
+  if(ST.playing){pause();return;}
+  if(ST.t>=0.999) setT(0);
+  play();
+};
+document.getElementById('scrub').oninput=e=>{pause();setT(+e.target.value/1000);};
+document.getElementById('loop').onclick=e=>{ST.loop=!ST.loop;e.target.classList.toggle('on',ST.loop);};
+document.getElementById('mStudy').onclick=()=>{ST.mode='study';
+  document.getElementById('mStudy').classList.add('on');document.getElementById('mCompare').classList.remove('on');render();};
+document.getElementById('mCompare').onclick=()=>{ST.mode='compare';
+  document.getElementById('mCompare').classList.add('on');document.getElementById('mStudy').classList.remove('on');render();};
+
+render();
+setT(0);
+</script>
+</body>
+</html>

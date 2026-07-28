@@ -20,6 +20,7 @@ import PlayBank from './components/laminated/PlayBank'
 import Toast from './components/laminated/Toast'
 import TweaksPanel from './components/laminated/TweaksPanel'
 import FormationPlanner from './components/planner/FormationPlanner'
+import CoverageLab from './components/coverage/CoverageLab'
 import BrandCredit from './BrandCredit'
 
 const DENSITY_SLOTS = { compact: 3, regular: 4, comfy: 5 }
@@ -68,6 +69,7 @@ function App() {
   const side = settings?.side ?? 'offense'
   const tweaks = settings?.tweaks ?? DEFAULT_TWEAKS
   const view = settings?.view ?? 'sheet'
+  const coverageLab = settings?.coverageLab ?? null
 
   const ctx = ctxRow ?? { down: 1, distance: 10, fieldSide: 'own', yardLine: 25 }
   const assignments = useMemo(
@@ -113,6 +115,8 @@ function App() {
   const setCtx = (patch) => updateGameContext(patch)
   const setView = (v) =>
     saveSheetSettings({ ...(settings || {}), team, side, tweaks, view: v })
+  const setCoverageLab = (next) =>
+    saveSheetSettings({ ...(settings || {}), team, side, tweaks, coverageLab: next })
 
   const openDrawer = (situationId) => {
     setTargetId(situationId || situations[0].id)
@@ -189,8 +193,17 @@ function App() {
         >
           Formation Planner
         </button>
+        <button
+          className={'view-tab' + (view === 'coverage' ? ' view-tab--on' : '')}
+          onClick={() => setView('coverage')}
+        >
+          Coverage Lab
+        </button>
       </div>
 
+      {/* The Coverage Lab is defense-only by definition, so the side tabs
+          would be a no-op there. */}
+      {view !== 'coverage' && (
       <div className="sides">
         <button
           className={
@@ -228,8 +241,11 @@ function App() {
           </div>
         )}
       </div>
+      )}
 
-      {view === 'planner' ? (
+      {view === 'coverage' ? (
+        <CoverageLab lab={coverageLab} setLab={setCoverageLab} />
+      ) : view === 'planner' ? (
         <FormationPlanner side={side} />
       ) : (
         <>
