@@ -24,6 +24,10 @@ import CoverageLab from './components/coverage/CoverageLab'
 import BrandCredit from './BrandCredit'
 
 const DENSITY_SLOTS = { compact: 3, regular: 4, comfy: 5 }
+const PLAYBOOK_FILES = {
+  madden: 'data/playbooks.json',
+  cfb: 'data/playbooks-cfb27.json',
+}
 const DEFAULT_TWEAKS = {
   paper: ['#f4efe2', '#e7e0cf', '#d8cfb8', '#1c1a14'],
   accent: '#2f7d4f',
@@ -38,28 +42,6 @@ function App() {
     ensureFormationsSeeded()
   }, [])
 
-  // ── playbook data (loaded once from /data/playbooks.json) ────────────────
-  const [playbooks, setPlaybooks] = useState([])
-  const [pbLoading, setPbLoading] = useState(true)
-  useEffect(() => {
-    let cancelled = false
-    fetch(`${import.meta.env.BASE_URL}data/playbooks.json`)
-      .then((r) => r.json())
-      .then((data) => {
-        if (!cancelled) {
-          setPlaybooks(data.playbooks || [])
-          setPbLoading(false)
-        }
-      })
-      .catch((err) => {
-        console.error('Failed to load playbooks', err)
-        if (!cancelled) setPbLoading(false)
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
   // ── persisted state via Dexie ───────────────────────────────────────────
   const settings = useLiveQuery(() => getSheetSettings(), [], null)
   const ctxRow = useLiveQuery(() => getGameContext(), [], null)
@@ -67,6 +49,30 @@ function App() {
 
   const team = settings?.team ?? 'Sentinels'
   const side = settings?.side ?? 'offense'
+  const game = settings?.game ?? 'madden'
+
+  // ── playbook data (lazy-loaded per game, cached) ─────────────────────────
+  const [playbookCache, setPlaybookCache] = useState({})
+  useEffect(() => {
+    if (playbookCache[game]) return
+    let cancelled = false
+    fetch(`${import.meta.env.BASE_URL}${PLAYBOOK_FILES[game]}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (!cancelled)
+          setPlaybookCache((c) => ({ ...c, [game]: data.playbooks || [] }))
+      })
+      .catch((err) => {
+        console.error('Failed to load playbooks for ' + game, err)
+        if (!cancelled) setPlaybookCache((c) => ({ ...c, [game]: [] }))
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [game, playbookCache])
+
+  const playbooks = playbookCache[game] || []
+  const pbLoading = !playbookCache[game]
   const tweaks = settings?.tweaks ?? DEFAULT_TWEAKS
   const view = settings?.view ?? 'sheet'
   const coverageLab = settings?.coverageLab ?? null
@@ -105,6 +111,8 @@ function App() {
     saveSheetSettings({ ...(settings || {}), team: t, side, tweaks })
   const setSide = (s) =>
     saveSheetSettings({ ...(settings || {}), team, side: s, tweaks })
+  const setGame = (g) =>
+    saveSheetSettings({ ...(settings || {}), team, side, tweaks, game: g })
   const setTweak = (key, val) =>
     saveSheetSettings({
       ...(settings || {}),
@@ -265,9 +273,11 @@ function App() {
           </div>
 
           <PlayBank
-            key={side}
+            key={side + '-' + game}
             open={drawerOpen}
             side={side}
+            game={game}
+            setGame={setGame}
             playbooks={playbooks}
             loading={pbLoading}
             situations={situations}

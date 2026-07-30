@@ -70,9 +70,13 @@ function PlayRows({ plays, assignedIds, onAdd, empty }) {
   )
 }
 
+const GAME_LABELS = { madden: 'Madden 26', cfb: 'CFB 27' }
+
 function PlayBank({
   open,
   side,
+  game,
+  setGame,
   playbooks,
   loading,
   situations,
@@ -252,13 +256,32 @@ function PlayBank({
           ) : !pb ? (
             <>
               <div className="cat-toggle">
+                {['madden', 'cfb'].map((g) => (
+                  <button
+                    key={g}
+                    className={'cat-btn' + (game === g ? ' cat-btn--on' : '')}
+                    onClick={() => setGame(g)}
+                  >
+                    {GAME_LABELS[g]}
+                  </button>
+                ))}
+              </div>
+              <div className="cat-toggle">
                 {['team', 'alternate'].map((c) => (
                   <button
                     key={c}
                     className={'cat-btn' + (category === c ? ' cat-btn--on' : '')}
                     onClick={() => setCategory(c)}
                   >
-                    {c === 'team' ? 'Team' : 'Alternate'}
+                    {/* CFB 27 has no team defensive books — the catalog is
+                        base schemes + variants, so label the split that way */}
+                    {game === 'cfb' && side === 'defense'
+                      ? c === 'team'
+                        ? 'Base Schemes'
+                        : 'Variants'
+                      : c === 'team'
+                        ? 'Team'
+                        : 'Alternate'}
                   </button>
                 ))}
               </div>
