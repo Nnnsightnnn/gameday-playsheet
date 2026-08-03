@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ole Miss Game Plan · CFB 27 Online H2H</title>
+<style>
+  :root {
+    --paper: #f4efe2;
+    --paper-card: #fbf8f0;
+    --paper-edge: #e7e0cf;
+    --paper-line: #d8cfb8;
+    --ink: #1c1a14;
+    --ink-soft: #57544a;
+    --ink-faint: #8a866f;
+    --accent: #2f7d4f;
+    --blue: #2a4a7f;
+    --teal: #1f7d77;
+    --gold: #b3862a;
+    --orange: #c0612a;
+    --red: #b3392f;
+    --purple: #6a4a9c;
+    --maroon: #7a2838;
+    --font-mono: "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.55;
+    padding: 32px 18px 80px;
+  }
+  .page { max-width: 880px; margin: 0 auto; }
+
+  header { margin-bottom: 30px; border-bottom: 3px solid var(--ink); padding-bottom: 18px; }
+  .kicker {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 34px; font-weight: 800; letter-spacing: -0.5px;
+    text-transform: uppercase; line-height: 1.05;
+  }
+  .sub { margin-top: 10px; color: var(--ink-soft); font-style: italic; font-size: 14px; }
+
+  nav {
+    display: flex; flex-wrap: wrap; gap: 6px; margin: 18px 0 34px;
+  }
+  nav a {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1px;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--ink-soft); background: var(--paper-card);
+    border: 1px solid var(--paper-line); border-radius: 999px;
+    padding: 5px 11px;
+  }
+  nav a:hover { color: #fff; background: var(--accent); border-color: var(--accent); }
+
+  section { margin-bottom: 42px; }
+  h2 {
+    font-size: 19px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+    color: #fff; background: var(--ink); display: inline-block;
+    padding: 5px 12px; border-radius: 4px; margin-bottom: 14px;
+  }
+  h2.c-blue { background: var(--blue); }
+  h2.c-green { background: var(--accent); }
+  h2.c-red { background: var(--red); }
+  h2.c-gold { background: var(--gold); }
+  h2.c-purple { background: var(--purple); }
+  h2.c-orange { background: var(--orange); }
+  h2.c-teal { background: var(--teal); }
+  h2.c-maroon { background: var(--maroon); }
+  h3 {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--ink-faint); margin: 20px 0 8px;
+  }
+  p { margin-bottom: 10px; }
+  em { color: var(--ink-soft); }
+  strong { font-weight: 700; }
+
+  .callout {
+    background: var(--paper-card); border-left: 4px solid var(--accent);
+    border-radius: 0 6px 6px 0; padding: 14px 16px; margin: 14px 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  .callout--red { border-left-color: var(--red); }
+  .callout--blue { border-left-color: var(--blue); }
+  .callout--gold { border-left-color: var(--gold); }
+
+  ol, ul { margin: 8px 0 12px 22px; }
+  li { margin-bottom: 7px; }
+  ol.tree { counter-reset: branch; list-style: none; margin-left: 0; }
+  ol.tree li {
+    counter-increment: branch; position: relative; padding-left: 40px;
+    background: var(--paper-card); border: 1px solid var(--paper-edge);
+    border-radius: 6px; padding: 9px 12px 9px 44px; margin-bottom: 6px;
+  }
+  ol.tree li::before {
+    content: counter(branch);
+    position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+    font-family: var(--font-mono); font-weight: 700; font-size: 13px;
+    color: #fff; background: var(--ink);
+    width: 24px; height: 24px; border-radius: 50%;
+    display: grid; place-items: center;
+  }
+
+  table {
+    width: 100%; border-collapse: collapse; margin: 12px 0 16px;
+    background: var(--paper-card); border-radius: 6px; overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07); font-size: 13.5px;
+  }
+  th {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1.2px;
+    text-transform: uppercase; text-align: left;
+    background: var(--ink); color: #f4efe2; padding: 8px 12px;
+  }
+  td { padding: 9px 12px; border-top: 1px solid var(--paper-edge); vertical-align: top; }
+  td:first-child { font-weight: 700; white-space: nowrap; }
+  .play { font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin: 12px 0; }
+  .card {
+    background: var(--paper-card); border: 1px solid var(--paper-line);
+    border-top: 4px solid var(--accent); border-radius: 6px; padding: 12px 13px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .card b { display: block; font-family: var(--font-mono); font-size: 12.5px; margin-bottom: 5px; }
+  .card span { font-size: 12.5px; color: var(--ink-soft); line-height: 1.4; display: block; }
+  .card--blue { border-top-color: var(--blue); }
+  .card--red { border-top-color: var(--red); }
+  .card--gold { border-top-color: var(--gold); }
+
+  .ritual { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin: 12px 0; }
+  .ritual .step {
+    background: var(--paper-card); border: 1px solid var(--paper-line);
+    border-radius: 6px; padding: 11px 12px;
+  }
+  .ritual .t {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.5px;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 4px; font-weight: 700;
+  }
+  .ritual .step div:last-child { font-size: 12.5px; color: var(--ink-soft); }
+
+  .ethos {
+    text-align: center; font-style: italic; font-size: 15px;
+    color: var(--ink-soft); margin: 26px 0 6px;
+  }
+  footer {
+    margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--paper-line);
+    font-size: 12px; color: var(--ink-faint); line-height: 1.6;
+  }
+
+  @media print {
+    body { padding: 0; font-size: 12px; }
+    nav { display: none; }
+    section { break-inside: avoid-page; margin-bottom: 24px; }
+    .card, ol.tree li, table { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="kicker">Gameday Playsheet · Online H2H · Aug 2026 · Post-1.006</div>
+  <h1>Ole Miss Game Plan<br>CFB 27</h1>
+  <p class="sub">Load the play sheet in-app: Tweaks panel → Game plan → Load. Every play there carries
+  its coaching note. This page is the layer the sheet can't hold: doctrine, protocol, counters.</p>
+</header>
+
+<nav>
+  <a href="#doctrine">Doctrine</a>
+  <a href="#offense">Offense</a>
+  <a href="#script">Script 15</a>
+  <a href="#tree">Adjustment Tree</a>
+  <a href="#defense">Defense</a>
+  <a href="#cheese">Cheese Counters</a>
+  <a href="#ritual">25-Second Ritual</a>
+</nav>
+
+<section id="doctrine">
+  <h2 class="c-green">The One-Sentence Doctrine</h2>
+  <div class="callout">
+    You have the worse roster, so turn a 12-possession game into a 7-possession game:
+    <strong>bleed clock every snap, take the checkdown, and make scheme conflict (RPOs, rubs,
+    options) beat talent</strong> — one defender wrong beats five ratings points every time.
+  </div>
+  <h3>The five rules</h3>
+  <ol>
+    <li>Milk the play clock under 5 on every offensive snap unless trailing late.</li>
+    <li>Long drives ARE your defense. Every first down deletes 40+ seconds of their offense.</li>
+    <li>No 50/50 lob throws. Your receivers lose the dice roll. Checkdowns and in-bounds completions.</li>
+    <li>Add variance only at decision points: go on 4th-and-short past midfield. The sneak meter makes
+        4th-and-1 a skill play (check for a pinched line first).</li>
+    <li>Take points early when drives stall; in the 4th quarter down 4–8, the conversion attempt
+        usually beats the field goal.</li>
+  </ol>
+</section>
+
+<section id="offense">
+  <h2 class="c-blue">Offense: Where You Live</h2>
+  <p>Four formations carry the whole game. Everything looks the same at the snap; what happens after
+  differs. That is tendency laundering.</p>
+  <table>
+    <tr><th>Formation</th><th>Role</th></tr>
+    <tr><td>Gun Wide Y Off Trips Stack</td><td><strong>Identity.</strong> Ole Miss exclusive — nobody labs it. Full run/RPO suite + dropbacks + HB Direct Snap from one picture.</td></tr>
+    <tr><td>Gun Tight Open</td><td><strong>Man/blitz beater hub.</strong> Compressed spacing = free rubs. Mesh Spot lives here.</td></tr>
+    <tr><td>Gun Wide Trips / HB Wk</td><td><strong>The conflict machine.</strong> Same picture, run strength flips. RPOs, Switch Verts, floods, Levels.</td></tr>
+    <tr><td>Gun Empty Base Flex</td><td><strong>Tempo + coverage ID.</strong> Empty forces them to declare. Hoss Y Juke is the fastest ball-out in the book.</td></tr>
+  </table>
+  <div class="callout callout--blue">
+    <strong>Motion on every snap you can afford it.</strong> Ole Miss carries built-in MTN plays:
+    defender chases across = man, bump/pass = zone. Motion on plays where it does nothing too,
+    so it carries no signal.
+  </div>
+  <h3>Coverage beaters</h3>
+  <table>
+    <tr><th>They show</th><th>You call</th></tr>
+    <tr><td>Cover 2</td><td><span class="play">DEEP FLOOD · PA SEAMS · POST CORNER DRIVE</span> — corners + seams split it</td></tr>
+    <tr><td>Cover 3</td><td><span class="play">DEEP FLOOD · 619 SAIL · LEVELS</span> — flood the curl-flat, live intermediate</td></tr>
+    <tr><td>Cover 1 man</td><td><span class="play">MESH SPOT · WHIPS CURLS · SLOT WHEEL</span> — drags/whips/rubs win</td></tr>
+    <tr><td>Cover 4</td><td>Run the ball until they die; <span class="play">ALL HITCH</span> free vs bail corners</td></tr>
+    <tr><td>Blitz / Cover 0</td><td><span class="play">STICK · HOSS Y JUKE · TRIPLE SLANT</span> + every RPO — one-read hot throws</td></tr>
+  </table>
+  <div class="callout">
+    <strong>The 2–3 setups-then-counter rhythm:</strong> run the base play until he adjusts, THEN call
+    the counter. If he never stops the base, never leave it. Fed him RPO screens? Now
+    <span class="play">FAKE SCREEN VERTICALS</span>. Pounded <span class="play">POWER O</span> twice at
+    the goal line? Now <span class="play">PA WAGGLE</span>.
+  </div>
+</section>
+
+<section id="script">
+  <h2 class="c-teal">The Script 15 — Openers as Reconnaissance</h2>
+  <p>Walsh scripted openers so his brain was free to watch the defense's answers. Same here. By play 15
+  you must know three facts: <strong>man/zone %, blitz down and side, where his user lives.</strong>
+  Those three facts call the rest of the game.</p>
+  <table>
+    <tr><th>Plays</th><th>Question</th><th>How</th></tr>
+    <tr><td>1–3</td><td>Man or zone? Who's the user?</td><td>Base run (watch box count and which defender moves weird), quick game with motion check, PA off the same run.</td></tr>
+    <tr><td>4–6</td><td>Blitz tendency</td><td>Get to 3rd-and-medium, call quick game with a hot read. Most opponents trust ONE 3rd-down blitz. Log it.</td></tr>
+    <tr><td>7–9</td><td>User location</td><td>One crosser, one flat, one seam. Whichever gets user-jumped is his home; the other two are open all game.</td></tr>
+    <tr><td>10–12</td><td>Edge discipline</td><td>Outside run, RPO (watch the conflict defender), option.</td></tr>
+    <tr><td>13–15</td><td>Deep honesty</td><td>One max-protect shot. Not to complete it — to learn if his safeties are user-controlled and if he drops 8.</td></tr>
+  </table>
+</section>
+
+<section id="tree">
+  <h2 class="c-gold">The 10-Branch Adjustment Tree</h2>
+  <ol class="tree">
+    <li><strong>Man confirmed</strong> → crossers, drags, wheels; motion the fast guy.</li>
+    <li><strong>Zone confirmed</strong> → high-low the flat defender; patience; checkdowns are wins.</li>
+    <li><strong>Blitzes from a known side</strong> → slide protection to it, back releases away, throw the glance behind it. One completion usually ends the blitzing.</li>
+    <li><strong>Users the middle</strong> → stop throwing crossers at him; attack flats/seams; pump the crosser, throw the dig behind him.</li>
+    <li><strong>Drops 8 all game</strong> → checkdown and draw every time, milk clock, zero shame.</li>
+    <li><strong>Shows 2-high pre-snap</strong> → confirm at the snap (safety first-steps) before anything deep. This cycle's disguises are good.</li>
+    <li><strong>Heavy box / manual pinch</strong> → stretch, toss, PA shots. Light box (≤6) → run inside, period.</li>
+    <li><strong>Inside run stuffed</strong> → don't abandon the run, change the track: counter, draw, outside zone from the same look.</li>
+    <li><strong>He spams one concept</strong> → find the ONE route beating you, take away exactly that with ONE adjustment. Never stack five adjustments.</li>
+    <li><strong>Tilting / nothing works</strong> → timeout, back to base run + PA pair. There is no branch called "improvise."</li>
+  </ol>
+</section>
+
+<section id="defense">
+  <h2 class="c-red">Defense: One Package, Four Buttons</h2>
+  <p><strong>Playbook: 4-2-5 Man Pressure</strong> (S-tier, the only book with all four meta formations).
+  <strong>Home: Nickel 3-3 Cub.</strong> Pressure comes from alignment stress (mug looks), not player
+  talent — that's why it works with a worse roster — and the coverage calls are zone/match so your
+  corners never live on man islands.</p>
+  <div class="callout callout--red">
+    Since patch 1.006 your package <strong>persists vs no-huddle</strong>. Tempo can no longer wipe
+    your personnel. The whole anti-cheese plan is legal now.
+  </div>
+
+  <h3>The four tempo audibles (Base / Tempo block)</h3>
+  <div class="cards">
+    <div class="card"><b>COVER 4 SHOW 2</b><span>Panic button #1. Never awful vs anything: 4-deep vs verts/PA, 7-man run fit, disguised 2-high.</span></div>
+    <div class="card card--blue"><b>COVER 3 BUZZ</b><span>Default vs RPO and quick game. Buzz safety robs the middle; flat help stays alive.</span></div>
+    <div class="card card--red"><b>TAMPA 2</b><span>Mesh/drag eraser. User the hole LB and the tempo scripts die.</span></div>
+    <div class="card card--gold"><b>COVER 1 ROBBER</b><span>The change-up so tempo QBs can't auto-read zone every snap.</span></div>
+  </div>
+
+  <h3>Before every game (menus — zero in-game seconds)</h3>
+  <ul>
+    <li>Coach adjustments: <strong>Auto Flip ON, Base Align ON</strong> (same alignment every snap = disguise
+        by sameness), <strong>Plaster ON</strong>, Smart Zones aggressive underneath, Gap Integrity
+        Conservative, RPO keys set once you've seen their lean.</li>
+    <li>Set the four audibles above from Nickel 3-3 Cub.</li>
+  </ul>
+
+  <h3>The 5-second tempo routine</h3>
+  <ol>
+    <li><strong>Audible, don't browse.</strong> LT → one of the four. Never open the full menu vs tempo.</li>
+    <li>Glance at your safeties (live bug: some shells misalign — re-audible the same play if wrong).</li>
+    <li>One adjustment max: shade underneath vs quick game, over top vs shots.</li>
+    <li>Pre-select your user defender (Tampa 2 hole LB, the robber, the buzz safety) before the snap.</li>
+  </ol>
+  <div class="callout callout--gold">
+    <strong>Blitzing blind vs tempo is how underdogs die.</strong> Only
+    <span class="play">BUCK ZONE BLITZ</span> is acceptable blind pressure (3-deep net behind it).
+    And timeouts are tempo-breakers: the moment tilt rises — he converts and sprints to the line —
+    burn one. Keep two in the second half for clock; the rest exist to be spent on composure.
+  </div>
+</section>
+
+<section id="cheese">
+  <h2 class="c-purple">The Cheese List &amp; Counters</h2>
+  <table>
+    <tr><th>Cheese</th><th>Counter</th></tr>
+    <tr><td>Gun Bunch audible spam</td><td><span class="play">COVER 3 MATCH</span>; set match checks vs bunch in adjustments; never press bunch; user the first in-breaker.</td></tr>
+    <tr><td>Mesh / crosser spam</td><td><span class="play">TAMPA 2 / TAMPA 2 DROP</span>; user one drag yourself; never chase a drag with a zone defender.</td></tr>
+    <tr><td>Four verts / HB seam</td><td><span class="play">COVER 4 QUARTERS / PALMS</span>; user the HB seam pipe — that's the real read.</td></tr>
+    <tr><td>RPO bubble/glance spam</td><td><span class="play">COVER 3 BUZZ</span> + RPO Pass Key Conservative; user the conflict defender, show one thing, break the other way.</td></tr>
+    <tr><td>Stretch / toss spam</td><td>Check to 4-3 Even 6-1, <span class="play">SAM WILL BLITZ / SAM BLITZ 3</span>; never sit in mug looks vs outside runs.</td></tr>
+    <tr><td>Shift/motion exploits</td><td>After any offensive shift, manually check your slot corner (known flip bug); play leverage-and-help.</td></tr>
+    <tr><td>Scrambling QB</td><td><span class="play">COVER 1 CONTAIN</span> (in 3-3 Cub); Plaster ON; contain ends, never all-out blitz a runner.</td></tr>
+    <tr><td>Tempo itself</td><td>Post-patch it can't wipe your package. The audible-only routine is the counter. It's a composure weapon; the checklist is the armor.</td></tr>
+  </table>
+</section>
+
+<section id="ritual">
+  <h2 class="c-orange">Between Plays: The 25-Second Ritual</h2>
+  <div class="ritual">
+    <div class="step"><div class="t">0–5s</div><div><strong>Log, don't feel.</strong> One word: "man," "blitz-left," "user-mid."</div></div>
+    <div class="step"><div class="t">5–10s</div><div><strong>Situation names the block.</strong> The LIVE highlight already did this. Read 2–4 options, not forty.</div></div>
+    <div class="step"><div class="t">10–15s</div><div><strong>Pick and commit.</strong> A decent call fully executed beats a perfect call chosen at 0:03.</div></div>
+    <div class="step"><div class="t">15–25s</div><div><strong>Sheet down, eyes up.</strong> Shell, box, user, leverage. Milk to ~3. Snap.</div></div>
+  </div>
+  <p class="ethos">Stillness sharpens sight. The sheet exists so the decision is already made —<br>
+  and the 25 seconds go to watching, not choosing.</p>
+</section>
+
+<footer>
+  <strong>Sources</strong> — Pro tier list and play data: cfb.fan/playbooks · Meta and adjustments:
+  Madden Prodigy CFB 27 guides, utnice post-hotfix formation rankings, Civil.GG play breakdowns,
+  The Gaming Tailgate coach-adjustments guide, maddenturf bugs/patch tracking · Doctrine: Madden
+  Academy, Madden School, Advanced Football Analytics possession-variance work.<br>
+  Built Aug 2026 · Companion to <code>docs/olemiss-gameplan.md</code> and the in-app Ole Miss plan.
+</footer>
+
+</div>
+</body>
+</html>
