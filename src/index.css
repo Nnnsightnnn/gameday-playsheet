@@ -675,10 +675,15 @@ html, body {
   .gctx__call .big { white-space: normal; font-size: 20px; }
   .pbtn__name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 }
-/* Hide the tweaks panel + FAB on small screens and when the drawer is open
-   so they never overlap the play bank or call sheet content. */
+/* On small screens the open panel spans the viewport width and scrolls
+   if it runs out of height; the FAB stays in the corner. Both hide while
+   the drawer is open so they never overlap the play bank. */
 @media (max-width: 760px) {
-  .tweaks, .tweaks__fab { display: none; }
+  .tweaks {
+    left: 16px; right: 16px; width: auto;
+    max-height: calc(100dvh - 32px);
+    overflow-y: auto;
+  }
 }
 body:has(.drawer--on) .tweaks,
 body:has(.drawer--on) .tweaks__fab { display: none; }
