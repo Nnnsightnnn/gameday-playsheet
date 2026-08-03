@@ -12,8 +12,10 @@ import {
   saveSheetSettings,
   ensureSheetAssignmentsSeeded,
   ensureFormationsSeeded,
+  applyGamePlan,
 } from './lib/db'
 import { SITUATIONS } from './data/situations'
+import { OLE_MISS_PLAN } from './data/gameplans'
 import Coordinator from './components/laminated/Coordinator'
 import Sheet from './components/laminated/Sheet'
 import PlayBank from './components/laminated/PlayBank'
@@ -78,10 +80,18 @@ function App() {
   const coverageLab = settings?.coverageLab ?? null
 
   const ctx = ctxRow ?? { down: 1, distance: 10, fieldSide: 'own', yardLine: 25 }
+  // Per-game sheet: the Madden sheet and the CFB sheet live side by side.
   const assignments = useMemo(
-    () => sheetRow ?? { offense: {}, defense: {} },
-    [sheetRow],
+    () => sheetRow?.byGame?.[game] ?? { offense: {}, defense: {} },
+    [sheetRow, game],
   )
+
+  const saveGameAssignments = (next) => {
+    saveSheetAssignments({
+      ...(sheetRow || {}),
+      byGame: { ...(sheetRow?.byGame || {}), [game]: next },
+    })
+  }
 
   // ── transient UI state ──────────────────────────────────────────────────
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -143,19 +153,27 @@ function App() {
     const cur = assignments[side] || {}
     const list = cur[targetId] || []
     if (list.some((p) => p.playId === play.playId)) return
-    const next = {
+    saveGameAssignments({
       ...assignments,
       [side]: { ...cur, [targetId]: [...list, play] },
-    }
-    saveSheetAssignments(next)
+    })
     showToast('Added to ' + (sit?.name || 'sheet'), sit?.color)
   }
 
   const removePlay = (situationId, playId) => {
     const cur = assignments[side] || {}
     const list = (cur[situationId] || []).filter((p) => p.playId !== playId)
-    const next = { ...assignments, [side]: { ...cur, [situationId]: list } }
-    saveSheetAssignments(next)
+    saveGameAssignments({ ...assignments, [side]: { ...cur, [situationId]: list } })
+  }
+
+  const loadOleMissPlan = async () => {
+    const ok = window.confirm(
+      'Replace your CFB call sheet (offense + defense) with the curated Ole Miss game plan?',
+    )
+    if (!ok) return
+    await applyGamePlan('cfb', OLE_MISS_PLAN)
+    if (game !== 'cfb') setGame('cfb')
+    showToast('Ole Miss game plan loaded', '#2f7d4f')
   }
 
   // CSS custom properties for live theming
@@ -292,7 +310,7 @@ function App() {
 
       <Toast toast={toast} />
 
-      <TweaksPanel tweaks={tweaks} setTweak={setTweak} />
+      <TweaksPanel tweaks={tweaks} setTweak={setTweak} onLoadPlan={loadOleMissPlan} />
 
       <BrandCredit />
     </div>

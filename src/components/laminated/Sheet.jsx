@@ -19,6 +19,7 @@ function Slot({ index, play, color, onAdd, onRemove }) {
       <div className="slot__main">
         <div className="slot__name">{play.name}</div>
         <div className="slot__form">{play.formation}</div>
+        {play.note && <div className="slot__note">{play.note}</div>}
       </div>
       <button
         className="slot__x"

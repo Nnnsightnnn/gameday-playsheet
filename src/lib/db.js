@@ -1,5 +1,6 @@
 import Dexie from 'dexie';
 import { SHEET_SEED } from '../data/seed';
+import { OLE_MISS_PLAN } from '../data/gameplans';
 import { starterFormations } from './field/formationFactory';
 
 export const db = new Dexie('GamedayPlaysheet');
@@ -56,31 +57,85 @@ db.version(5).stores({
 
 // Sheet assignments helpers — fresh-object factories so the module-level
 // defaults are never aliased into the live React state.
+//
+// Storage shape (per game, so the Madden sheet and the CFB sheet never
+// clobber each other): { id: 'sheet', byGame: { madden: { offense, defense },
+// cfb: { offense, defense } } }. Legacy rows ({ id, offense, defense }) are
+// migrated into byGame.madden (the original seed was Eagles/49ers).
 const SHEET_ID = 'sheet';
 
 function freshSheetSeed() {
   return {
     id: SHEET_ID,
-    offense: structuredClone(SHEET_SEED.offense),
-    defense: structuredClone(SHEET_SEED.defense),
+    byGame: {
+      madden: {
+        offense: structuredClone(SHEET_SEED.offense),
+        defense: structuredClone(SHEET_SEED.defense),
+      },
+      cfb: {
+        offense: structuredClone(OLE_MISS_PLAN.offense),
+        defense: structuredClone(OLE_MISS_PLAN.defense),
+      },
+    },
+  };
+}
+
+function migrateSheetRow(row) {
+  if (!row || row.byGame) return row;
+  return {
+    id: SHEET_ID,
+    byGame: {
+      madden: {
+        offense: row.offense || {},
+        defense: row.defense || {},
+      },
+      cfb: {
+        offense: structuredClone(OLE_MISS_PLAN.offense),
+        defense: structuredClone(OLE_MISS_PLAN.defense),
+      },
+    },
   };
 }
 
 export async function getSheetAssignments() {
   const row = await db.sheetAssignments.get(SHEET_ID);
-  return row || freshSheetSeed();
+  return migrateSheetRow(row) || freshSheetSeed();
 }
 
 // Idempotent seeder — call once at app start, outside useLiveQuery context.
 // useLiveQuery forbids readwrite transactions inside its querier.
+// Also performs the legacy → byGame migration in place.
 export async function ensureSheetAssignmentsSeeded() {
   const row = await db.sheetAssignments.get(SHEET_ID);
-  if (row) return;
-  await db.sheetAssignments.put(freshSheetSeed());
+  if (!row) {
+    await db.sheetAssignments.put(freshSheetSeed());
+    return;
+  }
+  if (!row.byGame) {
+    await db.sheetAssignments.put(migrateSheetRow(row));
+  }
 }
 
 export async function saveSheetAssignments(assignments) {
   return await db.sheetAssignments.put({ ...assignments, id: SHEET_ID });
+}
+
+// Replace one game's sheet with a curated plan (Tweaks panel → Game plan).
+export async function applyGamePlan(game, plan) {
+  const row = await getSheetAssignments();
+  const next = {
+    ...row,
+    id: SHEET_ID,
+    byGame: {
+      ...row.byGame,
+      [game]: {
+        offense: structuredClone(plan.offense),
+        defense: structuredClone(plan.defense),
+      },
+    },
+  };
+  await db.sheetAssignments.put(next);
+  return next;
 }
 
 // Sheet settings (team name, side, tweaks)

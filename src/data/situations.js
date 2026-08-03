@@ -22,7 +22,9 @@ export const OFFENSE = [
 ];
 
 export const DEFENSE = [
-  { id: 'base',     name: 'Base D',       sub: 'Standard down',     color: '#2a4a7f' },
+  // Post-CFB27-1.006 your package persists vs no-huddle: this block holds the
+  // blind-safe calls you audible between when tempo hits. Audible, don't browse.
+  { id: 'base',     name: 'Base / Tempo', sub: 'Blind-safe · No-huddle', color: '#2a4a7f' },
   { id: 'first',    name: '1st Down',     sub: 'vs Run / PA',       color: '#2f7d4f', match: (c) => c.down === 1 },
   { id: '2short',   name: '2nd & Short',  sub: '2nd & 1–3',         color: '#1f7d77', match: (c) => c.down === 2 && c.distance <= 3 },
   { id: '2long',    name: '2nd & Long',   sub: '2nd & 4+',          color: '#45597e', match: (c) => c.down === 2 && c.distance >= 4 },
