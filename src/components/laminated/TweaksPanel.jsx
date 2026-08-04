@@ -22,7 +22,7 @@ function arrayEq(a, b) {
   return a.length === b.length && a.every((v, i) => v === b[i])
 }
 
-function TweaksPanel({ tweaks, setTweak, onLoadPlan }) {
+function TweaksPanel({ tweaks, setTweak, plans, onLoadPlan }) {
   const [open, setOpen] = useState(false)
 
   if (!open) {
@@ -98,19 +98,21 @@ function TweaksPanel({ tweaks, setTweak, onLoadPlan }) {
           </div>
         </div>
 
-        {onLoadPlan && (
+        {onLoadPlan && plans?.length > 0 && (
           <>
-            <div className="tweaks__sect">Game plan</div>
-            <div className="tweaks__row tweaks__row-h">
-              <div className="tweaks__lbl">Ole Miss · CFB 27</div>
-              <button
-                type="button"
-                className="tweaks__load"
-                onClick={onLoadPlan}
-              >
-                Load
-              </button>
-            </div>
+            <div className="tweaks__sect">Game plans</div>
+            {plans.map((plan) => (
+              <div key={plan.name} className="tweaks__row tweaks__row-h">
+                <div className="tweaks__lbl">{plan.name}</div>
+                <button
+                  type="button"
+                  className="tweaks__load"
+                  onClick={() => onLoadPlan(plan)}
+                >
+                  Load
+                </button>
+              </div>
+            ))}
           </>
         )}
 

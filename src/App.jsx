@@ -15,7 +15,7 @@ import {
   applyGamePlan,
 } from './lib/db'
 import { SITUATIONS } from './data/situations'
-import { OLE_MISS_PLAN } from './data/gameplans'
+import { GAME_PLANS } from './data/gameplans'
 import Coordinator from './components/laminated/Coordinator'
 import Sheet from './components/laminated/Sheet'
 import PlayBank from './components/laminated/PlayBank'
@@ -166,14 +166,15 @@ function App() {
     saveGameAssignments({ ...assignments, [side]: { ...cur, [situationId]: list } })
   }
 
-  const loadOleMissPlan = async () => {
+  const loadPlan = async (plan) => {
+    const label = plan.game === 'cfb' ? 'CFB' : 'Madden'
     const ok = window.confirm(
-      'Replace your CFB call sheet (offense + defense) with the curated Ole Miss game plan?',
+      `Replace your ${label} call sheet (offense + defense) with the ${plan.name} game plan?`,
     )
     if (!ok) return
-    await applyGamePlan('cfb', OLE_MISS_PLAN)
-    if (game !== 'cfb') setGame('cfb')
-    showToast('Ole Miss game plan loaded', '#2f7d4f')
+    await applyGamePlan(plan.game, plan)
+    if (game !== plan.game) setGame(plan.game)
+    showToast(plan.name + ' loaded', '#2f7d4f')
   }
 
   // CSS custom properties for live theming
@@ -310,7 +311,7 @@ function App() {
 
       <Toast toast={toast} />
 
-      <TweaksPanel tweaks={tweaks} setTweak={setTweak} onLoadPlan={loadOleMissPlan} />
+      <TweaksPanel tweaks={tweaks} setTweak={setTweak} plans={GAME_PLANS} onLoadPlan={loadPlan} />
 
       <BrandCredit />
     </div>

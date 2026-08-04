@@ -5,21 +5,33 @@ import { readFileSync } from 'node:fs'
 import { GAME_PLANS } from '../gameplans'
 import { SITUATIONS } from '../situations'
 
-const catalog = JSON.parse(
-  readFileSync(
-    new URL('../../../public/data/playbooks-cfb27.json', import.meta.url),
-    'utf8',
-  ),
-)
+// Each plan validates against the catalog for its own game.
+const CATALOG_FILES = {
+  cfb: '../../../public/data/playbooks-cfb27.json',
+  madden: '../../../public/data/playbooks.json',
+}
 
-const catalogIds = new Map() // playId -> play name
-for (const pb of catalog.playbooks)
-  for (const fg of pb.formationGroups)
-    for (const f of fg.formations)
-      for (const p of f.plays) catalogIds.set(p.id, p.name)
+const catalogCache = new Map() // game -> Map(playId -> play name)
+function catalogFor(game) {
+  if (catalogCache.has(game)) return catalogCache.get(game)
+  const catalog = JSON.parse(
+    readFileSync(new URL(CATALOG_FILES[game], import.meta.url), 'utf8'),
+  )
+  const ids = new Map()
+  for (const pb of catalog.playbooks)
+    for (const fg of pb.formationGroups || [])
+      for (const f of fg.formations || [])
+        for (const p of f.plays || []) ids.set(p.id, p.name)
+  catalogCache.set(game, ids)
+  return ids
+}
 
 describe.each(GAME_PLANS)('game plan: $name', (plan) => {
   const sides = ['offense', 'defense']
+
+  it('declares a known game', () => {
+    expect(Object.keys(CATALOG_FILES)).toContain(plan.game)
+  })
 
   it.each(sides)('%s uses only real situation ids', (side) => {
     const valid = new Set(SITUATIONS[side].map((s) => s.id))
@@ -28,7 +40,8 @@ describe.each(GAME_PLANS)('game plan: $name', (plan) => {
     }
   })
 
-  it.each(sides)('%s playIds all exist in the CFB 27 catalog', (side) => {
+  it.each(sides)('%s playIds all exist in the game catalog', (side) => {
+    const catalogIds = catalogFor(plan.game)
     for (const plays of Object.values(plan[side])) {
       for (const p of plays) {
         expect(catalogIds.has(p.playId), `missing ${p.playId}`).toBe(true)
@@ -37,6 +50,7 @@ describe.each(GAME_PLANS)('game plan: $name', (plan) => {
   })
 
   it.each(sides)('%s play names match the catalog', (side) => {
+    const catalogIds = catalogFor(plan.game)
     for (const plays of Object.values(plan[side])) {
       for (const p of plays) {
         expect(catalogIds.get(p.playId)).toBe(p.name)
