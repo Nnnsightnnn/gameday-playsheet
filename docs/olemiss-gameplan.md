@@ -57,6 +57,40 @@ THEN call the counter. If he never stops the base, never leave it. Fed him RPO
 screens? Now Fake Screen Verticals. Pounded Power O twice at the goal line?
 Now PA Waggle.
 
+### The second identity: counter looks (added Aug 2026 v2)
+
+The v1 sheet was 100% gun spread — opponents were keying it, especially in
+short yardage. The fix is a SECOND identity of heavy and motion pictures
+threaded through the sheet, so the same situation now has two faces:
+
+| Picture | Calls on the sheet | What it's for |
+|---|---|---|
+| **I Form Heavy** | TE Tight Power O, TE Tight PA Boot (3rd&short) · TE Fade (RZ) · TE Tight Lead (backed up) | The bully package. If his nickel stays on, outnumber it. Boot and fade are the built-in counters off the SAME picture. |
+| **Pistol Full House** | HB Duo (2nd&short) · HB Stretch (1st) | Duo mashes a stacked box in the rebuilt trench engine; stretch punishes the pinch. |
+| **Pistol Strong Slot** | Zone Fake Jet (1st) · Jet Touch Pass (2nd&long) | The jet-motion wrinkle the sheet never had. Same jet action, opposite outcomes. |
+| **Strong Wing** | HB Toss (2nd&short) | The #1 answer to mugged A-gaps — the pitch never touches the interior. |
+| **Goal Line +** | Strong Toss, FB Dive Weak | Outside a pinched 6-2; weak-side vs strong overload. |
+| **Pistol U Off Trips** | PA Wheel Shot (shots) | The shot play that comes off a run look instead of a spread look. |
+
+**How to use it:** these are not new base plays — they're tendency breakers.
+Two or three heavy snaps a game force his short-yardage defense to defend two
+identities with one call. Sequencing rule stays the same: run TE Tight Power O
+until he sells out, THEN TE Tight PA Boot off the identical picture.
+
+**Short-yardage matchup table** (what beats which sell-out):
+
+| He shows | You call |
+|---|---|
+| Double A-gap mug | HB Toss · Strong Toss · anything outside |
+| Pinched GL 6-2/5-3 crash | Strong Toss · FB Dive Weak · TE Tight PA Boot |
+| Nickel stayed light | TE Tight Power O · HB Duo · TE Tight Lead |
+| User lurking the box | Zone Fake Jet · PA Wheel Shot (move his eyes) |
+
+**Sneak-meter reality (TU 2.5):** the sneak is a timing meter gated by
+pre-snap math — their interior shed strength vs your push strength, plus box
+count. Vs a pinched heavy front even a green sneak can lose. QB Sneak is a
+mix-in now, not the default inches call; that's what the heavy package is for.
+
 ---
 
 ## The Script 15 (openers as reconnaissance)
@@ -193,6 +227,108 @@ exist to be spent on composure.
 
 ---
 
+## The adjustments arsenal (added Aug 2026 v2)
+
+The counter-fight isn't won with new play calls — it's won by making the SAME
+call wear different faces. CFB 27's adjustment layers are deep enough that one
+Cover 3 Buzz Match has a dozen distinguishable looks. This section is the
+menu; the macro system below is how you actually run it in 25 seconds.
+
+### Coverage layers
+
+- **Shells (RB):** show 2-high, play 1-high; show blitz, drop to zone. Cover 2
+  and Cover 4 shells are the best universal disguises; Cover 3 shells help run
+  support. Cost: shells align late — vs tempo you may snap misaligned, and the
+  shell-misalignment bug (below) lives here. Read your own shell every snap.
+- **Shade (LT hub, right stick):** Underneath kills quick game/drags/RPO
+  glance but opens the top; Over-the-top kills verts/corners but concedes
+  5-yarders. Rule: **custom zone drops override shading** — change together.
+- **Zone Strategy is 5 notches now** (Ultra Conservative → Ultra Aggressive).
+  Ultra Aggressive jumps ultra-short routes — the quick-game killer and the
+  double-move donor. Rotate between notches by macro; don't live in one.
+- **Zone drops — the "Mable" profile:** flats 25 yds (kills the stem-corner /
+  sideline-flood meta), curl-flats 5 (sits on quick outs). Cost: the true flat
+  and screens are free until he proves he sees it. Run as a macro, not base.
+  0-yd flats is the alt vs pure flat spam. Reset via Reset Play audible.
+- **Match checks (per formation, in the call):** Cover 3 vs bunch = **Skate**
+  (flood killer); Palms vs trips = **Stubbie** (kills the trips quick-out);
+  Quarters vs trips = **Stress** (four-verts insurance); vs iso X = **Solo**.
+  **Zone It** turns matching off when a route-runner is baiting your rules.
+- **Plaster is graded now:** Conservative (backside lock) vs Aggressive (all
+  zone defenders lock — max scramble coverage, zero underneath help). Vs
+  scramblers: Aggressive + OOP trigger + contain both edges (RB+LB together).
+- **Roll coverage target:** on any "Roll" call, point the rotation at Fastest
+  (one-speedster teams) or Boundary (boundary-iso fade spam).
+
+### Front layers
+
+- **DL pinch** kills inside zone/duo/draw/sneak; concedes stretch, toss, boot.
+  **Spread** is the mirror. **Shift/crash toward the field or the back.**
+- **Stunts:** Tom Two Man (inside-zone + cutback), Texas (spread first, ends
+  loop in — premier IZ killer), Pirate/El Paso to the expected run side
+  (stretch/toss answer). Called from the same front — free variation.
+- **Mug looks:** Double-mug the A-gaps to show 6 — drop to shell, or send.
+  Extra bodies at the ball also shrink their sneak meter (pre-snap math).
+- **Gap Integrity / Defender Aggression:** your Conservative gap setting is
+  right as base. Aggression Aggressive = fast fits, bites PA; flip it
+  Conservative on the down AFTER you stuff them — that's when the shot comes.
+
+### Individual layers
+
+- **Instant double (LT + icon + X):** one-button bracket on their alpha.
+  Cost: a body out of the box — pair with aggressive underneath zones.
+- **Safety depth 9** is the community default (run-fit capable, post-safe);
+  5 = robber, 16+ = shot insurance. **Midpoint Strong/Weak/L/R** cheats the
+  rotation without changing the call — the cheapest disguise in the game.
+- **Selective press** only where you win the release; never blind-press bunch
+  (Combo/Point Combo checks instead). TU 2.5 shrank timing-catch windows in
+  tight coverage — correct shade/bracket pays more than ever.
+- **Untarget User Defender: ON** — hides your user from their ID-Mike logic.
+
+### The macro variation system (same call, three faces)
+
+Build in Create & Share → Custom Adjustments (20 saved, 10 active). Never fire
+the same macro twice in a row on money downs. Treat every macro as 90% — the
+bug list says one setting can drop; hand-confirm the one that matters.
+
+| Package | Base call | Macro faces |
+|---|---|---|
+| Nickel 3-3 Mint | Cover 3 Buzz Match | **UNDER** (shade under, Ultra Aggr zones, pinch + Tom) kills quick/RPO · **OVER** (over-top, Conservative, depth 16) kills verts/PA · **MABLE** (flats 25, curls 5, Skate vs bunch) kills floods |
+| Dime 3-2 | Cover 1 Hole | **UNDER-Tom** kills empty quick game · **PLASTER-MAX** (Aggr plaster + both-edge contain) kills scramble drill · **STUBBIE** check kills trips quick-out |
+| 4-2-5 Over G | Cover 4 Palms | **RUN-FIT** (shift to TE, Palms safeties trigger) · **BINGO** vs compressed bunch · **STRESS** pre-loaded for the PA-verts shot down |
+| 3-4 Tite | Cover 3 Sky | **PINCH+TEXAS** kills IZ/sneak · **PIRATE-to-run-side** kills stretch/toss · **SKY+Midpoint Strong** frees an edge fitter vs heavy PA |
+
+All three Mint faces sit behind the same Cover 4 shell — the buzz rotation
+only reveals itself post-snap. Rotate shell and midpoint independently of the
+macro and one call has ~12 pre-snap faces.
+
+### Short-yardage defense (the sell-out risk table)
+
+| You do | Stops | Concedes |
+|---|---|---|
+| DL + LB pinch | Sneak, IZ, draw | Toss/stretch bounce, jet, boot |
+| Aggression Aggressive | Fast downhill fits | PA over the top |
+| RPO key Aggressive | The give | The glance/bubble throw |
+| Double-mug + send | TFL / blow-up | Hot slant behind it, wheel to flat |
+| Safeties at 5, pinched | Extra fitter | The fade — softened post-TU 2.5, not erased |
+
+Sneak defense is pre-snap math: pinch your biggest bodies to the ball, stack
+the box, sub heavy — that literally shrinks their green window. And keep one
+macro with Aggression Conservative + over-top shade for the down after the
+stuff.
+
+### Bug tripwires (verified live, Aug 4)
+
+- **Shells randomly misalign** — read your own shell pre-snap; re-call if wrong.
+- **Flip vs trips→bunch shift:** slot corner may not travel, and clicking him
+  teleports + freezes your user ~5s. Flip early at huddle break or eat the
+  wrong-strength alignment; never click the stuck defender.
+- **Macros can drop one setting** — hand-confirm the adjustment that matters.
+- **Shift = unlimited hot routes** (their side): after any shift, assume the
+  whole concept was rebuilt at the line. Play leverage, not play-art memory.
+
+---
+
 ## Between plays: the 25-second ritual
 
 1. 0-5s — log, don't feel. One word: "man," "blitz-left," "user-mid."
@@ -214,4 +350,9 @@ Pro tier list and play data: cfb.fan/playbooks · Meta and adjustments: Madden
 Prodigy CFB 27 guides, utnice post-hotfix formation rankings, Civil.GG play
 breakdowns, The Gaming Tailgate coach-adjustments guide, maddenturf
 bugs/patch tracking · Doctrine: Madden Academy, Madden School, Advanced
-Football Analytics possession-variance work.
+Football Analytics possession-variance work · v2 (Aug 2026): cfb.fan Ole Miss
+per-formation play lists (heavy/pistol/wing sets), CollegeFootball.gg
+defensive-adjustments encyclopedia + TU 2.5 notes, EA CFB 27 Gameplay Deep
+Dive (sneak meter, Smart Zones, plaster, match checks), MaddenTurf macro guide
++ bug tracker (MrFootball88/Skimbo), ZAN "Mable" setup via Athlon, EZG meta
+formations, NBA2King 3-macro defense.
