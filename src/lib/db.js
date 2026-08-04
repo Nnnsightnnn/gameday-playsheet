@@ -135,16 +135,23 @@ export async function saveSheetAssignments(assignments) {
 }
 
 // Replace one game's sheet with a curated plan (Tweaks panel → Game plan).
-export async function applyGamePlan(game, plan) {
+export async function applyGamePlan(game, plan, side = 'both') {
   const row = await getSheetAssignments();
+  const current = row.byGame?.[game] ?? { offense: {}, defense: {} };
   const next = {
     ...row,
     id: SHEET_ID,
     byGame: {
       ...row.byGame,
       [game]: {
-        offense: structuredClone(plan.offense),
-        defense: structuredClone(plan.defense),
+        offense:
+          side === 'defense'
+            ? current.offense
+            : structuredClone(plan.offense),
+        defense:
+          side === 'offense'
+            ? current.defense
+            : structuredClone(plan.defense),
       },
     },
   };

@@ -196,15 +196,18 @@ function App() {
     })
   }
 
-  const loadPlan = async (plan) => {
+  const loadPlan = async (plan, side = 'both') => {
     const label = plan.game === 'cfb' ? 'CFB' : 'Madden'
+    const scope =
+      side === 'both' ? 'offense + defense' : `${side} only — your ${side === 'offense' ? 'defense' : 'offense'} is untouched`
     const ok = window.confirm(
-      `Replace your ${label} call sheet (offense + defense) with the ${plan.name} game plan?`,
+      `Replace your ${label} call sheet (${scope}) with the ${plan.name} game plan?`,
     )
     if (!ok) return
-    await applyGamePlan(plan.game, plan)
+    await applyGamePlan(plan.game, plan, side)
     if (game !== plan.game) setGame(plan.game)
-    showToast(plan.name + ' loaded', '#2f7d4f')
+    const suffix = side === 'both' ? '' : ` (${side})`
+    showToast(plan.name + suffix + ' loaded', '#2f7d4f')
   }
 
   // CSS custom properties for live theming

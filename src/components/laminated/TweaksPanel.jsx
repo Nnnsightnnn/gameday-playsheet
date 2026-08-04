@@ -118,7 +118,24 @@ function TweaksPanel({ tweaks, setTweak, plans, onLoadPlan }) {
                   <button
                     type="button"
                     className="tweaks__load"
-                    onClick={() => onLoadPlan(plan)}
+                    title="Replace offense only"
+                    onClick={() => onLoadPlan(plan, 'offense')}
+                  >
+                    O
+                  </button>
+                  <button
+                    type="button"
+                    className="tweaks__load"
+                    title="Replace defense only"
+                    onClick={() => onLoadPlan(plan, 'defense')}
+                  >
+                    D
+                  </button>
+                  <button
+                    type="button"
+                    className="tweaks__load"
+                    title="Replace offense + defense"
+                    onClick={() => onLoadPlan(plan, 'both')}
                   >
                     Load
                   </button>
