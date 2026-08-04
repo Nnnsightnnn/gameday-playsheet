@@ -143,8 +143,9 @@ carries in regs. Every call validated against the current catalog.*
    1 Double WR1 exist on this sheet precisely because their shells stay sound
    while you freelance; in Tampa 2 take the hole LB instead.
 
-**Panic buttons, in order:** Cover 4 Palms (never awful vs anything), then
-1 Double WR1 (bracket the guy the drive runs through), then Tampa 2
+**Panic buttons, in order:** Cover 4 Palms (the trap corner jumps short
+routes for free while the shell stays sound), then 1 Double WR1 (WR1 erased
+pre-snap — eyes and roaming safety go to the secondary threats), then Tampa 2
 (unbeatable by mesh/drag scripts). Blitzing blind vs tempo is how underdogs
 die — only Buck Zone Blitz is acceptable blind pressure (3-deep net).
 
