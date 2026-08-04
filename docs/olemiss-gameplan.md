@@ -107,8 +107,20 @@ formations). **Home: Nickel 3-3 Cub.** Pressure comes from alignment stress
 (mug looks), not player talent — that's why it works with a worse roster, and
 the coverage calls are zone/match so your corners never live on man islands.
 
-Since patch 1.006 your package **persists vs no-huddle**. Tempo can no longer
-wipe your personnel. The whole anti-cheese plan is legal now.
+> **STEP ZERO — switch the playbook.** Ole Miss's default defensive book in
+> regs is plain **4-2-5**, and NONE of this sheet's formations live there.
+> On the pregame squad/playbook screen, change your defensive playbook to
+> **4-2-5 Man Pressure** (Ohio State, Oklahoma, UCLA, and Colorado run it, so
+> it's easy to find by team). Skip this and the sheet reads like fiction.
+
+Since patch 1.006 your package **persists vs no-huddle** (re-confirmed fixed
+in TU 2.5, July 23). Tempo can no longer wipe your personnel. The whole
+anti-cheese plan is legal now — and TU 2.5's timing-catch nerf shrank the
+green window into coverage, so playing real shells got a free buff.
+
+*Refreshed Aug 4, 2026 vs TU 2.5: full defensive re-scrape found zero catalog
+changes; book, Nickel 3-3 Cub home, and every call reconfirmed vs current
+meta. Dime Normal Tampa 2 added as the new obvious-pass co-home.*
 
 **Before every game (menus, zero in-game seconds):**
 
@@ -123,7 +135,8 @@ wipe your personnel. The whole anti-cheese plan is legal now.
 1. Audible, don't browse. LT → one of the four. Never open the full menu vs
    tempo.
 2. Glance at your safeties (live bug: some shells misalign — re-audible the
-   same play if wrong).
+   same play if wrong). Bug also eats macros: they can fire minus one setting,
+   so hand-confirm the one adjustment that matters.
 3. One adjustment max: shade underneath vs quick game, over top vs shots.
 4. Pre-select your user defender (Tampa 2 hole LB, the robber, the buzz
    safety) before the snap.

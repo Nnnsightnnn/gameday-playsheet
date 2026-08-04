@@ -2,6 +2,12 @@
 // Ole Miss (CFB 27) offense + 4-2-5 Man Pressure defense, built from the
 // Aug 2026 online H2H meta. Every playId is validated against
 // public/data/playbooks-cfb27.json by src/data/__tests__/gameplans.test.js.
+// Refreshed 2026-08-04 vs TU 2.5: defensive re-scrape showed zero catalog
+// drift; book + all five formation homes reconfirmed as consensus meta.
+//
+// IMPORTANT: Ole Miss's DEFAULT defensive book in regs is plain 4-2-5 —
+// these formations don't exist there. Switch the defensive playbook to
+// "4-2-5 Man Pressure" on the pregame squad screen or nothing matches.
 //
 // Doctrine (see docs/olemiss-gameplan.md):
 // - Underdog ball: shorten the game, bleed clock, take the checkdown.
@@ -126,6 +132,7 @@ export const OLE_MISS_PLAN = {
       { playId: 'cfb27:4-2-5-man-pressure-def:dime-3--2:hot-blitz-3', name: 'HOT BLITZ 3', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Speed heat before verts develop' },
       { playId: 'cfb27:4-2-5-man-pressure-def:dime-3--2:tampa-2-drop', name: 'TAMPA 2 DROP', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Kills the crosser AND the hole shot' },
       { playId: 'cfb27:4-2-5-man-pressure-def:dime-3--2:cover-6-willie', name: 'COVER 6 WILLIE', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Vs boundary-iso spam' },
+      { playId: 'cfb27:4-2-5-man-pressure-def:dime-normal:tampa-2', name: 'TAMPA 2', type: 'pass', formation: 'Dime Normal', playbook: DEF, note: 'New meta home: spread DL, show LBs, user wk slot' },
     ],
     pressure: [
       { playId: 'cfb27:4-2-5-man-pressure-def:nickel-double-mug:mid-blitz', name: 'MID BLITZ', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Meta nano: pinch DL, mug LB bails' },
