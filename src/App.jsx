@@ -177,6 +177,25 @@ function App() {
     saveGameAssignments({ ...assignments, [side]: { ...cur, [situationId]: list } })
   }
 
+  // Set/clear Kenny's own note on a sheet play. Stored on the play object in
+  // sheetAssignments (myNote), separate from the plan's coaching note (note),
+  // so loading a curated plan later replaces coaching notes but a cleared
+  // field never leaves an empty key behind.
+  const setPlayNote = (situationId, playId, note) => {
+    const cur = assignments[side] || {}
+    const list = (cur[situationId] || []).map((p) => {
+      if (p.playId !== playId) return p
+      const next = { ...p }
+      if (note) next.myNote = note
+      else delete next.myNote
+      return next
+    })
+    saveGameAssignments({
+      ...assignments,
+      [side]: { ...cur, [situationId]: list },
+    })
+  }
+
   const loadPlan = async (plan) => {
     const label = plan.game === 'cfb' ? 'CFB' : 'Madden'
     const ok = window.confirm(
@@ -316,6 +335,7 @@ function App() {
               gloss={tweaks.gloss}
               onAdd={openDrawer}
               onRemove={removePlay}
+              onNote={setPlayNote}
             />
           )}
 

@@ -1,6 +1,61 @@
 // The laminated sheet — color-coded situation blocks with empty/filled slots.
 
-function Slot({ index, play, color, onAdd, onRemove }) {
+import { useEffect, useRef, useState } from 'react'
+
+// Kenny's own note on a play — click to edit, Enter/blur saves, Escape cancels.
+// Lives alongside (not instead of) the plan's coaching note.
+function MyNote({ play, onSave }) {
+  const [editing, setEditing] = useState(false)
+  const [draft, setDraft] = useState('')
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    if (editing) inputRef.current?.focus()
+  }, [editing])
+
+  const start = () => {
+    setDraft(play.myNote || '')
+    setEditing(true)
+  }
+  const commit = () => {
+    setEditing(false)
+    const next = draft.trim()
+    if (next !== (play.myNote || '')) onSave(next)
+  }
+
+  if (editing) {
+    return (
+      <input
+        ref={inputRef}
+        className="slot__mynote-input"
+        value={draft}
+        maxLength={140}
+        placeholder="Your note…"
+        aria-label={`Note for ${play.name}`}
+        onChange={(e) => setDraft(e.target.value)}
+        onBlur={commit}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') e.currentTarget.blur()
+          if (e.key === 'Escape') setEditing(false)
+        }}
+      />
+    )
+  }
+  if (play.myNote) {
+    return (
+      <div className="slot__mynote" title="Edit your note" onClick={start}>
+        {play.myNote}
+      </div>
+    )
+  }
+  return (
+    <button className="slot__addnote" onClick={start}>
+      + note
+    </button>
+  )
+}
+
+function Slot({ index, play, color, onAdd, onRemove, onNote }) {
   if (!play) {
     return (
       <div
@@ -20,6 +75,7 @@ function Slot({ index, play, color, onAdd, onRemove }) {
         <div className="slot__name">{play.name}</div>
         <div className="slot__form">{play.formation}</div>
         {play.note && <div className="slot__note">{play.note}</div>}
+        <MyNote play={play} onSave={onNote} />
       </div>
       <button
         className="slot__x"
@@ -33,7 +89,7 @@ function Slot({ index, play, color, onAdd, onRemove }) {
   )
 }
 
-function Block({ situation, plays, live, slotCount, onAdd, onRemove }) {
+function Block({ situation, plays, live, slotCount, onAdd, onRemove, onNote }) {
   const rows = Math.max(slotCount, plays.length)
   return (
     <section
@@ -65,6 +121,7 @@ function Block({ situation, plays, live, slotCount, onAdd, onRemove }) {
             color={situation.color}
             onAdd={() => onAdd(situation.id)}
             onRemove={() => onRemove(situation.id, plays[i].playId)}
+            onNote={(note) => onNote(situation.id, plays[i].playId, note)}
           />
         ))}
       </div>
@@ -80,6 +137,7 @@ function Sheet({
   gloss,
   onAdd,
   onRemove,
+  onNote,
 }) {
   return (
     <div className="sheet-wrap">
@@ -94,6 +152,7 @@ function Sheet({
               slotCount={slotCount}
               onAdd={onAdd}
               onRemove={onRemove}
+              onNote={onNote}
             />
           ))}
         </div>

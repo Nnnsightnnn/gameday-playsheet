@@ -385,6 +385,44 @@ html, body {
 }
 .slot--filled:hover .slot__note { white-space: normal; }
 
+/* Kenny's own note — accent-colored, click to edit */
+.slot__mynote {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  line-height: 1.3;
+  color: var(--accent);
+  margin-top: 2px;
+  cursor: text;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.slot__mynote::before { content: '✎ '; opacity: 0.6; }
+.slot--filled:hover .slot__mynote { white-space: normal; }
+
+.slot__addnote {
+  display: block;
+  border: none; background: transparent; padding: 0; margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  text-transform: uppercase; letter-spacing: 0.4px;
+  color: var(--ink-faint);
+  cursor: pointer; text-align: left;
+  opacity: 0; transition: opacity 0.12s;
+}
+.slot--filled:hover .slot__addnote { opacity: 1; }
+.slot__addnote:hover { color: var(--accent); }
+
+.slot__mynote-input {
+  width: 100%; margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  padding: 2px 4px;
+  outline: none;
+}
+
 .slot__x {
   position: absolute; right: 3px; top: 50%; transform: translateY(-50%);
   width: 16px; height: 16px; border-radius: 4px;
