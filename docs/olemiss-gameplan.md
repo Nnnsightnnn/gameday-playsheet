@@ -102,33 +102,34 @@ side, where his user lives.** Those three facts call the rest of the game.
 
 ## Defense: one package, four buttons
 
-**Playbook: 4-2-5 Man Pressure** (S-tier, the only book with all four meta
-formations). **Home: Nickel 3-3 Cub.** Pressure comes from alignment stress
-(mug looks), not player talent — that's why it works with a worse roster, and
-the coverage calls are zone/match so your corners never live on man islands.
+**Playbook: 4-2-5** — Ole Miss's stock defensive book, so there is nothing to
+switch pregame: pick Ole Miss and every call on this sheet is in your menus.
+**Home: Nickel 3-3 Mint** (3-down nickel, same geometry the old Cub home
+had). Pressure comes from alignment stress (mug looks), not player talent —
+that's why it works with a worse roster, and the coverage calls are
+zone/match so your corners never live on man islands.
 
-> **STEP ZERO — switch the playbook.** Ole Miss's default defensive book in
-> regs is plain **4-2-5**, and NONE of this sheet's formations live there.
-> On the pregame squad/playbook screen, change your defensive playbook to
-> **4-2-5 Man Pressure** (Ohio State, Oklahoma, UCLA, and Colorado run it, so
-> it's easy to find by team). Skip this and the sheet reads like fiction.
+*Honest caveat: plain 4-2-5 is A-tier, not S-tier — it gives up the 3-3 Cub
+and the 4-3 Even 6-1 heavy front. In exchange the whole sheet works with
+zero pregame friction. Mint covers ~90% of what Cub did; run downs now lean
+on 4-2-5 Over G and 3-4 Tite instead of the 4-3.*
 
 Since patch 1.006 your package **persists vs no-huddle** (re-confirmed fixed
 in TU 2.5, July 23). Tempo can no longer wipe your personnel. The whole
 anti-cheese plan is legal now — and TU 2.5's timing-catch nerf shrank the
 green window into coverage, so playing real shells got a free buff.
 
-*Refreshed Aug 4, 2026 vs TU 2.5: full defensive re-scrape found zero catalog
-changes; book, Nickel 3-3 Cub home, and every call reconfirmed vs current
-meta. Dime Normal Tampa 2 added as the new obvious-pass co-home.*
+*Rebuilt Aug 4, 2026: defense re-curated for the stock 4-2-5 book after
+confirming the sheet's old book (4-2-5 Man Pressure) isn't what Ole Miss
+carries in regs. Every call validated against the current catalog.*
 
 **Before every game (menus, zero in-game seconds):**
 
 - Coach adjustments: Auto Flip ON, Base Align ON (same alignment every snap =
   disguise by sameness), Plaster ON, Smart Zones aggressive underneath, Gap
   Integrity Conservative, RPO keys set once you've seen their lean.
-- Set the four audibles from Nickel 3-3 Cub to the Base / Tempo block calls:
-  **Cover 4 Show 2, Cover 3 Buzz, Tampa 2, Cover 1 Robber.**
+- Set the four audibles from Nickel 3-3 Mint to the Base / Tempo block calls:
+  **Cover 4 Quarters, Cover 3 Buzz Match, Tampa 2, Cover 1 Robber Press.**
 
 **The 5-second tempo routine** (drop steps if short on clock):
 
@@ -141,10 +142,10 @@ meta. Dime Normal Tampa 2 added as the new obvious-pass co-home.*
 4. Pre-select your user defender (Tampa 2 hole LB, the robber, the buzz
    safety) before the snap.
 
-**Panic buttons, in order:** Cover 4 Show 2 (never awful vs anything), Tampa 2
-(unbeatable by mesh/drag scripts), Cover 3 Match on an audible (match rules
-self-adjust). Blitzing blind vs tempo is how underdogs die — only Buck Zone
-Blitz is acceptable blind pressure (3-deep net).
+**Panic buttons, in order:** Cover 4 Quarters (never awful vs anything),
+Tampa 2 (unbeatable by mesh/drag scripts), Cover 3 Match on an audible (match
+rules self-adjust). Blitzing blind vs tempo is how underdogs die — only Buck
+Zone Blitz is acceptable blind pressure (3-deep net).
 
 **Timeouts are tempo-breakers.** The moment tilt rises — he converts and
 sprints to the line — burn one. It breaks his rhythm, opens your full
@@ -161,9 +162,9 @@ exist to be spent on composure.
 | Mesh / crosser spam | Tampa 2 / Tampa 2 Drop; user one drag yourself; never chase a drag with a zone defender |
 | Four verts / HB seam | Cover 4 Quarters / Palms; user the HB seam pipe — that's the real read |
 | RPO bubble/glance spam | Cover 3 Buzz + RPO Pass Key Conservative; user the conflict defender, show one thing, break the other way |
-| Stretch / toss spam | Check to 4-3 Even 6-1, Sam Will Blitz / Sam Blitz 3; never sit in mug looks vs outside runs |
+| Stretch / toss spam | Check to 4-2-5 Over G (SS Blitz 3 / Pinch Blitz) or 3-4 Tite Cover 3 Sky; never sit in mug looks vs outside runs |
 | Shift/motion exploits | After any offensive shift, manually check your slot corner (known flip bug); play leverage-and-help |
-| Scrambling QB | Cover 1 Contain (in 3-3 Cub); Plaster ON; contain ends, never all-out blitz a runner |
+| Scrambling QB | Cover 1 Contain Spy (Dime 3-2) or Cover 1 Contain Press (4-2-5 Under); Plaster ON; contain ends, never all-out blitz a runner |
 | Tempo itself | Post-patch it can't wipe your package. The audible-only routine is the counter. It's a composure weapon; the checklist is the armor. |
 
 ---

@@ -1,24 +1,21 @@
 // Curated game plans — loadable onto the laminated sheet.
-// Ole Miss (CFB 27) offense + 4-2-5 Man Pressure defense, built from the
-// Aug 2026 online H2H meta. Every playId is validated against
-// public/data/playbooks-cfb27.json by src/data/__tests__/gameplans.test.js.
-// Refreshed 2026-08-04 vs TU 2.5: defensive re-scrape showed zero catalog
-// drift; book + all five formation homes reconfirmed as consensus meta.
-//
-// IMPORTANT: Ole Miss's DEFAULT defensive book in regs is plain 4-2-5 —
-// these formations don't exist there. Switch the defensive playbook to
-// "4-2-5 Man Pressure" on the pregame squad screen or nothing matches.
+// Ole Miss (CFB 27) offense + defense, built from the Aug 2026 online H2H
+// meta. Every playId is validated against public/data/playbooks-cfb27.json
+// by src/data/__tests__/gameplans.test.js.
+// 2026-08-04: defense rebuilt around PLAIN 4-2-5 — Ole Miss's stock book in
+// regs — so no pregame playbook switch is needed. Home package is now
+// Nickel 3-3 Mint (same 3-down nickel geometry the old Cub home had).
 //
 // Doctrine (see docs/olemiss-gameplan.md):
 // - Underdog ball: shorten the game, bleed clock, take the checkdown.
 // - Offense lives in 4 formations; Wide Y Off Trips Stack is the identity.
-// - Defense lives in ONE package (Nickel 3-3 Cub) so hurry-up can't rush you.
-//   Base / Tempo block = the four blind-safe calls. Audible, don't browse.
+// - Defense lives in ONE package (Nickel 3-3 Mint) so hurry-up can't rush
+//   you. Base / Tempo block = the four blind-safe calls. Audible, don't browse.
 
 import { IOWA_PLAN } from './gameplans-iowa'
 
 const OFF = 'Ole Miss'
-const DEF = '4-2-5 Man Pressure'
+const DEF = '4-2-5'
 
 export const OLE_MISS_PLAN = {
   game: 'cfb',
@@ -97,69 +94,68 @@ export const OLE_MISS_PLAN = {
   },
   defense: {
     base: [
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:cover-4-show-2', name: 'COVER 4 SHOW 2', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Panic button #1: never awful vs anything' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:cover-3-buzz', name: 'COVER 3 BUZZ', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Default vs RPO / quick game' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:tampa-2', name: 'TAMPA 2', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Mesh/drag eraser; user the hole LB' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:cover-1-robber', name: 'COVER 1 ROBBER', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Change-up so zone can’t be auto-read' },
+      { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:cover-4-quarters', name: 'COVER 4 QUARTERS', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Panic button #1: never awful vs anything' },
+      { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:cover-3-buzz-match', name: 'COVER 3 BUZZ MATCH', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Default vs RPO / quick game' },
+      { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:tampa-2', name: 'TAMPA 2', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Mesh/drag eraser; user the hole LB' },
+      { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:cover-1-robber-press', name: 'COVER 1 ROBBER PRESS', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Change-up so zone can’t be auto-read' },
     ],
     first: [
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:cover-3-buzz', name: 'COVER 3 BUZZ', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Sound vs run and pass' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:cover-4-show-2', name: 'COVER 4 SHOW 2', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Vs shot tendencies; safeties trigger run' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-double-mug:cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Match rules kill one-read spread' },
+      { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:cover-3-buzz-match', name: 'COVER 3 BUZZ MATCH', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Sound vs run and pass' },
+      { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:cover-4-quarters', name: 'COVER 4 QUARTERS', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Vs shot tendencies; safeties trigger run' },
+      { playId: 'cfb27:4-2-5-def:nickel-double-mug:cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Match rules kill one-read spread' },
     ],
     '2short': [
-      { playId: 'cfb27:4-2-5-man-pressure-def:4--3-even-6--1:sam-will-blitz', name: 'SAM WILL BLITZ', type: 'pass', formation: '4-3 Even 6-1', playbook: DEF, note: 'Edge heat, stacked box' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-double-mug:mid-blitz', name: 'MID BLITZ', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'A-gap hit; pinch the DL' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:4--2--5-even:cover-1-hole', name: 'COVER 1 HOLE', type: 'pass', formation: '4-2-5 Even', playbook: DEF, note: 'Man + rat vs PA crossers; verify align' },
+      { playId: 'cfb27:4-2-5-def:4--2--5-over-g:pinch-blitz', name: 'PINCH BLITZ', type: 'pass', formation: '4-2-5 Over G', playbook: DEF, note: 'Interior heat, stacked box' },
+      { playId: 'cfb27:4-2-5-def:nickel-double-mug:mid-blitz-0', name: 'MID BLITZ 0', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'A-gap hit; pinch the DL' },
+      { playId: 'cfb27:4-2-5-def:4--2--5-even:cover-1-hole', name: 'COVER 1 HOLE', type: 'pass', formation: '4-2-5 Even', playbook: DEF, note: 'Man + rat vs PA crossers; verify align' },
     ],
     '2long': [
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:tampa-2', name: 'TAMPA 2', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Takes the drag/checkdown yards away' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:dime-3--2:cover-4-palms', name: 'COVER 4 PALMS', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Traps smash / corner-route spam' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-double-mug:nickel-2-trap', name: 'NICKEL 2 TRAP', type: 'run', formation: 'Nickel Double Mug', playbook: DEF, note: 'Trap CB jumps the sideline throw' },
+      { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:tampa-2', name: 'TAMPA 2', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Takes the drag/checkdown yards away' },
+      { playId: 'cfb27:4-2-5-def:dime-3--2:cover-4-palms', name: 'COVER 4 PALMS', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Traps smash / corner-route spam' },
+      { playId: 'cfb27:4-2-5-def:nickel-double-mug:nickel-2-trap', name: 'NICKEL 2 TRAP', type: 'run', formation: 'Nickel Double Mug', playbook: DEF, note: 'Trap CB jumps the sideline throw' },
     ],
     '3short': [
-      { playId: 'cfb27:4-2-5-man-pressure-def:4--3-even-6--1:mike-will-blitz', name: 'MIKE WILL BLITZ', type: 'pass', formation: '4-3 Even 6-1', playbook: DEF, note: 'Double A-gap run blitz' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:4--3-even-6--1:cover-1-mlb-blitz', name: 'COVER 1 MLB BLITZ', type: 'pass', formation: '4-3 Even 6-1', playbook: DEF, note: 'Man + extra rusher; no free pick route' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:ss-blitz-0', name: 'SS BLITZ 0', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Only if they’ve shown zero quick game' },
+      { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:sam-mike-1', name: 'SAM MIKE 1', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Double LB heat, man behind it' },
+      { playId: 'cfb27:4-2-5-def:nickel-load-mug:cover-1-lb-blitz', name: 'COVER 1 LB BLITZ', type: 'pass', formation: 'Nickel Load Mug', playbook: DEF, note: 'Man + extra rusher; no free pick route' },
+      { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:pinch-0', name: 'PINCH 0', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Only if they’ve shown zero quick game' },
     ],
     '3med': [
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-double-mug:cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Best “don’t know what’s coming” call' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:nickel-blitz-3', name: 'NICKEL BLITZ 3', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Slot heat with a 3-deep net' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-double-mug:cover-2-invert', name: 'COVER 2 INVERT', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Scrambles his hot read vs the mug look' },
+      { playId: 'cfb27:4-2-5-def:nickel-double-mug:cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Best “don’t know what’s coming” call' },
+      { playId: 'cfb27:4-2-5-def:nickel-load-mug:nickel-blitz-3', name: 'NICKEL BLITZ 3', type: 'pass', formation: 'Nickel Load Mug', playbook: DEF, note: 'Slot heat with a 3-deep net' },
+      { playId: 'cfb27:4-2-5-def:nickel-double-mug:cover-2-invert', name: 'COVER 2 INVERT', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Scrambles his hot read vs the mug look' },
     ],
     '3long': [
-      { playId: 'cfb27:4-2-5-man-pressure-def:dime-3--2:cover-4-drop', name: 'COVER 4 DROP', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Everything in front; rally and tackle' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:dime-3--2:hot-blitz-3', name: 'HOT BLITZ 3', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Speed heat before verts develop' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:dime-3--2:tampa-2-drop', name: 'TAMPA 2 DROP', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Kills the crosser AND the hole shot' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:dime-3--2:cover-6-willie', name: 'COVER 6 WILLIE', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Vs boundary-iso spam' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:dime-normal:tampa-2', name: 'TAMPA 2', type: 'pass', formation: 'Dime Normal', playbook: DEF, note: 'New meta home: spread DL, show LBs, user wk slot' },
+      { playId: 'cfb27:4-2-5-def:dime-3--2:cover-4-drop', name: 'COVER 4 DROP', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Everything in front; rally and tackle' },
+      { playId: 'cfb27:4-2-5-def:dime-3--2:hot-blitz-3', name: 'HOT BLITZ 3', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Speed heat before verts develop' },
+      { playId: 'cfb27:4-2-5-def:dime-3--2:tampa-2-drop', name: 'TAMPA 2 DROP', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Kills the crosser AND the hole shot' },
+      { playId: 'cfb27:4-2-5-def:dime-3--2:cover-6', name: 'COVER 6', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Vs boundary-iso spam' },
     ],
     pressure: [
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-double-mug:mid-blitz', name: 'MID BLITZ', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Meta nano: pinch DL, mug LB bails' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:mike-blitz-0', name: 'MIKE BLITZ 0', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Best confusion pressure this cycle' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-double-mug:buck-zone-blitz', name: 'BUCK ZONE BLITZ', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Low-risk heat: 3-deep behind it' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:dime-3--2:edge-blitz-3', name: 'EDGE BLITZ 3', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Obvious-pass edge heat, corner safe' },
+      { playId: 'cfb27:4-2-5-def:nickel-double-mug:mid-blitz-0', name: 'MID BLITZ 0', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Meta nano: pinch DL, mug LB bails' },
+      { playId: 'cfb27:4-2-5-def:3--3--5-penny:mike-blitz-0', name: 'MIKE BLITZ 0', type: 'pass', formation: '3-3-5 Penny', playbook: DEF, note: 'Best confusion pressure this cycle' },
+      { playId: 'cfb27:4-2-5-def:nickel-double-mug:buck-zone-blitz', name: 'BUCK ZONE BLITZ', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Low-risk heat: 3-deep behind it' },
+      { playId: 'cfb27:4-2-5-def:dime-3--2:edge-blitz-3', name: 'EDGE BLITZ 3', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Obvious-pass edge heat, corner safe' },
     ],
     redzone: [
-      { playId: 'cfb27:4-2-5-man-pressure-def:4--2--5-even:cover-2-man', name: 'COVER 2 MAN', type: 'pass', formation: '4-2-5 Even', playbook: DEF, note: 'Vs fade / slant spam' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-double-mug:cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Passes off the bunch traffic' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:dime-3--2:cover-1-robber-press', name: 'COVER 1 ROBBER PRESS', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Robber sits in the slant window' },
+      { playId: 'cfb27:4-2-5-def:4--2--5-even:cover-2-man', name: 'COVER 2 MAN', type: 'pass', formation: '4-2-5 Even', playbook: DEF, note: 'Vs fade / slant spam' },
+      { playId: 'cfb27:4-2-5-def:nickel-double-mug:cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Passes off the bunch traffic' },
+      { playId: 'cfb27:4-2-5-def:dime-3--2:cover-1-robber-press', name: 'COVER 1 ROBBER PRESS', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Robber sits in the slant window' },
     ],
     goalline: [
-      { playId: 'cfb27:4-2-5-man-pressure-def:goal-line-6--2:60-pinch', name: '60 PINCH', type: 'pass', formation: 'Goal Line 6-2', playbook: DEF, note: 'Vs sneak / dive' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:goal-line-6--2:60-out-jacks', name: '60 OUT JACKS', type: 'pass', formation: 'Goal Line 6-2', playbook: DEF, note: 'Edge-sound vs toss / rollout PA' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:goal-line-6--2:guts', name: 'GUTS', type: 'pass', formation: 'Goal Line 6-2', playbook: DEF, note: 'The 4th-and-goal-from-the-1 gamble' },
+      { playId: 'cfb27:4-2-5-def:goal-line-6--2:60-pinch', name: '60 PINCH', type: 'pass', formation: 'Goal Line 6-2', playbook: DEF, note: 'Vs sneak / dive' },
+      { playId: 'cfb27:4-2-5-def:goal-line-6--2:60-out-jacks', name: '60 OUT JACKS', type: 'pass', formation: 'Goal Line 6-2', playbook: DEF, note: 'Edge-sound vs toss / rollout PA' },
+      { playId: 'cfb27:4-2-5-def:goal-line-6--2:guts', name: 'GUTS', type: 'pass', formation: 'Goal Line 6-2', playbook: DEF, note: 'The 4th-and-goal-from-the-1 gamble' },
     ],
     prevent: [
-      { playId: 'cfb27:4-2-5-man-pressure-def:dime-3--2:cover-4-drop', name: 'COVER 4 DROP', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Better than prevent in most 2-min' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:dime-3--2:1-double-wr1', name: '1 DOUBLE WR1', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Bracket the guy the drive runs through' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:dime-3--2:dbl-safety-go', name: 'DBL SAFETY GO', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Vs desperation shots' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:prevent-3-deep:prevent', name: 'PREVENT', type: 'pass', formation: 'Prevent 3 Deep', playbook: DEF, note: 'Only up 2+ scores under 1:00' },
+      { playId: 'cfb27:4-2-5-def:dime-3--2:cover-4-drop', name: 'COVER 4 DROP', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Better than prevent in most 2-min' },
+      { playId: 'cfb27:4-2-5-def:dime-3--2:1-double-wr1', name: '1 DOUBLE WR1', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Bracket the guy the drive runs through' },
+      { playId: 'cfb27:4-2-5-def:dime-3--2:dbl-safety-go', name: 'DBL SAFETY GO', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Vs desperation shots' },
+      { playId: 'cfb27:4-2-5-def:prevent-3-deep:prevent', name: 'PREVENT', type: 'pass', formation: 'Prevent 3 Deep', playbook: DEF, note: 'Only up 2+ scores under 1:00' },
     ],
     heavy: [
-      { playId: 'cfb27:4-2-5-man-pressure-def:4--3-even-6--1:cover-3-buzz', name: 'COVER 3 BUZZ', type: 'pass', formation: '4-3 Even 6-1', playbook: DEF, note: 'Run-fit base vs 12/21 personnel' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:4--3-even-6--1:sam-blitz-3', name: 'SAM BLITZ 3', type: 'pass', formation: '4-3 Even 6-1', playbook: DEF, note: 'Set the edge vs toss / stretch' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:4--3-even-6--1:tampa-2', name: 'TAMPA 2', type: 'pass', formation: '4-3 Even 6-1', playbook: DEF, note: 'Sound vs PA off run action' },
+      { playId: 'cfb27:4-2-5-def:3--4-tite:cover-3-sky', name: 'COVER 3 SKY', type: 'pass', formation: '3-4 Tite', playbook: DEF, note: 'Sky safety in the run fit vs 12/21' },
+      { playId: 'cfb27:4-2-5-def:4--2--5-over-g:ss-blitz-3', name: 'SS BLITZ 3', type: 'pass', formation: '4-2-5 Over G', playbook: DEF, note: 'Set the edge vs toss / stretch' },
+      { playId: 'cfb27:4-2-5-def:3--4-tite:tampa-2', name: 'TAMPA 2', type: 'pass', formation: '3-4 Tite', playbook: DEF, note: 'Sound vs PA off run action' },
     ],
   },
 }
