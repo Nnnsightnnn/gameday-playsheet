@@ -55,6 +55,20 @@ db.version(5).stores({
   formations: 'id, side, name, updatedAt'
 });
 
+// Version 6: Favorites-setup checklist — one row keyed by id ('checks')
+// holding { byGame: { madden: { offense: { [playId]: true }, defense: {...} }, cfb: {...} } }.
+// Tracks which sheet plays Kenny has already added to in-game favorites.
+db.version(6).stores({
+  myPlays: '++id, playId, playbook, formationGroup, formation, playName, playType, side, tags, notes, rating, addedAt',
+  gameSessions: '++id, opponent, date, result, notes',
+  playPerformance: '++id, sessionId, playId, callCount, successCount, yardsGained, notes',
+  gameContext: 'id',
+  sheetAssignments: 'id',
+  sheetSettings: 'id',
+  formations: 'id, side, name, updatedAt',
+  setupChecks: 'id'
+});
+
 // Sheet assignments helpers — fresh-object factories so the module-level
 // defaults are never aliased into the live React state.
 //
@@ -162,6 +176,40 @@ export async function getSheetSettings() {
 
 export async function saveSheetSettings(settings) {
   return await db.sheetSettings.put({ ...settings, id: SETTINGS_ID });
+}
+
+// ── Favorites-setup checklist helpers ───────────────────────────────────────
+// Checks are keyed per game + side + playId so the Madden and CFB setup
+// passes never collide. Stale ids (plays later removed from the sheet) are
+// harmless — the setup view only renders plays currently on the sheet.
+const CHECKS_ID = 'checks';
+
+export async function getSetupChecks() {
+  const row = await db.setupChecks.get(CHECKS_ID);
+  return row || { id: CHECKS_ID, byGame: {} };
+}
+
+export async function toggleSetupCheck(game, side, playId) {
+  const row = await getSetupChecks();
+  const gameRow = row.byGame[game] || {};
+  const sideRow = { ...(gameRow[side] || {}) };
+  if (sideRow[playId]) delete sideRow[playId];
+  else sideRow[playId] = true;
+  return await db.setupChecks.put({
+    ...row,
+    id: CHECKS_ID,
+    byGame: { ...row.byGame, [game]: { ...gameRow, [side]: sideRow } },
+  });
+}
+
+export async function clearSetupChecks(game, side) {
+  const row = await getSetupChecks();
+  const gameRow = row.byGame[game] || {};
+  return await db.setupChecks.put({
+    ...row,
+    id: CHECKS_ID,
+    byGame: { ...row.byGame, [game]: { ...gameRow, [side]: {} } },
+  });
 }
 
 // Helper to add a play to my playsheet
