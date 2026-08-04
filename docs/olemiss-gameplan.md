@@ -307,22 +307,48 @@ menu; the macro system below is how you actually run it in 25 seconds.
   tight coverage — correct shade/bracket pays more than ever.
 - **Untarget User Defender: ON** — hides your user from their ID-Mike logic.
 
-### The macro variation system (same call, three faces)
+### The 10-slot macro bank (Kenny's build · PS5)
 
-Build in Create & Share → Custom Adjustments (20 saved, 10 active). Never fire
-the same macro twice in a row on money downs. Treat every macro as 90% — the
-bug list says one setting can drop; hand-confirm the one that matters.
+The spine is the depth trio already in use — CB 3/9/12 with safeties 5/9/12,
+shallow for short-throw angles, deep to buy DL time. v2 folds the shade and
+zone-strategy layers INTO those depth macros instead of spending new slots,
+benches the two global press-commit macros (manual per-receiver press replaces
+them), and keeps the 20yd CB saved-but-inactive as an opponent-specific swap
+vs verts spammers. Build in Create & Share → Custom Adjustments (20 saved,
+10 active). Fire in-game: **L1 → slot**.
 
-| Package | Base call | Macro faces |
-|---|---|---|
-| Nickel 3-3 Mint | Cover 3 Buzz Match | **UNDER** (shade under, Ultra Aggr zones, pinch + Tom) kills quick/RPO · **OVER** (over-top, Conservative, depth 16) kills verts/PA · **MABLE** (flats 25, curls 5, Skate vs bunch) kills floods |
-| Dime 3-2 | Cover 1 Hole | **UNDER-Tom** kills empty quick game · **PLASTER-MAX** (Aggr plaster + both-edge contain) kills scramble drill · **STUBBIE** check kills trips quick-out |
-| 4-2-5 Over G | Cover 4 Palms | **RUN-FIT** (shift to TE, Palms safeties trigger) · **BINGO** vs compressed bunch · **STRESS** pre-loaded for the PA-verts shot down |
-| 3-4 Tite | Cover 3 Sky | **PINCH+TEXAS** kills IZ/sneak · **PIRATE-to-run-side** kills stretch/toss · **SKY+Midpoint Strong** frees an edge fitter vs heavy PA |
+| # | Macro (icon) | Recipe | Fires when |
+|---|---|---|---|
+| 1 | **SHORT** (▼▼ squeeze) | CB 3 · S 5 · shade under · zones Ultra Aggr | Quick-game rhythm; jump what you're angled at |
+| 2 | **MID** (≡ level) | CB 9 · S 9 | The no-tell face; default |
+| 3 | **DEEP** (⌒ dome) | CB 12 · S 12 · shade over top · zones Conservative | Buy DL time; nothing behind you |
+| 4 | **MABLE** (☂ umbrella) | Flats 25 · curl-flats 5 · Skate vs bunch | Corner-route / sideline-flood meta |
+| 5 | **PLASTER-MAX** (magnet) | Plaster Aggr · OOP trigger · contain both edges (R1+L1) | Scramblers, extend-the-play QBs |
+| 6 | **SELLOUT** (brick wall) | DL+LB pinch · Aggression Aggr · RPO key Aggr · S 5 | Sneak/dive downs; big bodies shrink their meter |
+| 7 | **AFTER-STUFF** (hook) | Aggression Conservative · shade over top · S 16 | The down AFTER the stuff — the shot is coming |
+| 8 | **PIRATE** (skull) | Pirate stunt to run side · DL spread | Stretch/toss; call the side by hash |
+| 9 | **RUN-FIT** (anchor) | DL shift to TE · Aggression Aggr | 12-personnel duo/IZ |
+| 10 | **UNDER-TOM** (drum) | Shade under · Tom stunt | Empty / quick-game spam from Dime |
 
-All three Mint faces sit behind the same Cover 4 shell — the buzz rotation
-only reveals itself post-snap. Rotate shell and midpoint independently of the
-macro and one call has ~12 pre-snap faces.
+Discipline: never the same macro twice in a row on money downs; sims and traps
+only after real pressure taught fear. Every macro is 90% (bug) — hand-confirm
+the one setting that matters. Lab check pending: whether Aggression / Gap
+Integrity persist inside saved macros (slots 6, 7, 9).
+
+### PS5 control map (defense, post-snap of the call)
+
+| Input | Layer |
+|---|---|
+| **L1** | Custom Adjustments — fire the macro bank |
+| **R1** | Coverage shells + QB contain (**R1+L1 = contain both edges**) |
+| **L2 hold** | Global coverage hub: press/off (LS) · leverage + shade (RS) · zone strategy |
+| **L2 + receiver icon** | That receiver only: press/off, shade, **Square = instant double** |
+| **Triangle** | Individual defender: man-match anyone, spy, zone |
+| **RS flick LEFT** | DL: pinch / spread / shift / crash + stunts |
+| **RS flick RIGHT** | LBs: pinch / spread / blitz / zone |
+| **R2** | Show/bluff play art · hold + direction = run-fit view |
+| **D-pad ← / →** | Coach vision HUD / dynamic subs |
+| **R3 (play-call screen)** | Coach Adjustments menu |
 
 ### Short-yardage defense (the sell-out risk table)
 
