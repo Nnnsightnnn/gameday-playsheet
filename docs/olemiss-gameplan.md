@@ -205,6 +205,28 @@ pre-snap — eyes and roaming safety go to the secondary threats), then Tampa 2
 (unbeatable by mesh/drag scripts). Blitzing blind vs tempo is how underdogs
 die — only Buck Zone Blitz is acceptable blind pressure (3-deep net).
 
+### Same picture, different answer (v2 defense pass)
+
+The old sheet's Short Yardage block was four man blitzes — one look to lab,
+and every counter (toss, boot, pick routes) beat all four the same way. The
+v2 additions give each block a second FACE from the same pre-snap picture, so
+the opponent who "solved" you is solving last drive's defense:
+
+| Block | The tell they keyed | The new face |
+|---|---|---|
+| Short Yardage | All-out man heat | **Cover 3 Sky (Double Mug)** — same mug picture, sound 8-man zone fit · **SS 2 Trap (Tite)** — trap corner eats the boot/flat counter |
+| Blitz / Heat | Real pressure every time | **Tampa Sim Pressure (Mint)** + **Field Sim 3 (Double Mug)** — show the same heat, rush 4, coverage eats the hot throw |
+| vs Empty | Zone shells | **Cover 2 Hard Flat (Dime)** — hard flats jump the quick-out spam |
+| vs 12/21 | Interior-focused calls | **Cover 2 Contain (Over G)** — edges box the boot, corners squat the PA flat |
+| Red Zone | DB-driven coverage | **Redzone DT Drop (Load Dbl Mug)** — DT sits in the slant lane |
+| Goal Line | Pinch/edge run stops | **GL Man (5-3)** — for the down after the stuff, when the waggle comes |
+
+**The rhythm mirrors the offense rule:** show the blitz face until he counters
+it, THEN call the sim from the identical look. Sims and trap coverages only
+pay AFTER the real pressure has taught him to fear it — sequence, don't
+rotate randomly. Pair with the arsenal below: same call + different
+shade/drops IS a third face without changing the play.
+
 **Timeouts are tempo-breakers.** The moment tilt rises — he converts and
 sprints to the line — burn one. It breaks his rhythm, opens your full
 playbook, and resets you. Keep two in the second half for clock; the rest
