@@ -1,8 +1,14 @@
-// Favorites-setup view — the sheet regrouped by playbook → formation so it
-// reads in the same order as the in-game favorites menu. Tap a play to check
-// it off once it's been added to favorites on the console; checks persist
-// per game + side in Dexie.
+// Favorites-setup view. CFB 27 sorts favorites by recency — the LAST play
+// favorited lands on TOP of the in-game menu. So the default mode here is a
+// numbered favoriting sequence: the sheet's priority order reversed. Favorite
+// in checklist order (1, 2, 3…) and the finished menu mirrors the call sheet,
+// slot 1 of block 1 on top. A second mode groups by playbook → formation for
+// finding plays while navigating the add menu. Checks persist per game + side.
 
+import { useState } from 'react'
+
+// Flatten in sheet priority order: situations top-to-bottom, slots in order.
+// Dedupe by playId — a play keeps its highest (first) occurrence.
 function flattenBySide(situations, sideAssign) {
   const byId = new Map()
   for (const s of situations) {
@@ -64,19 +70,29 @@ function groupForSetup(entries, playbooks) {
     }))
 }
 
-function SetupRow({ entry, checked, onToggle }) {
+function SetupRow({ entry, checked, seq, next, showPath, onToggle }) {
   const { play, situations } = entry
   return (
     <button
-      className={'setup-row' + (checked ? ' setup-row--done' : '')}
+      className={
+        'setup-row' +
+        (checked ? ' setup-row--done' : '') +
+        (next ? ' setup-row--next' : '')
+      }
       onClick={() => onToggle(play.playId)}
     >
+      {seq != null && <span className="setup-seq">{seq}</span>}
       <span className={'setup-check' + (checked ? ' setup-check--on' : '')}>
         {checked ? '✓' : ''}
       </span>
       <span className={'slot__dot slot__dot--' + play.type} />
       <span className="setup-row__main">
         <span className="setup-row__name">{play.name}</span>
+        {showPath && (
+          <span className="setup-row__path">
+            {play.playbook} · {play.formation}
+          </span>
+        )}
         <span className="setup-row__sits">
           {situations.map((s) => (
             <span key={s.id} className="setup-sit" title={s.name}>
@@ -99,10 +115,17 @@ function SetupSheet({
   onToggle,
   onClear,
 }) {
+  const [mode, setMode] = useState('sequence')
+
   const entries = flattenBySide(situations, assignments)
   const groups = groupForSetup(entries, playbooks)
   const total = entries.length
   const done = entries.filter((e) => checks[e.play.playId]).length
+
+  // Favoriting order: reverse of sheet priority, so the last play you
+  // favorite (your #1 call) ends up on top of the recency-sorted menu.
+  const sequence = [...entries].reverse()
+  const nextId = sequence.find((e) => !checks[e.play.playId])?.play.playId
 
   return (
     <div className="sheet-wrap">
@@ -111,8 +134,27 @@ function SetupSheet({
           <div className="setup-hd__titles">
             <div className="setup-hd__name">Favorites Setup</div>
             <div className="setup-hd__sub">
-              Same order as the in-game menu — work top to bottom, check each
-              play once it&apos;s favorited.
+              {mode === 'sequence'
+                ? 'CFB 27 puts the last play favorited on top. Favorite in this exact order and the finished menu mirrors your call sheet.'
+                : 'Grouped like the playbook add-menu — use this to find where each play lives.'}
+            </div>
+            <div className="setup-modes">
+              <button
+                className={
+                  'setup-mode' + (mode === 'sequence' ? ' setup-mode--on' : '')
+                }
+                onClick={() => setMode('sequence')}
+              >
+                Favoriting Order
+              </button>
+              <button
+                className={
+                  'setup-mode' + (mode === 'formation' ? ' setup-mode--on' : '')
+                }
+                onClick={() => setMode('formation')}
+              >
+                By Formation
+              </button>
             </div>
           </div>
           <div className="setup-hd__right">
@@ -140,7 +182,23 @@ function SetupSheet({
           </div>
         )}
 
-        {groups.map((book) => (
+        {mode === 'sequence' && total > 0 && (
+          <div className="setup-seq-list">
+            {sequence.map((e, i) => (
+              <SetupRow
+                key={e.play.playId}
+                entry={e}
+                seq={i + 1}
+                next={e.play.playId === nextId}
+                showPath
+                checked={!!checks[e.play.playId]}
+                onToggle={onToggle}
+              />
+            ))}
+          </div>
+        )}
+
+        {mode === 'formation' && groups.map((book) => (
           <section key={book.playbook} className="setup-book">
             <div className="setup-book__name">{book.playbook}</div>
             <div className="setup-grid">

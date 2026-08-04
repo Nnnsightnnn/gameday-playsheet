@@ -321,7 +321,7 @@ function App() {
 
           <div className="foot">
             {sheetMode === 'formation'
-              ? 'Walk the in-game favorites menu top to bottom — tap each play here as you add it.'
+              ? 'Favorites sort newest-first in game — follow the numbered order and the menu comes out matching your sheet.'
               : 'Set the down, distance & field position — the live block lights up. Tap any slot to call from the play bank.'}
           </div>
 
