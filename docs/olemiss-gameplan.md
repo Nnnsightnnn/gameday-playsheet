@@ -315,31 +315,42 @@ zone-strategy layers INTO those depth macros instead of spending new slots,
 benches the two global press-commit macros (manual per-receiver press replaces
 them), and keeps the 20yd CB saved-but-inactive as an opponent-specific swap
 vs verts spammers. Build in Create & Share → Custom Adjustments (20 saved,
-10 active). Fire in-game: **L1 → slot**.
+10 active).
 
-| # | Macro (icon) | Recipe | Fires when |
-|---|---|---|---|
-| 1 | **SHORT** (▼▼ squeeze) | CB 3 · S 5 · shade under · zones Ultra Aggr | Quick-game rhythm; jump what you're angled at |
-| 2 | **MID** (≡ level) | CB 9 · S 9 | The no-tell face; default |
-| 3 | **DEEP** (⌒ dome) | CB 12 · S 12 · shade over top · zones Conservative | Buy DL time; nothing behind you |
-| 4 | **MABLE** (☂ umbrella) | Flats 25 · curl-flats 5 · Skate vs bunch | Corner-route / sideline-flood meta |
-| 5 | **PLASTER-MAX** (magnet) | Plaster Aggr · OOP trigger · contain both edges (R1+L1) | Scramblers, extend-the-play QBs |
-| 6 | **SELLOUT** (brick wall) | DL+LB pinch · Aggression Aggr · RPO key Aggr · S 5 | Sneak/dive downs; big bodies shrink their meter |
-| 7 | **AFTER-STUFF** (hook) | Aggression Conservative · shade over top · S 16 | The down AFTER the stuff — the shot is coming |
-| 8 | **PIRATE** (skull) | Pirate stunt to run side · DL spread | Stretch/toss; call the side by hash |
-| 9 | **RUN-FIT** (anchor) | DL shift to TE · Aggression Aggr | 12-personnel duo/IZ |
-| 10 | **UNDER-TOM** (drum) | Shade under · Tom stunt | Empty / quick-game spam from Dime |
+**How firing works (PS5):** L1 opens the macro menu. The first 8 actives land
+on ✕ ○ △ □ and D-pad ↑ ↓ → ←; slots 9-10 sit behind a right-stick scroll
+(RS, then □ or ✕). The 10 general/preset macros live on the next scroll page
+of the same menu. **Arrange your active list in exactly this order** so the
+buttons below are the buttons you get — each one is chosen as a mnemonic.
+
+| Slot | Fire (L1 +) | Macro | Why that button | Recipe | Fires when |
+|---|---|---|---|---|---|
+| 1 | **✕** | **SHORT** | ✕ sits LOW — press down on it | CB 3 · S 5 · shade under · zones Ultra Aggr | Quick-game rhythm; jump what you're angled at |
+| 2 | **○** | **MID** | ○ = zero tell, the neutral face | CB 9 · S 9 | Default between reads |
+| 3 | **△** | **DEEP** | △ is the dome over the top | CB 12 · S 12 · shade over top · zones Conservative | Buy DL time; nothing behind you |
+| 4 | **□** | **MABLE** | □ = the flat boxes you're flooding | Flats 25 · curl-flats 5 · Skate vs bunch | Corner-route / sideline-flood meta |
+| 5 | **D-pad ↑** | **PLASTER-MAX** | ↑ = QB taking off upfield | Plaster Aggr · OOP trigger · contain both edges | Scramblers, extend-the-play QBs |
+| 6 | **D-pad ↓** | **SELLOUT** | ↓ = dig in downhill | DL+LB pinch · Aggression Aggr · RPO key Aggr · S 5 | Sneak/dive downs; big bodies shrink their meter |
+| 7 | **D-pad →** | **PIRATE** | Lateral arrow = lateral run answer | Pirate stunt to run side · DL spread | Stretch/toss; call the side by hash |
+| 8 | **D-pad ←** | **RUN-FIT** | Other lateral = shift the line | DL shift to TE · Aggression Aggr | 12-personnel duo/IZ |
+| 9 | **RS, then □** | **AFTER-STUFF** | Behind the scroll — the patience call | Aggression Conservative · shade over top · S 16 | The down AFTER the stuff — the shot is coming |
+| 10 | **RS, then ✕** | **UNDER-TOM** | Behind the scroll — the diagnosis call | Shade under · Tom stunt | Empty / quick-game spam from Dime |
+
+Slots 1-4 (face buttons) are your fastest — that's why the depth trio + Mable
+live there; they're the ones you fire against tempo. Slots 9-10 cost an extra
+input by design: both are calls you make with time on the clock.
 
 Discipline: never the same macro twice in a row on money downs; sims and traps
 only after real pressure taught fear. Every macro is 90% (bug) — hand-confirm
-the one setting that matters. Lab check pending: whether Aggression / Gap
-Integrity persist inside saved macros (slots 6, 7, 9).
+the one setting that matters. Lab checks pending: (a) Aggression / Gap
+Integrity persisting inside saved macros (slots 5-8), (b) confirm active-list
+order = button order by arranging and firing once in practice mode.
 
 ### PS5 control map (defense, post-snap of the call)
 
 | Input | Layer |
 |---|---|
-| **L1** | Custom Adjustments — fire the macro bank |
+| **L1** | Custom Adjustments menu → ✕ ○ △ □ / D-pad for slots 1-8, RS scroll for 9-10 + presets |
 | **R1** | Coverage shells + QB contain (**R1+L1 = contain both edges**) |
 | **L2 hold** | Global coverage hub: press/off (LS) · leverage + shade (RS) · zone strategy |
 | **L2 + receiver icon** | That receiver only: press/off, shade, **Square = instant double** |
