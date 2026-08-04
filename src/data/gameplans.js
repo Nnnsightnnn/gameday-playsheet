@@ -9,6 +9,8 @@
 // - Defense lives in ONE package (Nickel 3-3 Cub) so hurry-up can't rush you.
 //   Base / Tempo block = the four blind-safe calls. Audible, don't browse.
 
+import { IOWA_PLAN } from './gameplans-iowa'
+
 const OFF = 'Ole Miss'
 const DEF = '4-2-5 Man Pressure'
 
@@ -154,4 +156,4 @@ export const OLE_MISS_PLAN = {
   },
 }
 
-export const GAME_PLANS = [OLE_MISS_PLAN]
+export const GAME_PLANS = [OLE_MISS_PLAN, IOWA_PLAN]
