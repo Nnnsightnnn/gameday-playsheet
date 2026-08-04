@@ -94,10 +94,10 @@ export const OLE_MISS_PLAN = {
   },
   defense: {
     base: [
-      { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:cover-4-quarters', name: 'COVER 4 QUARTERS', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Panic button #1: never awful vs anything' },
+      { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:cover-4-palms', name: 'COVER 4 PALMS', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Panic button #1: never awful vs anything' },
+      { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:1-double-wr1', name: '1 DOUBLE WR1', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Panic #2: bracket his favorite target' },
       { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:cover-3-buzz-match', name: 'COVER 3 BUZZ MATCH', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Default vs RPO / quick game' },
       { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:tampa-2', name: 'TAMPA 2', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Mesh/drag eraser; user the hole LB' },
-      { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:cover-1-robber-press', name: 'COVER 1 ROBBER PRESS', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Change-up so zone can’t be auto-read' },
     ],
     first: [
       { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:cover-3-buzz-match', name: 'COVER 3 BUZZ MATCH', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Sound vs run and pass' },

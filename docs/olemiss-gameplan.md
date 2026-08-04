@@ -129,7 +129,7 @@ carries in regs. Every call validated against the current catalog.*
   disguise by sameness), Plaster ON, Smart Zones aggressive underneath, Gap
   Integrity Conservative, RPO keys set once you've seen their lean.
 - Set the four audibles from Nickel 3-3 Mint to the Base / Tempo block calls:
-  **Cover 4 Quarters, Cover 3 Buzz Match, Tampa 2, Cover 1 Robber Press.**
+  **Cover 4 Palms, 1 Double WR1, Cover 3 Buzz Match, Tampa 2.**
 
 **The 5-second tempo routine** (drop steps if short on clock):
 
@@ -139,13 +139,14 @@ carries in regs. Every call validated against the current catalog.*
    same play if wrong). Bug also eats macros: they can fire minus one setting,
    so hand-confirm the one adjustment that matters.
 3. One adjustment max: shade underneath vs quick game, over top vs shots.
-4. Pre-select your user defender (Tampa 2 hole LB, the robber, the buzz
-   safety) before the snap.
+4. Pre-select your user defender — your roaming safety by default. Palms and
+   1 Double WR1 exist on this sheet precisely because their shells stay sound
+   while you freelance; in Tampa 2 take the hole LB instead.
 
-**Panic buttons, in order:** Cover 4 Quarters (never awful vs anything),
-Tampa 2 (unbeatable by mesh/drag scripts), Cover 3 Match on an audible (match
-rules self-adjust). Blitzing blind vs tempo is how underdogs die — only Buck
-Zone Blitz is acceptable blind pressure (3-deep net).
+**Panic buttons, in order:** Cover 4 Palms (never awful vs anything), then
+1 Double WR1 (bracket the guy the drive runs through), then Tampa 2
+(unbeatable by mesh/drag scripts). Blitzing blind vs tempo is how underdogs
+die — only Buck Zone Blitz is acceptable blind pressure (3-deep net).
 
 **Timeouts are tempo-breakers.** The moment tilt rises — he converts and
 sprints to the line — burn one. It breaks his rhythm, opens your full
