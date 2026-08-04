@@ -646,6 +646,13 @@ html, body {
 }
 .toggle[data-on="1"] i { transform: translateX(14px); }
 
+.tweaks__guide {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.8px;
+  text-transform: uppercase; text-decoration: none;
+  color: #b8b39d; border-bottom: 1px dotted #b8b39d;
+}
+.tweaks__guide:hover { color: #fff; border-bottom-color: #fff; }
+
 .tweaks__load {
   border: none; border-radius: 6px; padding: 5px 12px;
   background: var(--accent); color: #fff;

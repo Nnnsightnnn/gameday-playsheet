@@ -17,6 +17,7 @@ const DEF = '4-2-5 Man Pressure'
 export const OLE_MISS_PLAN = {
   game: 'cfb',
   name: 'Ole Miss · CFB 27',
+  guide: 'gameplan-olemiss.html',
   offense: {
     openers: [
       { playId: 'cfb27:ole-miss-off:gun-wide-trips:rpo-alert-bubble-stick', name: 'RPO ALERT BUBBLE STICK', type: 'run', formation: 'Wide Trips', playbook: OFF, note: 'Overhang crashes → throw; widens → give' },

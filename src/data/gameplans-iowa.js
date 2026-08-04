@@ -19,6 +19,7 @@ const DEF = '4-2-5 Man Pressure'
 export const IOWA_PLAN = {
   game: 'cfb',
   name: 'Iowa · CFB 27',
+  guide: 'gameplan-iowa.html',
   offense: {
     openers: [
       { playId: 'cfb27:iowa-off:singleback-wing-close:wide-zone', name: 'WIDE ZONE', type: 'pass', formation: 'Wing Close', playbook: OFF, note: 'Your bread; flip to the weaker front pre-snap' },

@@ -104,13 +104,25 @@ function TweaksPanel({ tweaks, setTweak, plans, onLoadPlan }) {
             {plans.map((plan) => (
               <div key={plan.name} className="tweaks__row tweaks__row-h">
                 <div className="tweaks__lbl">{plan.name}</div>
-                <button
-                  type="button"
-                  className="tweaks__load"
-                  onClick={() => onLoadPlan(plan)}
-                >
-                  Load
-                </button>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  {plan.guide && (
+                    <a
+                      className="tweaks__guide"
+                      href={import.meta.env.BASE_URL + plan.guide}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Guide
+                    </a>
+                  )}
+                  <button
+                    type="button"
+                    className="tweaks__load"
+                    onClick={() => onLoadPlan(plan)}
+                  >
+                    Load
+                  </button>
+                </div>
               </div>
             ))}
           </>
