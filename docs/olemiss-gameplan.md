@@ -100,7 +100,29 @@ side, where his user lives.** Those three facts call the rest of the game.
 
 ---
 
-## Defense: one package, four buttons
+## Defense: personnel first, then situation
+
+**The first read is their huddle, not the down marker.** Count backs and
+tight ends as they break: that number picks your package before down and
+distance says anything. A real defensive call sheet is a personnel ladder —
+each rung is ONE package with a complete four-call menu (single-high force,
+two-high shell, man, pressure), because one package is all you can operate
+in 25 seconds.
+
+| They show | You call from | Package logic |
+|---|---|---|
+| 10 / Empty (4+ WR) | **Dime 3-2** | Six DBs; spy the QB, heat the thin protection |
+| 11 (1 RB · 1 TE) | **Nickel 3-3 Mint** — home | Your base; the tempo audibles live here |
+| 12 / 21 (extra TE or FB) | **4-2-5 Over G** | +1 in the box, still 4-down; sky force sets the edge |
+| 22 / 31 (heavy) | **3-4 Tite** (+ GL 5-3 vs bone) | Odd front, 8-man fit — NEVER show a light box |
+
+Rules a coach would tape to the sheet: never let 12+ personnel see a 6-DB
+field. If they substitute, you substitute — and if tempo traps your package,
+that's what timeouts and the blind-safe audibles are for. Short yardage,
+obvious pass, red zone, and goal line stay situational — they override the
+ladder when the chains say so.
+
+### The home package
 
 **Playbook: 4-2-5** — Ole Miss's stock defensive book, so there is nothing to
 switch pregame: pick Ole Miss and every call on this sheet is in your menus.
@@ -174,8 +196,9 @@ exist to be spent on composure.
 ## Between plays: the 25-second ritual
 
 1. 0-5s — log, don't feel. One word: "man," "blitz-left," "user-mid."
-2. 5-10s — situation names the sheet block. The LIVE highlight already did
-   this for you. Read 2-4 options, not forty.
+2. 5-10s — on defense: count their personnel FIRST (backs + TEs), that names
+   the block; the LIVE highlight only knows down and distance. On offense the
+   LIVE highlight already did it. Read 2-4 options, not forty.
 3. 10-15s — pick and commit. A decent call fully executed beats a perfect
    call chosen at 0:03.
 4. 15-25s — sheet down, eyes up: shell, box, user, leverage. Milk to ~3. Snap.
