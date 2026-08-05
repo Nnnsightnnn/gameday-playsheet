@@ -328,7 +328,7 @@ buttons below are the buttons you get — each one is chosen as a mnemonic.
 | 1 | **✕** | **SHORT** | ✕ sits LOW — press down on it | CB 3 · S 5 · shade under · zones Ultra Aggr | Quick-game rhythm; jump what you're angled at |
 | 2 | **○** | **MID** | ○ = zero tell, the neutral face | CB 9 · S 9 | Default between reads |
 | 3 | **△** | **DEEP** | △ is the dome over the top | CB 12 · S 12 · shade over top · zones Conservative | Buy DL time; nothing behind you |
-| 4 | **□** | **MABLE** | □ = the flat boxes you're flooding | Flats 25 · curl-flats 5 · Skate vs bunch | Corner-route / sideline-flood meta |
+| 4 | **□** | **MABLE** | □ = the flat boxes you're flooding | Flats 25 · curl-flats 5 · Skate vs bunch | Corner-route / sideline-flood meta. Host calls: C3 Buzz Match (Mint) or C3 Cloud (Dime) — nickel/dime only, never over man/Tampa, never an OLB in the 25-yd flat |
 | 5 | **D-pad ↑** | **PLASTER-MAX** | ↑ = QB taking off upfield | Plaster Aggr · OOP trigger · contain both edges | Scramblers, extend-the-play QBs |
 | 6 | **D-pad ↓** | **SELLOUT** | ↓ = dig in downhill | DL+LB pinch · Aggression Aggr · RPO key Aggr · S 5 | Sneak/dive downs; big bodies shrink their meter |
 | 7 | **D-pad →** | **PIRATE** | Lateral arrow = lateral run answer | Pirate stunt to run side · DL spread | Stretch/toss; call the side by hash |
