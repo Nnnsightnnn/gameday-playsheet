@@ -23,6 +23,7 @@ import CoverageField from './CoverageField';
 import AssignmentSheet from './AssignmentSheet';
 import CoverageBriefing from './CoverageBriefing';
 import { LessonNav, LessonPanel, DrillPanel } from './LessonMode';
+import GlossaryPanel from './GlossaryPanel';
 
 export default function CoverageLab({ lab, setLab }) {
   const cfg = { ...DEFAULT_LAB, ...(lab || {}) };
@@ -37,6 +38,7 @@ export default function CoverageLab({ lab, setLab }) {
   const [t, setT] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [loop, setLoop] = useState(true);
+  const [glossaryOpen, setGlossaryOpen] = useState(false);
   const raf = useRef(null);
   const startedAt = useRef(0);
   const loopRef = useRef(loop);
@@ -213,6 +215,15 @@ export default function CoverageLab({ lab, setLab }) {
           Flip strength
         </button>
 
+        <button
+          type="button"
+          className={'plbtn' + (glossaryOpen ? ' is-on' : '')}
+          onClick={() => setGlossaryOpen((v) => !v)}
+          title="Every term the lab uses, defined"
+        >
+          Glossary
+        </button>
+
         <div className="planner__save">
           <button type="button" className="plbtn plbtn--primary" onClick={() => {
             if (playing) { setPlaying(false); return; }
@@ -230,6 +241,8 @@ export default function CoverageLab({ lab, setLab }) {
           </button>
         </div>
       </div>
+
+      {glossaryOpen && <GlossaryPanel onClose={() => setGlossaryOpen(false)} />}
 
       {/* ── formation + concept (hidden in Learn — the lesson pins them) ── */}
       {!isLearn && (
