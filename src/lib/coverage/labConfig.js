@@ -28,6 +28,7 @@ export const DEFAULT_LAB = {
   formation: 'doubles',
   concept: 'curlflat',
   mode: 'study',
+  learnView: 'study',
   ruleset: 'ncaa',
   ballSpot: 'left',
   flip: false,

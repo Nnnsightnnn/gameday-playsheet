@@ -18,13 +18,21 @@ import { CONCEPTS } from '../../lib/coverage/concepts';
 import { differenceFor } from '../../lib/coverage/differences';
 import { ballYards } from '../../lib/coverage/labField';
 import { DEFAULT_LAB, LEGEND, SNAP_MS } from '../../lib/coverage/labConfig';
+import { ALL_LESSONS, lessonById, missKey } from '../../lib/coverage/lessons';
 import CoverageField from './CoverageField';
 import AssignmentSheet from './AssignmentSheet';
 import CoverageBriefing from './CoverageBriefing';
+import { LessonNav, LessonPanel, DrillPanel } from './LessonMode';
 
 export default function CoverageLab({ lab, setLab }) {
   const cfg = { ...DEFAULT_LAB, ...(lab || {}) };
-  const compare = cfg.mode === 'compare';
+  const learn = { current: null, done: [], misses: [], ...(cfg.learn || {}) };
+  const isLearn = cfg.mode === 'learn';
+  const activeLesson =
+    isLearn && learn.current !== '__drill' ? lessonById(learn.current) : null;
+  const compare = isLearn
+    ? (activeLesson ? activeLesson.setup.view : cfg.learnView) === 'compare'
+    : cfg.mode === 'compare';
 
   const [t, setT] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -37,6 +45,35 @@ export default function CoverageLab({ lab, setLab }) {
   }, [loop]);
 
   const patch = (p) => setLab({ ...cfg, ...p });
+
+  // ── learn-mode handlers ────────────────────────────────────────────────
+  const openLesson = (id) => {
+    const l = lessonById(id);
+    if (!l) return;
+    const { view, ...setup } = l.setup;
+    patch({ ...setup, mode: 'learn', learnView: view, learn: { ...learn, current: id } });
+  };
+  const enterLearn = () =>
+    openLesson(lessonById(learn.current) ? learn.current : ALL_LESSONS[0].id);
+  const openDrill = () => patch({ learn: { ...learn, current: '__drill' } });
+  const exitDrill = () =>
+    openLesson(
+      (ALL_LESSONS.find((l) => !learn.done.includes(l.id)) || ALL_LESSONS[0]).id,
+    );
+  const clearMiss = (k) =>
+    patch({ learn: { ...learn, misses: learn.misses.filter((x) => x !== k) } });
+  const loadDrillSetup = (setup) => {
+    const { view, ...rest } = setup;
+    patch({ ...rest, learnView: view, learn: { ...learn, current: '__drill' } });
+  };
+  const handleAnswer = (lessonId, qIdx, correct, allSolved) => {
+    const k = missKey(lessonId, qIdx);
+    let { done, misses } = learn;
+    if (correct) misses = misses.filter((x) => x !== k);
+    else if (!misses.includes(k)) misses = [...misses, k];
+    if (allSolved && !done.includes(lessonId)) done = [...done, lessonId];
+    patch({ learn: { ...learn, done, misses } });
+  };
 
   const ball = useMemo(() => ballYards(cfg.ruleset, cfg.ballSpot), [cfg.ruleset, cfg.ballSpot]);
 
@@ -120,17 +157,24 @@ export default function CoverageLab({ lab, setLab }) {
         <div className="seg">
           <button
             type="button"
-            className={'seg__btn' + (!compare ? ' is-on' : '')}
+            className={'seg__btn' + (cfg.mode === 'study' ? ' is-on' : '')}
             onClick={() => patch({ mode: 'study' })}
           >
             Study
           </button>
           <button
             type="button"
-            className={'seg__btn' + (compare ? ' is-on' : '')}
+            className={'seg__btn' + (cfg.mode === 'compare' ? ' is-on' : '')}
             onClick={() => patch({ mode: 'compare' })}
           >
             Compare
+          </button>
+          <button
+            type="button"
+            className={'seg__btn' + (isLearn ? ' is-on' : '')}
+            onClick={enterLearn}
+          >
+            Learn
           </button>
         </div>
 
@@ -187,7 +231,8 @@ export default function CoverageLab({ lab, setLab }) {
         </div>
       </div>
 
-      {/* ── formation + concept ─────────────────────────────────────── */}
+      {/* ── formation + concept (hidden in Learn — the lesson pins them) ── */}
+      {!isLearn && (
       <div className="planner__bar cvbar--picks">
         <div className="cvchips">
           <span className="cvchips__lbl">Formation</span>
@@ -217,19 +262,26 @@ export default function CoverageLab({ lab, setLab }) {
         </div>
         <div className="cvnote">{CONCEPTS[cfg.concept].note}</div>
       </div>
+      )}
 
       {/* ── main ────────────────────────────────────────────────────── */}
       <div className="cvlab__main">
         <div className="cvlab__rail">
-          <div className="vpanel">
-            <div className="cvpanel__head">Coverage</div>
-            {pickList(cfg.coverage, (id) => patch({ coverage: id }))}
-          </div>
-          {compare && (
-            <div className="vpanel">
-              <div className="cvpanel__head">Compare against</div>
-              {pickList(cfg.compareWith, (id) => patch({ compareWith: id }))}
-            </div>
+          {isLearn ? (
+            <LessonNav learn={learn} onOpenLesson={openLesson} onOpenDrill={openDrill} />
+          ) : (
+            <>
+              <div className="vpanel">
+                <div className="cvpanel__head">Coverage</div>
+                {pickList(cfg.coverage, (id) => patch({ coverage: id }))}
+              </div>
+              {compare && (
+                <div className="vpanel">
+                  <div className="cvpanel__head">Compare against</div>
+                  {pickList(cfg.compareWith, (id) => patch({ compareWith: id }))}
+                </div>
+              )}
+            </>
           )}
         </div>
 
@@ -316,7 +368,24 @@ export default function CoverageLab({ lab, setLab }) {
           <div className="planner__hint">{FORMATIONS[cfg.formation].blurb}</div>
         </div>
 
-        <CoverageBriefing cov={covA} ctx={ctx} />
+        {isLearn && learn.current === '__drill' ? (
+          <DrillPanel
+            misses={learn.misses}
+            onClear={clearMiss}
+            onLoadSetup={loadDrillSetup}
+            onExit={exitDrill}
+          />
+        ) : isLearn && activeLesson ? (
+          <LessonPanel
+            key={activeLesson.id}
+            lesson={activeLesson}
+            learn={learn}
+            onAnswer={handleAnswer}
+            onOpenLesson={openLesson}
+          />
+        ) : (
+          <CoverageBriefing cov={covA} ctx={ctx} />
+        )}
       </div>
     </div>
   );

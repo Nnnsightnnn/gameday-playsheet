@@ -104,6 +104,16 @@ Run `npm test` after any rule edit.
 **Standalone reference:** `docs/coverage-lab-standalone.html` — self-contained,
 opens without the dev server. Not kept in sync with the React version.
 
+**Learn mode (third seg tab):** sequenced curriculum in
+`src/lib/coverage/lessons.js` (4 modules / 14 lessons — match foundations,
+quarters family, Rip/Liz, man enhancers), rendered by
+`src/components/coverage/LessonMode.jsx` (LessonNav / LessonPanel / DrillPanel).
+Lesson setups use `view: 'study'|'compare'` (NOT `mode` — that would exit learn
+mode); progress persists in `coverageLab.learn` (`current`, `done`, `misses`).
+Missed quiz questions queue into a drill; miss keys are `lessonId:qIdx`.
+`lessons.test.js` pins lesson claims to the engine (e.g. corner = VERT, Palms
+trap fires on OUT only).
+
 ---
 
 ## Common Commands
