@@ -1,21 +1,21 @@
-// Falcons (Madden 27) offense + defense — built 2026-08-07, Madden 27
-// launch window (early access Aug 6, no title update yet). Every playId is
-// validated against public/data/playbooks.json (version 27, huddle.gg) by
-// src/data/__tests__/gameplans.test.js.
+// Falcons (Madden 27) offense + defense — rebuilt 2026-08-07 around the
+// REAL 2026 Falcons: Kevin Stefanski / Tommy Rees wide-zone identity and the
+// M27 roster, not the underdog clock-bleed doctrine. Pre-TU1 (early access
+// Aug 6); refresh after first patch. Every playId validated against
+// public/data/playbooks.json (version 27) by gameplans.test.js.
 //
 // Doctrine (see docs/falcons-gameplan.md):
-// - Underdog ball: shorten the game, bleed clock, take the checkdown.
-// - Offense lives in 4 pictures: Pistol Bunch TE (base), Gun Bunch (money
-//   page), Gun Trips TE Flex (quick game), Gun Tight Y Off (motion/run) —
-//   with Singleback Wing Slot as the under-center counter-look and
-//   Gun Tight Flex / Y Off Trips Close as low-usage identity sets.
-// - Defense lives in ONE package: Nickel 2-4 Dbl Mug. Base / Tempo holds the
-//   four blind-safe calls (C3 Sky / Tampa 2 / C2 Invert / Blitz Loop 3).
-//   Blind blitzes only with a 3-deep net. MID BLITZ 0 is seen-look only.
-// - Launch-window notes: new WR/DB hand-fighting punishes press with bad
-//   corners (play off/cloud — this plan already does); watch the CFB-engine
-//   C3 Match-vs-bunch bug — fall back to Tampa 2 / Cover 6 vs bunch if it
-//   shows up in M27 before the first title update.
+// - IDENTITY BALL: impose wide zone (Bijan 95 behind Lindstrom 96 RBK) until
+//   they overcommit, then manufacture explosives off the same run action —
+//   boots, drag-wheel, deep overs, Pitts (90 spd) seams.
+// - Offense home: Singleback Wing Tight (the whole stretch/duo/boot series
+//   in one picture). Y Trips Close = jet dressing (Branch 95 spd).
+//   I Form Close = 21-personnel shots. Gun Bunch = 3rd-down money page.
+// - QB modes: Penix 92 THP / 76 DAC → DRIVEN throws (seams, digs, overs),
+//   no moonballs. London (97 CTH/JMP) is the one exception: 1-on-1, throw it.
+// - Defense = Ulbrich: boring on purpose early (C3/quarters binary), violent
+//   on 3rd (mug sims, robber press: Terrell 95 PRS presses, Bates 94 robs).
+//   Bates IS the user. Tempo block unchanged — blind-safe Dbl Mug audibles.
 
 const OFF = 'Falcons'
 const DEF = 'Falcons'
@@ -26,84 +26,82 @@ export const FALCONS_PLAN = {
   guide: 'gameplan-falcons.html',
   offense: {
     openers: [
-      { playId: 'falcons-off-pistol-bunch-te-hb-zone', name: 'HB ZONE', type: 'run', formation: 'Pistol Bunch TE', playbook: OFF, note: 'Count the box: 6 or fewer, hand it' },
-      { playId: 'falcons-off-pistol-bunch-te-cross-drag', name: 'CROSS DRAG', type: 'pass', formation: 'Pistol Bunch TE', playbook: OFF, note: 'Drag hits late behind flowing LBs' },
-      { playId: 'falcons-off-gun-trips-te-flex-stick', name: 'STICK', type: 'pass', formation: 'Gun Trips TE Flex', playbook: OFF, note: 'Flat taken = zone · trailed = man' },
-      { playId: 'falcons-off-gun-bunch-mesh-spot', name: 'MESH SPOT', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Drags win = man · spot sits = zone' },
+      { playId: 'falcons-off-singleback-wing-tight-hb-stretch', name: 'HB STRETCH', type: 'run', formation: 'Singleback Wing Tight', playbook: OFF, note: 'Wide zone right: Bijan behind Lindstrom' },
+      { playId: 'falcons-off-singleback-wing-tight-hb-duo', name: 'HB DUO', type: 'run', formation: 'Singleback Wing Tight', playbook: OFF, note: 'Body blow; watch which LB fills' },
+      { playId: 'falcons-off-singleback-wing-tight-pa-boot-flood', name: 'PA BOOT FLOOD', type: 'pass', formation: 'Singleback Wing Tight', playbook: OFF, note: 'Off the stretch; 3 levels, take the flat' },
+      { playId: 'falcons-off-gun-trips-te-flex-stick', name: 'STICK', type: 'pass', formation: 'Gun Trips TE Flex', playbook: OFF, note: 'Rhythm check: flat taken = zone' },
     ],
     first: [
-      { playId: 'falcons-off-pistol-bunch-te-strong-power', name: 'STRONG POWER', type: 'run', formation: 'Pistol Bunch TE', playbook: OFF, note: 'Downhill; same picture as the jet pair' },
-      { playId: 'falcons-off-gun-tight-y-off-duo', name: 'DUO', type: 'pass', formation: 'Gun Tight Y Off', playbook: OFF, note: 'Double teams; tempo in off Scissors' },
-      { playId: 'falcons-off-gun-bunch-hb-base', name: 'HB BASE', type: 'run', formation: 'Gun Bunch', playbook: OFF, note: 'Run from the money page; no telegraph' },
-      { playId: 'falcons-off-pistol-bunch-te-jet-touch-pass', name: 'JET TOUCH PASS', type: 'pass', formation: 'Pistol Bunch TE', playbook: OFF, note: 'Free edge yards; FK HB twin off it' },
-      { playId: 'falcons-off-gun-wing-slot-offset-mtn-jet-touch-pass', name: 'MTN JET TOUCH PASS', type: 'pass', formation: 'Gun Wing Slot Offset', playbook: OFF, note: 'Jet page: same motion, three outcomes' },
-      { playId: 'falcons-off-gun-wing-slot-offset-mtn-jet-hb-duo', name: 'MTN JET HB DUO', type: 'run', formation: 'Gun Wing Slot Offset', playbook: OFF, note: 'Duo handoff off identical jet motion' },
+      { playId: 'falcons-off-singleback-wing-tight-hb-stretch', name: 'HB STRETCH', type: 'run', formation: 'Singleback Wing Tight', playbook: OFF, note: 'The identity; run till they overcommit' },
+      { playId: 'falcons-off-singleback-wing-tight-hb-zone-wk', name: 'HB ZONE WK', type: 'run', formation: 'Singleback Wing Tight', playbook: OFF, note: 'Same picture, opposite track' },
+      { playId: 'falcons-off-singleback-y-trips-close-mtn-jet-wide-zone', name: 'MTN JET WIDE ZONE', type: 'pass', formation: 'Singleback Y Trips Close', playbook: OFF, note: 'Jet motion widens the edge for Bijan' },
+      { playId: 'falcons-off-singleback-y-trips-close-jet-6-soar', name: 'JET 6 SOAR', type: 'pass', formation: 'Singleback Y Trips Close', playbook: OFF, note: 'Branch 95 speed around the corner' },
+      { playId: 'falcons-off-singleback-wing-pair-pa-te-seam', name: 'PA TE SEAM', type: 'pass', formation: 'Singleback Wing Pair', playbook: OFF, note: 'Pitts 90 spd vs LB: drive the seam' },
     ],
     '2short': [
-      { playId: 'falcons-off-gun-tight-y-off-0-1-trap', name: '0 1 TRAP', type: 'run', formation: 'Gun Tight Y Off', playbook: OFF, note: 'Fastest 3 yards in the book' },
-      { playId: 'falcons-off-singleback-wing-slot-hb-zone-wk', name: 'HB ZONE WK', type: 'run', formation: 'Singleback Wing Slot', playbook: OFF, note: 'Weak zone away from the loaded box' },
-      { playId: 'falcons-off-pistol-u-off-trips-pa-y-corner', name: 'PA Y CORNER', type: 'pass', formation: 'Pistol U Off Trips', playbook: OFF, note: 'Free-shot down; eat it if capped' },
+      { playId: 'falcons-off-singleback-wing-tight-hb-duo', name: 'HB DUO', type: 'run', formation: 'Singleback Wing Tight', playbook: OFF, note: 'Duo moves the pile; sticks first' },
+      { playId: 'falcons-off-i-form-close-hb-iso', name: 'HB ISO', type: 'run', formation: 'I Form Close', playbook: OFF, note: '21-personnel hammer downhill' },
+      { playId: 'falcons-off-singleback-wing-tight-fake-hb-zone-qb-boot', name: 'FAKE HB ZONE QB BOOT', type: 'run', formation: 'Singleback Wing Tight', playbook: OFF, note: 'They sell out on zone → walk-in boot' },
     ],
     '2long': [
-      { playId: 'falcons-off-gun-bunch-hb-slip-screen', name: 'HB SLIP SCREEN', type: 'run', formation: 'Gun Bunch', playbook: OFF, note: 'Beats blitz AND soft zone; Bijan in space' },
+      { playId: 'falcons-off-gun-bunch-hb-slip-screen', name: 'HB SLIP SCREEN', type: 'run', formation: 'Gun Bunch', playbook: OFF, note: 'Bijan in space; 97 juke does the rest' },
+      { playId: 'falcons-off-singleback-wing-tight-z-pa-y--drag-wheel', name: 'PA Y-DRAG WHEEL', type: 'pass', formation: 'Singleback Wing Tight Z', playbook: OFF, note: 'Stefanski staple: wheel sneaks out' },
       { playId: 'falcons-off-gun-trips-te-flex-hb-angle', name: 'HB ANGLE', type: 'run', formation: 'Gun Trips TE Flex', playbook: OFF, note: 'Bijan on a LB; option the leverage' },
-      { playId: 'falcons-off-gun-bunch-speed-dig', name: 'SPEED DIG', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Dig behind the hooks; back on schedule' },
-      { playId: 'falcons-off-gun-trey-y--flex-hb-draw', name: 'HB DRAW', type: 'run', formation: 'Gun Trey Y-Flex', playbook: OFF, note: 'Vs 2-man / soft shells playing sticks' },
+      { playId: 'falcons-off-singleback-wing-tight-z-drive', name: 'DRIVE', type: 'pass', formation: 'Singleback Wing Tight Z', playbook: OFF, note: 'Layered crossers; shallow + YAC' },
     ],
     '3short': [
-      { playId: 'falcons-off-gun-trips-te-flex-stick', name: 'STICK', type: 'pass', formation: 'Gun Trips TE Flex', playbook: OFF, note: 'Stick vs zone, flat vs man; ball out' },
-      { playId: 'falcons-off-gun-bunch-spacing', name: 'SPACING', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Five windows; one sits at the sticks' },
-      { playId: 'falcons-off-pistol-bunch-te-spot-y-option', name: 'SPOT Y OPTION', type: 'run', formation: 'Pistol Bunch TE', playbook: OFF, note: 'Option route reads leverage for you' },
-      { playId: 'falcons-off-gun-tight-y-off-cheat-spot-y-quick', name: 'CHEAT SPOT Y QUICK', type: 'pass', formation: 'Gun Tight Y Off', playbook: OFF, note: 'Cheat motion spot; instant throw' },
+      { playId: 'falcons-off-singleback-wing-tight-y-stick', name: 'Y STICK', type: 'pass', formation: 'Singleback Wing Tight', playbook: OFF, note: 'Stick off the run picture; ball out' },
+      { playId: 'falcons-off-gun-bunch-spacing', name: 'SPACING', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Five windows; one at the sticks' },
+      { playId: 'falcons-off-singleback-y-trips-close-mesh', name: 'MESH', type: 'pass', formation: 'Singleback Y Trips Close', playbook: OFF, note: 'Man answer: rubs, London option late' },
     ],
     '3med': [
-      { playId: 'falcons-off-gun-bunch-mesh-spot', name: 'MESH SPOT', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Best 3rd&5 call: drags man, spot zone' },
-      { playId: 'falcons-off-gun-tight-y-off-hb-scissors', name: 'HB SCISSORS', type: 'run', formation: 'Gun Tight Y Off', playbook: OFF, note: 'TE, HB seam, backside in — clean read' },
-      { playId: 'falcons-off-gun-bunch-y-curl', name: 'Y CURL', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Curl-flat vs C3; throw at the break' },
-      { playId: 'falcons-off-gun-deuce-close-stick-switch', name: 'STICK SWITCH', type: 'pass', formation: 'Gun Deuce Close', playbook: OFF, note: 'Switch-release stick beats press zone' },
+      { playId: 'falcons-off-gun-bunch-mesh-spot', name: 'MESH SPOT', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Drags man, spot zone' },
+      { playId: 'falcons-off-singleback-wing-tight-z-curl-flat-seam', name: 'CURL FLAT SEAM', type: 'pass', formation: 'Singleback Wing Tight Z', playbook: OFF, note: 'Rhythm triangle; Pitts seam alert' },
+      { playId: 'falcons-off-singleback-wing-tight-stick-nod-vertical', name: 'STICK NOD VERTICAL', type: 'pass', formation: 'Singleback Wing Tight', playbook: OFF, note: 'After sticks all day: nod goes top' },
+      { playId: 'falcons-off-gun-bunch-y-curl', name: 'Y CURL', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Curl-flat vs C3; throw the break' },
     ],
     '3long': [
-      { playId: 'falcons-off-gun-trey-y--flex-dagger', name: 'DAGGER', type: 'pass', formation: 'Gun Trey Y-Flex', playbook: OFF, note: 'Seam clears it, dig arrives at 15' },
-      { playId: 'falcons-off-gun-bunch-dig-return', name: 'DIG RETURN', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Return settles vs zone at the sticks' },
+      { playId: 'falcons-off-gun-trey-y--flex-dagger', name: 'DAGGER', type: 'pass', formation: 'Gun Trey Y-Flex', playbook: OFF, note: 'Seam clears, dig at 15; drive it' },
+      { playId: 'falcons-off-gun-bunch-dig-return', name: 'DIG RETURN', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Return settles vs zone at sticks' },
+      { playId: 'falcons-off-gun-trey-y--flex-cross-flood', name: 'CROSS FLOOD', type: 'pass', formation: 'Gun Trey Y-Flex', playbook: OFF, note: 'Three-level flood; sail at sticks' },
       { playId: 'falcons-off-gun-y-off-trips-close-y--option-wheel', name: 'Y-OPTION WHEEL', type: 'run', formation: 'Gun Y Off Trips Close', playbook: OFF, note: 'TE option or HB wheel; both convert' },
-      { playId: 'falcons-off-gun-bunch-wide-nasty-flood-switch', name: 'FLOOD SWITCH', type: 'pass', formation: 'Gun Bunch Wide Nasty', playbook: OFF, note: 'Nasty-split flood nobody labs' },
     ],
     shots: [
-      { playId: 'falcons-off-gun-tight-flex-pa-post-shot', name: 'PA POST SHOT', type: 'pass', formation: 'Gun Tight Flex', playbook: OFF, note: 'Man destroyer; one per half vs C1' },
-      { playId: 'falcons-off-singleback-wing-slot-pa-cross-shot', name: 'PA CROSS SHOT', type: 'pass', formation: 'Singleback Wing Slot', playbook: OFF, note: 'Same picture as MTN WIDE ZONE WK' },
-      { playId: 'falcons-off-gun-tight-y-off-mtn-pa-spinner', name: 'MTN PA SPINNER', type: 'pass', formation: 'Gun Tight Y Off', playbook: OFF, note: 'Spinner freezes LBs; crosser clean' },
-      { playId: 'falcons-off-gun-y-off-trips-close-mtn-empty-hb-sluggo', name: 'MTN EMPTY HB SLUGGO', type: 'run', formation: 'Gun Y Off Trips Close', playbook: OFF, note: 'Bijan sluggo on a LB; take the top' },
+      { playId: 'falcons-off-i-form-close-pa-deep-cross-go', name: 'PA DEEP CROSS GO', type: 'pass', formation: 'I Form Close', playbook: OFF, note: '21-pers shot: go clears, cross behind' },
+      { playId: 'falcons-off-gun-deuce-close-pa-deep-over', name: 'PA DEEP OVER', type: 'pass', formation: 'Gun Deuce Close', playbook: OFF, note: 'Deep over off zone action; drive it' },
+      { playId: 'falcons-off-singleback-wing-slot-pa-cross-shot', name: 'PA CROSS SHOT', type: 'pass', formation: 'Singleback Wing Slot', playbook: OFF, note: 'Same picture as the wide zone' },
+      { playId: 'falcons-off-singleback-wing-slot-four-verticals', name: 'FOUR VERTICALS', type: 'pass', formation: 'Singleback Wing Slot', playbook: OFF, note: 'London wins the outside vert 1-on-1' },
     ],
     redzone: [
       { playId: 'falcons-off-gun-bunch-smash-return', name: 'SMASH RETURN', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Hole shot vs C2 · return vs man' },
-      { playId: 'falcons-off-gun-tight-y-off-te-corner', name: 'TE CORNER', type: 'pass', formation: 'Gun Tight Y Off', playbook: OFF, note: 'Back-corner ball only the TE gets' },
-      { playId: 'falcons-off-gun-tight-flex-double-spot', name: 'DOUBLE SPOT', type: 'pass', formation: 'Gun Tight Flex', playbook: OFF, note: 'Twin triangles; take the vacated LB' },
+      { playId: 'falcons-off-gun-tight-y-off-te-corner', name: 'TE CORNER', type: 'pass', formation: 'Gun Tight Y Off', playbook: OFF, note: 'Pitts corner; only he gets it' },
+      { playId: 'falcons-off-i-form-y-off-close-pa-pylon-sail', name: 'PA PYLON SAIL', type: 'pass', formation: 'I Form Y Off Close', playbook: OFF, note: 'Pylon sail; London to the corner' },
       { playId: 'falcons-off-gun-y-off-trips-close-mtn-corners', name: 'MTN CORNERS', type: 'pass', formation: 'Gun Y Off Trips Close', playbook: OFF, note: 'Motion corners vs 2-high RZ shells' },
     ],
     goalline: [
       { playId: 'falcons-off-goal-line-normal-qb-sneak', name: 'QB SNEAK', type: 'run', formation: 'Goal Line', playbook: OFF, note: 'Under a yard: free yardage' },
       { playId: 'falcons-off-goal-line-normal-power-o', name: 'POWER O', type: 'run', formation: 'Goal Line', playbook: OFF, note: 'Follow the puller' },
-      { playId: 'falcons-off-goal-line-normal-pa-spot', name: 'PA SPOT', type: 'pass', formation: 'Goal Line', playbook: OFF, note: 'After two pounds; they sell out' },
-      { playId: 'falcons-off-pistol-bunch-te-strong-power', name: 'STRONG POWER', type: 'run', formation: 'Pistol Bunch TE', playbook: OFF, note: 'From the 2-3: no heavy telegraph' },
+      { playId: 'falcons-off-goal-line-normal-pa-waggle', name: 'PA WAGGLE', type: 'pass', formation: 'Goal Line', playbook: OFF, note: 'Keeper after two pounds inside' },
+      { playId: 'falcons-off-goal-line-normal-strong-toss', name: 'STRONG TOSS', type: 'run', formation: 'Goal Line', playbook: OFF, note: 'Edge vs a pinched 6-2' },
     ],
     twomin: [
       { playId: 'falcons-off-gun-bunch-bench-pivot', name: 'BENCH PIVOT', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Double sideline breakers; clock stops' },
       { playId: 'falcons-off-gun-deuce-close-bench-dig-curl', name: 'BENCH DIG CURL', type: 'pass', formation: 'Gun Deuce Close', playbook: OFF, note: 'Bench for OB; dig if overplayed' },
-      { playId: 'falcons-off-gun-bunch-verticals', name: 'VERTICALS', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Chunk or checkdown; tempo repeatable' },
+      { playId: 'falcons-off-gun-bunch-verticals', name: 'VERTICALS', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Chunk or checkdown; repeatable' },
       { playId: 'falcons-off-gun-trey-y--flex-dagger', name: 'DAGGER', type: 'pass', formation: 'Gun Trey Y-Flex', playbook: OFF, note: 'FG-drive window: the dig is catchable' },
     ],
     backedup: [
-      { playId: 'falcons-off-pistol-bunch-te-hb-zone', name: 'HB ZONE', type: 'run', formation: 'Pistol Bunch TE', playbook: OFF, note: 'Zero-risk breathing room' },
-      { playId: 'falcons-off-gun-trips-te-flex-stick', name: 'STICK', type: 'pass', formation: 'Gun Trips TE Flex', playbook: OFF, note: 'Safest dropback; HB flat vs heat' },
-      { playId: 'falcons-off-gun-empty-chips-quads-hb-screen', name: 'HB SCREEN', type: 'run', formation: 'Gun Empty Chips Quads', playbook: OFF, note: 'Chip empty: no free rusher, safe air' },
-      { playId: 'falcons-off-singleback-wing-slot-mtn-wide-zone-wk', name: 'MTN WIDE ZONE WK', type: 'pass', formation: 'Singleback Wing Slot', playbook: OFF, note: 'Motion wide zone; flow from danger' },
+      { playId: 'falcons-off-singleback-wing-tight-hb-stretch', name: 'HB STRETCH', type: 'run', formation: 'Singleback Wing Tight', playbook: OFF, note: 'Run out of the shadow' },
+      { playId: 'falcons-off-singleback-wing-tight-y-stick', name: 'Y STICK', type: 'pass', formation: 'Singleback Wing Tight', playbook: OFF, note: 'Safe rhythm throw' },
+      { playId: 'falcons-off-singleback-wing-tight-pa-boot-slide', name: 'PA BOOT SLIDE', type: 'pass', formation: 'Singleback Wing Tight', playbook: OFF, note: 'Boot away from the rush; flat free' },
+      { playId: 'falcons-off-gun-empty-chips-quads-hb-screen', name: 'HB SCREEN', type: 'run', formation: 'Gun Empty Chips Quads', playbook: OFF, note: 'Chip empty; no free rusher' },
     ],
   },
   defense: {
     base: [
-      { playId: 'falcons-def-nickel-2--4-dbl-mug-cover-3-sky', name: 'COVER 3 SKY', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Blind default: 3-deep, sky run fit' },
-      { playId: 'falcons-def-nickel-2--4-dbl-mug-tampa-2', name: 'TAMPA 2', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Blind #2 vs crosser / drag diets' },
-      { playId: 'falcons-def-nickel-2--4-dbl-mug-cover-2-invert', name: 'COVER 2 INVERT', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Blind vs quick outs & flat tempo' },
+      { playId: 'falcons-def-nickel-2--4-dbl-mug-cover-3-sky', name: 'COVER 3 SKY', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Blind default; Bates owns the post' },
+      { playId: 'falcons-def-nickel-2--4-dbl-mug-cover-3-seam', name: 'COVER 3 SEAM', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Seams carried; same C3 rules' },
+      { playId: 'falcons-def-nickel-2--4-dbl-mug-tampa-2', name: 'TAMPA 2', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Crosser eraser; Bates poles it' },
       { playId: 'falcons-def-nickel-2--4-dbl-mug-blitz-loop-3', name: 'BLITZ LOOP 3', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Only blind blitz: 3-deep parachute' },
     ],
     vs10: [
@@ -112,14 +110,14 @@ export const FALCONS_PLAN = {
       { playId: 'falcons-def-nickel-2--4-cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: 'Nickel 2-4', playbook: DEF, note: 'Verts carried; corners get help' },
     ],
     vs12: [
-      { playId: 'falcons-def-nickel-2--4-cover-4-palms', name: 'COVER 4 PALMS', type: 'pass', formation: 'Nickel 2-4', playbook: DEF, note: 'Safeties trigger the run; PA capped' },
+      { playId: 'falcons-def-3--4-odd-cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: '3-4 Odd', playbook: DEF, note: 'Ulbrich early-down anchor' },
+      { playId: 'falcons-def-3--4-odd-cover-4-quarters', name: 'COVER 4 QUARTERS', type: 'pass', formation: '3-4 Odd', playbook: DEF, note: 'The split-field partner call' },
       { playId: 'falcons-def-nickel-2--4-dbl-mug-nickel-dog-3-buzz', name: 'NICKEL DOG 3 BUZZ', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Extra box hats, still 3 deep' },
-      { playId: 'falcons-def-nickel-2--4-cover-6', name: 'COVER 6', type: 'pass', formation: 'Nickel 2-4', playbook: DEF, note: 'Squat the bunch/TE side; qtrs away' },
     ],
     heavy: [
       { playId: 'falcons-def-3--4-odd-pinch-buck-o', name: 'PINCH BUCK O', type: 'pass', formation: '3-4 Odd', playbook: DEF, note: 'Pinch + buck heat; run stuffed' },
+      { playId: 'falcons-def-3--4-cub-sting-pinch', name: 'STING PINCH', type: 'pass', formation: '3-4 Cub', playbook: DEF, note: 'Cub heavy front; gaps stung' },
       { playId: 'falcons-def-3--4-odd-cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: '3-4 Odd', playbook: DEF, note: 'Sound vs PA off heavy sets' },
-      { playId: 'falcons-def-3--4-odd-cover-4-quarters', name: 'COVER 4 QUARTERS', type: 'pass', formation: '3-4 Odd', playbook: DEF, note: 'Vs 21 PA shots; safeties fit late' },
     ],
     '3short': [
       { playId: 'falcons-def-nickel-2--4-dbl-mug-blitz-loop-3', name: 'BLITZ LOOP 3', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'A-gap loop; heat with a 3-deep net' },
@@ -128,15 +126,15 @@ export const FALCONS_PLAN = {
       { playId: 'falcons-def-nickel-2--4-dbl-mug-mid-blitz-0', name: 'MID BLITZ 0', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Seen-look only — never call blind' },
     ],
     '3long': [
+      { playId: 'falcons-def-dime-3--2-rush-mug-sim-pressure', name: 'MUG SIM PRESSURE', type: 'pass', formation: 'Dime 3-2 Rush', playbook: DEF, note: 'Show 6 from dime, rush 4' },
+      { playId: 'falcons-def-dime-3--2-rush-cover-1-robber-press', name: 'COVER 1 ROBBER PRESS', type: 'pass', formation: 'Dime 3-2 Rush', playbook: DEF, note: 'Terrell presses; Bates robs the dig' },
       { playId: 'falcons-def-dime-2--3-cover-3-sammie', name: 'COVER 3 SAMMIE', type: 'pass', formation: 'Dime 2-3', playbook: DEF, note: 'Built for 3rd & 8+; rally under' },
       { playId: 'falcons-def-quarter-normal-overload-3', name: 'OVERLOAD 3', type: 'pass', formation: 'Quarter Normal', playbook: DEF, note: 'Overload rush, 3-deep umbrella' },
-      { playId: 'falcons-def-nickel-2--4-tampa-2', name: 'TAMPA 2', type: 'pass', formation: 'Nickel 2-4', playbook: DEF, note: 'Pole runner erases the dig' },
-      { playId: 'falcons-def-dime-2--3-field-sim-3', name: 'FIELD SIM 3', type: 'pass', formation: 'Dime 2-3', playbook: DEF, note: 'Sim heat without leaving the shell' },
     ],
     pressure: [
       { playId: 'falcons-def-nickel-2--4-dbl-mug-ss-blitz-3', name: 'SS BLITZ 3', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Best disguised 5-man; 3 behind' },
       { playId: 'falcons-def-nickel-2--4-load-mug-nickel-blitz-3', name: 'NICKEL BLITZ 3', type: 'pass', formation: 'Nickel 2-4 Load Mug', playbook: DEF, note: 'Slot heat; brutal vs weak slide' },
-      { playId: 'falcons-def-nickel-2--4-dbl-mug-field-sim-3', name: 'FIELD SIM 3', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'QB reads blitz, gets four' },
+      { playId: 'falcons-def-2--4--5-over-wide-free-fire-3', name: 'FREE FIRE 3', type: 'pass', formation: '2-4-5 Over Wide', playbook: DEF, note: 'Wide-9 speed: Pearce + Walker fly' },
       { playId: 'falcons-def-3--3--5-penny-slot-blitz-3', name: 'SLOT BLITZ 3', type: 'pass', formation: '3-3-5 Penny', playbook: DEF, note: 'Fresh picture, same 3-deep rules' },
     ],
     redzone: [

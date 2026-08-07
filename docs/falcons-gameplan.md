@@ -1,143 +1,129 @@
-# Falcons Game Plan — Madden 27 (Online H2H)
+# Falcons Game Plan — Madden 27 (Online H2H) · v2 Identity Build
 
-Built Aug 7, 2026 · Madden 27 launch window (early access Aug 6, pre-TU1).
-Companion to the in-app plan (`src/data/gameplans-falcons.js`) and the styled
-guide (`docs/falcons-gameplan.html`, served at `public/gameplan-falcons.html`).
-Every play name below is machine-validated against the Madden 27 huddle.gg
-catalog (`public/data/playbooks.json`, version 27).
+Rebuilt Aug 7, 2026 around the REAL 2026 Falcons (Stefanski/Rees) and the M27
+roster — not the underdog clock-bleed doctrine. Pre-TU1 (early access Aug 6);
+refresh after the first patch. Companion to `src/data/gameplans-falcons.js`
+and `docs/falcons-gameplan.html` (served at `public/gameplan-falcons.html`).
+Every play name machine-validated against `public/data/playbooks.json` (v27).
 
-## Doctrine
+## Doctrine — identity ball
 
-Worse roster → turn a 12-possession game into a 7-possession game: bleed
-clock every snap, take the checkdown, and make scheme conflict (rubs,
-options, motion) beat talent.
+Impose wide zone until the defense overcommits, then manufacture explosives
+off the exact same picture: boots, drag-wheels, deep overs, seams. Stack body
+blows until the knockout window opens.
 
-1. Milk the play clock under 5 unless trailing late.
-2. Long drives ARE the defense — every first down deletes 40+ seconds of
-   their offense.
-3. No 50/50 lobs; M27's WR/DB hand-fighting makes contested balls worse for
-   the worse roster. Checkdowns and in-bounds completions.
-4. Variance only at decision points: go on 4th-and-short past midfield. M27
-   shipped a dedicated Tush Push play — until patched it's your 4th-and-1
-   too.
-5. Take points early when drives stall; late, down 4–8, the conversion
-   usually beats the field goal.
+1. Run to set up the shot, not to kill clock — 50%+ early-down run rate is
+   what makes PA lethal (2025 Falcons ran the league's fewest PA passes and
+   everyone got fired).
+2. Every explosive comes off run action, dressed as HB STRETCH.
+3. Driven balls, not moonballs — Penix 92 THP / 76 DAC: bullet seams, digs,
+   overs. Lone lob exception: London 1-on-1 (97 CTH/JMP wins the ball).
+   Tua mode (if he starts): sub-2.5s rhythm game instead.
+4. Feed the matchup menu: they can't bracket London, carry Pitts (90 SPD)
+   up the seam, AND hat Bijan underneath. Take what's conceded.
+5. Measured aggression: go on 4th-and-2-or-less inside their 45 (duo/sneak).
 
-Why the Falcons book: consensus top-5 offense at M27 launch (Civil.GG),
-run-first pistol base, the Gun Bunch money page, HB ANGLE for Bijan, and a
-defensive book that natively carries the full Nickel 2-4 mug family.
+## Roster weapons
 
-## Offense — where you live
+Bijan 95 X-Factor (97 JKM, one-cut zone + space touches) · London 92 SS
+(97 CTH/JMP, 95 RLS — contested/red zone king) · Pitts 81 but 90 SPD (run
+him vertical only, 66 DRR) · Dotson 92 SPD (vertical WR2) · Branch 95 SPD
+(jets/gadgets) · Run RIGHT behind Lindstrom (96 RBK, SS) + Neuzil (91 RBF);
+Matthews locks blind side; interior pass-pro is the leak — chip on obvious
+pass downs. QBs: Penix = velocity mode, Tua (84 DAC, 89 PA) = rhythm mode.
 
-Four pictures (tendency laundering), one under-center counter-look:
+## Offense — the Stefanski identity
 
-- **Pistol Bunch TE (base)** — HB ZONE / STRONG POWER ground game, CROSS
-  DRAG + STICK with zero hot routes, JET TOUCH PASS pair.
-- **Gun Bunch (money page)** — MESH SPOT, SPACING, Y CURL, SMASH RETURN,
-  DIG RETURN, BENCH PIVOT, HB BASE, HB SLIP SCREEN. Only 7 books have it.
-- **Gun Trips TE Flex (quick game)** — STICK (four years a top stock play),
-  HB ANGLE (Bijan vs a LB = mismatch every snap).
-- **Gun Tight Y Off (motion/run)** — DUO, 0 1 TRAP, HB SCISSORS, TE CORNER,
-  MTN spinner series.
-- **Singleback Wing Slot (counter-look)** — HB ZONE WK, MTN WIDE ZONE WK,
-  PA CROSS SHOT off the same picture.
+**Home: Singleback Wing Tight** — the whole offense in one picture:
+HB STRETCH / HB ZONE WK / HB DUO / HB POWER O ground game; FAKE HB ZONE QB
+BOOT, PA BOOT FLOOD, PA BOOT SLIDE, PA WHEEL SLIDE, PA Y-DRAG WHEEL, Y STICK,
+STICK NOD VERTICAL off the identical look. (Same formation lives in Browns +
+Vikings books — Stefanski's old teams.)
 
-Identity sets nobody labs: Gun Tight Flex (PA POST SHOT — the man destroyer;
-DOUBLE SPOT), Gun Y Off Trips Close (Y-OPTION WHEEL, MTN CORNERS, MTN EMPTY
-HB SLUGGO), Gun Bunch Wide Nasty (FLOOD SWITCH), Gun Empty Chips Quads
-(HB SCREEN — chip-protected empty), Gun Wing Slot Offset (MTN JET page:
-touch pass / HB DUO / PA cross off identical motion).
+Supporting pictures: **Singleback Y Trips Close** (jet dressing: MTN JET WIDE
+ZONE, JET 6 SOAR for Branch, MESH) · **I Form Close / Y Off Close** (21-pers:
+HB ISO, PA DEEP CROSS GO, PA PYLON SAIL shots) · **Gun Bunch** (3rd-down
+money: MESH SPOT, SPACING, Y CURL, SMASH RETURN) · **Gun Trips TE Flex**
+(STICK, HB ANGLE) · **Gun Trey Y-Flex** (DAGGER, CROSS FLOOD).
 
-Coverage beaters — C2: SMASH RETURN, VERTICALS, LEVELS SAIL. C3: Y CURL,
-FLOOD SWITCH, DAGGER. C1 man: MESH SPOT, CROSS DRAG, PA POST SHOT, HB ANGLE.
-C4: run it (HB ZONE / DUO), STICK + SPACING underneath. Blitz: STICK hot,
-HB SLIP SCREEN, CHEAT HB JAILBREAK SCREEN, RPO PEEK SLANT BUBBLE.
+Sequencing engine: STRETCH → STRETCH → boot. DUO → DUO → PA DEEP CROSS GO.
+Jet → jet → JET 6 SOAR for real. The run game is the setup, PA is the payoff.
 
-The Bijan rule: when unsure, get Bijan the ball where a linebacker has to
-tackle him.
+Coverage beaters — C2: SMASH RETURN, FOUR VERTICALS (London outside),
+CURL FLAT SEAM. C3: Y CURL, CROSS FLOOD, DAGGER, boot floods. C1: MESH,
+PA Y-DRAG WHEEL, HB ANGLE, London iso. C4: run it + Y STICK. Blitz: STICK
+hot, HB SLIP SCREEN, HB SCREEN (chip empty), PA BOOT SLIDE away.
 
 ## Script 15
 
-Plays 1–3 man/zone + user (HB ZONE, CROSS DRAG, STICK) · 4–6 blitz tendency
-(MESH SPOT on 3rd-and-medium) · 7–9 user location (crosser / flat / seam) ·
-10–12 edge discipline (MTN JET pair, 0 1 TRAP) · 13–15 deep honesty
-(PA POST SHOT, max protect).
+1–3 how does he fit the stretch (STRETCH ×2, DUO) · 4–6 man/zone + user
+(STICK, Y STICK, MESH) · 7–9 does he bite on run action (PA BOOT FLOOD,
+JET 6 SOAR) · 10–12 blitz tendency (MESH SPOT with HB check) · 13–15 deep
+honesty (PA DEEP CROSS GO max protect).
 
 ## 10-branch adjustment tree
 
-1. Man → MESH SPOT, CROSS DRAG, HB ANGLE, jet pair; motion Bijan wide.
-2. Zone → SPACING, Y CURL, STICK; high-low the flat defender.
-3. Known-side blitz → slide to it, STICK flat / slip screen behind it.
-4. Users the middle → flats and seams; pump drag, SPEED DIG behind him.
-5. Drops 8 → HB BASE, HB DRAW, checkdowns, milk clock, zero shame.
-6. 2-high pre-snap → confirm at snap; SMASH RETURN punishes real C2.
-7. Heavy box → HB ZONE WK, OUTSIDE ZONE, jets, PA CROSS SHOT. Light box → run inside.
-8. Inside run stuffed → change track: 0 1 TRAP, MTN JET HB DUO, outside zone.
-9. One-concept spam → remove exactly that route with ONE adjustment.
-10. Tilting → timeout, Pistol Bunch TE HB ZONE + CROSS DRAG. No "improvise" branch.
+1 Man → MESH, drag-wheel, HB ANGLE, London iso. 2 Zone → Y STICK, SPACING,
+Y CURL. 3 Known-side blitz → slide to it, boot away. 4 User middle → Pitts
+seam past him, digs behind. 5 Drops 8 → keep running; Bijan eats. 6
+Overcommits to stretch → THE point: QB boot, drag-wheel, PA DEEP OVER,
+cutback. 7 Heavy box → Y STICK / STICK NOD VERTICAL same picture, or jets.
+8 Stretch stuffed → DUO, ISO, JET 6 SOAR opposite. 9 One-concept spam → one
+adjustment. 10 Tilting → timeout, STRETCH + PA BOOT FLOOD. Identity = reset.
 
-## Defense — one package, personnel first
+## Defense — the Ulbrich blueprint
 
-**Home: Nickel 2-4 Dbl Mug.** Both ILBs mugged every snap; identical picture
-dropping 8 or sending 6. Zone suite (C3 SKY / SEAM, TAMPA 2, C2 INVERT,
-C1 HOLE) + five 3-deep pressures + two sims live here; match coverages
-(C3/C2 MATCH, PALMS, BUZZ MATCH) are one audible away in base Nickel 2-4 —
-same eleven on the field. Zero man-island calls by design; MID BLITZ 0 is
-seen-look only.
+Boring on purpose early (C3/quarters binary, ~never C2), violent on third
+down (the 57-sack sim-pressure package). Bates (94, Shutdown, 95 PRC) IS the
+user — C3 post or low-hole robber. Terrell (88, 95 PRS) shadows their X.
+Front four won't win alone (weak DTs) — pressure by scheme: mugs, sims,
+Pearce/Walker speed off wide alignments.
 
-Blocks: Base/Tempo = C3 SKY · TAMPA 2 · C2 INVERT · BLITZ LOOP 3 (the four
-blind-safe audibles). vs10 = NICKEL SIM 2, C2 MATCH, C3 MATCH. vs12 =
-C4 PALMS, NICKEL DOG 3 BUZZ, COVER 6. Heavy = 3-4 Odd PINCH BUCK O,
-C3 MATCH, C4 QUARTERS (only personnel swap — skip under tempo). Short
-yardage = BLITZ LOOP 3, C2 MATCH, C2 INVERT, MID BLITZ 0 (seen only).
-Obvious pass = Dime 2-3 C3 SAMMIE / FIELD SIM 3, Quarter OVERLOAD 3,
-TAMPA 2. Pressure = SS BLITZ 3, Load Mug NICKEL BLITZ 3, FIELD SIM 3, Penny
-SLOT BLITZ 3 — all with a 3-deep net. Red zone = 2 INVERT HARD FLAT,
-REDZONE DT DROP, C2 MATCH. Goal line = 6-2 60 PINCH, GUTS. Prevent =
-PREVENT (up big only), Dime C3 BUZZ MATCH.
+Blocks: Base/Tempo = C3 SKY · C3 SEAM · TAMPA 2 · BLITZ LOOP 3 (blind-safe
+Dbl Mug). vs10 = NICKEL SIM 2, C2 MATCH, C3 MATCH. vs12 = 3-4 Odd C3 MATCH /
+C4 QUARTERS (the authentic binary), NICKEL DOG 3 BUZZ under tempo. Heavy =
+PINCH BUCK O, STING PINCH (Cub), C3 MATCH. Short yardage = BLITZ LOOP 3,
+C2 MATCH, C2 INVERT, MID BLITZ 0 (seen only). Obvious pass = Dime 3-2 Rush
+MUG SIM PRESSURE + COVER 1 ROBBER PRESS (Terrell presses, Bates robs — the
+Ulbrich fingerprint), C3 SAMMIE, OVERLOAD 3. Pressure = SS BLITZ 3, NICKEL
+BLITZ 3 (Load Mug), FREE FIRE 3 (2-4-5 Over Wide, wide-9 speed), SLOT BLITZ 3
+(Penny). Red zone = 2 INVERT HARD FLAT, REDZONE DT DROP, C2 MATCH. Goal line
+= 60 PINCH, GUTS. Prevent = PREVENT, C3 BUZZ MATCH.
+
+Honest weaknesses: DT interior vs duo/power (commit Bates/Deablo to the box),
+CB2 (75) needs help — never island him, and don't let games become dropback
+shootouts vs elite QBs.
 
 ## Hurry-up protocol
 
-Pre-game: Auto Flip ON · Ball in Air Balanced (Play Ball late with a lead) ·
-Option/RPO keys Conservative as scouted · first free series set flat zones
-30 vs crossers or hard flats 10 vs quick outs (drops persist through
-no-huddle).
+Pre-game: Auto Flip ON · Ball in Air Balanced · Option/RPO Conservative as
+scouted · flats 30 vs crossers or hard flats 10 vs quick outs (persists) ·
+Terrell shadows No. 1. Audibles (Dbl Mug): C3 SKY / C3 SEAM / TAMPA 2 /
+BLITZ LOOP 3. Routine: backfield glance → audible → one global max → user
+Bates. Panic: TAMPA 2, C3 SKY, (+2s) Odd C4 QUARTERS.
 
-Audibles (all Dbl Mug): 1 C3 SKY · 2 TAMPA 2 · 3 C2 INVERT · 4 BLITZ LOOP 3.
+## Cheese counters (≈M26 carryover, labeled)
 
-5-second routine: backfield glance (empty → SKY/INVERT) → audible →
-one global adjustment max (never individual hot routes) → user the mid
-hook, breathe. Panic buttons: TAMPA 2, C3 SKY, (+2s) C4 PALMS.
+Bunch corner/flood → COVER 6 / C3 CLOUD squat to bunch. Crossers → TAMPA 2 /
+C3 BUZZ MATCH, flats 30, Bates low hole. Stretch/toss → NICKEL DOG 3 BUZZ;
+heavy → PINCH BUCK O / STING PINCH. RPO → Conservative key + C2 MATCH.
+Scrambler → C3 SPY; tempo C3 SEAM + contain. Verts tempo → C3 MATCH seen /
+C3 SEAM blind. Tush Push (NEW M27) → 60 PINCH, user A-gap; nerf likely.
+Jet-motion cheese → zone doesn't chase motion.
 
-## Cheese counters (launch window ≈ M26 carryover, labeled)
-
-| Cheese | Counter |
-|---|---|
-| Gun Bunch corner/flood | COVER 6 / C3 CLOUD, squat flat to bunch side |
-| Mesh/crosser spam | TAMPA 2 / C3 BUZZ MATCH, flats 30, user low hole |
-| Stretch/toss spam | NICKEL DOG 3 BUZZ; heavy → PINCH BUCK O |
-| RPO bubble/glance | RPO Key Conservative + hard flats, C2 MATCH |
-| Scrambling QB | C3 SPY (Quarter); tempo → C3 SEAM + QB Contain |
-| Four verts tempo | C3 MATCH seen; blind C3 SKY + user carries #3 seam |
-| Tush Push spam (NEW M27) | 6-2 60 PINCH, user submarine A-gap; nerf likely |
-| Motion-snap jet cheese | Zone doesn't chase motion; stay SKY/match |
-
-Tripwire: CFB 27's Aug 6 patch (same engine) fixed C3 Match vs bunch after
-Underneath/OTT adjustments. If M27 match looks broken vs bunch, fall back to
-TAMPA 2 / COVER 6 until TU1.
+Tripwire: if M27 match coverage breaks vs bunch (CFB engine had the bug,
+patched Aug 6), fall back to TAMPA 2 / COVER 6 until TU1.
 
 ## 25-second ritual
 
-0–5 log one word · 5–10 personnel names the block (defense) / LIVE highlight
-(offense) · 10–15 pick and commit · 15–25 sheet down, eyes up, milk to ~3.
-
-Stillness sharpens sight.
+0–5 log one word · 5–10 personnel names the block · 10–15 pick and commit ·
+15–25 sheet down, eyes up. This build snaps on schedule, not on the play
+clock's last breath. Stillness sharpens sight.
 
 ## Sources
 
-huddle.gg M27 playbook database (catalog scraped 2026-08-07) · Civil.GG M27
-Falcons breakdown + top-5 offenses · Madden Prodigy M27 rankings + defense
-guide · Madden Turf playbook criteria, patch + bug trackers · M26 carryover
-(labeled): Madden School Falcons, MaddenGuides Dbl Mug/Tampa 2 + Gun Bunch
-counters, Madden Academy crossers, Operation Sports defense guide · EA CFB 27
-Aug 6 title update notes (engine watch).
+huddle.gg M27 database (scraped 2026-08-07) · Football Film Room 2026
+Falcons profile · Match Quarters Ulbrich coverage study · SI/Falcoholic beat
+coverage (Stefanski/Rees, QB battle) · AtlantaFalcons.com staff/roster
+trackers · maddenratings.com M27 (Aug 1) · Civil.GG, Madden Prodigy, Madden
+Turf · M26 carryover labeled: MaddenGuides, Madden Academy.
