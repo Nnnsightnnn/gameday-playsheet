@@ -22,6 +22,7 @@
 //   you. Base / Tempo block = the four blind-safe calls. Audible, don't browse.
 
 import { IOWA_PLAN } from './gameplans-iowa'
+import { FALCONS_PLAN } from './gameplans-falcons'
 
 const OFF = 'Ole Miss'
 const DEF = '4-2-5'
@@ -183,4 +184,4 @@ export const OLE_MISS_PLAN = {
   },
 }
 
-export const GAME_PLANS = [OLE_MISS_PLAN, IOWA_PLAN]
+export const GAME_PLANS = [OLE_MISS_PLAN, IOWA_PLAN, FALCONS_PLAN]
