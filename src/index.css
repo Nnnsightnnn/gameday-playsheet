@@ -957,6 +957,28 @@ html, body {
 }
 .tweaks__load:hover { filter: brightness(1.12); }
 
+.tweaks__savebar { display: flex; gap: 6px; align-items: center; }
+.tweaks__input {
+  flex: 1; min-width: 0;
+  background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px; padding: 5px 8px;
+  color: #e8e3d2; font-family: var(--font-body); font-size: 11px;
+}
+.tweaks__input::placeholder { color: #7d7962; }
+.tweaks__input:focus { outline: none; border-color: var(--accent); }
+.tweaks__empty { color: #7d7962; font-size: 10px; font-family: var(--font-mono); }
+.tweaks__sheetinfo { min-width: 0; flex: 1; margin-right: 8px; }
+.tweaks__sheetinfo .tweaks__lbl {
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.tweaks__meta { font-family: var(--font-mono); font-size: 9px; color: #7d7962; margin-top: 2px; }
+.tweaks__del {
+  border: none; border-radius: 6px; padding: 5px 7px;
+  background: rgba(255,90,74,0.12); color: #ff5a4a;
+  font-size: 10px; line-height: 1; cursor: pointer;
+}
+.tweaks__del:hover { background: rgba(255,90,74,0.25); }
+
 .tweaks__fab {
   position: fixed; right: 16px; bottom: 16px; z-index: 70;
   width: 44px; height: 44px; border-radius: 50%; border: none;

@@ -13,6 +13,10 @@ import {
   ensureSheetAssignmentsSeeded,
   ensureFormationsSeeded,
   applyGamePlan,
+  getCallSheets,
+  saveCallSheet,
+  deleteCallSheet,
+  backupCurrentSheet,
   getSetupChecks,
   toggleSetupCheck,
   clearSetupChecks,
@@ -53,6 +57,7 @@ function App() {
   const ctxRow = useLiveQuery(() => getGameContext(), [], null)
   const sheetRow = useLiveQuery(() => getSheetAssignments(), [], null)
   const checksRow = useLiveQuery(() => getSetupChecks(), [], null)
+  const savedSheets = useLiveQuery(() => getCallSheets(), [], null)
 
   const team = settings?.team ?? 'Sentinels'
   const side = settings?.side ?? 'offense'
@@ -196,18 +201,42 @@ function App() {
     })
   }
 
+  // Loads a curated game plan or a saved call sheet — same shape either way.
+  // The current sheet is auto-backed up first so a load is always recoverable.
   const loadPlan = async (plan, side = 'both') => {
     const label = plan.game === 'cfb' ? 'CFB' : 'Madden'
     const scope =
       side === 'both' ? 'offense + defense' : `${side} only — your ${side === 'offense' ? 'defense' : 'offense'} is untouched`
     const ok = window.confirm(
-      `Replace your ${label} call sheet (${scope}) with the ${plan.name} game plan?`,
+      `Replace your ${label} call sheet (${scope}) with “${plan.name}”?\n\nYour current sheet is saved as an auto-backup you can reload from Tweaks.`,
     )
     if (!ok) return
+    await backupCurrentSheet(plan.game, plan.name)
     await applyGamePlan(plan.game, plan, side)
     if (game !== plan.game) setGame(plan.game)
     const suffix = side === 'both' ? '' : ` (${side})`
     showToast(plan.name + suffix + ' loaded', '#2f7d4f')
+  }
+
+  // Save the current game's sheet (both sides) as a named snapshot.
+  const saveCurrentSheet = async (name) => {
+    const label = game === 'cfb' ? 'CFB' : 'Madden'
+    const fname =
+      name.trim() || `${label} sheet — ${new Date().toLocaleDateString()}`
+    await saveCallSheet({
+      name: fname,
+      game,
+      offense: assignments.offense || {},
+      defense: assignments.defense || {},
+    })
+    showToast(`Saved “${fname}”`, '#2f7d4f')
+  }
+
+  const deleteSavedSheet = async (sheet) => {
+    const ok = window.confirm(`Delete saved sheet “${sheet.name}”?`)
+    if (!ok) return
+    await deleteCallSheet(sheet.id)
+    showToast('Sheet deleted', '#b3392f')
   }
 
   // CSS custom properties for live theming
@@ -368,7 +397,16 @@ function App() {
 
       <Toast toast={toast} />
 
-      <TweaksPanel tweaks={tweaks} setTweak={setTweak} plans={GAME_PLANS} onLoadPlan={loadPlan} />
+      <TweaksPanel
+        tweaks={tweaks}
+        setTweak={setTweak}
+        plans={GAME_PLANS}
+        onLoadPlan={loadPlan}
+        game={game}
+        savedSheets={savedSheets || []}
+        onSaveSheet={saveCurrentSheet}
+        onDeleteSheet={deleteSavedSheet}
+      />
 
       <BrandCredit />
     </div>

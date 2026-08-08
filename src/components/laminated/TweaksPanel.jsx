@@ -22,8 +22,23 @@ function arrayEq(a, b) {
   return a.length === b.length && a.every((v, i) => v === b[i])
 }
 
-function TweaksPanel({ tweaks, setTweak, plans, onLoadPlan }) {
+function TweaksPanel({
+  tweaks,
+  setTweak,
+  plans,
+  onLoadPlan,
+  game,
+  savedSheets,
+  onSaveSheet,
+  onDeleteSheet,
+}) {
   const [open, setOpen] = useState(false)
+  const [sheetName, setSheetName] = useState('')
+
+  const handleSaveSheet = () => {
+    onSaveSheet(sheetName)
+    setSheetName('')
+  }
 
   if (!open) {
     return (
@@ -138,6 +153,81 @@ function TweaksPanel({ tweaks, setTweak, plans, onLoadPlan }) {
                     onClick={() => onLoadPlan(plan, 'both')}
                   >
                     Load
+                  </button>
+                </div>
+              </div>
+            ))}
+          </>
+        )}
+
+        {onSaveSheet && (
+          <>
+            <div className="tweaks__sect">My call sheets</div>
+            <div className="tweaks__savebar">
+              <input
+                className="tweaks__input"
+                placeholder={`Name this ${game === 'cfb' ? 'CFB' : 'Madden'} sheet…`}
+                value={sheetName}
+                onChange={(e) => setSheetName(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSaveSheet()}
+              />
+              <button
+                type="button"
+                className="tweaks__load"
+                title="Save the current sheet (offense + defense)"
+                onClick={handleSaveSheet}
+              >
+                Save
+              </button>
+            </div>
+            {savedSheets?.length === 0 && (
+              <div className="tweaks__empty">
+                Nothing saved yet — name your sheet and hit Save before loading
+                a new plan.
+              </div>
+            )}
+            {savedSheets?.map((sheet) => (
+              <div key={sheet.id} className="tweaks__row tweaks__row-h">
+                <div className="tweaks__sheetinfo">
+                  <div className="tweaks__lbl">{sheet.name}</div>
+                  <div className="tweaks__meta">
+                    {(sheet.game === 'cfb' ? 'CFB' : 'Madden') +
+                      ' · ' +
+                      new Date(sheet.updatedAt).toLocaleDateString()}
+                  </div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <button
+                    type="button"
+                    className="tweaks__load"
+                    title="Replace offense only"
+                    onClick={() => onLoadPlan(sheet, 'offense')}
+                  >
+                    O
+                  </button>
+                  <button
+                    type="button"
+                    className="tweaks__load"
+                    title="Replace defense only"
+                    onClick={() => onLoadPlan(sheet, 'defense')}
+                  >
+                    D
+                  </button>
+                  <button
+                    type="button"
+                    className="tweaks__load"
+                    title="Replace offense + defense"
+                    onClick={() => onLoadPlan(sheet, 'both')}
+                  >
+                    Load
+                  </button>
+                  <button
+                    type="button"
+                    className="tweaks__del"
+                    title="Delete saved sheet"
+                    onClick={() => onDeleteSheet(sheet)}
+                  >
+                    ✕
                   </button>
                 </div>
               </div>

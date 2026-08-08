@@ -69,6 +69,21 @@ db.version(6).stores({
   setupChecks: 'id'
 });
 
+// Version 7: Saved call sheets — named snapshots of one game's sheet
+// (multi-row, string PK, same offense/defense shape as a game plan so
+// applyGamePlan can load them unchanged).
+db.version(7).stores({
+  myPlays: '++id, playId, playbook, formationGroup, formation, playName, playType, side, tags, notes, rating, addedAt',
+  gameSessions: '++id, opponent, date, result, notes',
+  playPerformance: '++id, sessionId, playId, callCount, successCount, yardsGained, notes',
+  gameContext: 'id',
+  sheetAssignments: 'id',
+  sheetSettings: 'id',
+  formations: 'id, side, name, updatedAt',
+  setupChecks: 'id',
+  callSheets: 'id, name, game, updatedAt'
+});
+
 // Sheet assignments helpers — fresh-object factories so the module-level
 // defaults are never aliased into the live React state.
 //
@@ -308,6 +323,55 @@ export async function saveFormation(formation) {
 
 export async function deleteFormation(id) {
   return await db.formations.delete(id);
+}
+
+// ── Saved call sheets ───────────────────────────────────────────────────────
+// A saved sheet is { id, name, game, offense, defense, createdAt, updatedAt }
+// — offense/defense match the game-plan shape, so applyGamePlan loads one
+// exactly like a curated plan.
+
+export async function getCallSheets() {
+  return await db.callSheets.orderBy('updatedAt').reverse().toArray();
+}
+
+export async function saveCallSheet(sheet) {
+  const now = new Date().toISOString();
+  const row = {
+    ...sheet,
+    id: sheet.id || `cs_${Math.random().toString(36).slice(2, 10)}`,
+    offense: structuredClone(sheet.offense || {}),
+    defense: structuredClone(sheet.defense || {}),
+    updatedAt: now,
+    createdAt: sheet.createdAt || now,
+  };
+  await db.callSheets.put(row);
+  return row;
+}
+
+export async function deleteCallSheet(id) {
+  return await db.callSheets.delete(id);
+}
+
+// Rolling per-game safety net: snapshot the current sheet right before a
+// plan load replaces it. One row per game (id backup_<game>), overwritten
+// on each load, so backups never pile up. Skipped when the sheet is empty.
+export async function backupCurrentSheet(game, reason) {
+  const row = await getSheetAssignments();
+  const cur = row.byGame?.[game];
+  if (!cur) return null;
+  const hasPlays = ['offense', 'defense'].some((s) =>
+    Object.values(cur[s] || {}).some((list) => list?.length),
+  );
+  if (!hasPlays) return null;
+  const existing = await db.callSheets.get(`backup_${game}`);
+  return await saveCallSheet({
+    id: `backup_${game}`,
+    name: `Auto-backup — before ${reason}`,
+    game,
+    offense: cur.offense,
+    defense: cur.defense,
+    createdAt: existing?.createdAt,
+  });
 }
 
 // Attach a saved formation to a play already in myPlays (no migration needed).
