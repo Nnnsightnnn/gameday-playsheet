@@ -110,6 +110,19 @@ Terrell shadows No. 1. Audibles (Dbl Mug): C3 SKY / C3 SEAM / TAMPA 2 /
 BLITZ LOOP 3. Routine: backfield glance → audible → one global max → user
 Bates. Panic: TAMPA 2, C3 SKY, (+2s) Odd C4 QUARTERS.
 
+Anticipation (Aug 10): no-huddle locks BOTH rosters — they're trapped in one
+formation's 4-6 audibles, and tempo abusers run 2-3 concepts. Snap 1: log
+the concept in one word. Snap 2: counter it (verts→C3 SEAM · crossers→
+TAMPA 2 · quick flats→C3 SKY · impatient must-pass→BLITZ LOOP 3). Snap 3
+rule: tempo scripts run two deep, rarely three — the clamp is a 3-snap job.
+Same concept twice in a row = it's coming a third time; that's the one
+aggressive call.
+
+Walker out (Aug 10): don't accept the auto-sub. Ebukam (76) flips REDG→LEDG,
+Pearce (79) stays REDG, Ojulari (73) rotates run downs. Dime/sub packages
+keep Deablo (81 pass-cover MIKE) on the field. FREE FIRE 3 = Pearce + Ebukam
+until Walker returns; lean harder on sims/mugs — scheme doesn't get injured.
+
 ## Cheese counters (≈M26 carryover, labeled)
 
 Bunch corner/flood → COVER 6 / C3 CLOUD squat to bunch. Crossers → TAMPA 2 /
