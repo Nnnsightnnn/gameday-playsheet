@@ -90,21 +90,25 @@ spread, stunts live, no tell). Dbl Mug = two labeled changeups only. Kenny
 users SAFETIES; signature calls COVER 4 PALMS + 1 DOUBLE WR1 are on the
 sheet. Win with scheme + athleticism, not AI awareness.
 
-Blocks: Base/Tempo (vs 11) = 3-4 Odd C3 MATCH · C4 QUARTERS · TAMPA 2 ·
-WILL BUCK 3 PRESS, plus Nickel 2-4 second home SILVER SHOOT PINCH · C3 SKY.
+Blocks (base menus Kenny-curated 8/10 PM): Base/Tempo (vs 11) = TWO homes —
+3-4 Under 4 Tech: SAW BLITZ 1, 2 INVERT HARD FLAT (spins to a C3 look),
+COVER 6, COVER 1 HOLE · Nickel 2-4: 1 DOUBLE WR1, COVER 4 PALMS, COVERS
+SAMMIE (C9 look, man under), COVER 3 MATCH.
 vs10 = Nickel 2-4 Wide: C3 MATCH, C4 PALMS, C1 ROBBER PRESS, NICKEL BLITZ 3.
 vs12 = 3-4 Over: C3 MATCH, C4 QUARTERS, SS 2 TRAP. Heavy = PINCH BUCK O,
 STING PINCH (Cub), C3 MATCH. Short yardage = 2 INVERT HARD FLAT + PINCH
 BUCK O (Under 4 Tech), COVER 1 HOLE + DT MIKE LOOP 3 (Single Mug stunt, no
 tell). Obvious pass = BLITZ TEX 3 SIM 3 (Single Mug), 1 DOUBLE WR1 (Dime
-2-3), C4 PALMS + MUG SIM PRESSURE (Dime 3-2 Rush). Pressure = SS BLITZ 3
-(Dbl Mug changeup, sparingly), NICKEL BLITZ 3 (Load Mug), FREE FIRE 3,
-SLOT BLITZ 3 (Penny). Red zone = 2 INVERT HARD FLAT (Over), 1 DOUBLE WR1,
-REDZONE DT DROP (changeup), C2 MATCH. Goal line/prevent unchanged.
+2-3), MUG SIM PRESSURE (Dime 3-2 Rush), Quarter Mable: 3 DOUBLE MABLE +
+3 DBL MABLE CLOUD. Pressure = SS BLITZ 3 (Dbl Mug changeup, sparingly),
+NICKEL BLITZ 3 (Load Mug), FREE FIRE 3, SLOT BLITZ 3 (Penny). Red zone =
+2 INVERT HARD FLAT (Over), 1 DOUBLE WR1, REDZONE DT DROP (changeup),
+C2 MATCH. Goal line/prevent unchanged.
 
-Nickel 2-4 vs run: hats + triggers, not beef — SILVER SHOOT PINCH, OVER
-STORM BRAVE, C3 SKY/BUZZ (sky/buzz safety = 8th hat = Kenny's user). Pinch
-the DL + shallow depth macro vs inside run; no 2-invert shells vs run sets.
+Nickel 2-4 vs run: the nickel four is pass-first by design — run-capable
+sets get the Under 4 Tech home (4-tech anchors, SAW fits edges). Caught in
+nickel vs run: pinch DL + shallow depth macro; safety user = 8th hat.
+SILVER SHOOT PINCH / OVER STORM BRAVE are in-formation on-the-fly stuffs.
 
 Rotation (auto subs DL Sub Out 85 / Sub In 90): edges Pearce→Ojulari→Trice
 pass downs, Ebukam run downs only (never in space — tweeners there); DTs
@@ -121,15 +125,18 @@ Confirm the bet early; live in Nickel Wide sooner vs elite users.
 
 Pre-game: Auto Flip ON · Ball in Air Balanced · Option/RPO Conservative as
 scouted · flats 30 vs crossers or hard flats 10 vs quick outs (persists) ·
-Terrell shadows No. 1. Audibles (3-4 Odd): C3 MATCH / C4 QUARTERS / TAMPA 2
-/ WILL BUCK 3 PRESS. Routine: backfield glance → audible → one global max →
-user Bates. Panic: TAMPA 2, C3 MATCH, (+2s) C4 PALMS. Caught in Nickel 2-4
-under tempo: MATCH / PALMS / TAMPA 2 / SIM — don't chase back to 3-4.
+Terrell shadows No. 1. Audible menus, whichever home tempo catches you in —
+Under 4 Tech: 2 INVERT HARD FLAT (blind default) / COVER 6 (blind) / C1
+HOLE (seen) / SAW BLITZ 1 (seen). Nickel 2-4: C3 MATCH (blind default) /
+C4 PALMS (blind) / SAMMIE (seen) / 1 DOUBLE WR1 (seen — ID the alpha
+first). Blind vs seen: zone-match safe without a read; man calls want one
+look — man chases motion and rubs. Panic: C3 MATCH, C4 PALMS.
 
 Anticipation (Aug 10): no-huddle locks BOTH rosters — they're trapped in one
 formation's 4-6 audibles, and tempo abusers run 2-3 concepts. Snap 1: log
-the concept in one word. Snap 2: counter it (verts→C3 MATCH · crossers→
-TAMPA 2 · quick flats→C4 QUARTERS · impatient must-pass→WILL BUCK 3 PRESS).
+the concept in one word. Snap 2: counter it (verts→C3 MATCH/COVER 6 ·
+crossers→SAMMIE · quick flats→C4 PALMS/2 INVERT HARD FLAT · impatient
+must-pass→SAW BLITZ 1).
 Snap 3 rule: tempo scripts run two deep, rarely three — the clamp is a
 3-snap job. Same concept twice in a row = it's coming a third time; that's
 the one aggressive call.
