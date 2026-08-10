@@ -1,8 +1,11 @@
 # Falcons Game Plan — Madden 27 (Online H2H) · v2 Identity Build
 
 Rebuilt Aug 7, 2026 around the REAL 2026 Falcons (Stefanski/Rees) and the M27
-roster — not the underdog clock-bleed doctrine. Pre-TU1 (early access Aug 6);
-refresh after the first patch. Companion to `src/data/gameplans-falcons.js`
+roster — not the underdog clock-bleed doctrine. Refreshed Aug 10, 2026: still
+pre-TU1 (worldwide launch is Aug 13; zero patches have shipped), so this was
+a lab-intel enrichment, not a rebuild — return routes, the Gun Tight Flex
+page, and HB SCISSORS folded in from the early meta consensus. Refresh again
+after the first real title update. Companion to `src/data/gameplans-falcons.js`
 and `docs/falcons-gameplan.html` (served at `public/gameplan-falcons.html`).
 Every play name machine-validated against `public/data/playbooks.json` (v27).
 
@@ -43,16 +46,21 @@ Vikings books — Stefanski's old teams.)
 Supporting pictures: **Singleback Y Trips Close** (jet dressing: MTN JET WIDE
 ZONE, JET 6 SOAR for Branch, MESH) · **I Form Close / Y Off Close** (21-pers:
 HB ISO, PA DEEP CROSS GO, PA PYLON SAIL shots) · **Gun Bunch** (3rd-down
-money: MESH SPOT, SPACING, Y CURL, SMASH RETURN) · **Gun Trips TE Flex**
-(STICK, HB ANGLE) · **Gun Trey Y-Flex** (DAGGER, CROSS FLOOD).
+money: MESH SPOT, SPACING, SMASH RETURN, DIG RETURN) · **Gun Trips TE Flex**
+(STICK) · **Gun Trey Y-Flex** (DAGGER, CROSS FLOOD) · **Gun Tight Flex**
+(NEW Aug 10 — Civil.GG's sleeper page: PA POST SHOT man destroyer, INSIDE
+HI LO) · **Gun Tight Y Off** (TE CORNER, HB SCISSORS — the "easiest
+just-snap-it play in the game" — CHOICE PIVOT RETURN).
 
 Sequencing engine: STRETCH → STRETCH → boot. DUO → DUO → PA DEEP CROSS GO.
 Jet → jet → JET 6 SOAR for real. The run game is the setup, PA is the payoff.
 
 Coverage beaters — C2: SMASH RETURN, FOUR VERTICALS (London outside),
-CURL FLAT SEAM. C3: Y CURL, CROSS FLOOD, DAGGER, boot floods. C1: MESH,
-PA Y-DRAG WHEEL, HB ANGLE, London iso. C4: run it + Y STICK. Blitz: STICK
-hot, HB SLIP SCREEN, HB SCREEN (chip empty), PA BOOT SLIDE away.
+CURL FLAT SEAM. C3: CROSS FLOOD, DAGGER, INSIDE HI LO, boot floods. C1:
+MESH, PA Y-DRAG WHEEL, PA POST SHOT, London iso. C4: run it + Y STICK.
+Blitz: STICK hot, HB SCISSORS, HB SLIP SCREEN, HB SCREEN (chip empty),
+PA BOOT SLIDE away. Return routes (DIG/SMASH/CHOICE PIVOT RETURN) are the
+early M27 money family — they settle vs zone and snap open vs man.
 
 ## Script 15
 
@@ -63,8 +71,8 @@ honesty (PA DEEP CROSS GO max protect).
 
 ## 10-branch adjustment tree
 
-1 Man → MESH, drag-wheel, HB ANGLE, London iso. 2 Zone → Y STICK, SPACING,
-Y CURL. 3 Known-side blitz → slide to it, boot away. 4 User middle → Pitts
+1 Man → MESH, drag-wheel, PA POST SHOT, London iso. 2 Zone → Y STICK,
+SPACING, CHOICE PIVOT RETURN. 3 Known-side blitz → slide to it, boot away. 4 User middle → Pitts
 seam past him, digs behind. 5 Drops 8 → keep running; Bijan eats. 6
 Overcommits to stretch → THE point: QB boot, drag-wheel, PA DEEP OVER,
 cutback. 7 Heavy box → Y STICK / STICK NOD VERTICAL same picture, or jets.
@@ -111,8 +119,17 @@ Scrambler → C3 SPY; tempo C3 SEAM + contain. Verts tempo → C3 MATCH seen /
 C3 SEAM blind. Tush Push (NEW M27) → 60 PINCH, user A-gap; nerf likely.
 Jet-motion cheese → zone doesn't chase motion.
 
-Tripwire: if M27 match coverage breaks vs bunch (CFB engine had the bug,
-patched Aug 6), fall back to TAMPA 2 / COVER 6 until TU1.
+Post-launch intel (Aug 10, still pre-TU1 — full population arrives Aug 13):
+opponents' meta books are Bucs/Texans/Cardinals; expect **Gun Doubles Clamp
+Stack** spam (new formation) and **return routes** everywhere — TAMPA 2 and
+the match calls handle returns; check stacks with the new Global Coverage
+Adjustments. **Timing-based catching** is the new WR/DB layer — green-window
+throws are a skill to practice, not a ratings gift. MaddenTurf's M27 bug
+tracker: zero confirmed bugs so far.
+
+Tripwires (unconfirmed CFB-engine carryovers — watch, don't assume): defense
+packages resetting on no-huddle (your Dbl Mug tempo block is the insurance);
+match coverage breaking vs bunch → fall back to TAMPA 2 / COVER 6 until TU1.
 
 ## 25-second ritual
 
@@ -126,4 +143,6 @@ huddle.gg M27 database (scraped 2026-08-07) · Football Film Room 2026
 Falcons profile · Match Quarters Ulbrich coverage study · SI/Falcoholic beat
 coverage (Stefanski/Rees, QB battle) · AtlantaFalcons.com staff/roster
 trackers · maddenratings.com M27 (Aug 1) · Civil.GG, Madden Prodigy, Madden
-Turf · M26 carryover labeled: MaddenGuides, Madden Academy.
+Turf · M26 carryover labeled: MaddenGuides, Madden Academy · Aug 10 refresh:
+Civil.GG best-offenses + Falcons book breakdown, MaddenProdigy rankings
+(Aug 5), MaddenTurf patch/bug trackers, EA Gridiron Notes feed.

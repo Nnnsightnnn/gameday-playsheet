@@ -1,8 +1,13 @@
 // Falcons (Madden 27) offense + defense — rebuilt 2026-08-07 around the
 // REAL 2026 Falcons: Kevin Stefanski / Tommy Rees wide-zone identity and the
-// M27 roster, not the underdog clock-bleed doctrine. Pre-TU1 (early access
-// Aug 6); refresh after first patch. Every playId validated against
-// public/data/playbooks.json (version 27) by gameplans.test.js.
+// M27 roster, not the underdog clock-bleed doctrine. Refreshed 2026-08-10:
+// still pre-TU1 (worldwide launch Aug 13 — NO patches have shipped), so this
+// was a lab-intel enrichment, not a rebuild: folded in the early meta
+// consensus (return routes, Gun Tight Flex page, HB Scissors) from
+// Civil.GG / MaddenProdigy / MaddenTurf. Refresh again after the first real
+// title update (expected in the Aug 13+ launch window). Every playId
+// validated against public/data/playbooks.json (version 27) by
+// gameplans.test.js.
 //
 // Doctrine (see docs/falcons-gameplan.md):
 // - IDENTITY BALL: impose wide zone (Bijan 95 behind Lindstrom 96 RBK) until
@@ -46,19 +51,20 @@ export const FALCONS_PLAN = {
     '2long': [
       { playId: 'falcons-off-gun-bunch-hb-slip-screen', name: 'HB SLIP SCREEN', type: 'run', formation: 'Gun Bunch', playbook: OFF, note: 'Bijan in space; 97 juke does the rest' },
       { playId: 'falcons-off-singleback-wing-tight-z-pa-y--drag-wheel', name: 'PA Y-DRAG WHEEL', type: 'pass', formation: 'Singleback Wing Tight Z', playbook: OFF, note: 'Stefanski staple: wheel sneaks out' },
-      { playId: 'falcons-off-gun-trips-te-flex-hb-angle', name: 'HB ANGLE', type: 'run', formation: 'Gun Trips TE Flex', playbook: OFF, note: 'Bijan on a LB; option the leverage' },
+      { playId: 'falcons-off-gun-tight-y-off-hb-scissors', name: 'HB SCISSORS', type: 'run', formation: 'Gun Tight Y Off', playbook: OFF, note: 'Easiest just-snap-it play in the book' },
       { playId: 'falcons-off-singleback-wing-tight-z-drive', name: 'DRIVE', type: 'pass', formation: 'Singleback Wing Tight Z', playbook: OFF, note: 'Layered crossers; shallow + YAC' },
     ],
     '3short': [
       { playId: 'falcons-off-singleback-wing-tight-y-stick', name: 'Y STICK', type: 'pass', formation: 'Singleback Wing Tight', playbook: OFF, note: 'Stick off the run picture; ball out' },
       { playId: 'falcons-off-gun-bunch-spacing', name: 'SPACING', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Five windows; one at the sticks' },
       { playId: 'falcons-off-singleback-y-trips-close-mesh', name: 'MESH', type: 'pass', formation: 'Singleback Y Trips Close', playbook: OFF, note: 'Man answer: rubs, London option late' },
+      { playId: 'falcons-off-gun-tight-y-off-choice-pivot-return', name: 'CHOICE PIVOT RETURN', type: 'pass', formation: 'Gun Tight Y Off', playbook: OFF, note: 'Return settles at sticks; man or zone' },
     ],
     '3med': [
       { playId: 'falcons-off-gun-bunch-mesh-spot', name: 'MESH SPOT', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Drags man, spot zone' },
       { playId: 'falcons-off-singleback-wing-tight-z-curl-flat-seam', name: 'CURL FLAT SEAM', type: 'pass', formation: 'Singleback Wing Tight Z', playbook: OFF, note: 'Rhythm triangle; Pitts seam alert' },
       { playId: 'falcons-off-singleback-wing-tight-stick-nod-vertical', name: 'STICK NOD VERTICAL', type: 'pass', formation: 'Singleback Wing Tight', playbook: OFF, note: 'After sticks all day: nod goes top' },
-      { playId: 'falcons-off-gun-bunch-y-curl', name: 'Y CURL', type: 'pass', formation: 'Gun Bunch', playbook: OFF, note: 'Curl-flat vs C3; throw the break' },
+      { playId: 'falcons-off-gun-tight-flex-inside-hi-lo', name: 'INSIDE HI LO', type: 'pass', formation: 'Gun Tight Flex', playbook: OFF, note: 'Hi-lo the hook LB; easy sticks read' },
     ],
     '3long': [
       { playId: 'falcons-off-gun-trey-y--flex-dagger', name: 'DAGGER', type: 'pass', formation: 'Gun Trey Y-Flex', playbook: OFF, note: 'Seam clears, dig at 15; drive it' },
@@ -69,7 +75,7 @@ export const FALCONS_PLAN = {
     shots: [
       { playId: 'falcons-off-i-form-close-pa-deep-cross-go', name: 'PA DEEP CROSS GO', type: 'pass', formation: 'I Form Close', playbook: OFF, note: '21-pers shot: go clears, cross behind' },
       { playId: 'falcons-off-gun-deuce-close-pa-deep-over', name: 'PA DEEP OVER', type: 'pass', formation: 'Gun Deuce Close', playbook: OFF, note: 'Deep over off zone action; drive it' },
-      { playId: 'falcons-off-singleback-wing-slot-pa-cross-shot', name: 'PA CROSS SHOT', type: 'pass', formation: 'Singleback Wing Slot', playbook: OFF, note: 'Same picture as the wide zone' },
+      { playId: 'falcons-off-gun-tight-flex-pa-post-shot', name: 'PA POST SHOT', type: 'pass', formation: 'Gun Tight Flex', playbook: OFF, note: 'Lab-consensus man destroyer; the post' },
       { playId: 'falcons-off-singleback-wing-slot-four-verticals', name: 'FOUR VERTICALS', type: 'pass', formation: 'Singleback Wing Slot', playbook: OFF, note: 'London wins the outside vert 1-on-1' },
     ],
     redzone: [
