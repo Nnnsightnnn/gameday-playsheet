@@ -79,49 +79,65 @@ cutback. 7 Heavy box → Y STICK / STICK NOD VERTICAL same picture, or jets.
 8 Stretch stuffed → DUO, ISO, JET 6 SOAR opposite. 9 One-concept spam → one
 adjustment. 10 Tilting → timeout, STRETCH + PA BOOT FLOOD. Identity = reset.
 
-## Defense — the Ulbrich blueprint
+## Defense — personnel-first 3-4 (Kenny's doctrine, v3 Aug 10)
 
-Boring on purpose early (C3/quarters binary, ~never C2), violent on third
-down (the 57-sack sim-pressure package). Bates (94, Shutdown, 95 PRC) IS the
-user — C3 post or low-hole robber. Terrell (88, 95 PRS) shadows their X.
-Front four won't win alone (weak DTs) — pressure by scheme: mugs, sims,
-Pearce/Walker speed off wide alignments.
+Match personnel, match situations — dare them to throw on the LBs. Replaces
+the Dbl-Mug-home doctrine (Dbl Mug bleeds vs inside run and telegraphs
+quick-game coverage when stunting). Spine: 3-4 base when not vs 4-wide
+(Odd vs 11, Over vs 12, Under 4 Tech/Cub heavy), Nickel 2-4 Wide vs 10
+(wide DEs = tweeners in space), SINGLE Mug on known passing downs (DEs
+spread, stunts live, no tell). Dbl Mug = two labeled changeups only. Kenny
+users SAFETIES; signature calls COVER 4 PALMS + 1 DOUBLE WR1 are on the
+sheet. Win with scheme + athleticism, not AI awareness.
 
-Blocks: Base/Tempo = C3 SKY · C3 SEAM · TAMPA 2 · BLITZ LOOP 3 (blind-safe
-Dbl Mug). vs10 = NICKEL SIM 2, C2 MATCH, C3 MATCH. vs12 = 3-4 Odd C3 MATCH /
-C4 QUARTERS (the authentic binary), NICKEL DOG 3 BUZZ under tempo. Heavy =
-PINCH BUCK O, STING PINCH (Cub), C3 MATCH. Short yardage = BLITZ LOOP 3,
-C2 MATCH, C2 INVERT, MID BLITZ 0 (seen only). Obvious pass = Dime 3-2 Rush
-MUG SIM PRESSURE + COVER 1 ROBBER PRESS (Terrell presses, Bates robs — the
-Ulbrich fingerprint), C3 SAMMIE, OVERLOAD 3. Pressure = SS BLITZ 3, NICKEL
-BLITZ 3 (Load Mug), FREE FIRE 3 (2-4-5 Over Wide, wide-9 speed), SLOT BLITZ 3
-(Penny). Red zone = 2 INVERT HARD FLAT, REDZONE DT DROP, C2 MATCH. Goal line
-= 60 PINCH, GUTS. Prevent = PREVENT, C3 BUZZ MATCH.
+Blocks: Base/Tempo (vs 11) = 3-4 Odd C3 MATCH · C4 QUARTERS · TAMPA 2 ·
+WILL BUCK 3 PRESS, plus Nickel 2-4 second home SILVER SHOOT PINCH · C3 SKY.
+vs10 = Nickel 2-4 Wide: C3 MATCH, C4 PALMS, C1 ROBBER PRESS, NICKEL BLITZ 3.
+vs12 = 3-4 Over: C3 MATCH, C4 QUARTERS, SS 2 TRAP. Heavy = PINCH BUCK O,
+STING PINCH (Cub), C3 MATCH. Short yardage = 2 INVERT HARD FLAT + PINCH
+BUCK O (Under 4 Tech), COVER 1 HOLE + DT MIKE LOOP 3 (Single Mug stunt, no
+tell). Obvious pass = BLITZ TEX 3 SIM 3 (Single Mug), 1 DOUBLE WR1 (Dime
+2-3), C4 PALMS + MUG SIM PRESSURE (Dime 3-2 Rush). Pressure = SS BLITZ 3
+(Dbl Mug changeup, sparingly), NICKEL BLITZ 3 (Load Mug), FREE FIRE 3,
+SLOT BLITZ 3 (Penny). Red zone = 2 INVERT HARD FLAT (Over), 1 DOUBLE WR1,
+REDZONE DT DROP (changeup), C2 MATCH. Goal line/prevent unchanged.
+
+Nickel 2-4 vs run: hats + triggers, not beef — SILVER SHOOT PINCH, OVER
+STORM BRAVE, C3 SKY/BUZZ (sky/buzz safety = 8th hat = Kenny's user). Pinch
+the DL + shallow depth macro vs inside run; no 2-invert shells vs run sets.
+
+Rotation (auto subs DL Sub Out 85 / Sub In 90): edges Pearce→Ojulari→Trice
+pass downs, Ebukam run downs only (never in space — tweeners there); DTs
+Hand/Dorlus/Harrison/Smith 4-man cycle; Deablo every snap; Andersen +
+rookie Daniels take the space LB snaps over Harris/Bertrand.
 
 Honest weaknesses: DT interior vs duo/power (commit Bates/Deablo to the box),
-CB2 (75) needs help — never island him, and don't let games become dropback
-shootouts vs elite QBs.
+CB2 (75) needs help — never island him, don't let games become dropback
+shootouts vs elite QBs. Doctrine trade named honestly: 3-4 base = less
+early-down pass-rush juice — you're betting your LBs outcover their QB.
+Confirm the bet early; live in Nickel Wide sooner vs elite users.
 
 ## Hurry-up protocol
 
 Pre-game: Auto Flip ON · Ball in Air Balanced · Option/RPO Conservative as
 scouted · flats 30 vs crossers or hard flats 10 vs quick outs (persists) ·
-Terrell shadows No. 1. Audibles (Dbl Mug): C3 SKY / C3 SEAM / TAMPA 2 /
-BLITZ LOOP 3. Routine: backfield glance → audible → one global max → user
-Bates. Panic: TAMPA 2, C3 SKY, (+2s) Odd C4 QUARTERS.
+Terrell shadows No. 1. Audibles (3-4 Odd): C3 MATCH / C4 QUARTERS / TAMPA 2
+/ WILL BUCK 3 PRESS. Routine: backfield glance → audible → one global max →
+user Bates. Panic: TAMPA 2, C3 MATCH, (+2s) C4 PALMS. Caught in Nickel 2-4
+under tempo: MATCH / PALMS / TAMPA 2 / SIM — don't chase back to 3-4.
 
 Anticipation (Aug 10): no-huddle locks BOTH rosters — they're trapped in one
 formation's 4-6 audibles, and tempo abusers run 2-3 concepts. Snap 1: log
-the concept in one word. Snap 2: counter it (verts→C3 SEAM · crossers→
-TAMPA 2 · quick flats→C3 SKY · impatient must-pass→BLITZ LOOP 3). Snap 3
-rule: tempo scripts run two deep, rarely three — the clamp is a 3-snap job.
-Same concept twice in a row = it's coming a third time; that's the one
-aggressive call.
+the concept in one word. Snap 2: counter it (verts→C3 MATCH · crossers→
+TAMPA 2 · quick flats→C4 QUARTERS · impatient must-pass→WILL BUCK 3 PRESS).
+Snap 3 rule: tempo scripts run two deep, rarely three — the clamp is a
+3-snap job. Same concept twice in a row = it's coming a third time; that's
+the one aggressive call.
 
-Walker out (Aug 10): don't accept the auto-sub. Ebukam (76) flips REDG→LEDG,
-Pearce (79) stays REDG, Ojulari (73) rotates run downs. Dime/sub packages
-keep Deablo (81 pass-cover MIKE) on the field. FREE FIRE 3 = Pearce + Ebukam
-until Walker returns; lean harder on sims/mugs — scheme doesn't get injured.
+Walker out (Aug 10): Ebukam (76) starts LEDG on run downs but NEVER plays in
+space — tweeners (Pearce, Ojulari) take Nickel Wide / 2-4-5 / Dime snaps.
+FREE FIRE 3 = Pearce + Ojulari until Walker returns; lean on sims/stunts —
+scheme doesn't get injured.
 
 ## Cheese counters (≈M26 carryover, labeled)
 

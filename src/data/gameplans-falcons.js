@@ -18,9 +18,13 @@
 //   I Form Close = 21-personnel shots. Gun Bunch = 3rd-down money page.
 // - QB modes: Penix 92 THP / 76 DAC → DRIVEN throws (seams, digs, overs),
 //   no moonballs. London (97 CTH/JMP) is the one exception: 1-on-1, throw it.
-// - Defense = Ulbrich: boring on purpose early (C3/quarters binary), violent
-//   on 3rd (mug sims, robber press: Terrell 95 PRS presses, Bates 94 robs).
-//   Bates IS the user. Tempo block unchanged — blind-safe Dbl Mug audibles.
+// - Defense v3 (2026-08-10, Kenny's doctrine — replaces the Dbl-Mug home):
+//   personnel-first 3-4. Base = 3-4 Odd four-call menu (dare them to throw
+//   on the LBs); vs10 = Nickel 2-4 Wide (wide DEs = tweeners in space);
+//   passing downs = SINGLE Mug (spread DEs, stunts without a coverage tell)
+//   + Dime 3-2 Rush; Dbl Mug survives only as labeled changeup looks.
+//   Athleticism over AI awareness: speed subs, Ebukam run downs only.
+//   Bates IS the user. Tempo audibles = the 3-4 Odd base menu.
 
 const OFF = 'Falcons'
 const DEF = 'Falcons'
@@ -105,20 +109,23 @@ export const FALCONS_PLAN = {
   },
   defense: {
     base: [
-      { playId: 'falcons-def-nickel-2--4-dbl-mug-cover-3-sky', name: 'COVER 3 SKY', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Blind default; Bates owns the post' },
-      { playId: 'falcons-def-nickel-2--4-dbl-mug-cover-3-seam', name: 'COVER 3 SEAM', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Seams carried; same C3 rules' },
-      { playId: 'falcons-def-nickel-2--4-dbl-mug-tampa-2', name: 'TAMPA 2', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Crosser eraser; Bates poles it' },
-      { playId: 'falcons-def-nickel-2--4-dbl-mug-blitz-loop-3', name: 'BLITZ LOOP 3', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Only blind blitz: 3-deep parachute' },
+      { playId: 'falcons-def-3--4-odd-cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: '3-4 Odd', playbook: DEF, note: 'Blind default; verts carried, Bates post' },
+      { playId: 'falcons-def-3--4-odd-cover-4-quarters', name: 'COVER 4 QUARTERS', type: 'pass', formation: '3-4 Odd', playbook: DEF, note: 'The 2-high face; safeties drive flats' },
+      { playId: 'falcons-def-3--4-odd-tampa-2', name: 'TAMPA 2', type: 'pass', formation: '3-4 Odd', playbook: DEF, note: 'Crosser eraser; Bates poles it' },
+      { playId: 'falcons-def-3--4-odd-will-buck-3-press', name: 'WILL BUCK 3 PRESS', type: 'pass', formation: '3-4 Odd', playbook: DEF, note: 'Menu heat: LB pressure, 3-deep net' },
+      { playId: 'falcons-def-nickel-2--4-silver-shoot-pinch', name: 'SILVER SHOOT PINCH', type: 'pass', formation: 'Nickel 2-4', playbook: DEF, note: 'Nickel-home run stuff; pinch + shoot' },
+      { playId: 'falcons-def-nickel-2--4-cover-3-sky', name: 'COVER 3 SKY', type: 'pass', formation: 'Nickel 2-4', playbook: DEF, note: 'Nickel run force: sky safety = 8th hat' },
     ],
     vs10: [
-      { playId: 'falcons-def-nickel-2--4-dbl-mug-nickel-sim-2', name: 'NICKEL SIM 2', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Show 6, rush 4, 2-high; punish hots' },
-      { playId: 'falcons-def-nickel-2--4-cover-2-match', name: 'COVER 2 MATCH', type: 'pass', formation: 'Nickel 2-4', playbook: DEF, note: 'Flats jumped; match caps verts' },
-      { playId: 'falcons-def-nickel-2--4-cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: 'Nickel 2-4', playbook: DEF, note: 'Verts carried; corners get help' },
+      { playId: 'falcons-def-nickel-2--4-wide-cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: 'Nickel 2-4 Wide', playbook: DEF, note: 'Wide DEs = your tweeners in space' },
+      { playId: 'falcons-def-nickel-2--4-wide-cover-4-palms', name: 'COVER 4 PALMS', type: 'pass', formation: 'Nickel 2-4 Wide', playbook: DEF, note: 'Your panic call; squats the quick out' },
+      { playId: 'falcons-def-nickel-2--4-wide-cover-1-robber-press', name: 'COVER 1 ROBBER PRESS', type: 'pass', formation: 'Nickel 2-4 Wide', playbook: DEF, note: 'Terrell presses; Bates robs the dig' },
+      { playId: 'falcons-def-nickel-2--4-wide-nickel-blitz-3', name: 'NICKEL BLITZ 3', type: 'pass', formation: 'Nickel 2-4 Wide', playbook: DEF, note: 'Slot heat with the 3-deep parachute' },
     ],
     vs12: [
-      { playId: 'falcons-def-3--4-odd-cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: '3-4 Odd', playbook: DEF, note: 'Ulbrich early-down anchor' },
-      { playId: 'falcons-def-3--4-odd-cover-4-quarters', name: 'COVER 4 QUARTERS', type: 'pass', formation: '3-4 Odd', playbook: DEF, note: 'The split-field partner call' },
-      { playId: 'falcons-def-nickel-2--4-dbl-mug-nickel-dog-3-buzz', name: 'NICKEL DOG 3 BUZZ', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Extra box hats, still 3 deep' },
+      { playId: 'falcons-def-3--4-over-cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: '3-4 Over', playbook: DEF, note: 'Strength-shifted; sound vs PA' },
+      { playId: 'falcons-def-3--4-over-cover-4-quarters', name: 'COVER 4 QUARTERS', type: 'pass', formation: '3-4 Over', playbook: DEF, note: 'The split-field partner call' },
+      { playId: 'falcons-def-3--4-over-ss-2-trap', name: 'SS 2 TRAP', type: 'pass', formation: '3-4 Over', playbook: DEF, note: 'Trap the force; kills flat + toss' },
     ],
     heavy: [
       { playId: 'falcons-def-3--4-odd-pinch-buck-o', name: 'PINCH BUCK O', type: 'pass', formation: '3-4 Odd', playbook: DEF, note: 'Pinch + buck heat; run stuffed' },
@@ -126,26 +133,27 @@ export const FALCONS_PLAN = {
       { playId: 'falcons-def-3--4-odd-cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: '3-4 Odd', playbook: DEF, note: 'Sound vs PA off heavy sets' },
     ],
     '3short': [
-      { playId: 'falcons-def-nickel-2--4-dbl-mug-blitz-loop-3', name: 'BLITZ LOOP 3', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'A-gap loop; heat with a 3-deep net' },
-      { playId: 'falcons-def-nickel-2--4-cover-2-match', name: 'COVER 2 MATCH', type: 'pass', formation: 'Nickel 2-4', playbook: DEF, note: 'Kills the quick-out conversion' },
-      { playId: 'falcons-def-nickel-2--4-dbl-mug-cover-2-invert', name: 'COVER 2 INVERT', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Safeties crash flats; sturdy vs toss' },
-      { playId: 'falcons-def-nickel-2--4-dbl-mug-mid-blitz-0', name: 'MID BLITZ 0', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Seen-look only — never call blind' },
+      { playId: 'falcons-def-3--4-under-4-tech-2-invert-hard-flat', name: '2 INVERT HARD FLAT', type: 'pass', formation: '3-4 Under 4 Tech', playbook: DEF, note: 'Safeties crash flats; sturdy vs toss' },
+      { playId: 'falcons-def-3--4-under-4-tech-pinch-buck-o', name: 'PINCH BUCK O', type: 'pass', formation: '3-4 Under 4 Tech', playbook: DEF, note: 'Inside run dead; 4-tech anchors' },
+      { playId: 'falcons-def-nickel-2--4-single-mug-cover-1-hole', name: 'COVER 1 HOLE', type: 'pass', formation: 'Nickel 2-4 Single Mug', playbook: DEF, note: 'Man sticks coverage; hole robs in' },
+      { playId: 'falcons-def-nickel-2--4-single-mug-dt-mike-loop-3', name: 'DT MIKE LOOP 3', type: 'pass', formation: 'Nickel 2-4 Single Mug', playbook: DEF, note: 'Stunt, no coverage tell; 3-deep net' },
     ],
     '3long': [
+      { playId: 'falcons-def-nickel-2--4-single-mug-blitz-tex-3-sim-3', name: 'BLITZ TEX 3 SIM 3', type: 'pass', formation: 'Nickel 2-4 Single Mug', playbook: DEF, note: 'Tex stunt sim; DEs spread, 3 deep' },
+      { playId: 'falcons-def-dime-2--3-1-double-wr1', name: '1 DOUBLE WR1', type: 'pass', formation: 'Dime 2-3', playbook: DEF, note: 'Your staple: erase the alpha, user free' },
+      { playId: 'falcons-def-dime-3--2-rush-cover-4-palms', name: 'COVER 4 PALMS', type: 'pass', formation: 'Dime 3-2 Rush', playbook: DEF, note: 'Your panic call from the rush picture' },
       { playId: 'falcons-def-dime-3--2-rush-mug-sim-pressure', name: 'MUG SIM PRESSURE', type: 'pass', formation: 'Dime 3-2 Rush', playbook: DEF, note: 'Show 6 from dime, rush 4' },
-      { playId: 'falcons-def-dime-3--2-rush-cover-1-robber-press', name: 'COVER 1 ROBBER PRESS', type: 'pass', formation: 'Dime 3-2 Rush', playbook: DEF, note: 'Terrell presses; Bates robs the dig' },
-      { playId: 'falcons-def-dime-2--3-cover-3-sammie', name: 'COVER 3 SAMMIE', type: 'pass', formation: 'Dime 2-3', playbook: DEF, note: 'Built for 3rd & 8+; rally under' },
-      { playId: 'falcons-def-quarter-normal-overload-3', name: 'OVERLOAD 3', type: 'pass', formation: 'Quarter Normal', playbook: DEF, note: 'Overload rush, 3-deep umbrella' },
     ],
     pressure: [
-      { playId: 'falcons-def-nickel-2--4-dbl-mug-ss-blitz-3', name: 'SS BLITZ 3', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Best disguised 5-man; 3 behind' },
+      { playId: 'falcons-def-nickel-2--4-dbl-mug-ss-blitz-3', name: 'SS BLITZ 3', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Dbl Mug changeup — show it sparingly' },
       { playId: 'falcons-def-nickel-2--4-load-mug-nickel-blitz-3', name: 'NICKEL BLITZ 3', type: 'pass', formation: 'Nickel 2-4 Load Mug', playbook: DEF, note: 'Slot heat; brutal vs weak slide' },
       { playId: 'falcons-def-2--4--5-over-wide-free-fire-3', name: 'FREE FIRE 3', type: 'pass', formation: '2-4-5 Over Wide', playbook: DEF, note: 'Wide-9 speed: Pearce + Walker fly' },
       { playId: 'falcons-def-3--3--5-penny-slot-blitz-3', name: 'SLOT BLITZ 3', type: 'pass', formation: '3-3-5 Penny', playbook: DEF, note: 'Fresh picture, same 3-deep rules' },
     ],
     redzone: [
-      { playId: 'falcons-def-nickel-2--4-dbl-mug-2-invert-hard-flat', name: '2 INVERT HARD FLAT', type: 'pass', formation: 'Nickel 2-4 Dbl Mug', playbook: DEF, note: 'Corners squat; no fade islands' },
-      { playId: 'falcons-def-nickel-2--4-load-dbl-mug-redzone-dt-drop', name: 'REDZONE DT DROP', type: 'pass', formation: 'Nickel 2-4 Load Dbl Mug', playbook: DEF, note: 'DT sits the low hole vs crossers' },
+      { playId: 'falcons-def-3--4-over-2-invert-hard-flat', name: '2 INVERT HARD FLAT', type: 'pass', formation: '3-4 Over', playbook: DEF, note: 'Corners squat; no fade islands' },
+      { playId: 'falcons-def-nickel-2--4-1-double-wr1', name: '1 DOUBLE WR1', type: 'pass', formation: 'Nickel 2-4', playbook: DEF, note: 'Bracket their fade guy; user free' },
+      { playId: 'falcons-def-nickel-2--4-load-dbl-mug-redzone-dt-drop', name: 'REDZONE DT DROP', type: 'pass', formation: 'Nickel 2-4 Load Dbl Mug', playbook: DEF, note: 'Dbl Mug changeup; DT sits low hole' },
       { playId: 'falcons-def-nickel-2--4-cover-2-match', name: 'COVER 2 MATCH', type: 'pass', formation: 'Nickel 2-4', playbook: DEF, note: 'Flats jumped at the goal line' },
     ],
     goalline: [
