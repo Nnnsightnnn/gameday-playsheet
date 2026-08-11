@@ -117,6 +117,21 @@ pass downs, Ebukam run downs only (never in space — tweeners there); DTs
 Hand/Dorlus/Harrison/Smith 4-man cycle; Deablo every snap; Andersen +
 rookie Daniels take the space LB snaps over Harris/Bertrand.
 
+Counters to YOUR calls (what to look for): SAW BLITZ 1 ← hots/RB angle/
+screens (RB stays in = check to 2 INVERT). 2 INVERT HARD FLAT ← verts/seams
+behind the flats (both slots vertical = C6 or C3 MATCH). COVER 6 ← hole
+shot at the C2 half (alpha iso boundary = 1 DBL WR1). C1 HOLE ← rubs/mesh/
+RB option (bunch = SAMMIE/match). 1 DOUBLE WR1 ← everyone else — slot
+option, TE seam (alpha moves = bracket wasted, shadow instead). PALMS ←
+#2 vert + #1 under, draws vs light box (two stops = run next). SAMMIE ←
+rubs, overload floods (clean splits only). C3 MATCH ← quick-out spam
+(flats to 10), bunch bug (Tampa 2/C6 fallback). Cub blitz/press ← PA shot
+after two stuffs (go zone that down), crack-toss. Sims ← screens, draw
+audibles (OL soft set = screen). Mable ← deep middle (Bates poles it), QB
+scramble (add spy). Meta-read: man dies to rubs/motion, flat-walls die
+over top, blitzes die to screens/hots, brackets die to the other four.
+One glance at the split names the safe family.
+
 Honest weaknesses: DT interior vs duo/power (commit Bates/Deablo to the box),
 CB2 (75) needs help — never island him, don't let games become dropback
 shootouts vs elite QBs. Doctrine trade named honestly: 3-4 base = less
