@@ -136,10 +136,10 @@ export const FALCONS_PLAN = {
       { playId: 'falcons-def-3--4-odd-cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: '3-4 Odd', playbook: DEF, note: 'Sound vs PA off heavy sets' },
     ],
     '3short': [
-      { playId: 'falcons-def-3--4-under-4-tech-2-invert-hard-flat', name: '2 INVERT HARD FLAT', type: 'pass', formation: '3-4 Under 4 Tech', playbook: DEF, note: 'Safeties crash flats; sturdy vs toss' },
-      { playId: 'falcons-def-3--4-under-4-tech-pinch-buck-o', name: 'PINCH BUCK O', type: 'pass', formation: '3-4 Under 4 Tech', playbook: DEF, note: 'Inside run dead; 4-tech anchors' },
-      { playId: 'falcons-def-nickel-2--4-single-mug-cover-1-hole', name: 'COVER 1 HOLE', type: 'pass', formation: 'Nickel 2-4 Single Mug', playbook: DEF, note: 'Man sticks coverage; hole robs in' },
-      { playId: 'falcons-def-nickel-2--4-single-mug-dt-mike-loop-3', name: 'DT MIKE LOOP 3', type: 'pass', formation: 'Nickel 2-4 Single Mug', playbook: DEF, note: 'Stunt, no coverage tell; 3-deep net' },
+      { playId: 'falcons-def-3--4-cub-olb-blitz', name: 'OLB BLITZ', type: 'pass', formation: '3-4 Cub', playbook: DEF, note: 'Show blitz; walk S over DT, force wide' },
+      { playId: 'falcons-def-3--4-cub-gap-press', name: 'GAP PRESS', type: 'pass', formation: '3-4 Cub', playbook: DEF, note: 'Press man-man; the red-zone version' },
+      { playId: 'falcons-def-3--4-cub-trio-sky-zone', name: 'TRIO SKY ZONE', type: 'pass', formation: '3-4 Cub', playbook: DEF, note: '3-deep zone blitz; the midfield version' },
+      { playId: 'falcons-def-3--4-cub-cover-3-sky', name: 'COVER 3 SKY', type: 'pass', formation: '3-4 Cub', playbook: DEF, note: 'Zone drop; CBs 1-on-1 in the thirds' },
     ],
     '3long': [
       { playId: 'falcons-def-nickel-2--4-single-mug-blitz-tex-3-sim-3', name: 'BLITZ TEX 3 SIM 3', type: 'pass', formation: 'Nickel 2-4 Single Mug', playbook: DEF, note: 'Tex stunt sim; DEs spread, 3 deep' },

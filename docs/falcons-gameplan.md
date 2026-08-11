@@ -96,9 +96,11 @@ COVER 6, COVER 1 HOLE · Nickel 2-4: 1 DOUBLE WR1, COVER 4 PALMS, COVERS
 SAMMIE (C9 look, man under), COVER 3 MATCH.
 vs10 = Nickel 2-4 Wide: C3 MATCH, C4 PALMS, C1 ROBBER PRESS, NICKEL BLITZ 3.
 vs12 = 3-4 Over: C3 MATCH, C4 QUARTERS, SS 2 TRAP. Heavy = PINCH BUCK O,
-STING PINCH (Cub), C3 MATCH. Short yardage = 2 INVERT HARD FLAT + PINCH
-BUCK O (Under 4 Tech), COVER 1 HOLE + DT MIKE LOOP 3 (Single Mug stunt, no
-tell). Obvious pass = BLITZ TEX 3 SIM 3 (Single Mug), 1 DOUBLE WR1 (Dime
+STING PINCH (Cub), C3 MATCH. Short yardage = 3-4 Cub one-picture menu
+(Kenny's signature): OLB BLITZ (show blitz, safety walked over DT — caps
+A/B gaps, forces outside), GAP PRESS (man-man, red zone), TRIO SKY ZONE
+(3-deep zone blitz, midfield), COVER 3 SKY (zone drop, CBs 1-on-1). Nobody
+labs vs Cub — the unpopularity is the point. Obvious pass = BLITZ TEX 3 SIM 3 (Single Mug), 1 DOUBLE WR1 (Dime
 2-3), MUG SIM PRESSURE (Dime 3-2 Rush), Quarter Mable: 3 DOUBLE MABLE +
 3 DBL MABLE CLOUD. Pressure = SS BLITZ 3 (Dbl Mug changeup, sparingly),
 NICKEL BLITZ 3 (Load Mug), FREE FIRE 3, SLOT BLITZ 3 (Penny). Red zone =
