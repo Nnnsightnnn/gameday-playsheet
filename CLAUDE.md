@@ -27,6 +27,8 @@ reviewed in the daily note** — starting with roll coverage (see Coverage Lab,
     /laminated/ - call sheet (Sheet, Coordinator, PlayBank, SetupSheet)
     /coverage/  - Coverage Lab (field sim, Learn mode, glossary)
     /planner/   - Formation planner (field board, formation library)
+    /trends/    - Trends board (curated meta digest + optional live YouTube search)
+    /skills/    - Skills Lab (elite-skill self-assessment: Assess/Gaps/Progress)
   /lib/         - Database layer (db.js - Dexie)
   /data/        - Playbook utilities
   /hooks/       - Custom hooks
@@ -90,7 +92,8 @@ reviewed in the daily note** — starting with roll coverage (see Coverage Lab,
 **[DATA-00001]** Use Dexie helpers from `src/lib/db.js` for all IndexedDB operations
 > TRIGGER: When persisting client-side data
 
-**[DATA-00002]** Database tables (schema v7): `myPlays`, `gameSessions`, `playPerformance`, `gameContext`, `sheetAssignments`, `sheetSettings`, `formations`, `setupChecks`, `callSheets`
+**[DATA-00002]** Database tables (schema v8): `myPlays`, `gameSessions`, `playPerformance`, `gameContext`, `sheetAssignments`, `sheetSettings`, `formations`, `setupChecks`, `callSheets`, `skillAssessments`
+**[DATA-00004]** Trends digest lives in `public/data/trends.json` (shape enforced by `src/data/__tests__/trends.test.js`); refreshed via the `trends-refresh` skill. Skill taxonomy lives in `src/data/skills.js`.
 **[DATA-00003]** Sheet assignments are stored per game (`byGame: { madden, cfb }`) so the Madden and CFB sheets never clobber each other
 > TRIGGER: When working with stored data
 
