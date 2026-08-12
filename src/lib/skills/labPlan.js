@@ -14,6 +14,7 @@ export function buildWeekPlan(skill, weekOf) {
     {
       idx: 0,
       title: 'Baseline',
+      goal: 'Get a starting number. You cannot know the week worked without a before picture.',
       blocks: [
         { min: 10, text: 'Warm-up: light, unscored reps of the drill to settle in.' },
         { min: 30, text: `Baseline drill — ${skill.drill} Record your starting number; this is the week's before picture.` },
@@ -23,6 +24,7 @@ export function buildWeekPlan(skill, weekOf) {
     {
       idx: 1,
       title: 'Volume 1',
+      goal: 'Build the habit with pure reps in a controlled setting — chase the elite marker.',
       blocks: [
         { min: 10, text: 'Warm-up reps.' },
         { min: 35, text: `Drill volume — chase the metric. Elite marker you're building toward: ${skill.elite}` },
@@ -32,6 +34,7 @@ export function buildWeekPlan(skill, weekOf) {
     {
       idx: 2,
       title: 'Volume 2 — vary the look',
+      goal: 'Generalize the skill: change the pictures so you learn the read, not one look.',
       blocks: [
         { min: 10, text: 'Warm-up reps.' },
         { min: 35, text: 'Same drill, different pictures: vary the opposing calls, formations, or situations so the read generalizes instead of memorizing one look.' },
@@ -41,6 +44,7 @@ export function buildWeekPlan(skill, weekOf) {
     {
       idx: 3,
       title: 'Pressure test 1',
+      goal: 'Find out what survives real opponents. The output is a list of what broke.',
       blocks: [
         { min: 10, text: 'Warm-up reps.' },
         { min: 45, text: 'Online/ranked game(s). Grade every rep of the focus skill live — a simple hit/miss count is enough.' },
@@ -50,6 +54,7 @@ export function buildWeekPlan(skill, weekOf) {
     {
       idx: 4,
       title: 'Repair volume',
+      goal: 'Fix only what broke under pressure — targeted repair, not general practice.',
       blocks: [
         { min: 10, text: 'Warm-up reps.' },
         { min: 35, text: 'Attack only what broke in Pressure test 1. Rep the specific failure until it stops failing.' },
@@ -59,6 +64,7 @@ export function buildWeekPlan(skill, weekOf) {
     {
       idx: 5,
       title: 'Pressure test 2',
+      goal: 'Prove the repair held: beat your Pressure test 1 hit/miss count.',
       blocks: [
         { min: 10, text: 'Warm-up reps.' },
         { min: 45, text: 'Online/ranked again. Same live grading — compare your hit/miss count to Pressure test 1.' },
@@ -68,6 +74,7 @@ export function buildWeekPlan(skill, weekOf) {
     {
       idx: 6,
       title: 'Review + re-rate',
+      goal: 'Measure the week against the baseline, re-rate the skill, then play for fun.',
       blocks: [
         { min: 15, text: 'Re-run the baseline drill. Compare to session 1: that number is your week.' },
         { min: 15, text: `Re-rate ${skill.name} in the Assess lens (save a snapshot) and skim the Gaps lens for next week's focus.` },

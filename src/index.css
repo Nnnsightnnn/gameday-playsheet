@@ -2203,6 +2203,13 @@ body:has(.drawer--on) .tweaks__fab { display: none; }
   text-align: left;
 }
 .skl-sess__title:hover { color: #efeadb; }
+.skl-sess__goal {
+  margin: 0 0 4px 36px;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #a09a82;
+}
+.skl-sess--done .skl-sess__goal { color: #7a755f; }
 .skl-sess__num {
   font-family: var(--font-mono);
   font-size: 10px;

@@ -30,6 +30,15 @@ describe('buildWeekPlan', () => {
     expect(planMinutes(plan)).toBe(420);
   });
 
+  it('every session states its goal in one line', () => {
+    for (const s of plan.sessions) {
+      expect(typeof s.goal, s.title).toBe('string');
+      expect(s.goal.length, s.title).toBeGreaterThanOrEqual(25);
+    }
+    // goals are distinct — no copy-paste filler
+    expect(new Set(plan.sessions.map((s) => s.goal)).size).toBe(7);
+  });
+
   it('follows the deliberate-practice arc: baseline → pressure → review', () => {
     const titles = plan.sessions.map((s) => s.title.toLowerCase());
     expect(titles[0]).toContain('baseline');

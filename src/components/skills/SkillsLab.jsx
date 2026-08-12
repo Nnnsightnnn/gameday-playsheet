@@ -54,6 +54,7 @@ function SessionCard({ plan, session }) {
           <span className="skl-sess__min">{sessionMinutes(session)} min</span>
         </button>
       </div>
+      {session.goal && <div className="skl-sess__goal">{session.goal}</div>}
       {open && (
         <div className="skl-sess__body">
           {session.blocks.map((b, i) => (
