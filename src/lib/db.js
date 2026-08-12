@@ -100,6 +100,22 @@ db.version(8).stores({
   skillAssessments: 'id, createdAt'
 });
 
+// Version 9: Lab plans — generated weekly deliberate-practice schedules.
+// Row: { id, weekOf, createdAt, skillId, skillName, sessions: [...] }.
+db.version(9).stores({
+  myPlays: '++id, playId, playbook, formationGroup, formation, playName, playType, side, tags, notes, rating, addedAt',
+  gameSessions: '++id, opponent, date, result, notes',
+  playPerformance: '++id, sessionId, playId, callCount, successCount, yardsGained, notes',
+  gameContext: 'id',
+  sheetAssignments: 'id',
+  sheetSettings: 'id',
+  formations: 'id, side, name, updatedAt',
+  setupChecks: 'id',
+  callSheets: 'id, name, game, updatedAt',
+  skillAssessments: 'id, createdAt',
+  labPlans: 'id, weekOf'
+});
+
 // Sheet assignments helpers — fresh-object factories so the module-level
 // defaults are never aliased into the live React state.
 //
@@ -412,6 +428,36 @@ export async function saveSkillAssessment({ ratings, note }) {
 
 export async function deleteSkillAssessment(id) {
   return await db.skillAssessments.delete(id);
+}
+
+// ── Lab plans ───────────────────────────────────────────────────────────────
+// Newest-first. The newest row is the active week; older rows are the log.
+
+export async function getLabPlans() {
+  return await db.labPlans.orderBy('weekOf').reverse().toArray();
+}
+
+export async function saveLabPlan(plan) {
+  const row = {
+    id: `lp_${Math.random().toString(36).slice(2, 10)}`,
+    createdAt: new Date().toISOString(),
+    ...structuredClone(plan),
+  };
+  await db.labPlans.put(row);
+  return row;
+}
+
+export async function updateLabPlanSession(planId, idx, patch) {
+  const row = await db.labPlans.get(planId);
+  if (!row) return;
+  row.sessions = row.sessions.map((s) =>
+    s.idx === idx ? { ...s, ...patch } : s,
+  );
+  await db.labPlans.put(row);
+}
+
+export async function deleteLabPlan(id) {
+  return await db.labPlans.delete(id);
 }
 
 // Attach a saved formation to a play already in myPlays (no migration needed).

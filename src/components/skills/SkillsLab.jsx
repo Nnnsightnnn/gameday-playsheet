@@ -10,7 +10,12 @@ import {
   getSkillAssessments,
   saveSkillAssessment,
   deleteSkillAssessment,
+  getLabPlans,
+  saveLabPlan,
+  updateLabPlanSession,
+  deleteLabPlan,
 } from '../../lib/db';
+import { buildWeekPlan, sessionMinutes } from '../../lib/skills/labPlan';
 import {
   SKILL_CATEGORIES,
   RATING_ANCHORS,
@@ -18,6 +23,7 @@ import {
   categoryAverages,
   gapList,
   focusSkill,
+  skillById,
 } from '../../data/skills';
 
 const fmtDate = (iso) =>
@@ -26,6 +32,60 @@ const fmtDate = (iso) =>
     day: 'numeric',
     year: 'numeric',
   });
+
+function SessionCard({ plan, session }) {
+  const [open, setOpen] = useState(false);
+  const [noteDraft, setNoteDraft] = useState(session.note || '');
+  return (
+    <div className={'skl-sess' + (session.done ? ' skl-sess--done' : '')}>
+      <div className="skl-sess__hd">
+        <button
+          className="skl-sess__check"
+          title={session.done ? 'Mark not done' : 'Mark done'}
+          onClick={() =>
+            updateLabPlanSession(plan.id, session.idx, { done: !session.done })
+          }
+        >
+          {session.done ? '✓' : ''}
+        </button>
+        <button className="skl-sess__title" onClick={() => setOpen(!open)}>
+          <span className="skl-sess__num">S{session.idx + 1}</span>
+          {session.title}
+          <span className="skl-sess__min">{sessionMinutes(session)} min</span>
+        </button>
+      </div>
+      {open && (
+        <div className="skl-sess__body">
+          {session.blocks.map((b, i) => (
+            <div key={i} className="skl-sess__block">
+              <span className="skl-sess__blockmin">{b.min}′</span>
+              <span>{b.text}</span>
+            </div>
+          ))}
+          <div className="skl-sess__noterow">
+            <input
+              className="trends-input"
+              placeholder="Session note — what was the number? what broke?"
+              value={noteDraft}
+              onChange={(e) => setNoteDraft(e.target.value)}
+            />
+            <button
+              className="trends-btn trends-btn--ghost"
+              onClick={() =>
+                updateLabPlanSession(plan.id, session.idx, { note: noteDraft })
+              }
+            >
+              Save note
+            </button>
+          </div>
+          {session.note && noteDraft === session.note && (
+            <div className="skl-sess__notesaved">Saved.</div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function RatingRow({ skill, value, onRate }) {
   const [open, setOpen] = useState(false);
@@ -68,6 +128,9 @@ function RatingRow({ skill, value, onRate }) {
 export default function SkillsLab({ game }) {
   const assessments = useLiveQuery(() => getSkillAssessments(), [], null);
   const latest = assessments?.[0] || null;
+  const plans = useLiveQuery(() => getLabPlans(), [], null);
+  const activePlan = plans?.[0] || null;
+  const [planSkillId, setPlanSkillId] = useState('');
 
   const [mode, setMode] = useState('gaps');
   // Default the filter to the game currently active on the call sheet.
@@ -158,6 +221,12 @@ export default function SkillsLab({ game }) {
             onClick={() => setMode('gaps')}
           >
             Gaps
+          </button>
+          <button
+            className={'trend-tab' + (mode === 'plan' ? ' trend-tab--on' : '')}
+            onClick={() => setMode('plan')}
+          >
+            Plan
           </button>
           <button
             className={'trend-tab' + (mode === 'assess' ? ' trend-tab--on' : '')}
@@ -302,6 +371,116 @@ export default function SkillsLab({ game }) {
                   </p>
                 )}
               </section>
+            </>
+          )}
+        </>
+      )}
+
+      {/* ── PLAN ───────────────────────────────────────────────────────── */}
+      {mode === 'plan' && (
+        <>
+          {!latest ? (
+            <div className="skl-empty">
+              <p>
+                The plan is generated from your gaps, so it needs a snapshot
+                first. Rate yourself once and the week builds itself.
+              </p>
+              <button className="trends-btn" onClick={startAssess}>
+                Take first assessment
+              </button>
+            </div>
+          ) : (
+            <>
+              {activePlan && (
+                <div className="skl-plan">
+                  <div className="skl-plan__hd">
+                    <div>
+                      <div className="skl-focus__label">
+                        Week of {activePlan.weekOf} — focus
+                      </div>
+                      <div className="skl-focus__name">{activePlan.skillName}</div>
+                    </div>
+                    <div className="skl-plan__count">
+                      {activePlan.sessions.filter((s) => s.done).length}/
+                      {activePlan.sessions.length} sessions
+                    </div>
+                  </div>
+                  <p className="skl-focus__elite">
+                    Elite marker: {activePlan.skillElite}
+                  </p>
+                  {activePlan.sessions.map((s) => (
+                    <SessionCard key={s.idx} plan={activePlan} session={s} />
+                  ))}
+                </div>
+              )}
+
+              <section className="skl-cat">
+                <h3 className="skl-cat__hd">
+                  {activePlan ? 'Start a new week' : 'Generate this week'}
+                </h3>
+                <p className="skl-cat__blurb">
+                  One skill, seven ~60-minute sessions: baseline → volume →
+                  pressure test → repair → pressure test → review + re-rate.
+                  Defaults to your lowest-rated high-leverage gap.
+                </p>
+                <div className="trends-yt__row">
+                  <select
+                    className="trends-input"
+                    value={planSkillId || focus?.id || ''}
+                    onChange={(e) => setPlanSkillId(e.target.value)}
+                  >
+                    {gaps.slice(0, 10).map((s) => (
+                      <option key={s.id} value={s.id}>
+                        {s.name} — rated {s.rating}/5
+                        {s.leverage ? ' ★' : ''}
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    className="trends-btn"
+                    disabled={gaps.length === 0}
+                    onClick={() => {
+                      const skill =
+                        skillById(planSkillId) || focus || gaps[0];
+                      if (!skill) return;
+                      const plan = buildWeekPlan(
+                        skill,
+                        new Date().toISOString().slice(0, 10),
+                      );
+                      saveLabPlan(plan);
+                    }}
+                  >
+                    Generate week
+                  </button>
+                  {activePlan && (
+                    <button
+                      className="trends-btn trends-btn--ghost"
+                      onClick={() => {
+                        if (window.confirm('Delete the current week plan?'))
+                          deleteLabPlan(activePlan.id);
+                      }}
+                    >
+                      Delete current
+                    </button>
+                  )}
+                </div>
+              </section>
+
+              {plans && plans.length > 1 && (
+                <section className="skl-cat">
+                  <h3 className="skl-cat__hd">Past weeks</h3>
+                  {plans.slice(1).map((p) => (
+                    <div key={p.id} className="skl-gap">
+                      <span className="skl-gap__rating">
+                        {p.sessions.filter((s) => s.done).length}/
+                        {p.sessions.length}
+                      </span>
+                      <span className="skl-gap__name">{p.skillName}</span>
+                      <span className="skl-gap__cat">week of {p.weekOf}</span>
+                    </div>
+                  ))}
+                </section>
+              )}
             </>
           )}
         </>

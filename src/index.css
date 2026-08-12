@@ -2145,3 +2145,99 @@ body:has(.drawer--on) .tweaks__fab { display: none; }
   .trends-cols { grid-template-columns: 1fr; }
   .skl-bar__name { flex-basis: 140px; }
 }
+
+/* ── Skills Lab: weekly lab plan ─────────────────────────── */
+
+.skl-plan {
+  background: rgba(10,10,7,0.55);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.skl-plan__hd {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.skl-plan__count {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: color-mix(in oklab, var(--accent) 60%, white);
+}
+
+.skl-sess {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 6px 0;
+}
+.skl-sess--done .skl-sess__title { color: #8f8a72; text-decoration: line-through; }
+.skl-sess__hd { display: flex; align-items: center; gap: 10px; }
+.skl-sess__check {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
+  border-radius: 7px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.03);
+  color: var(--accent-ink);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .12s ease;
+}
+.skl-sess--done .skl-sess__check { background: var(--accent); border-color: transparent; }
+.skl-sess__title {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  background: none;
+  border: none;
+  color: #d8d2bd;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  cursor: pointer;
+  padding: 4px 0;
+  text-align: left;
+}
+.skl-sess__title:hover { color: #efeadb; }
+.skl-sess__num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  color: #8f8a72;
+}
+.skl-sess__min {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #807c66;
+}
+.skl-sess__body {
+  border-left: 2px solid var(--accent);
+  padding-left: 10px;
+  margin: 6px 0 4px 36px;
+}
+.skl-sess__block {
+  display: flex;
+  gap: 8px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #cec9b6;
+  margin-bottom: 5px;
+}
+.skl-sess__blockmin {
+  flex: 0 0 26px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: color-mix(in oklab, var(--accent) 60%, white);
+}
+.skl-sess__noterow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.skl-sess__notesaved {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--cv-under);
+  margin-top: 4px;
+}
