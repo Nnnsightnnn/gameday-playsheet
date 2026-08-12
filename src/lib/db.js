@@ -84,6 +84,22 @@ db.version(7).stores({
   callSheets: 'id, name, game, updatedAt'
 });
 
+// Version 8: Skill assessments — dated self-rating snapshots against the
+// skill taxonomy (src/data/skills.js). Row: { id, createdAt, ratings:
+// { [skillId]: 1-5 }, note }. Multi-row, string PK.
+db.version(8).stores({
+  myPlays: '++id, playId, playbook, formationGroup, formation, playName, playType, side, tags, notes, rating, addedAt',
+  gameSessions: '++id, opponent, date, result, notes',
+  playPerformance: '++id, sessionId, playId, callCount, successCount, yardsGained, notes',
+  gameContext: 'id',
+  sheetAssignments: 'id',
+  sheetSettings: 'id',
+  formations: 'id, side, name, updatedAt',
+  setupChecks: 'id',
+  callSheets: 'id, name, game, updatedAt',
+  skillAssessments: 'id, createdAt'
+});
+
 // Sheet assignments helpers — fresh-object factories so the module-level
 // defaults are never aliased into the live React state.
 //
@@ -372,6 +388,30 @@ export async function backupCurrentSheet(game, reason) {
     defense: cur.defense,
     createdAt: existing?.createdAt,
   });
+}
+
+// ── Skill assessments ───────────────────────────────────────────────────────
+// Newest-first list of self-rating snapshots. Each save is a new row so the
+// history is the point — deltas between snapshots are the progress signal.
+
+export async function getSkillAssessments() {
+  return await db.skillAssessments.orderBy('createdAt').reverse().toArray();
+}
+
+export async function saveSkillAssessment({ ratings, note }) {
+  const now = new Date().toISOString();
+  const row = {
+    id: `sa_${Math.random().toString(36).slice(2, 10)}`,
+    createdAt: now,
+    ratings: structuredClone(ratings || {}),
+    note: note || '',
+  };
+  await db.skillAssessments.put(row);
+  return row;
+}
+
+export async function deleteSkillAssessment(id) {
+  return await db.skillAssessments.delete(id);
 }
 
 // Attach a saved formation to a play already in myPlays (no migration needed).

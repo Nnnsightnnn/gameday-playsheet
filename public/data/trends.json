@@ -1,0 +1,218 @@
+{
+  "updatedAt": "2026-08-12",
+  "games": {
+    "madden": {
+      "label": "Madden 27",
+      "patchNote": "Day-one title update (Aug 10) patched the cut-move speed boost found in early access. Launch is Aug 13.",
+      "trends": [
+        {
+          "id": "m27-green-catch",
+          "category": "mechanic",
+          "title": "Timing-based catching is the expected day-one meta",
+          "summary": "New optional 'green catch' mechanic rewards perfectly timed presses with more reliable catches, contested wins, and INTs. Early analysis expects it to dominate online play out of Bunch, Trips, and post-route systems.",
+          "action": "Decide early: learn the timing in practice mode or leave it off. Skilled users get a raw catch-rate edge.",
+          "links": [
+            { "label": "EA gameplay deep dive", "url": "https://www.ea.com/games/madden-nfl/madden-nfl-27/features/m27-gameplay" }
+          ]
+        },
+        {
+          "id": "m27-wr-db",
+          "category": "mechanic",
+          "title": "New WR/DB interaction physics reshape the coverage meta",
+          "summary": "Full hand-fighting and leverage physics on every route. Separation is animation-driven now, so route-running/press ratings and release timing matter more than legacy money-route geometry.",
+          "action": "Expect early metas to shift as labs find which routes still win. Re-verify your money plays against the new interactions.",
+          "links": [
+            { "label": "Forbes: 10 things to know", "url": "https://www.forbes.com/sites/brianmazique/2026/08/01/madden-27-10-things-you-should-know-about-the-new-version/" }
+          ]
+        },
+        {
+          "id": "m27-def-presets",
+          "category": "defense",
+          "title": "Saveable defensive adjustment presets",
+          "summary": "You can save a series of defensive adjustments and recall them with one click in-game — mug looks, shading packages, and roll-coverage disguises applied instantly.",
+          "action": "Build your roll-coverage disguise as a preset. This is the perfect vehicle for the weekly coverage focus.",
+          "links": [
+            { "label": "MaddenTurf gameplay changes", "url": "https://maddenturf.com/madden-27-gameplay-changes/" }
+          ]
+        },
+        {
+          "id": "m27-falcons-book",
+          "category": "team",
+          "title": "Falcons playbook is top-5 at launch",
+          "summary": "Best pistol + shotgun blend in the game with real run-pass balance. Community picks: Cheat Flat X Post, Y Off Close, Stretch, Play Dagger, PA Shot (man destroyer), Cheat Bunch Drive Corner. Pistol Bunch TE is the core formation. Bijan is 95 OVR (97 Juke).",
+          "action": "You can run your own team's book and be meta. Check whether Gun Bunch Offset survived from the M26 book.",
+          "links": [
+            { "label": "Civil.GG best offenses", "url": "https://www.civil.gg/tips/best-offenses-madden-27" },
+            { "label": "IGGM top 5 launch books", "url": "https://www.iggm.com/news/madden-nfl-27-top-5-offensive-playbooks-dominate-at-launch" }
+          ]
+        },
+        {
+          "id": "m27-short-yardage",
+          "category": "offense",
+          "title": "Tush Push + short-yardage rework",
+          "summary": "Tush Push added to select books (Eagles, Bills) with a timed accuracy meter; short-yardage run blocking improved with new plays. Short-yardage offense is now a distinct micro-skill.",
+          "action": "Rep the QB sneak meter before playing ranked — free conversions for those who have it down.",
+          "links": [
+            { "label": "MMOExp features guide", "url": "https://www.mmoexp.com/News/madden-27-new-features-guide-27-biggest-gameplay-franchise-changes.html" }
+          ]
+        },
+        {
+          "id": "m27-def-books",
+          "category": "defense",
+          "title": "Early defensive book consensus: Texans and 49ers",
+          "summary": "Launch defensive meta wants Nickel/Dime/Dollar flexibility, mug fronts, and multiple blitz structures that pair with the new adjustment presets. Texans and 49ers are early S-tier; Multiple D, Vikings, Bengals close behind.",
+          "action": "If the Falcons D book feels thin, Texans is the safe competitive alternative.",
+          "links": [
+            { "label": "Madden Prodigy playbook rankings", "url": "https://www.maddenprodigy.com/best-madden-27-playbooks/" }
+          ]
+        },
+        {
+          "id": "m27-carryover",
+          "category": "offense",
+          "title": "Late-M26 meta carries into launch window",
+          "summary": "Compressed Gun Bunch / Trips TE systems with natural picks vs man, RPO Alert Bubble, and run-pass balance from identical looks were the dominant frame. First M27 metas will be evolutions of these until the new WR/DB physics shakes out.",
+          "action": "Your compressed-set knowledge transfers. Re-lab the pick concepts vs the new physics first.",
+          "links": [
+            { "label": "MaddenTurf meta explainer", "url": "https://maddenturf.com/what-is-the-meta-in-madden/" }
+          ]
+        },
+        {
+          "id": "m27-day-one-patch",
+          "category": "patch",
+          "title": "Day-one patch killed the first exploit",
+          "summary": "The Aug 10 early-access update removed an unintended speed boost on specific cut moves — the first would-be exploit of the cycle, patched before launch.",
+          "action": "Watch the patch tracker weekly; the first month of a Madden cycle moves fast.",
+          "links": [
+            { "label": "MaddenTurf patch tracker", "url": "https://maddenturf.com/madden-27-patch-notes/" }
+          ]
+        }
+      ],
+      "videos": [
+        { "title": "27 Gameplay Tips & Tricks You NEED To Know In Madden 27", "channel": "YouTube", "url": "https://www.youtube.com/watch?v=Ebe30g1KaQA" },
+        { "title": "20 Settings You MUST Turn On in Madden 27", "channel": "YouTube", "url": "https://www.youtube.com/watch?v=1ATuIX2PPjM" },
+        { "title": "The NEW META DEFENSE All The Pros Are Running", "channel": "YouTube", "url": "https://www.youtube.com/watch?v=wHT_uKjoCbM" }
+      ],
+      "creators": [
+        { "name": "ZAN (ZANmadden)", "focus": "Premier competitive strategy teacher; weekly Vault M.E.T.A. updates via Gridiron Gameplans", "url": "https://www.youtube.com/channel/UCNJYzPzRb4hzegqQA05Ro6Q" },
+        { "name": "The Madden Lab", "focus": "Madden + CFB meta setups and tips", "url": "https://www.youtube.com/themaddenlab" },
+        { "name": "Zirksee", "focus": "Current meta and trend tracking", "url": "https://www.youtube.com/results?search_query=zirksee" },
+        { "name": "Civil", "focus": "Scheme guides for both games", "url": "https://www.civil.gg/" },
+        { "name": "Madden School", "focus": "Pro tips, abilities tier lists", "url": "https://www.madden-school.com/" }
+      ],
+      "watch": [
+        { "name": "MaddenTurf", "what": "Patch notes, bug tracker, playbook tiers", "url": "https://maddenturf.com/strategy/" },
+        { "name": "Gridiron Gameplans", "what": "ZAN's weekly meta vault", "url": "https://www.gridirongameplans.gg/" },
+        { "name": "Huddle.gg", "what": "Playbook DB + pro gameplans", "url": "https://huddle.gg/" },
+        { "name": "EA Madden 27 news", "what": "Canonical patch notes", "url": "https://www.ea.com/games/madden-nfl/madden-nfl-27/news" },
+        { "name": "r/Madden", "what": "Community pulse", "url": "https://www.reddit.com/r/Madden/" }
+      ]
+    },
+    "cfb": {
+      "label": "CFB 27",
+      "patchNote": "Title Update 3 (Aug 6) was the meta earthquake: match-coverage logic pass, run-play user-defense fix, formation-shift exploit closed, contested catches buffed.",
+      "trends": [
+        {
+          "id": "cfb-run-meta",
+          "category": "offense",
+          "title": "Run-first meta after the passing nerf",
+          "summary": "Passing got nerfed this cycle and the competitive meta flipped run-first. West Virginia's Gun Power I Tight (multiple lead blockers, QB power) is repeatedly cited as the best run package in the game.",
+          "action": "Ole Miss's Air Raid book fights this current — a deliberate decision is due: embrace pass-first identity or hedge with your compressed sets.",
+          "team": "olemiss",
+          "links": [
+            { "label": "Athlon best offensive playbooks", "url": "https://athlonsports.com/sports-video-games/ea-college-football-27-best-offensive-playbooks" }
+          ]
+        },
+        {
+          "id": "cfb-tu3",
+          "category": "patch",
+          "title": "TU3 (Aug 6): full match-coverage logic pass",
+          "summary": "Cover 3 Match, Palms, Quarters, Bracket, Bingo, Box Check, and Stubbie all got a logic rework — match coverage is now much more trustworthy. Also: Untarget User Defender no longer works on runs, pancake frequency down, defenders win more jump balls.",
+          "action": "Your Coverage Lab work and roll-coverage week should build on post-TU3 behavior — pre-patch coverage lore is stale.",
+          "links": [
+            { "label": "EA TU3 notes", "url": "https://www.ea.com/games/ea-sports-college-football/college-football-27/news/cfb-27-title-update-august-6-2026" }
+          ]
+        },
+        {
+          "id": "cfb-compression",
+          "category": "offense",
+          "title": "Compression/condensed sets are the offensive frame",
+          "summary": "Condensed formations attack both sides of the field, create natural traffic and rubs vs man, and speed up reads — same compressed-bunch logic that closed out Madden 26.",
+          "action": "Audit the Ole Miss book for its condensed sets and get them onto the sheet.",
+          "team": "olemiss",
+          "links": [
+            { "label": "MaddenTurf CFB 27 playbooks", "url": "https://maddenturf.com/cfb-27-best-playbooks/" }
+          ]
+        },
+        {
+          "id": "cfb-def-meta",
+          "category": "defense",
+          "title": "4-2-5 Man Pressure book + Nickel 3-3 Cub formation",
+          "summary": "4-2-5 Man Pressure is the consensus S-tier defensive book; 3-3 Cub is 'the single most agreed-upon thing in CFB 27 defense' — best balance of coverage, pressure, and run D. Do-everything formations: Nickel 3-3 Mint, 3-4 Tight, 3-3-5 High Over, Three High. Coverage staples: Cover 2 Man, Tampa 2, Cover 3.",
+          "action": "Your defensive install in progress should be measured against 3-3 Cub — it's the standard.",
+          "links": [
+            { "label": "Civil complete defense guide", "url": "https://www.civil.gg/tips/cfb-27-complete-defense-guide" }
+          ]
+        },
+        {
+          "id": "cfb-exploits",
+          "category": "exploit",
+          "title": "Live exploit watch",
+          "summary": "Still live post-TU3: formation-shift extra hot routes (both sides can use it), flipped-routes glitch, speed boosting, slot corner won't travel on defense flip + frozen user defender after flip.",
+          "action": "Know these to defend against them even if you won't run them. Check the bug tracker before ranked sessions.",
+          "links": [
+            { "label": "MaddenTurf bug tracker", "url": "https://maddenturf.com/cfb-27-bugs-glitches/" }
+          ]
+        },
+        {
+          "id": "cfb-pa-dead",
+          "category": "offense",
+          "title": "Under-center play action is near-dead",
+          "summary": "Pass rush is too fast (~2.5s decision windows), so PA survives only on boot/rollout actions. This shapes which parts of any playbook are actually usable.",
+          "action": "Prune slow-developing UC play action from the sheet; keep boots and rollouts.",
+          "links": [
+            { "label": "IGGM TU breakdown", "url": "https://www.iggm.com/news/college-football-27-title-update-august-6-breakdown-gameplay-fixes-dynasty-changes-evo-system" }
+          ]
+        },
+        {
+          "id": "cfb-rpo",
+          "category": "offense",
+          "title": "RPO-centric schemes are the skill ceiling",
+          "summary": "Advanced RPO reads with complementary run counters headline the pro ebooks. Georgia and Bowling Green are the RPO books of choice; tournament pros also cite Washington State, Charlotte, Ohio State, Georgia Southern.",
+          "action": "RPO decision-making is a rateable skill — lab the conflict-defender read, not the play.",
+          "links": [
+            { "label": "Madden Prodigy CFB offense guide", "url": "https://www.maddenprodigy.com/college-football-27-offense-guide/" }
+          ]
+        },
+        {
+          "id": "cfb-contested",
+          "category": "team",
+          "title": "Contested-catch buff slightly hurts Air Raid",
+          "summary": "TU3 made defenders win more contested catches and jump balls while match coverage got smarter — a double headwind for jump-ball-free Air Raid throws.",
+          "action": "Lean on the spacing/leverage throws, not 50/50 balls. The defensive install should assume smarter match coverage.",
+          "team": "olemiss",
+          "links": [
+            { "label": "EA TU3 notes", "url": "https://www.ea.com/games/ea-sports-college-football/college-football-27/news/cfb-27-title-update-august-6-2026" }
+          ]
+        }
+      ],
+      "videos": [
+        { "title": "The COMPLETE Guide To Defense In College Football 27", "channel": "Civil", "url": "https://www.youtube.com/watch?v=ApkUuv-xV1c" },
+        { "title": "How To Master The Run Game", "channel": "Civil", "url": "https://www.youtube.com/watch?v=J3V-t0UwiR0" },
+        { "title": "20 Tips That Instantly Make You Better", "channel": "Civil", "url": "https://www.youtube.com/watch?v=qdnIsz_FieQ" },
+        { "title": "How to Actually Play Defense in College Football 27", "channel": "YouTube", "url": "https://www.youtube.com/watch?v=w-sNv8G7lNI" }
+      ],
+      "creators": [
+        { "name": "Civil (Civil.GG)", "focus": "Top scheme-teaching channel for CFB 27", "url": "https://www.civil.gg/" },
+        { "name": "Bordeaux", "focus": "Biggest CFB creator; Dynasty focus + community advocacy", "url": "https://www.youtube.com/@BordeauxYT" },
+        { "name": "The Madden Lab", "focus": "Covers CFB metas too", "url": "https://www.youtube.com/themaddenlab" }
+      ],
+      "watch": [
+        { "name": "MaddenTurf CFB", "what": "Patch notes + bug tracker", "url": "https://maddenturf.com/cfb-27-patch-notes/" },
+        { "name": "CFB.FAN", "what": "Playbook DB (incl. Ole Miss)", "url": "https://cfb.fan/playbooks/" },
+        { "name": "EA CFB 27 news", "what": "Canonical patch notes", "url": "https://www.ea.com/games/ea-sports-college-football/college-football-27/news" },
+        { "name": "r/NCAAFBseries", "what": "Community pulse", "url": "https://www.reddit.com/r/NCAAFBseries/" },
+        { "name": "Operation Sports", "what": "Guides + patch analysis", "url": "https://www.operationsports.com/" }
+      ]
+    }
+  }
+}

@@ -1,6 +1,19 @@
+<!-- Last verified: 2026-08-10 -->
 # Claude Context Specification
 
 Gameday Playsheet - Football play management application.
+
+## Purpose & workflow (updated 2026-08-10)
+
+This repo is the **lab for Kenny's life-goal #3: elite Madden 27 + CFB 27 play,
+coached as deliberate practice** (decided 2026-08-10, replacing the retired AI
+curriculum). Game plans are usually installed via the **`team-gameplan` skill**:
+research the team's meta → curated call sheet + coaching guide (`docs/` +
+`public/`) → tests pass → deploy live. Current focus: **Ole Miss (CFB 27)**
+(offensive install done 8/04, defensive in progress) + **Madden 27** (Falcons,
+started 8/06). Weekly cadence: **one concept installed, tested in a game,
+reviewed in the daily note** — starting with roll coverage (see Coverage Lab,
+`src/components/coverage/`).
 
 ## Tech Stack
 
@@ -10,13 +23,17 @@ Gameday Playsheet - Football play management application.
 
 ```
 /src/           - React application source
-  /components/  - UI components (PlaybookBrowser, MyPlaysheet)
+  /components/  - UI components, grouped by feature:
+    /laminated/ - call sheet (Sheet, Coordinator, PlayBank, SetupSheet)
+    /coverage/  - Coverage Lab (field sim, Learn mode, glossary)
+    /planner/   - Formation planner (field board, formation library)
   /lib/         - Database layer (db.js - Dexie)
   /data/        - Playbook utilities
   /hooks/       - Custom hooks
 /tools/scraper/ - Python web scrapers (huddle.gg)
 /scripts/       - Dev helper scripts (dev.sh)
-/public/data/   - Static playbook JSON
+/public/data/   - Static JSON (playbooks.json, playbooks-cfb27.json, formation-library.json)
+/docs/          - Per-team game plans (olemiss, iowa, falcons: .html + .md) + coverage-lab-standalone
 /.claude/       - Context system
 ```
 
@@ -73,7 +90,8 @@ Gameday Playsheet - Football play management application.
 **[DATA-00001]** Use Dexie helpers from `src/lib/db.js` for all IndexedDB operations
 > TRIGGER: When persisting client-side data
 
-**[DATA-00002]** Database tables: `myPlays`, `gameSessions`, `playPerformance`
+**[DATA-00002]** Database tables (schema v7): `myPlays`, `gameSessions`, `playPerformance`, `gameContext`, `sheetAssignments`, `sheetSettings`, `formations`, `setupChecks`, `callSheets`
+**[DATA-00003]** Sheet assignments are stored per game (`byGame: { madden, cfb }`) so the Madden and CFB sheets never clobber each other
 > TRIGGER: When working with stored data
 
 ---
@@ -128,10 +146,12 @@ Gameday Playsheet - Football play management application.
 ## npm Scripts
 
 ```bash
-npm run dev      # Start dev server
-npm run build    # Production build
-npm run lint     # Run ESLint
-npm run preview  # Preview build
+npm run dev        # Start dev server
+npm run build      # Production build
+npm run lint       # Run ESLint
+npm run test       # Vitest (run once) — required before any game-plan deploy
+npm run test:watch # Vitest watch mode
+npm run preview    # Preview build
 ```
 
 ---

@@ -31,6 +31,8 @@ import Toast from './components/laminated/Toast'
 import TweaksPanel from './components/laminated/TweaksPanel'
 import FormationPlanner from './components/planner/FormationPlanner'
 import CoverageLab from './components/coverage/CoverageLab'
+import TrendsBoard from './components/trends/TrendsBoard'
+import SkillsLab from './components/skills/SkillsLab'
 import BrandCredit from './BrandCredit'
 
 const DENSITY_SLOTS = { compact: 3, regular: 4, comfy: 5 }
@@ -91,6 +93,7 @@ function App() {
   // (walking the in-game favorites menu on setup day).
   const sheetMode = settings?.sheetMode ?? 'situation'
   const coverageLab = settings?.coverageLab ?? null
+  const trendsCfg = settings?.trends ?? null
 
   const ctx = ctxRow ?? { down: 1, distance: 10, fieldSide: 'own', yardLine: 25 }
   // Per-game sheet: the Madden sheet and the CFB sheet live side by side.
@@ -151,6 +154,8 @@ function App() {
     saveSheetSettings({ ...(settings || {}), team, side, tweaks, sheetMode: m })
   const setCoverageLab = (next) =>
     saveSheetSettings({ ...(settings || {}), team, side, tweaks, coverageLab: next })
+  const setTrendsCfg = (next) =>
+    saveSheetSettings({ ...(settings || {}), team, side, tweaks, trends: next })
 
   const openDrawer = (situationId) => {
     setTargetId(situationId || situations[0].id)
@@ -288,11 +293,23 @@ function App() {
         >
           Coverage Lab
         </button>
+        <button
+          className={'view-tab' + (view === 'trends' ? ' view-tab--on' : '')}
+          onClick={() => setView('trends')}
+        >
+          Trends
+        </button>
+        <button
+          className={'view-tab' + (view === 'skills' ? ' view-tab--on' : '')}
+          onClick={() => setView('skills')}
+        >
+          Skills
+        </button>
       </div>
 
-      {/* The Coverage Lab is defense-only by definition, so the side tabs
-          would be a no-op there. */}
-      {view !== 'coverage' && (
+      {/* The Coverage Lab is defense-only and Trends/Skills span both sides,
+          so the offense/defense tabs would be a no-op on those views. */}
+      {view !== 'coverage' && view !== 'trends' && view !== 'skills' && (
       <div className="sides">
         <button
           className={
@@ -344,6 +361,10 @@ function App() {
 
       {view === 'coverage' ? (
         <CoverageLab lab={coverageLab} setLab={setCoverageLab} />
+      ) : view === 'trends' ? (
+        <TrendsBoard game={game} trendsCfg={trendsCfg} setTrendsCfg={setTrendsCfg} />
+      ) : view === 'skills' ? (
+        <SkillsLab game={game} />
       ) : view === 'planner' ? (
         <FormationPlanner side={side} />
       ) : (
