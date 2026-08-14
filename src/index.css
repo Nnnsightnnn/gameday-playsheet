@@ -2650,3 +2650,51 @@ body:has(.drawer--on) .tweaks__fab { display: none; }
 }
 .pers-gap__name { flex: 1 1 auto; }
 .pers-gap__who { font-family: var(--font-mono); font-size: 10.5px; color: #807c66; }
+
+/* ── Legend: what the 1-5 dots mean ──────────────────────── */
+.pers-legend {
+  border: 1px dashed rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+}
+.pers-legend__lead {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #aaa48b;
+  margin-bottom: 9px;
+}
+.pers-legend__lead strong { color: #efeadb; font-weight: 600; }
+.pers-legend__scale {
+  display: flex;
+  gap: 6px 14px;
+  flex-wrap: wrap;
+}
+.pers-legend__scale--grades {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.pers-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: #8f8a72;
+  white-space: nowrap;
+}
+.pers-legend__num {
+  width: 18px; height: 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.16);
+  color: color-mix(in oklab, var(--accent) 75%, white);
+  font-size: 9.5px;
+  flex: 0 0 auto;
+}
+@media (max-width: 640px) {
+  .pers-legend__item { white-space: normal; }
+}

@@ -172,11 +172,35 @@ export default function PersonnelLab({ game, side }) {
                   <strong>{summary[g]}</strong> {GRADES[g].label.toLowerCase()}
                 </span>
               ))}
-              <span className="pers-tally">
-                rate each role 1–5: {KNOW_ANCHORS[0].label} → {KNOW_ANCHORS[4].label}
-              </span>
             </div>
           )}
+
+          {/* The 1–5 dots on each role card are "how well do I know this
+              job," not a grade of the player. Anchors spelled out here
+              because a naked row of numbers tells you nothing. */}
+          <div className="pers-legend">
+            <div className="pers-legend__lead">
+              The dots on the right of each role rate <strong>how well you
+              know that job</strong> — the colored dot by the role name is my
+              grade of who currently holds it.
+            </div>
+            <div className="pers-legend__scale">
+              {KNOW_ANCHORS.map((a) => (
+                <span key={a.value} className="pers-legend__item">
+                  <span className="pers-legend__num">{a.value}</span>
+                  {a.label}
+                </span>
+              ))}
+            </div>
+            <div className="pers-legend__scale pers-legend__scale--grades">
+              {['fit', 'stretch', 'hole'].map((g) => (
+                <span key={g} className="pers-legend__item">
+                  <span className={'pers-dot pers-dot--' + g} />
+                  {GRADES[g].label}
+                </span>
+              ))}
+            </div>
+          </div>
 
           {roles.map((r) => (
             <RoleCard key={r.id} role={r} entry={know[r.id]} onPatch={patch} />
