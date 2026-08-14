@@ -116,6 +116,26 @@ db.version(9).stores({
   labPlans: 'id, weekOf'
 });
 
+// Version 10: Personnel Lab — one row per team role sheet holding Kenny's
+// working notes against it. Row: { id: '<game>:<planId>', planId, game,
+// know: { [roleId]: { rating: 1-5, player, note } }, updatedAt }.
+// The role definitions themselves are static data (src/data/personnel-*.js);
+// only what Kenny knows and who he actually starts is persisted.
+db.version(10).stores({
+  myPlays: '++id, playId, playbook, formationGroup, formation, playName, playType, side, tags, notes, rating, addedAt',
+  gameSessions: '++id, opponent, date, result, notes',
+  playPerformance: '++id, sessionId, playId, callCount, successCount, yardsGained, notes',
+  gameContext: 'id',
+  sheetAssignments: 'id',
+  sheetSettings: 'id',
+  formations: 'id, side, name, updatedAt',
+  setupChecks: 'id',
+  callSheets: 'id, name, game, updatedAt',
+  skillAssessments: 'id, createdAt',
+  labPlans: 'id, weekOf',
+  personnelCharts: 'id, planId, game, updatedAt'
+});
+
 // Sheet assignments helpers — fresh-object factories so the module-level
 // defaults are never aliased into the live React state.
 //
@@ -458,6 +478,53 @@ export async function updateLabPlanSession(planId, idx, patch) {
 
 export async function deleteLabPlan(id) {
   return await db.labPlans.delete(id);
+}
+
+// ── Personnel charts ────────────────────────────────────────────────────────
+// One row per team role sheet. `know[roleId]` carries Kenny's self-rating on
+// the role (1–5), the player he actually starts there (overriding the shipped
+// default), and his own note. Role definitions are static data and are never
+// written here — only what he knows and who he plays.
+
+const personnelChartId = (game, planId) => `${game}:${planId}`;
+
+export async function getPersonnelChart(game, planId) {
+  const id = personnelChartId(game, planId);
+  const row = await db.personnelCharts.get(id);
+  return row || { id, planId, game, know: {} };
+}
+
+export async function getPersonnelCharts() {
+  return await db.personnelCharts.toArray();
+}
+
+// Merge-patch one role's entry. Passing null for a field deletes it so a
+// cleared input never leaves an empty key behind (same rule as myNote).
+export async function savePersonnelRole(game, planId, roleId, patch) {
+  const row = await getPersonnelChart(game, planId);
+  const cur = row.know[roleId] || {};
+  const next = { ...cur };
+  Object.entries(patch).forEach(([k, v]) => {
+    if (v == null || v === '') delete next[k];
+    else next[k] = v;
+  });
+  const know = { ...row.know };
+  if (Object.keys(next).length) know[roleId] = next;
+  else delete know[roleId];
+  const saved = {
+    ...row,
+    id: personnelChartId(game, planId),
+    planId,
+    game,
+    know,
+    updatedAt: new Date().toISOString(),
+  };
+  await db.personnelCharts.put(saved);
+  return saved;
+}
+
+export async function clearPersonnelChart(game, planId) {
+  return await db.personnelCharts.delete(personnelChartId(game, planId));
 }
 
 // Attach a saved formation to a play already in myPlays (no migration needed).

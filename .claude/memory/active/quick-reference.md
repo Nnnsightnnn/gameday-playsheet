@@ -103,6 +103,27 @@ Optional live YouTube panel: Kenny pastes his own API key, stored in
 `settings.trends.ytKey`, and the component calls the YouTube Data API v3 search
 endpoint directly from the browser. No key is committed — don't add one.
 
+### 6. Personnel Lab — `src/components/personnel/` + `src/lib/personnel/`
+Answers "what does each individual do inside my scheme." Team role sheets are
+static data (`src/data/personnel-<team>.js`); only Kenny's 1–5 knowledge
+rating, his starter override, and his note persist (`personnelCharts`, keyed
+`<game>:<planId>`).
+
+| Piece | Role |
+|---|---|
+| `data/personnel.js` | Shared vocabulary — `CONFIDENCE`, `RATING_GLOSSARY`, `M27_POSITIONS`, `POSITION_MIGRATION`, `KNOW_ANCHORS`. |
+| `data/personnel-falcons.js` | 24 roles + 7-step `buildOrder` + 14 `inGame` reads. |
+| `data/personnelPlans.js` | Registry — `PERSONNEL_PLANS`, `plansForGame`, `planById`. |
+| `lib/personnel/roleModel.js` | Pure engine: `rolesForSide`, `gradeSummary`, `rosterHoles`, `knowledgeGaps`, `focusRole`, `readsByPhase`, `trapDigest`. |
+
+- Four modes: **Roles · Build · In-Game · Gaps**. Own side filter, so the
+  global offense/defense tabs are hidden.
+- `focusRole` ties break toward the **worse roster grade** — not knowing a role
+  you also can't staff costs the most.
+- **Madden 27 killed LE/RE/LOLB/MLB/ROLB.** It is LEDG/REDG/DT/SAM/MIKE/WILL.
+  `personnel.test.js` fails the build if a retired code reappears.
+- Every claim carries a `conf` tag; the UI renders it as a chip. See `[PERS]`.
+
 ### 5. Skills Lab — `src/components/skills/SkillsLab.jsx`
 Three modes: **Gaps** (default) · **Assess** · **Progress**. Rates 31 skills
 across 6 categories — Pre-Snap Recognition, Passing Execution, Run Game &

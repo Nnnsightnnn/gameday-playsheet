@@ -2248,3 +2248,405 @@ body:has(.drawer--on) .tweaks__fab { display: none; }
   color: var(--cv-under);
   margin-top: 4px;
 }
+
+/* ============================================================
+   PERSONNEL LAB — what each individual does inside the scheme
+   ============================================================ */
+
+.pers { max-width: 940px; margin: 0 auto; padding: 0 14px 60px; }
+
+.pers-hd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.pers-planpick { flex: 0 1 220px; }
+
+.pers-meta {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: #aaa48b;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.pers-meta strong { color: #efeadb; }
+.pers-meta__date { margin-left: auto; color: #807c66; font-size: 10.5px; }
+
+/* ── Doctrine banner ─────────────────────────────────────── */
+.pers-doctrine {
+  border-left: 3px solid var(--accent);
+  background: rgba(255,255,255,0.03);
+  border-radius: 0 10px 10px 0;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+.pers-doctrine__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--accent) 70%, white);
+  margin-bottom: 6px;
+}
+.pers-doctrine p {
+  margin: 0 0 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #cec9b6;
+}
+.pers-doctrine p:last-child { margin-bottom: 0; }
+.pers-doctrine__honest {
+  border-top: 1px dashed rgba(255,255,255,0.12);
+  padding-top: 8px;
+  color: color-mix(in oklab, var(--token-bad) 45%, #efeadb) !important;
+}
+
+/* ── Tallies ─────────────────────────────────────────────── */
+.pers-summary {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.pers-tally {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.4px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #aaa48b;
+}
+.pers-tally strong { color: #efeadb; }
+.pers-tally--fit { border-color: var(--cv-under); color: var(--cv-under); }
+.pers-tally--stretch { border-color: #d8b45a; color: #d8b45a; }
+.pers-tally--hole { border-color: var(--token-bad); color: var(--token-bad); }
+
+.pers-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex: 0 0 auto;
+}
+.pers-dot--fit { background: var(--cv-under); }
+.pers-dot--stretch { background: #d8b45a; }
+.pers-dot--hole { background: var(--token-bad); }
+
+/* ── Confidence chips — how much to trust a claim ────────── */
+.pers-conf {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.14);
+  color: #807c66;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  align-self: flex-start;
+  cursor: help;
+}
+.pers-conf--ea { border-color: var(--cv-under); color: var(--cv-under); }
+.pers-conf--m27 { border-color: color-mix(in oklab, var(--accent) 70%, white); color: color-mix(in oklab, var(--accent) 70%, white); }
+.pers-conf--m26 { border-color: #d8b45a; color: #d8b45a; }
+.pers-conf--stale { border-color: #8f8a72; color: #8f8a72; }
+.pers-conf--read { border-color: var(--token-bad); color: var(--token-bad); }
+
+/* ── Role card ───────────────────────────────────────────── */
+.pers-role {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  background: rgba(255,255,255,0.02);
+}
+.pers-role--open { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.04); }
+.pers-role__hd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pers-role__title {
+  flex: 1 1 240px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  color: #efeadb;
+}
+.pers-role__pos {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.8px;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: color-mix(in oklab, var(--accent) 22%, transparent);
+  color: color-mix(in oklab, var(--accent) 75%, white);
+  flex: 0 0 auto;
+}
+.pers-role__name { font-family: var(--font-body); font-size: 14px; font-weight: 600; }
+.pers-role__slot { font-family: var(--font-mono); font-size: 10px; color: #807c66; }
+.pers-role__sub {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #807c66;
+}
+.pers-role__sortkey { color: color-mix(in oklab, var(--accent) 60%, white); }
+
+/* knowledge dots — 1-5, same spine as the Skills Lab */
+.pers-know { display: flex; gap: 4px; flex: 0 0 auto; }
+.pers-knowdot {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: transparent;
+  color: #807c66;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  cursor: pointer;
+  transition: all .12s ease;
+}
+.pers-knowdot:hover { border-color: rgba(255,255,255,0.35); color: #efeadb; }
+.pers-knowdot--on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+}
+
+.pers-role__body { margin-top: 12px; }
+
+.pers-block { margin-bottom: 14px; }
+.pers-block__hd {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: #8f8a72;
+  margin: 0 0 7px;
+  font-weight: 400;
+}
+.pers-block__text { margin: 0; font-size: 13px; line-height: 1.6; color: #cec9b6; }
+.pers-block--breaks .pers-block__text {
+  border-left: 2px solid var(--token-bad);
+  padding-left: 10px;
+  color: color-mix(in oklab, var(--token-bad) 30%, #cec9b6);
+}
+.pers-block--mine { border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 10px; }
+.pers-mine { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ── Rating lines ────────────────────────────────────────── */
+.pers-rate {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.pers-rate__key {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  flex: 0 0 44px;
+  color: #807c66;
+  cursor: help;
+}
+.pers-rate--core .pers-rate__key { color: color-mix(in oklab, var(--accent) 80%, white); }
+.pers-rate__body { flex: 1 1 auto; min-width: 0; }
+.pers-rate__gloss { font-size: 11.5px; color: #8f8a72; line-height: 1.45; }
+.pers-rate__why { margin: 3px 0 0; font-size: 12.5px; line-height: 1.55; color: #cec9b6; }
+
+/* ── Traps ───────────────────────────────────────────────── */
+.pers-trap {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in oklab, var(--token-bad) 30%, transparent);
+  background: color-mix(in oklab, var(--token-bad) 6%, transparent);
+}
+.pers-trap__key {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  flex: 0 0 44px;
+  color: var(--token-bad);
+}
+.pers-trap__why { margin: 0; flex: 1 1 auto; font-size: 12.5px; line-height: 1.55; color: #cec9b6; }
+.pers-trap__where { color: #807c66; font-size: 11px; }
+
+/* ── Archetype ───────────────────────────────────────────── */
+.pers-arch {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #cec9b6;
+}
+.pers-arch__keys { font-family: var(--font-mono); font-size: 11px; color: #8f8a72; }
+
+/* ── Holder block ────────────────────────────────────────── */
+.pers-holder {
+  border-left: 3px solid rgba(255,255,255,0.14);
+  padding: 8px 0 8px 11px;
+  margin-bottom: 9px;
+}
+.pers-holder--fit { border-left-color: var(--cv-under); }
+.pers-holder--stretch { border-left-color: #d8b45a; }
+.pers-holder--hole { border-left-color: var(--token-bad); }
+.pers-holder__hd { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.pers-holder__label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #807c66;
+}
+.pers-holder__name { font-family: var(--font-body); font-size: 13.5px; font-weight: 600; color: #efeadb; }
+.pers-holder__ovr { font-family: var(--font-mono); font-size: 11px; color: color-mix(in oklab, var(--accent) 70%, white); }
+.pers-holder__grade { font-family: var(--font-mono); font-size: 9.5px; color: #807c66; margin-left: auto; }
+.pers-holder__line {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  line-height: 1.7;
+  color: #8f8a72;
+  margin: 4px 0;
+  word-spacing: 1px;
+}
+.pers-holder__verdict { margin: 0; font-size: 12.5px; line-height: 1.55; color: #cec9b6; }
+
+/* ── Reads ───────────────────────────────────────────────── */
+.pers-read, .pers-adj {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.9fr) 1.6fr;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.pers-read__when, .pers-adj__tell {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #d8b45a;
+}
+.pers-read__do, .pers-adj__fix {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #cec9b6;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+@media (max-width: 640px) {
+  .pers-read, .pers-adj { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* ── Build procedure ─────────────────────────────────────── */
+.pers-step {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 11px 13px;
+  margin-bottom: 8px;
+  background: rgba(255,255,255,0.02);
+}
+.pers-step__hd { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; margin-bottom: 6px; }
+.pers-step__num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  width: 22px; height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+  flex: 0 0 auto;
+}
+.pers-step__title { font-family: var(--font-body); font-size: 13.5px; font-weight: 600; color: #efeadb; }
+.pers-step__do { margin: 0 0 6px; font-size: 13px; line-height: 1.6; color: #cec9b6; }
+.pers-step__why { margin: 0; font-size: 12px; line-height: 1.55; color: #8f8a72; }
+.pers-step__why em { color: #aaa48b; font-style: normal; font-family: var(--font-mono); font-size: 10.5px; }
+
+/* ── Position migration table ────────────────────────────── */
+.pers-migrate__row {
+  display: flex;
+  gap: 9px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 12.5px;
+  color: #cec9b6;
+}
+.pers-migrate__was { font-family: var(--font-mono); font-size: 11px; color: var(--token-bad); text-decoration: line-through; flex: 0 0 44px; }
+.pers-migrate__arrow { color: #807c66; }
+.pers-migrate__now { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--cv-under); flex: 0 0 52px; }
+.pers-migrate__note { color: #8f8a72; font-size: 12px; }
+
+/* ── Gaps lens ───────────────────────────────────────────── */
+.pers-focus {
+  border-left: 3px solid var(--accent);
+  background: rgba(255,255,255,0.03);
+  border-radius: 0 10px 10px 0;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+.pers-focus__name {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: #efeadb;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.pers-focus__rating { font-family: var(--font-mono); font-size: 10.5px; color: #d8b45a; }
+.pers-focus__job { margin: 0 0 7px; font-size: 13px; line-height: 1.6; color: #cec9b6; }
+.pers-focus__breaks { margin: 0; font-size: 12.5px; line-height: 1.55; color: #8f8a72; }
+
+.pers-gap {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 13px;
+  color: #cec9b6;
+}
+.pers-gap__rating {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  width: 22px; height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.14);
+  color: #d8b45a;
+  flex: 0 0 auto;
+}
+.pers-gap__name { flex: 1 1 auto; }
+.pers-gap__who { font-family: var(--font-mono); font-size: 10.5px; color: #807c66; }

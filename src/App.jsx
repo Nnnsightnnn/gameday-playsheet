@@ -33,6 +33,7 @@ import FormationPlanner from './components/planner/FormationPlanner'
 import CoverageLab from './components/coverage/CoverageLab'
 import TrendsBoard from './components/trends/TrendsBoard'
 import SkillsLab from './components/skills/SkillsLab'
+import PersonnelLab from './components/personnel/PersonnelLab'
 import BrandCredit from './BrandCredit'
 
 const DENSITY_SLOTS = { compact: 3, regular: 4, comfy: 5 }
@@ -294,6 +295,12 @@ function App() {
           Coverage Lab
         </button>
         <button
+          className={'view-tab' + (view === 'personnel' ? ' view-tab--on' : '')}
+          onClick={() => setView('personnel')}
+        >
+          Personnel
+        </button>
+        <button
           className={'view-tab' + (view === 'trends' ? ' view-tab--on' : '')}
           onClick={() => setView('trends')}
         >
@@ -307,9 +314,13 @@ function App() {
         </button>
       </div>
 
-      {/* The Coverage Lab is defense-only and Trends/Skills span both sides,
-          so the offense/defense tabs would be a no-op on those views. */}
-      {view !== 'coverage' && view !== 'trends' && view !== 'skills' && (
+      {/* The Coverage Lab is defense-only; Trends, Skills and Personnel span
+          both sides (Personnel carries its own side filter), so the
+          offense/defense tabs would be a no-op on those views. */}
+      {view !== 'coverage' &&
+        view !== 'trends' &&
+        view !== 'skills' &&
+        view !== 'personnel' && (
       <div className="sides">
         <button
           className={
@@ -365,6 +376,8 @@ function App() {
         <TrendsBoard game={game} trendsCfg={trendsCfg} setTrendsCfg={setTrendsCfg} />
       ) : view === 'skills' ? (
         <SkillsLab game={game} />
+      ) : view === 'personnel' ? (
+        <PersonnelLab game={game} side={side} />
       ) : view === 'planner' ? (
         <FormationPlanner side={side} />
       ) : (

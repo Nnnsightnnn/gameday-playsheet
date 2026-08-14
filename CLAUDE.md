@@ -7,7 +7,7 @@ static JSON in `public/data/` plus IndexedDB in the browser.
 
 Live: https://nnnsightnnn.github.io/gameday-playsheet/
 
-**Verified against the code 2026-08-12** — 243 tests across 8 files, passing.
+**Verified against the code 2026-08-14** — 289 tests across 11 files, passing.
 
 ---
 
@@ -18,9 +18,16 @@ coached as deliberate practice** (decided 2026-08-10, replacing the retired AI
 curriculum).
 
 Current focus: **Ole Miss (CFB 27)** — offense installed 8/04, defense rebuilt
-around the stock 4-2-5 book — and **Madden 27 Falcons** (started 8/06,
-personnel-first 3-4 doctrine). Weekly cadence: **one concept installed, tested
-in a game, reviewed in the daily note.**
+around the stock 4-2-5 book — and **Madden 27 Falcons** (started 8/06).
+
+> **Doctrine correction, 2026-08-14.** The Falcons note used to read
+> "personnel-first 3-4." The launch roster does not support it — no DT above
+> 74 OVR, both starting edges at 36–40 Man Coverage, and the two best
+> defenders are safeties. It is a **nickel (4-2-5) team with a five-man odd
+> front as a package**. See `src/data/personnel-falcons.js`.
+
+Weekly cadence: **one concept installed, tested in a game, reviewed in the
+daily note.**
 
 Installing a team game plan is a written procedure, not an automated skill (see
 **[PLAN]** below). Earlier versions of this file referred to `team-gameplan` and
@@ -54,9 +61,11 @@ and is read with `useLiveQuery`; `settings.view` decides which view renders.
 | `coverage` | `coverage/CoverageLab` | Defense-only coverage study model: animate a coverage vs a route concept, compare two coverages side by side, work a 14-lesson Learn track with quizzes and a miss drill, search a glossary. |
 | `trends` | `trends/TrendsBoard` | Curated meta digest from `public/data/trends.json`, plus an optional live YouTube search (Kenny supplies his own API key, stored in settings). |
 | `skills` | `skills/SkillsLab` | Self-assessment against a 31-skill elite taxonomy → gap list → dated progress history. |
+| `personnel` | `personnel/PersonnelLab` | **Who fills each job.** 24 scheme roles per team — the job, the ratings that do it, the trap ratings, EA's archetype, the current holder graded fit/stretch/hole, the failure mode, and between-play reads. Four lenses: Roles · Build (depth-chart procedure) · In-Game (adjustment reads) · Gaps. |
 
-Offense/Defense tabs are hidden on `coverage`, `trends`, and `skills` — those
-views are either defense-only or span both sides.
+Offense/Defense tabs are hidden on `coverage`, `trends`, `skills`, and
+`personnel` — those views are either defense-only, span both sides, or carry
+their own side filter.
 
 **Two games, side by side.** `settings.game` is `'madden' | 'cfb'`. The play
 catalog is lazy-fetched per game and cached in React state; the call sheet is
@@ -80,13 +89,16 @@ src/
                            CoverageBriefing, LessonMode, GlossaryPanel
     trends/                TrendsBoard
     skills/                SkillsLab
+    personnel/             PersonnelLab, RoleCard
   lib/
     db.js                  Dexie schema v8 + every persistence helper
     coverage/              pure engine: coverages, engine, formations, concepts,
                            routes, lessons, glossary, differences, labField, labConfig
     field/                 pure engine: fieldConfig, formationFactory,
                            featureExtraction, matchingEngine, gapAlignment, rulesEngine
-  data/                    situations, seed, skills, gameplans{,-iowa,-falcons}
+    personnel/             pure engine: roleModel (fit grading, gap lists, read grouping)
+  data/                    situations, seed, skills, gameplans{,-iowa,-falcons},
+                           personnel, personnelPlans, personnel-falcons
   hooks/                   useFormationEditor, usePointerDrag
 public/data/               playbooks.json (M27), playbooks-cfb27.json,
                            formation-library.json, trends.json
@@ -167,9 +179,10 @@ readwrite transaction there. Seeding goes in a `useEffect` at app start
 
 **[DATA-00001]** Use the helpers exported from `src/lib/db.js` for all IndexedDB
 work — never touch `db.<table>` from a component.
-**[DATA-00002]** Schema is at **version 8**. Tables: `myPlays`, `gameSessions`,
+**[DATA-00002]** Schema is at **version 10**. Tables: `myPlays`, `gameSessions`,
 `playPerformance`, `gameContext`, `sheetAssignments`, `sheetSettings`,
-`formations`, `setupChecks`, `callSheets`, `skillAssessments`. Adding a table
+`formations`, `setupChecks`, `callSheets`, `skillAssessments`, `labPlans`,
+`personnelCharts`. Adding a table
 means a new `db.version(N).stores({...})` block listing **every** table — never
 edit an existing version block.
 **[DATA-00003]** Sheet assignments are stored per game
@@ -185,7 +198,10 @@ blanked, when cleared). Don't merge them.
 **[DATA-00006]** Static data contracts are test-enforced:
 `public/data/trends.json` (`src/data/__tests__/trends.test.js`),
 `src/data/skills.js` (`skills.test.js`), curated plans — every `playId`
-validated against the shipped catalog (`gameplans.test.js`).
+validated against the shipped catalog (`gameplans.test.js`), and team role
+sheets (`personnel.test.js`), which assert **Madden 27 football facts**: no
+retired position codes (LE/RE/LOLB/MLB/ROLB), Hit Power never core, Speed never
+core at CB/FS/SS, CIT+SPC ahead of raw CTH, Play Action tagged as a trap.
 > TRIGGER: When working with stored or static data
 
 ---
@@ -202,8 +218,8 @@ Tailwind utility soup into these views.
 `--accent`). Read those variables instead of hard-coding colors, or the Tweaks
 panel stops working.
 **[STYLE-00003]** `index.css` is organized in banner-comment sections — laminated
-sheet → Formation Planner → Coverage Lab → Trends Board → Skills Lab. Add new
-rules inside the matching section.
+sheet → Formation Planner → Coverage Lab → Trends Board → Skills Lab →
+Personnel Lab. Add new rules inside the matching section.
 **[STYLE-00004]** Situation-block colors are data, not CSS — they live on each
 block in `src/data/situations.js`.
 > TRIGGER: When adding or changing any styling
@@ -231,6 +247,31 @@ The recurring job in this repo. There is no skill for it; these are the steps.
 
 > `public/gameplan.html` is a stale, superseded Ole Miss guide that nothing links
 > to. Leave it alone or delete it deliberately — it is not current.
+
+---
+
+## Adding a team role sheet [PERS]
+
+The Personnel Lab's sibling procedure to `[PLAN]`. Also manual.
+
+1. **Research the roster** — EA's official ratings site is the source of truth
+   for Madden 27 launch ratings; maddenratings.com carries the sub-attributes.
+2. **Write** `src/data/personnel-<team>.js` exporting one object with
+   `{ id, game, team, teamOvr, doctrine: {offense, defense, honest}, roles[],
+   buildOrder[], inGame[] }`.
+3. **Register** it in `PERSONNEL_PLANS` (`src/data/personnelPlans.js`).
+4. **`npm test`** — `personnel.test.js` enforces the vocabulary (every rating
+   cited must exist in `RATING_GLOSSARY`), the sourcing (`conf` on every
+   claim), and the football facts listed under `[DATA-00006]`.
+
+**Sourcing rule.** Every rating claim, build step and in-game read carries a
+`conf` tag: `ea` (first-party M27) · `m27` (M27, credible non-EA) · `m26`
+(carryover, untested this year) · `stale` (real lab test, old Madden) · `read`
+(inference). Madden 27 shipped 2026-08-13 and there is **no settled
+competitive consensus yet** — MUT.GG's own ability tier list still reads
+"Unrated." Do not launder an M26 rumour as an M27 fact, and do not ship any
+Speed threshold at CB or WR: the numbers circulating trace to AI content farms
+with no source.
 
 ---
 
