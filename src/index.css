@@ -2248,6 +2248,81 @@ body:has(.drawer--on) .tweaks__fab { display: none; }
   color: var(--cv-under);
   margin-top: 4px;
 }
+.skl-sess__metric {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #e6e0cc;
+  background: color-mix(in oklab, var(--accent) 10%, transparent);
+  border-radius: 4px;
+  padding: 7px 9px;
+  margin: 8px 0 2px;
+}
+.skl-sess__metriclbl {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--accent) 70%, white);
+  margin-bottom: 3px;
+}
+
+/* Playbook brief — the how-to layer above the seven sessions */
+.skl-book {
+  border: 1px solid color-mix(in oklab, var(--accent) 26%, transparent);
+  border-radius: 6px;
+  padding: 12px 13px;
+  margin: 10px 0 14px;
+  background: rgba(0, 0, 0, 0.16);
+}
+.skl-book__chip {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--accent) 75%, white);
+  border: 1px solid color-mix(in oklab, var(--accent) 34%, transparent);
+  border-radius: 3px;
+  padding: 2px 6px;
+}
+.skl-book__premise {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #e6e0cc;
+  margin: 8px 0 0;
+}
+.skl-book__tabs { display: flex; gap: 6px; flex-wrap: wrap; margin: 11px 0 9px; }
+.skl-book__tab {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  color: #b8b2a0;
+  background: transparent;
+  border: 1px solid color-mix(in oklab, var(--accent) 20%, transparent);
+  border-radius: 3px;
+  padding: 4px 9px;
+  cursor: pointer;
+}
+.skl-book__tab--on {
+  color: #12100c;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.skl-book__body { font-size: 12.5px; line-height: 1.55; color: #cec9b6; }
+.skl-book__setup { display: flex; gap: 9px; margin-bottom: 7px; }
+.skl-book__setuplbl {
+  flex: 0 0 74px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: color-mix(in oklab, var(--accent) 62%, white);
+  padding-top: 1px;
+}
+.skl-book__cues { margin: 0; padding-left: 17px; }
+.skl-book__cues li { margin-bottom: 7px; }
+.skl-book__cost { color: #ddd6c2; }
 
 /* ============================================================
    PERSONNEL LAB — what each individual does inside the scheme

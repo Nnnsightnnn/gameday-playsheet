@@ -15,7 +15,8 @@ import {
   updateLabPlanSession,
   deleteLabPlan,
 } from '../../lib/db';
-import { buildWeekPlan, sessionMinutes } from '../../lib/skills/labPlan';
+import { buildWeekPlan, sessionMinutes, resolvePlan } from '../../lib/skills/labPlan';
+import { playbookFor } from '../../lib/skills/playbooks';
 import {
   SKILL_CATEGORIES,
   RATING_ANCHORS,
@@ -63,6 +64,12 @@ function SessionCard({ plan, session }) {
               <span>{b.text}</span>
             </div>
           ))}
+          {session.metric && (
+            <div className="skl-sess__metric">
+              <span className="skl-sess__metriclbl">Write this down</span>
+              {session.metric}
+            </div>
+          )}
           <div className="skl-sess__noterow">
             <input
               className="trends-input"
@@ -84,6 +91,54 @@ function SessionCard({ plan, session }) {
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+// The lab brief — how to build the drill, the technique keys, and the honest
+// cost. Sessions tell you what to do; this tells you how to do it right.
+function PlaybookBrief({ book }) {
+  const [tab, setTab] = useState('setup');
+  const tabs = [
+    ['setup', 'Lab setup'],
+    ['cues', 'Technique keys'],
+    ['cost', 'The trade'],
+  ];
+  return (
+    <div className="skl-book">
+      <div className="skl-book__hd">
+        <span className="skl-book__chip">{book.label}</span>
+        <p className="skl-book__premise">{book.premise}</p>
+      </div>
+      <div className="skl-book__tabs">
+        {tabs.map(([id, label]) => (
+          <button
+            key={id}
+            className={'skl-book__tab' + (tab === id ? ' skl-book__tab--on' : '')}
+            onClick={() => setTab(id)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+      {tab === 'setup' && (
+        <div className="skl-book__body">
+          {book.setup.map((s, i) => (
+            <div key={i} className="skl-book__setup">
+              <span className="skl-book__setuplbl">{s.label}</span>
+              <span>{s.text}</span>
+            </div>
+          ))}
+        </div>
+      )}
+      {tab === 'cues' && (
+        <ul className="skl-book__body skl-book__cues">
+          {book.cues.map((c, i) => (
+            <li key={i}>{c}</li>
+          ))}
+        </ul>
+      )}
+      {tab === 'cost' && <div className="skl-book__body skl-book__cost">{book.watch}</div>}
     </div>
   );
 }
@@ -130,7 +185,11 @@ export default function SkillsLab({ game }) {
   const assessments = useLiveQuery(() => getSkillAssessments(), [], null);
   const latest = assessments?.[0] || null;
   const plans = useLiveQuery(() => getLabPlans(), [], null);
-  const activePlan = plans?.[0] || null;
+  const activePlan = useMemo(() => resolvePlan(plans?.[0] || null), [plans]);
+  const activeBook = useMemo(
+    () => (activePlan ? playbookFor(activePlan.skillId) : null),
+    [activePlan],
+  );
   const [planSkillId, setPlanSkillId] = useState('');
 
   const [mode, setMode] = useState('gaps');
@@ -409,6 +468,7 @@ export default function SkillsLab({ game }) {
                   <p className="skl-focus__elite">
                     Elite marker: {activePlan.skillElite}
                   </p>
+                  {activeBook && <PlaybookBrief book={activeBook} />}
                   {activePlan.sessions.map((s) => (
                     <SessionCard key={s.idx} plan={activePlan} session={s} />
                   ))}

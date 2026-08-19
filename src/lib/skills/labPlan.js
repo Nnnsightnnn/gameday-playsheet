@@ -6,6 +6,8 @@
 // then review and re-rate. Sessions are numbered, not weekday-bound — rotating
 // shifts don't care what day it is.
 
+import { applyPlaybook, playbookFor } from './playbooks';
+
 const SESSION_MINUTES = 60;
 
 export function buildWeekPlan(skill, weekOf) {
@@ -83,14 +85,21 @@ export function buildWeekPlan(skill, weekOf) {
     },
   ].map((s) => ({ ...s, done: false, note: '' }));
 
-  return {
+  return applyPlaybook({
     weekOf,
     skillId: skill.id,
     skillName: skill.name,
     skillDrill: skill.drill,
     skillElite: skill.elite,
     sessions,
-  };
+  });
+}
+
+// Plans are persisted, so a week generated before a playbook existed still
+// holds the generic blocks. Resolve at render time and old weeks upgrade
+// themselves without a rebuild.
+export function resolvePlan(plan) {
+  return plan && playbookFor(plan.skillId) ? applyPlaybook(plan) : plan;
 }
 
 export function planMinutes(plan) {

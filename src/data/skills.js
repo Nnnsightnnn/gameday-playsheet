@@ -185,7 +185,7 @@ export const SKILL_CATEGORIES = [
         leverage: true,
         def: 'Graduate from LB to safety user — hardest, most impactful. CFB pros: safety > linebacker.',
         elite: 'Robber/deep-half user who erases seams and posts without getting beat over the top.',
-        drill: '2-controller labbing: partner throws seams/posts/benders; allow nothing behind you.',
+        drill: 'Solo Practice: script seams/posts/benders yourself, user the deep safety, react-only — allow nothing behind you.',
       },
       {
         id: 'usr.switch-stick',
