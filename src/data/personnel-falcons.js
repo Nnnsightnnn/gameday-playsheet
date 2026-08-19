@@ -476,19 +476,26 @@ export const FALCONS_PERSONNEL = {
       traps: [
         { key: 'POW', conf: 'm26', why: 'Hit Power is largely an OVR inflator. The hit stick rolls Tackle for whether you connect and Power only for the fumble/injury chance. Never pick a defender on POW when TAK is the alternative.' },
       ],
-      archetype: { name: 'Run Stopper', keys: ['BSH', 'TAK', 'PRC'], conf: 'ea' },
+      archetype: { name: 'Run Stopper', keys: ['BSH', 'TAK', 'PRC'], conf: 'read' },
       holder: {
         name: 'Samson Ebukam',
         ovr: 76,
-        grade: 'fit',
+        grade: 'stretch',
         line: 'SPD 83 · STR 83 · BSH 80 · FMV 78 · PMV 67 · TAK 82',
-        verdict: 'The only edge on the roster who plays the run like an actual edge defender. Lower ceiling as a rusher than Pearce, higher floor as a defender. He is your early-down edge; Pearce is your third-down edge.',
+        verdict: 'Downgraded fit → stretch on 8/19. He has the best Block Shedding (80) and Strength (83) of any Falcons edge, so he is the right pick — but EA labels him a Smaller Speed Rusher, not a Run Stopper. There is NO Run Stopper edge on this roster; five of six are Smaller Speed Rushers. He is your run-down edge because Pearce cannot be, not because he is good at this.',
+      },
+      alt: {
+        name: 'Jalon Walker',
+        ovr: 79,
+        line: 'SPD 86 · STR 80 · BSH 76 · TAK 84 · PUR 84 · AGI 85',
+        verdict: 'Give back 4 BSH and 3 STR, get +3 OVR, +2 TAK, +2 PUR and +7 AGI. The right answer on early downs is not choosing — play Ebukam AND Walker together and sit Pearce (BSH 70, worst on the roster). Flip it on third and long.',
       },
       breaks:
-        'Play two pure speed rushers at once on early downs and you have no edge — outside zone and the toss game will run you out of the building. That is exactly what happens if you chase sacks with the personnel.',
+        'Play two pure speed rushers at once on early downs and you have no edge — outside zone and the toss game will run you out of the building. That is exactly what happens if you chase sacks with the personnel. Note the honest ceiling: Ebukam\'s PMV 67 is the lowest of the six edges, so he costs you a down as a rusher.',
       reads: [
         { when: 'They are running outside zone to his side and gaining', do: 'Set Gap Integrity to Conservative. That makes defenders shed toward their assigned gap instead of anywhere, which trades big wins for fewer explosive runs.' },
-        { when: 'It is third and long', do: 'Sub him out for Ojulari or a second finesse rusher. Edge-setting has no value on a passing down.' },
+        { when: 'It is third and long', do: 'Sub him out for Pearce (FMV 81) and keep Walker. Edge-setting has no value on a passing down.' },
+        { when: 'You are in 2-4-5 Over Wide and they run inside zone', do: 'The wide alignment is the problem, not the personnel. Pinch the line manually — RS-left into the D-line menu, then LS-down — or check out of the formation entirely.' },
       ],
     },
     {
@@ -613,17 +620,24 @@ export const FALCONS_PERSONNEL = {
       ],
       archetype: { name: 'Run Stopper', keys: ['POW', 'PUR', 'TAK'], conf: 'ea' },
       holder: {
+        name: 'Christian Harris',
+        ovr: 72,
+        grade: 'fit',
+        line: 'SPD 89 · ACC 93 · PUR 84 · TAK 78 · MCV 65 · ZCV 65',
+        verdict: 'Corrected 8/19: Harris starts here, not Andersen. He is the only Falcons linebacker EA actually labels Run Stopper, and PUR 84 is the highest pursuit number in the room — the chase-down player this job describes.',
+      },
+      alt: {
         name: 'Troy Andersen',
         ovr: 70,
-        grade: 'stretch',
         line: 'SPD 90 · ACC 93 · POW 84 · TAK 81 · MCV 54 · ZCV 58',
-        verdict: '90 speed and 58 zone coverage is a perfectly clear player description: run downs only. 54 man coverage is a liability the moment they go empty.',
+        verdict: 'Was the listed starter through 8/14 and should not have been. He gives back 11 points of Man Coverage and 7 of Zone against Harris, for 3 points of Tackle and 1 of Speed. 54 MCV is the single worst coverage number that can be on your field.',
       },
       breaks:
-        'Leave him on the field on third down and the offense will find him. 54/58 coverage is a free first down to any competent passing game.',
+        'Start Andersen here and the offense will find him. His 54/58 coverage is a free first down to any competent passing game — a TE seam or a back on a wheel is uncontested. Harris at 65/65 is not good coverage either, but it is the difference between a hole and a soft spot.',
       reads: [
-        { when: 'They go to 11 personnel on 3rd and 6+', do: 'Sub him out for Bowman or a sixth defensive back. This is a dime situation, not a linebacker situation.' },
+        { when: 'They go to 11 personnel on 3rd and 6+', do: 'Sub the second linebacker out entirely for a sixth defensive back. This is a dime situation, not a linebacker situation, regardless of which of the two is on the field.' },
         { when: 'They are running outside zone away from him', do: 'His speed is the answer — set Defender Aggression to Aggressive so he plays downhill, and accept the play-action risk.' },
+        { when: 'You are blitzing an off-ball linebacker', do: 'Send Harris. PUR 84 on 89 speed is your best free runner, and the 2-4-5 Over Wide WILL BLITZ 3 call is built for exactly this.' },
       ],
     },
     {

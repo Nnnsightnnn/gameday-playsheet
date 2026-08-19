@@ -1,201 +1,320 @@
-# Falcons Game Plan — Madden 27 (Online H2H) · v2 Identity Build
+# Falcons Game Plan — Madden 27
 
-Rebuilt Aug 7, 2026 around the REAL 2026 Falcons (Stefanski/Rees) and the M27
-roster — not the underdog clock-bleed doctrine. Refreshed Aug 10, 2026: still
-pre-TU1 (worldwide launch is Aug 13; zero patches have shipped), so this was
-a lab-intel enrichment, not a rebuild — return routes, the Gun Tight Flex
-page, and HB SCISSORS folded in from the early meta consensus. Refresh again
-after the first real title update. Companion to `src/data/gameplans-falcons.js`
-and `docs/falcons-gameplan.html` (served at `public/gameplan-falcons.html`).
-Every play name machine-validated against `public/data/playbooks.json` (v27).
+**Refreshed 2026-08-19** · patch state: TU1 (Aug 10) + Live Content Update (Aug 17)
+Load in-app: Tweaks panel → Game plans → Falcons · Madden 27 → Load.
 
-## Doctrine — identity ball
+This is the first refresh against a **real, playable build**. The previous pass (Aug 10)
+was pre-launch lab intel — the game had not shipped. Everything below is checked against
+EA's launch ratings and the two patches that have actually landed.
 
-Impose wide zone until the defense overcommits, then manufacture explosives
-off the exact same picture: boots, drag-wheels, deep overs, seams. Stack body
-blows until the knockout window opens.
+---
 
-1. Run to set up the shot, not to kill clock — 50%+ early-down run rate is
-   what makes PA lethal (2025 Falcons ran the league's fewest PA passes and
-   everyone got fired).
-2. Every explosive comes off run action, dressed as HB STRETCH.
-3. Driven balls, not moonballs — Penix 92 THP / 76 DAC: bullet seams, digs,
-   overs. Lone lob exception: London 1-on-1 (97 CTH/JMP wins the ball).
-   Tua mode (if he starts): sub-2.5s rhythm game instead.
-4. Feed the matchup menu: they can't bracket London, carry Pitts (90 SPD)
-   up the seam, AND hat Bijan underneath. Take what's conceded.
-5. Measured aggression: go on 4th-and-2-or-less inside their 45 (duo/sneak).
+## What changed in this refresh
 
-## Roster weapons
+**1. The sheet is now drive scripts, not down and distance.** You work a block top to
+bottom instead of hunting by down. Each drive block carries 1–2 core calls plus 1–2 tagged
+counters, so you never leave the block to adjust.
 
-Bijan 95 X-Factor (97 JKM, one-cut zone + space touches) · London 92 SS
-(97 CTH/JMP, 95 RLS — contested/red zone king) · Pitts 81 but 90 SPD (run
-him vertical only, 66 DRR) · Dotson 92 SPD (vertical WR2) · Branch 95 SPD
-(jets/gadgets) · Run RIGHT behind Lindstrom (96 RBK, SS) + Neuzil (91 RBF);
-Matthews locks blind side; interior pass-pro is the leak — chip on obvious
-pass downs. QBs: Penix = velocity mode, Tua (84 DAC, 89 PA) = rhythm mode.
+**2. Five new COUNTERS blocks, keyed to what the defense shows.** Read the shell pre-snap,
+jump to that row. This is the escape hatch that lets the drive scripts stay short.
 
-## Offense — the Stefanski identity
+**3. The defense is rebased on 2-4-5 Over Wide.** This is the big one. The plan you were
+running listed 3-4 Under 4 Tech and Nickel 2-4 as its base and used 2-4-5 Over Wide exactly
+once, buried in the pressure block. That is not how you actually play. The sheet now matches
+the defense you run.
 
-**Home: Singleback Wing Tight** — the whole offense in one picture:
-HB STRETCH / HB ZONE WK / HB DUO / HB POWER O ground game; FAKE HB ZONE QB
-BOOT, PA BOOT FLOOD, PA BOOT SLIDE, PA WHEEL SLIDE, PA Y-DRAG WHEEL, Y STICK,
-STICK NOD VERTICAL off the identical look. (Same formation lives in Browns +
-Vikings books — Stefanski's old teams.)
+**4. The quarterback was wrong.** The old plan built a driven-throw, shot-heavy passing game
+on "Penix 92 THP." **Tua Tagovailoa 74 is QB1 on the launch roster; Penix 72 is the backup.**
+That changes the passing doctrine — see below.
 
-Supporting pictures: **Singleback Y Trips Close** (jet dressing: MTN JET WIDE
-ZONE, JET 6 SOAR for Branch, MESH) · **I Form Close / Y Off Close** (21-pers:
-HB ISO, PA DEEP CROSS GO, PA PYLON SAIL shots) · **Gun Bunch** (3rd-down
-money: MESH SPOT, SPACING, SMASH RETURN, DIG RETURN) · **Gun Trips TE Flex**
-(STICK) · **Gun Trey Y-Flex** (DAGGER, CROSS FLOOD) · **Gun Tight Flex**
-(NEW Aug 10 — Civil.GG's sleeper page: PA POST SHOT man destroyer, INSIDE
-HI LO) · **Gun Tight Y Off** (TE CORNER, HB SCISSORS — the "easiest
-just-snap-it play in the game" — CHOICE PIVOT RETURN).
+---
 
-Sequencing engine: STRETCH → STRETCH → boot. DUO → DUO → PA DEEP CROSS GO.
-Jet → jet → JET 6 SOAR for real. The run game is the setup, PA is the payoff.
+## Patch facts
 
-Coverage beaters — C2: SMASH RETURN, FOUR VERTICALS (London outside),
-CURL FLAT SEAM. C3: CROSS FLOOD, DAGGER, INSIDE HI LO, boot floods. C1:
-MESH, PA Y-DRAG WHEEL, PA POST SHOT, London iso. C4: run it + Y STICK.
-Blitz: STICK hot, HB SCISSORS, HB SLIP SCREEN, HB SCREEN (chip empty),
-PA BOOT SLIDE away. Return routes (DIG/SMASH/CHOICE PIVOT RETURN) are the
-early M27 money family — they settle vs zone and snap open vs man.
+| Date | What | Why it matters to you |
+|---|---|---|
+| **Aug 10 — TU1** | Removed an unintended Speed Boost on certain cut moves | If you got run away from in early access, that was it. Fixed. |
+| **Aug 17 — LCU** | **Untarget Defender no longer works on RPO plays**; Buck Sweep handoff warp fixed | This helps you. Blocking a back and untargeting the user defender was the cleanest offensive answer to a user rusher. On RPOs it no longer exists. Still works on normal dropbacks. |
 
-## Script 15
+**Next updates:** expected around Aug 20 and Sept 9. Neither is an EA commitment.
 
-1–3 how does he fit the stretch (STRETCH ×2, DUO) · 4–6 man/zone + user
-(STICK, Y STICK, MESH) · 7–9 does he bite on run action (PA BOOT FLOOD,
-JET 6 SOAR) · 10–12 blitz tendency (MESH SPOT with HB check) · 13–15 deep
-honesty (PA DEEP CROSS GO max protect).
+### Meta honesty
 
-## 10-branch adjustment tree
+Madden 27 is six days old. MaddenTurf edited its playbook tier list on **Aug 18** and still
+refused to rank anything, on the record: *"anyone publishing a settled Madden 27 tier list
+this week is guessing."* That is five tournament creators declining to publish.
 
-1 Man → MESH, drag-wheel, PA POST SHOT, London iso. 2 Zone → Y STICK,
-SPACING, CHOICE PIVOT RETURN. 3 Known-side blitz → slide to it, boot away. 4 User middle → Pitts
-seam past him, digs behind. 5 Drops 8 → keep running; Bijan eats. 6
-Overcommits to stretch → THE point: QB boot, drag-wheel, PA DEEP OVER,
-cutback. 7 Heavy box → Y STICK / STICK NOD VERTICAL same picture, or jets.
-8 Stretch stuffed → DUO, ISO, JET 6 SOAR opposite. 9 One-concept spam → one
-adjustment. 10 Tilting → timeout, STRETCH + PA BOOT FLOOD. Identity = reset.
+**No creator has covered 2-4-5 Over Wide at all.** Treat this defense as a hypothesis you
+are testing, not a scheme with community backing. Any "M27 tier list" circulating right now
+is recycled Madden 26 — MaddenTurf's own formation database is dated 2026-03-15.
 
-## Defense — personnel-first 3-4 (Kenny's doctrine, v3 Aug 10)
+---
 
-Match personnel, match situations — dare them to throw on the LBs. Replaces
-the Dbl-Mug-home doctrine (Dbl Mug bleeds vs inside run and telegraphs
-quick-game coverage when stunting). Spine: 3-4 base when not vs 4-wide
-(Odd vs 11, Over vs 12, Under 4 Tech/Cub heavy), Nickel 2-4 Wide vs 10
-(wide DEs = tweeners in space), SINGLE Mug on known passing downs (DEs
-spread, stunts live, no tell). Dbl Mug = two labeled changeups only. Kenny
-users SAFETIES; signature calls COVER 4 PALMS + 1 DOUBLE WR1 are on the
-sheet. Win with scheme + athleticism, not AI awareness.
+## Do this before you load the plan
 
-Blocks (base menus Kenny-curated 8/10 PM): Base/Tempo (vs 11) = TWO homes —
-3-4 Under 4 Tech: SAW BLITZ 1, 2 INVERT HARD FLAT (spins to a C3 look),
-COVER 6, COVER 1 HOLE · Nickel 2-4: 1 DOUBLE WR1, COVER 4 PALMS, COVERS
-SAMMIE (C9 look, man under), COVER 3 MATCH.
-vs10 = Nickel 2-4 Wide: C3 MATCH, C4 PALMS, C1 ROBBER PRESS, NICKEL BLITZ 3.
-vs12 = 3-4 Over: C3 MATCH, C4 QUARTERS, SS 2 TRAP. Heavy = PINCH BUCK O,
-STING PINCH (Cub), C3 MATCH. Short yardage = 3-4 Cub one-picture menu
-(Kenny's signature): OLB BLITZ (show blitz, safety walked over DT — caps
-A/B gaps, forces outside), GAP PRESS (man-man, red zone), TRIO SKY ZONE
-(3-deep zone blitz, midfield), COVER 3 SKY (zone drop, CBs 1-on-1). Nobody
-labs vs Cub — the unpopularity is the point. Obvious pass = BLITZ TEX 3 SIM 3 (Single Mug), 1 DOUBLE WR1 (Dime
-2-3), MUG SIM PRESSURE (Dime 3-2 Rush), Quarter Mable: 3 DOUBLE MABLE +
-3 DBL MABLE CLOUD. Pressure = SS BLITZ 3 (Dbl Mug changeup, sparingly),
-NICKEL BLITZ 3 (Load Mug), FREE FIRE 3, SLOT BLITZ 3 (Penny). Red zone =
-2 INVERT HARD FLAT (Over), 1 DOUBLE WR1, REDZONE DT DROP (changeup),
-C2 MATCH. Goal line/prevent unchanged.
+Four depth-chart changes, all from EA's launch ratings.
 
-Nickel 2-4 vs run: the nickel four is pass-first by design — run-capable
-sets get the Under 4 Tech home (4-tech anchors, SAW fits edges). Caught in
-nickel vs run: pinch DL + shallow depth macro; safety user = 8th hat.
-SILVER SHOOT PINCH / OVER STORM BRAVE are in-formation on-the-fly stuffs.
+**Start Christian Harris over Troy Andersen.** Harris 72 vs Andersen 70 — but **MCV 65 vs
+54** and **ZCV 65 vs 58**. Andersen is the single biggest coverage hole you can put on the
+field; a tight end seam or a back on a wheel is a free completion against 54 man coverage.
+Harris is also the only Falcons linebacker EA labels a **Run Stopper**, and his **PUR 84** is
+the best pursuit number in the room. Your read of him as the chase-down linebacker is right.
 
-Rotation (auto subs DL Sub Out 85 / Sub In 90): edges Pearce→Ojulari→Trice
-pass downs, Ebukam run downs only (never in space — tweeners there); DTs
-Hand/Dorlus/Harrison/Smith 4-man cycle; Deablo every snap; Andersen +
-rookie Daniels take the space LB snaps over Harris/Bertrand.
+**On man calls, Clark Phillips III takes the slot.** Watts stays on the field as your third
+safety — just not as the matched defender. More on this below.
 
-Counters to YOUR calls (what to look for): SAW BLITZ 1 ← hots/RB angle/
-screens (RB stays in = check to 2 INVERT). 2 INVERT HARD FLAT ← verts/seams
-behind the flats (both slots vertical = C6 or C3 MATCH). COVER 6 ← hole
-shot at the C2 half (alpha iso boundary = 1 DBL WR1). C1 HOLE ← rubs/mesh/
-RB option (bunch = SAMMIE/match). 1 DOUBLE WR1 ← everyone else — slot
-option, TE seam (alpha moves = bracket wasted, shadow instead). PALMS ←
-#2 vert + #1 under, draws vs light box (two stops = run next). SAMMIE ←
-rubs, overload floods (clean splits only). C3 MATCH ← quick-out spam
-(flats to 10), bunch bug (Tampa 2/C6 fallback). Cub blitz/press ← PA shot
-after two stuffs (go zone that down), crack-toss. Sims ← screens, draw
-audibles (OL soft set = screen). Mable ← deep middle (Bates poles it), QB
-scramble (add spy). Meta-read: man dies to rubs/motion, flat-walls die
-over top, blitzes die to screens/hots, brackets die to the other four.
-One glance at the split names the safe family.
+**Run downs: Ebukam and Jalon Walker on the edges, sit Pearce.** Ebukam has the best Block
+Shedding (80) and Strength (83) of any Falcons edge. Walker has the best Tackle (84) and
+Pursuit (84). Pearce's BSH 70 is the worst on the roster. Flip it on third and long — Pearce
+(FMV 81) and Walker rush, Ebukam sits.
 
-Honest weaknesses: DT interior vs duo/power (commit Bates/Deablo to the box),
-CB2 (75) needs help — never island him, don't let games become dropback
-shootouts vs elite QBs. Doctrine trade named honestly: 3-4 base = less
-early-down pass-rush juice — you're betting your LBs outcover their QB.
-Confirm the bet early; live in Nickel Wide sooner vs elite users.
+**Interior: Da'Shawn Hand (STR 88) at 1-tech, Brandon Dorlus (BSH 79) at 3-tech.** Zach
+Harrison (POW 85) is the pass-rush sub.
 
-## Hurry-up protocol
+---
 
-Pre-game: Auto Flip ON · Ball in Air Balanced · Option/RPO Conservative as
-scouted · flats 30 vs crossers or hard flats 10 vs quick outs (persists) ·
-Terrell shadows No. 1. Audible menus, whichever home tempo catches you in —
-Under 4 Tech: 2 INVERT HARD FLAT (blind default) / COVER 6 (blind) / C1
-HOLE (seen) / SAW BLITZ 1 (seen). Nickel 2-4: C3 MATCH (blind default) /
-C4 PALMS (blind) / SAMMIE (seen) / 1 DOUBLE WR1 (seen — ID the alpha
-first). Blind vs seen: zone-match safe without a read; man calls want one
-look — man chases motion and rubs. Panic: C3 MATCH, C4 PALMS.
+## The quarterback problem
 
-Anticipation (Aug 10): no-huddle locks BOTH rosters — they're trapped in one
-formation's 4-6 audibles, and tempo abusers run 2-3 concepts. Snap 1: log
-the concept in one word. Snap 2: counter it (verts→C3 MATCH/COVER 6 ·
-crossers→SAMMIE · quick flats→C4 PALMS/2 INVERT HARD FLAT · impatient
-must-pass→SAW BLITZ 1).
-Snap 3 rule: tempo scripts run two deep, rarely three — the clamp is a
-3-snap job. Same concept twice in a row = it's coming a third time; that's
-the one aggressive call.
+**Tua: TAS 90 · TAM 84 · TAD 84 · THP 87 · AWR 69.** That is a rhythm thrower working a
+defined read. It is not a full-field progression reader and it is not a deep-ball arm.
 
-Walker out (Aug 10): Ebukam (76) starts LEDG on run downs but NEVER plays in
-space — tweeners (Pearce, Ojulari) take Nickel Wide / 2-4-5 / Dime snaps.
-FREE FIRE 3 = Pearce + Ojulari until Walker returns; lean on sims/stunts —
-scheme doesn't get injured.
+**So this offense lives 0–18 yards, on timing.** The shot calls in Attack Drive and vs
+Single-High are **situational** — take them off play-action or a confirmed one-on-one, not as
+staples. If you want a real vertical threat, that is the argument for subbing Penix (THP 92),
+and you pay for it with worse rhythm throws on every other snap.
 
-## Cheese counters (≈M26 carryover, labeled)
+**Timing-Based Catching is the mechanic that matters most to you.** Green catches are near
+guaranteed even in double coverage; red is a guaranteed drop no matter how open you are. Set
+Game Options → Catching: AI Wide Receiver for User Teams **ON**, Timing Based Catching Minimum
+Throw Distance **5 yards** on offense and defense, UI Feedback **ON**. Drake London at 92 with
+elite Catching and Jump is the reason to grind this — a green catch with him on a contested
+ball is close to a free completion.
 
-Bunch corner/flood → COVER 6 / C3 CLOUD squat to bunch. Crossers → TAMPA 2 /
-C3 BUZZ MATCH, flats 30, Bates low hole. Stretch/toss → NICKEL DOG 3 BUZZ;
-heavy → PINCH BUCK O / STING PINCH. RPO → Conservative key + C2 MATCH.
-Scrambler → C3 SPY; tempo C3 SEAM + contain. Verts tempo → C3 MATCH seen /
-C3 SEAM blind. Tush Push (NEW M27) → 60 PINCH, user A-gap; nerf likely.
-Jet-motion cheese → zone doesn't chase motion.
+---
 
-Post-launch intel (Aug 10, still pre-TU1 — full population arrives Aug 13):
-opponents' meta books are Bucs/Texans/Cardinals; expect **Gun Doubles Clamp
-Stack** spam (new formation) and **return routes** everywhere — TAMPA 2 and
-the match calls handle returns; check stacks with the new Global Coverage
-Adjustments. **Timing-based catching** is the new WR/DB layer — green-window
-throws are a skill to practice, not a ratings gift. MaddenTurf's M27 bug
-tracker: zero confirmed bugs so far.
+## Offense — the drive scripts
 
-Tripwires (unconfirmed CFB-engine carryovers — watch, don't assume): defense
-packages resetting on no-huddle (your Dbl Mug tempo block is the insurance);
-match coverage breaking vs bunch → fall back to TAMPA 2 / COVER 6 until TU1.
+### Opening Script — call these five in order
 
-## 25-second ritual
+You are diagnosing, not scoring. Do not deviate.
 
-0–5 log one word · 5–10 personnel names the block · 10–15 pick and commit ·
-15–25 sheet down, eyes up. This build snaps on schedule, not on the play
-clock's last breath. Stillness sharpens sight.
+1. **HB STRETCH** (Singleback Wing Tight) — the identity. Hold LT to read the run fit first.
+2. **STICK** (Gun Trips TE Flex) — rhythm. Flat taken = zone. Safe against everything.
+3. **MTN JET WIDE ZONE** (Singleback Y Trips Close) — jet motion is your man/zone tell.
+4. **MESH** (Gun Bunch TE) — press test. The rubs tell you if it's man.
+5. **PA BOOT FLOOD** (Singleback Wing Tight) — cash the stretch. Three levels, take the flat.
+
+> **Motion caveat.** The travel-on-motion read is a Madden 26 carryover. MaddenTurf's watch
+> list flags "slot corners not travelling on motion" as a bug living in code both games share.
+> Do not trust the tell blindly in launch week — confirm with the MESH rubs too.
+
+### Ball-Control Drive — ahead or even
+
+Core: **HB STRETCH** and **HB DUO** out of Singleback Wing Tight. Same picture, two tracks.
+Bijan behind Lindstrom (93 RBK) is the best thing this offense does. Run it until it dies.
+
+Counters: **CROSS DRAG** (Pistol Bunch TE) when they load the box — be patient, the drag hits
+*late*. **FAKE HB ZONE QB BOOT** when they overflow — they sell out on zone, you walk in.
+
+### Attack Drive — behind, or the run is dead
+
+Core: **DAGGER** (Gun Trey Y-Flex) — seam clears, dig sits at 12–15, and it's a driven throw.
+**PA DEEP OVER** (Gun Deuce Close) — play-action pulls the linebackers, the over crosses the
+vacated middle.
+
+Counters: **PA POST SHOT** (Gun Tight Flex) against man — London on the post, but confirm man
+first. **HB DRAW** (Gun Tight Flex) when they tee off.
+
+### Scoring Drive, Goal Line, 2-Minute, Backed Up
+
+See the sheet. The principle in the red zone: **SMASH RETURN** out of Gun Bunch is one call
+that covers both shells — smash beats two-high, the return beats man.
+
+---
+
+## Counters — read the shell, jump to the row
+
+### vs 2-High (Cover 2, Quarters, Palms, Cover 6)
+
+Two-high means five or six in the box and no free middle-of-field defender. Make them wrong
+twice: run at the light box, then throw into the vacated middle.
+
+- **HB DUO** — punish it on the ground first. Always.
+- **MTN EMPTY SMASH Y-POST** — the post splits the safeties. If the safety widens, take the smash corner.
+- **MTN X-GO DIG** — the go clears the corner, the dig lands in the hole.
+- **DOUBLE DIG** — two digs at the same depth. Throw away from the hook defender.
+
+Do **not** lead with Four Verticals here. It's a Cover 3 concept.
+
+### vs Single-High (Cover 1, Cover 3, Cover 3 Match)
+
+One deep defender, two seams. Pitts at 86 speed against a linebacker is the crime you want.
+
+- **MTN Y POST** — Pitts on the post. Read the free safety's hips and work away.
+- **HITCH SEAM** — two seams, one middle defender. He can only carry one.
+- **GO DBL POST** — two posts bracket the single high. Your best shot call.
+- **FLOOD** — hi-lo the curl-flat defender. Sinks = flat, widens = sail.
+
+Against Cover 3 **Match** specifically, match rules break on inside-breaking distribution, not
+on verticals. If the post gets carried, go to **MESH DIG**.
+
+### vs Man Press
+
+EA rebuilt WR/DB interactions this year — hand-fighting, jostling and leverage at press,
+release and catch point, with route awareness added so the receiver knows which way he needs
+to win. The practical consequence: **bunch and stack releases now decide who even gets
+pressed.** This book has eight bunch/stack formations. That is its biggest structural edge.
+
+- **CHEAT DRAG RUB CROSSER** (Gun Bunch Wide Nasty) — tightest split in the book, built-in rub.
+- **MESH DIG** (Gun Bunch TE) — crossers pick each other, dig is the third level.
+- **X CURL** (Gun Y Off Trips Close) — London isolated backside. Take the one-on-one.
+- **L SPOT** (Gun Bunch) — release traffic frees the spot sitter.
+
+### vs Blitz / Mug
+
+- **STICK** (Gun Trips TE Flex) — the best hot call in the book. The HB flat is the valve.
+- **DOUBLE SLANTS** — ball out in about 1.2 seconds into the vacated side.
+- **JAILBREAK SLOT SCREEN** — whole line releases. Best against an all-out look.
+- **HB SLIP SCREEN** — Bijan at 95 in space. This is a real counter, not a change-up.
+
+Build a **custom adjustment macro** for "HB pass block + untarget the user defender" so it's
+one bumper press at the line. Note the trap: macros map to **depth-chart position, not field
+position**, so they break when the formation flips. Only macro players who don't move — TE,
+HB, WR3 — or build explicit left and right versions.
+
+### vs Tempo
+
+Your no-sub page is **Gun Trips TE Flex**. Run and pass from an identical look, no personnel
+change, so tempo can't catch you mid-substitution.
+
+- **MTN FORK H CHOICE** — option route self-corrects against man or zone.
+- **INSIDE ZONE** — same look, punishes a light box.
+- **SPACING** (Gun Bunch TE) — five windows, one at the sticks.
+- **CHOICE PIVOT RETURN** (Gun Tight Y Off) — three self-correcting routes. The bail-out.
+
+---
+
+## Defense — 2-4-5 Over Wide
+
+### Why it works with your personnel
+
+Three safeties on the grass. The page carries a full coverage spine — Cover 1, Cover 1 Robber,
+Cover 1 Sting, Cover 2 Man, Cover 3, Cover 3 Sky, Cover 3 Cloud Show 2, Cover 4 Quarters,
+Cover 6, Tampa 2 — plus ten blitzes including two **sim pressures**. It can genuinely be a
+one-page book, which is what makes it tempo-proof.
+
+**Base / Tempo — the four blind-safe calls you audible between:**
+COVER 3 SKY · TAMPA 2 · COVER 4 QUARTERS · COVER 1 ROBBER.
+
+### The Bates correction — read this one twice
+
+You have been playing **Jessie Bates in the box**. The ratings say don't.
+
+- His archetype is **Zone - S**. **ZCV 93** against **MCV 85**.
+- His Superstar ability **Deep In Zone KO** only fires **20+ yards from the line of scrimmage,
+  inside the hash marks**. In the box, it is switched off.
+- His other Superstar, **Lurker**, pays out for lurking in zones — also depth-dependent.
+- **BSH 56 and STR 59** are his two worst numbers, and the box is exactly where they get found.
+  A guard climbing to the second level erases him.
+
+You are taking the best safety in the game, turning off both of his abilities, and putting him
+where his weaknesses live. **User him deep.** His PRC 95 and 90 speed mean he still closes on
+the quick game from depth — you are not giving that up, you are getting it *plus* the abilities.
+
+**Box him only on short yardage** — that's what COVER 1 STING in the Short Yardage block is for.
+
+### The big-nickel rule
+
+**Three safeties = zone calls.** Watts's **ZCV 81** is the best of any slot candidate on the
+roster. But his **MCV 72** is mid-pack, and the real disqualifier is **AGI 82 / COD 82** —
+seven to nine points below every corner. The slot is a two-way go with no sideline; a defender
+who can't flip his hips loses the option route regardless of his coverage rating.
+
+**So: zone → Watts in the slot. Man → Clark Phillips III (MCV 78, ACC 94, COD 90).** Watts
+stays on the field either way, just not matched up.
+
+### The hole — say it out loud
+
+**2-4-5 Over Wide has no interior-gap run-fit call in its 18 plays.** No pinch blitz, no A-gap
+fire. Combine that with:
+
+- No Falcons defensive tackle above **74 OVR**
+- No Falcons linebacker who can shed a block (BSH 67 / 67 / 68)
+- **Deablo is a Pass Coverage archetype** — TAK 87 and PUR 87 are real, but STR 69 means a
+  guard climbing to him wins outright. He is a **free runner**, not a run-stuffer. Keep him clean.
+
+**Inside zone and duo at the A gap is the structural hole in this defense and you cannot
+personnel your way out of it.** Two answers:
+
+1. **Pinch the line manually** — RS-left into the D-line menu, then LS-down.
+2. **Check out of 2-4-5 against 12, 21 and 22 personnel.** That is what the vs 12 and vs 22/31
+   blocks are for: Nickel 2-4 COVER 3 MATCH, 3-4 Over COVER 4 QUARTERS, 3-4 Odd PINCH BUCK O.
+
+If you take one thing from this refresh: **2-4-5 Over Wide is your base against 11 and 10
+personnel. It is not your base against a tight end run team.**
+
+### Pressure
+
+The sim pressures are the most interesting calls on the page — **COVER 3 SIM PRESSURE** and
+**INVERT 2 SIM** show heat, rush four, and keep seven in coverage. That is the one defensive
+idea a serious lab shop (Madden Prodigy) is publicly chasing in M27.
+
+**WILL BLITZ 3** sends Harris, your best free runner. **DOUBLE CB BLITZ** is a changeup — show
+it twice a game, no more.
+
+---
+
+## New M27 defensive tooling you are not using yet
+
+This is where the real edge is right now, because formation meta doesn't exist yet.
+
+- **Smart Zones** — aggressive (jump short) / conservative (protect deep) / **Look For Work**.
+- **Plaster** — defenders attach to receivers when the play breaks down. Your scramble answer.
+- **Roll Coverage** — shade help to the fastest player, WR1, TE1, field, boundary, or highest-rated.
+- **Cross Man** — back after years out. Man a specific receiver while everyone else plays zone.
+- **Alignment sliders** — CB depth and width, safety depth, width and midpoint. For run defense,
+  pinch safety width and set safety depth around 9 yards.
+- **Custom adjustments** — 20 saved, 10 active per game.
+- **Coaching adjustments now save globally** from the main menu and default into every game.
+- **QB contain** = R1 then L1.
+
+---
+
+## The 25-second ritual
+
+1. **Personnel count first.** Backs and tight ends. 12 or heavier → get out of 2-4-5.
+2. **Shell read.** One high or two? That picks your counters row on offense.
+3. **Set your user.** Bates, deep. Not the box.
+4. **One adjustment, not three.** Pinch the line, or roll the coverage, or press. Pick one.
+5. **Snap it.** A late perfect call loses to an on-time good one.
+
+---
+
+## Known bugs and watch list
+
+MaddenTurf's Madden 27 bug tracker has logged **zero confirmed bugs** — their bar is a creator
+hitting it on film in a real head-to-head game. Their **watch list**, carried from CFB 27 in
+shared code and *not confirmed in Madden 27*:
+
+1. Formation shifting stacking hot routes past the normal limit
+2. Defensive packages resetting on no-huddle (was broken in CFB 27, patched there July 16)
+3. Cover 2 shells aligning differently against identical offensive formations
+4. Timing catch failing off a chip release — M27's timing catch is new code, highest-risk area
+5. Slot corners not travelling on motion; user defenders frozen after a flip
+
+Items 3 and 5 are the two that would cost you games without you knowing why. Worth ten minutes
+in practice mode.
+
+---
 
 ## Sources
 
-huddle.gg M27 database (scraped 2026-08-07) · Football Film Room 2026
-Falcons profile · Match Quarters Ulbrich coverage study · SI/Falcoholic beat
-coverage (Stefanski/Rees, QB battle) · AtlantaFalcons.com staff/roster
-trackers · maddenratings.com M27 (Aug 1) · Civil.GG, Madden Prodigy, Madden
-Turf · M26 carryover labeled: MaddenGuides, Madden Academy · Aug 10 refresh:
-Civil.GG best-offenses + Falcons book breakdown, MaddenProdigy rankings
-(Aug 5), MaddenTurf patch/bug trackers, EA Gridiron Notes feed.
+Ratings are EA first-party (ea.com Madden 27 ratings) cross-checked against maddenratings.com
+for sub-attributes. Patch facts from EA Forums and EA's @MaddenNFLDirect. Meta reads from
+Civil.GG, MaddenTurf, Madden Prodigy and Operation Sports. Formation contents from huddle.gg
+and the shipped catalog in `public/data/playbooks.json`.
+
+Content-farm sites (mmoexp, iggm, ezg, utnice, ldshop, d3game, timesaver) were excluded — several
+are currently republishing MaddenTurf's **Madden 26** tier list as Madden 27.
+
+*built by nnnsightnnn — signal from noise*
