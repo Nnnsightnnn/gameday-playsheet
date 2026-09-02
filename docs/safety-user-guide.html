@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safety Usering · Madden 27 Falcons · Lab Guide</title>
+<style>
+
+  :root {
+    --paper: #f4efe2;
+    --paper-card: #fbf8f0;
+    --paper-edge: #e7e0cf;
+    --paper-line: #d8cfb8;
+    --ink: #1c1a14;
+    --ink-soft: #57544a;
+    --ink-faint: #8a866f;
+    --accent: #2f7d4f;
+    --blue: #2a4a7f;
+    --teal: #1f7d77;
+    --gold: #b3862a;
+    --orange: #c0612a;
+    --red: #b3392f;
+    --purple: #6a4a9c;
+    --maroon: #7a2838;
+    --font-mono: "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.55;
+    padding: 32px 18px 80px;
+  }
+  .page { max-width: 880px; margin: 0 auto; }
+
+  header { margin-bottom: 30px; border-bottom: 3px solid var(--ink); padding-bottom: 18px; }
+  .kicker {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 34px; font-weight: 800; letter-spacing: -0.5px;
+    text-transform: uppercase; line-height: 1.05;
+  }
+  .sub { margin-top: 10px; color: var(--ink-soft); font-style: italic; font-size: 14px; }
+
+  nav {
+    display: flex; flex-wrap: wrap; gap: 6px; margin: 18px 0 34px;
+  }
+  nav a {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1px;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--ink-soft); background: var(--paper-card);
+    border: 1px solid var(--paper-line); border-radius: 999px;
+    padding: 5px 11px;
+  }
+  nav a:hover { color: #fff; background: var(--accent); border-color: var(--accent); }
+
+  section { margin-bottom: 42px; }
+  h2 {
+    font-size: 19px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+    color: #fff; background: var(--ink); display: inline-block;
+    padding: 5px 12px; border-radius: 4px; margin-bottom: 14px;
+  }
+  h2.c-blue { background: var(--blue); }
+  h2.c-green { background: var(--accent); }
+  h2.c-red { background: var(--red); }
+  h2.c-gold { background: var(--gold); }
+  h2.c-purple { background: var(--purple); }
+  h2.c-orange { background: var(--orange); }
+  h2.c-teal { background: var(--teal); }
+  h2.c-maroon { background: var(--maroon); }
+  h3 {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--ink-faint); margin: 20px 0 8px;
+  }
+  p { margin-bottom: 10px; }
+  em { color: var(--ink-soft); }
+  strong { font-weight: 700; }
+
+  .callout {
+    background: var(--paper-card); border-left: 4px solid var(--accent);
+    border-radius: 0 6px 6px 0; padding: 14px 16px; margin: 14px 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  .callout--red { border-left-color: var(--red); }
+  .callout--blue { border-left-color: var(--blue); }
+  .callout--gold { border-left-color: var(--gold); }
+
+  ol, ul { margin: 8px 0 12px 22px; }
+  li { margin-bottom: 7px; }
+  ol.tree { counter-reset: branch; list-style: none; margin-left: 0; }
+  ol.tree li {
+    counter-increment: branch; position: relative; padding-left: 40px;
+    background: var(--paper-card); border: 1px solid var(--paper-edge);
+    border-radius: 6px; padding: 9px 12px 9px 44px; margin-bottom: 6px;
+  }
+  ol.tree li::before {
+    content: counter(branch);
+    position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+    font-family: var(--font-mono); font-weight: 700; font-size: 13px;
+    color: #fff; background: var(--ink);
+    width: 24px; height: 24px; border-radius: 50%;
+    display: grid; place-items: center;
+  }
+
+  table {
+    width: 100%; border-collapse: collapse; margin: 12px 0 16px;
+    background: var(--paper-card); border-radius: 6px; overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07); font-size: 13.5px;
+  }
+  th {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1.2px;
+    text-transform: uppercase; text-align: left;
+    background: var(--ink); color: #f4efe2; padding: 8px 12px;
+  }
+  td { padding: 9px 12px; border-top: 1px solid var(--paper-edge); vertical-align: top; }
+  td:first-child { font-weight: 700; white-space: nowrap; }
+  .play { font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin: 12px 0; }
+  .card {
+    background: var(--paper-card); border: 1px solid var(--paper-line);
+    border-top: 4px solid var(--accent); border-radius: 6px; padding: 12px 13px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .card b { display: block; font-family: var(--font-mono); font-size: 12.5px; margin-bottom: 5px; }
+  .card span { font-size: 12.5px; color: var(--ink-soft); line-height: 1.4; display: block; }
+  .card--blue { border-top-color: var(--blue); }
+  .card--red { border-top-color: var(--red); }
+  .card--gold { border-top-color: var(--gold); }
+
+  .ritual { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin: 12px 0; }
+  .ritual .step {
+    background: var(--paper-card); border: 1px solid var(--paper-line);
+    border-radius: 6px; padding: 11px 12px;
+  }
+  .ritual .t {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.5px;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 4px; font-weight: 700;
+  }
+  .ritual .step div:last-child { font-size: 12.5px; color: var(--ink-soft); }
+
+  .ethos {
+    text-align: center; font-style: italic; font-size: 15px;
+    color: var(--ink-soft); margin: 26px 0 6px;
+  }
+  footer {
+    margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--paper-line);
+    font-size: 12px; color: var(--ink-faint); line-height: 1.6;
+  }
+
+  @media print {
+    body { padding: 0; font-size: 12px; }
+    nav { display: none; }
+    section { break-inside: avoid-page; margin-bottom: 24px; }
+    .card, ol.tree li, table { box-shadow: none; }
+  }
+
+  /* --- guide-specific --- */
+  .chart { background: var(--paper-card); border: 1px solid var(--paper-line);
+    border-radius: 8px; padding: 16px 14px 10px; margin: 14px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06); overflow-x: auto; }
+  .chart svg { display: block; width: 100%; height: auto; min-width: 460px; }
+  .chart figcaption { font-size: 12.5px; color: var(--ink-soft); margin-top: 8px;
+    padding-top: 8px; border-top: 1px solid var(--paper-edge); }
+  .conf { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 1px;
+    text-transform: uppercase; padding: 2px 6px; border-radius: 3px;
+    color: #fff; background: var(--ink-faint); white-space: nowrap; }
+  .conf--ea { background: var(--accent); }
+  .conf--m27 { background: var(--blue); }
+  .conf--read { background: var(--gold); }
+  .conf--stale { background: var(--orange); }
+  .conf--reject { background: var(--red); }
+  td .conf { margin-right: 4px; }
+  .verdict { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+    gap: 10px; margin: 14px 0; }
+  .verdict > div { background: var(--paper-card); border: 1px solid var(--paper-line);
+    border-radius: 6px; padding: 12px 13px; border-top: 4px solid var(--accent); }
+  .verdict > div.no { border-top-color: var(--red); }
+  .verdict b { display: block; font-family: var(--font-mono); font-size: 11.5px;
+    letter-spacing: .5px; margin-bottom: 5px; }
+  .verdict span { font-size: 12.5px; color: var(--ink-soft); display: block; line-height: 1.45; }
+  .num { font-family: var(--font-mono); font-weight: 700; }
+  a.inline { color: var(--blue); }
+  .sessions td:first-child { white-space: normal; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="kicker">Gameday Playsheet · Skills Lab · usr.safety · Madden 27 · Falcons · solo</div>
+  <h1>Safety Usering<br>The Lab Guide</h1>
+  <p class="sub">Companion to the <strong>Safety usering</strong> playbook in the Skills Lab.
+  The app gives you the week: seven sessions, what to run, what to count. This page is the
+  <em>why</em> behind it, plus the research audit that decided what got in and what did not.
+  <strong>Built 2026-09-02</strong> from a Perplexity digest, filtered against your actual
+  Madden 27 build.</p>
+</header>
+
+<nav>
+  <a href="#depth">The Depth Conflict</a>
+  <a href="#stand">Where You Stand</a>
+  <a href="#presnap">Pre-Snap</a>
+  <a href="#coverages">Coverage Jobs</a>
+  <a href="#menus">Shot Menus</a>
+  <a href="#run">Run &amp; PA</a>
+  <a href="#week">The Week</a>
+  <a href="#audit">Research Audit</a>
+</nav>
+
+<section id="depth">
+<h2 class="c-red">The one conflict that matters</h2>
+<p>Almost every piece of safety-user advice on the internet tells you to sit
+<strong>10 to 15 yards</strong> off the ball, and one widely-shared Madden guide recommends
+setting safety depth to <strong>9</strong>. Both are wrong <em>for you</em>, and it is worth
+being precise about why rather than just asserting it.</p>
+
+<figure class="chart">
+<svg viewBox="0 0 800 210" role="img" aria-label="Bar chart comparing recommended safety user depth: 9 yards from a popular guide, 10 to 15 yards from generic advice, 20 or more yards required by your build">
+  <g font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="11" fill="#8a866f">
+    <line x1="180" y1="168" x2="780" y2="168" stroke="#d8cfb8" stroke-width="1"/>
+    <g text-anchor="middle">
+      <text x="180" y="186">0</text><text x="280" y="186">5</text>
+      <text x="380" y="186">10</text><text x="480" y="186">15</text>
+      <text x="580" y="186">20</text><text x="680" y="186">25</text>
+      <text x="780" y="186">30</text>
+    </g>
+    <text x="480" y="204" text-anchor="middle" letter-spacing="1.5">YARDS OFF THE LINE OF SCRIMMAGE</text>
+    <line x1="580" y1="24" x2="580" y2="168" stroke="#2f7d4f" stroke-width="1.5" stroke-dasharray="4 3"/>
+  </g>
+  <g font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="11.5" fill="#57544a" text-anchor="end">
+    <text x="170" y="42">Popular guide</text>
+    <text x="170" y="88">Generic advice</text>
+    <text x="170" y="134" font-weight="700" fill="#1c1a14">Your build</text>
+  </g>
+  <rect x="180" y="24" width="180" height="28" rx="3" fill="#b3392f" opacity="0.85"/>
+  <rect x="380" y="70" width="100" height="28" rx="3" fill="#b3862a" opacity="0.85"/>
+  <rect x="580" y="116" width="200" height="28" rx="3" fill="#2f7d4f"/>
+  <g font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="12" font-weight="700" fill="#fff">
+    <text x="192" y="43">9 yd</text>
+    <text x="392" y="89">10&#8211;15 yd</text>
+    <text x="592" y="135">20+ yd &#183; inside the hashes</text>
+  </g>
+  <text x="584" y="20" font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="10"
+    letter-spacing="1" fill="#2f7d4f">KO THRESHOLD</text>
+</svg>
+<figcaption><strong>The dashed line is not a preference, it is a trigger.</strong>
+Jessie Bates' <em>Deep In Zone</em> knockout only fires when he is 20+ yards from the
+line of scrimmage and inside the hashes. Stand at 9 and you are playing with the ability
+switched off. The generic advice is written for a generic safety; you do not have one.</figcaption>
+</figure>
+
+<div class="callout callout--red">
+<strong>Why the bad numbers exist.</strong> Madden 27 shipped 2026-08-13. There is no settled
+competitive consensus yet, and the depth figures circulating trace back to carryover content and
+AI-written aggregators rather than lab testing on this build. Treat any specific number you did not
+verify yourself as a rumour. Your ability text is first-party; that is what wins.
+</div>
+</section>
+
+<section id="stand">
+<h2 class="c-green">Where you stand</h2>
+<p>One landmark, and it does not move: <strong>deep middle, inside the hashes, 20+ yards off.</strong>
+Get bored there on purpose.</p>
+
+<figure class="chart">
+<svg viewBox="0 0 800 330" role="img" aria-label="Field diagram showing the deep middle zone inside the hash marks beyond 20 yards, where the safety user should stand">
+  <rect x="90" y="16" width="620" height="288" fill="#fbf8f0" stroke="#d8cfb8"/>
+  <rect x="300" y="16" width="200" height="128" fill="#2f7d4f" opacity="0.16"/>
+  <g stroke="#d8cfb8" stroke-width="1">
+    <line x1="90" y1="264" x2="710" y2="264"/><line x1="90" y1="224" x2="710" y2="224"/>
+    <line x1="90" y1="184" x2="710" y2="184"/>
+    <line x1="90" y1="104" x2="710" y2="104"/><line x1="90" y1="64" x2="710" y2="64"/>
+  </g>
+  <line x1="90" y1="304" x2="710" y2="304" stroke="#1c1a14" stroke-width="3"/>
+  <g stroke="#8a866f" stroke-width="1.5" stroke-dasharray="6 5">
+    <line x1="300" y1="16" x2="300" y2="304"/><line x1="500" y1="16" x2="500" y2="304"/>
+  </g>
+  <line x1="90" y1="144" x2="710" y2="144" stroke="#2f7d4f" stroke-width="2.5"/>
+  <circle cx="400" cy="92" r="15" fill="#1c1a14"/>
+  <text x="400" y="97" text-anchor="middle" font-family="ui-monospace, SF Mono, Menlo, monospace"
+    font-size="11" font-weight="700" fill="#fbf8f0">FS</text>
+  <g font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="10.5" fill="#57544a">
+    <text x="404" y="122" text-anchor="middle" fill="#2f7d4f" font-weight="700" letter-spacing="1">BATES &#183; 94 FS</text>
+    <text x="400" y="322" text-anchor="middle" letter-spacing="1.5" fill="#1c1a14" font-weight="700">LINE OF SCRIMMAGE</text>
+    <text x="716" y="148" fill="#2f7d4f" font-weight="700">20 yd</text>
+    <text x="716" y="188">15 yd</text>
+    <text x="716" y="228">10 yd</text>
+    <text x="716" y="268">5 yd</text>
+    <text x="716" y="108">25 yd</text>
+    <text x="716" y="68">30 yd</text>
+    <text x="300" y="12" text-anchor="middle">hash</text>
+    <text x="500" y="12" text-anchor="middle">hash</text>
+    <text x="400" y="44" text-anchor="middle" fill="#2f7d4f" letter-spacing="1.5" font-weight="700">THE ONLY BOX THAT COUNTS</text>
+  </g>
+</svg>
+<figcaption>Shaded box = both KO conditions satisfied at once. Everything the playbook asks of you
+is in service of arriving there before the snap and staying there until the ball is out.</figcaption>
+</figure>
+</section>
+
+<section id="presnap">
+<h2 class="c-blue">Two seconds, three reads</h2>
+<p>This is the genuinely new material from the research, and it fills a real hole. The old playbook
+told you where to stand and when to move, but nothing about what to look at before the snap.
+Three reads, in this order, every time.</p>
+<ol class="tree">
+  <li><strong>Personnel and formation.</strong> 12, 21 or 22 in a compressed set means run,
+  play-action, or deep crossers. Trips, bunch, empty or wide splits means seams, flood concepts,
+  quick outs and RPOs. This one read narrows the whole call.</li>
+  <li><strong>Their fastest man, and where he lined up.</strong> If he is in the slot, the seam,
+  slot fade, deep over and post are all live and all of them come at you. That tells you which
+  half of the field to cheat.</li>
+  <li><strong>Your own job on this call.</strong> Say it out loud. Cover 3 Sky is not Cover 1
+  Robber, and the single most common way to lose a rep is playing the right technique for the
+  wrong call.</li>
+</ol>
+<div class="callout callout--blue">
+<strong>Down and distance overlay.</strong> On 3rd-and-long, defend the sticks, seams and deep
+crossers. On 3rd-and-short, do not backpedal yourself out of the run fit. In the red zone the
+field compresses and the threat changes shape entirely: quick corners, slants, fades and tight-end
+seams, not 40-yard shots. Your 20-yard landmark is a first-and-ten rule, not a goal-line rule.
+</div>
+</section>
+
+<section id="coverages">
+<h2 class="c-purple">One user, four jobs</h2>
+<p>Session 2 is built on this table. Each row is a different job for the same player, and each has
+its own specific way of losing that has nothing to do with the others.</p>
+<table>
+<thead><tr><th>Call</th><th>Your job</th><th>How you lose it</th></tr></thead>
+<tbody>
+<tr><td>Cover 3 Sky</td><td>Deep middle, honest. Squeeze seams and posts back toward your help.</td>
+<td>Biting on flats, drags or the run before the verticals are capped.</td></tr>
+<tr><td>Cover 4 Quarters</td><td>Top-down from the hash on the seam. Match vertical releases and stay patient.</td>
+<td>Chasing a shallow route and vacating your quarter against 4 Verts.</td></tr>
+<tr><td>Tampa 2</td><td>Your half only. Midpoint the vertical threats in it.</td>
+<td>Stealing the pipe from Deablo, or sitting so far inside a sideline streak runs free.</td></tr>
+<tr><td>Cover 1 Robber</td><td>Sit 10&#8211;12 and rob the dig. Never chase deep.</td>
+<td>Over-helping underneath and handing over a one-play touchdown.</td></tr>
+</tbody>
+</table>
+<div class="callout callout--gold">
+<strong>Note the exception.</strong> Cover 1 Robber is the one call where 10&#8211;12 yards is
+correct, because the job is different: you are robbing an intermediate window with a deep
+defender behind you, not being the last man. That is not a contradiction of the 20-yard rule,
+it is a different assignment. Confusing the two is exactly the wrong-depth error session 2 counts.
+</div>
+</section>
+
+<section id="menus">
+<h2 class="c-teal">The two shot menus</h2>
+<p>The original playbook scripted five concepts, all of them vertical. That teaches you to hold
+depth and nothing else. The research surfaced the obvious gap: you were never practising the
+mistake that actually beats a disciplined deep user, which is being pulled forward by something
+shallow. So there are two menus now.</p>
+
+<h3>Vertical menu &#183; sessions 0&#8211;2, and every re-test</h3>
+<div class="cards">
+  <div class="card"><b>4 VERTS</b><span>Four threats, one of you. The baseline picture.</span></div>
+  <div class="card"><b>HITCH SEAM</b><span>Two seams. Split the difference, let the throw declare.</span></div>
+  <div class="card"><b>MTN Y POST</b><span>The post off the play fake. Trigger discipline.</span></div>
+  <div class="card"><b>GO DBL POST</b><span>Two posts bracketing your landmark. Pick early and lose.</span></div>
+  <div class="card"><b>DAGGER</b><span>Dig under the clear-out. The classic user bait.</span></div>
+</div>
+
+<h3>Bait menu &#183; session 2 onward &#8212; new</h3>
+<div class="cards">
+  <div class="card card--red"><b>MESH</b><span>Two shallow crossers begging you to come down. The dig behind them is the actual call.</span></div>
+  <div class="card card--red"><b>DRIVE</b><span>Dig over drag. If you take the drag, the dig replaces you in the window you just left.</span></div>
+  <div class="card card--red"><b>PA CROSSERS</b><span>Run fake, then a deep over into the grass where you used to be standing.</span></div>
+</div>
+<div class="callout">
+<strong>The one rule for the bait menu:</strong> you may not leave the deep middle for any route
+under 12 yards. Count every rep you break it. That count is the whole point of the drill.
+</div>
+
+<h3>Run menu &#183; later sessions &#8212; new</h3>
+<div class="cards">
+  <div class="card card--gold"><b>INSIDE ZONE</b><span>The one 2-4-5 Over Wide has no answer for. Diagnose it and still stay home.</span></div>
+  <div class="card card--gold"><b>COUNTER</b><span>Pulling guard. Read the near guard, not the back.</span></div>
+  <div class="card card--gold"><b>STRETCH</b><span>Outside-in pursuit angle. Force it back to help, do not fly past it.</span></div>
+</div>
+</section>
+
+<section id="run">
+<h2 class="c-orange">Run and play-action</h2>
+<p>The playbook has always been honest that a deep user is not in the run fit and that
+2-4-5 Over Wide has no interior gap answer. What it never gave you was technique for the moment
+you diagnose run. Now it does &#8212; with one hard limit.</p>
+<div class="verdict">
+  <div><b>READ THE LINE, NOT THE BACK</b><span>Linemen firing forward is run. Linemen retreating
+  is pass. A pulling guard means counter, power or sweep. The back's first step lies to you;
+  the line does not.</span></div>
+  <div><b>OUTSIDE-IN ANGLE</b><span>If you do come down, force the ball back into pursuit rather
+  than flying past it. A deep safety who overruns is worse than a deep safety who never left.</span></div>
+  <div><b>PLAY-ACTION: ONE BEAT</b><span>Count one-one-thousand through the mesh. If the QB still
+  has it after the fake, forget the run and find the deepest route entering your area.</span></div>
+  <div class="no"><b>THE LIMIT</b><span>Knowing it is counter does not buy you permission to leave
+  the middle of the field empty. This read makes you a faster diagnoser, not a run defender. Change
+  the call, not the discipline.</span></div>
+</div>
+<div class="callout callout--red">
+<strong>The honest trade, restated.</strong> You will bleed inside zone and duo while you learn
+this. The fix is a different call &#8212; THUNDER SMOKE, or checking out of 2-4-5 entirely against
+12/21/22 personnel &#8212; not abandoning the deep user mid-drive. If you find yourself solving a
+run problem by creeping forward every snap, the week has failed even if the scores look fine.
+</div>
+</section>
+
+<section id="week">
+<h2>The week, and the numbers that grade it</h2>
+<p>Seven sessions, sixty minutes each. Generate it in the Skills Lab and tick the blocks off there;
+this table is the map. Three numbers get written down every session, and a rep you did not count
+did not happen.</p>
+<table class="sessions">
+<thead><tr><th>#</th><th>Session</th><th>The number</th></tr></thead>
+<tbody>
+<tr><td>0</td><td><strong>Baseline.</strong> DEEP MIDDLE 30, Cover 3 Sky, vertical menu, react-only.</td>
+<td>Completions <em>behind you</em> out of 30. Elite bar: zero behind you, 6+ PBU/INT.</td></tr>
+<tr><td>1</td><td><strong>Volume.</strong> DEEP MIDDLE 40, one call, thumb off sprint until the ball is airborne.</td>
+<td>Pre-throw movement count. Target under 4 of 40. That number is the habit, not the picks.</td></tr>
+<tr><td>2</td><td><strong>Vary the look.</strong> FOUR JOBS across all four calls, then 20 bait-menu reps.</td>
+<td>Two now: wrong-depth reps, and chase reps. Both to zero.</td></tr>
+<tr><td>3</td><td><strong>Pressure test 1.</strong> Online H2H, three calls only, Bates usered every passing down.</td>
+<td>Hit/miss per dropback, plus a written broke-list. That list <em>is</em> session 4.</td></tr>
+<tr><td>4</td><td><strong>Repair.</strong> Only what broke. Seven repair drills, one per failure mode.</td>
+<td>Ten clean in a row on the specific failure. Not &ldquo;it feels better.&rdquo;</td></tr>
+<tr><td>5</td><td><strong>Pressure test 2.</strong> Same calls, same grading. Add nothing new.</td>
+<td>The delta against session 3. If it did not move, the repair was aimed wrong &#8212; say so.</td></tr>
+<tr><td>6</td><td><strong>Review.</strong> Re-run DEEP MIDDLE 30 under session-0 conditions, re-rate, then free play.</td>
+<td>Three numbers side by side against the baseline. That comparison is the week.</td></tr>
+</tbody>
+</table>
+<div class="callout">
+<strong>Baiting is next week.</strong> The research is right that elite users manufacture
+interceptions by hovering a window, drifting toward a secondary threat to sell it open, then
+breaking on the throw. It is deliberately <em>not</em> in this week. React-only has to be
+automatic first; bait before the discipline holds and you have just invented a faster way to get
+beaten deep. It is logged as a cue so it is waiting for you when the numbers earn it.
+</div>
+</section>
+
+<section id="audit">
+<h2 class="c-maroon">Research audit</h2>
+<p>The source was a Perplexity digest built on 17 mixed Reddit and YouTube results, none of them
+first-party and none confirmed against Madden 27 specifically. Per the repo's sourcing rule,
+everything below carries a confidence tag rather than being laundered into fact.</p>
+<table>
+<thead><tr><th>Claim</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td>Pre-snap read order: personnel &rarr; fastest man &rarr; your job</td>
+<td><span class="conf conf--read">read</span> <strong>Adopted.</strong> Scheme-level football
+logic that does not depend on a patch. Filled a real hole.</td></tr>
+<tr><td>Coverage-specific priorities and failure modes</td>
+<td><span class="conf conf--read">read</span> <strong>Adopted</strong>, rewritten against your
+actual four calls rather than generic shells.</td></tr>
+<tr><td>Shallow routes bait deep users out of the middle</td>
+<td><span class="conf conf--read">read</span> <strong>Adopted</strong> and promoted to its own
+drill. Best single contribution in the digest.</td></tr>
+<tr><td>Run read: line direction, pulling guard, outside-in angle</td>
+<td><span class="conf conf--read">read</span> <strong>Adopted</strong> with an explicit limit
+attached, so it cannot become an excuse to creep.</td></tr>
+<tr><td>Play-action: delay the downhill trigger one beat</td>
+<td><span class="conf conf--read">read</span> <strong>Adopted.</strong> Consistent with the
+react-only spine already in the playbook.</td></tr>
+<tr><td>Bait the QB by drifting off the route you intend to kill</td>
+<td><span class="conf conf--read">read</span> <strong>Deferred.</strong> Real technique, wrong
+week. Logged as a cue for the next cycle.</td></tr>
+<tr><td>User the safety from 10&#8211;15 yards</td>
+<td><span class="conf conf--reject">rejected</span> Contradicts your Deep In Zone KO threshold.
+Generic advice for a generic safety.</td></tr>
+<tr><td>Set safety depth to 9, pinch safety width</td>
+<td><span class="conf conf--reject">rejected</span> Single YouTube guide, Madden version
+unclear, and it switches Bates' ability off. Exactly the kind of number the repo's sourcing rule
+exists to stop.</td></tr>
+<tr><td>Put a safety at sub-LB in nickel/dime to lurk the middle</td>
+<td><span class="conf conf--stale">unverified</span> <strong>Held back.</strong> Plausible, but
+it is a different skill from the one this week trains, and 2-4-5 Over Wide already has three
+safeties on the grass. Revisit after the deep-user baseline is real.</td></tr>
+</tbody>
+</table>
+<div class="callout callout--gold">
+<strong>What this audit is for.</strong> Not pedantry. The playbook works because it asks for one
+job and counts three numbers. Every plausible tip you fold in dilutes that. The bar for entry was
+&ldquo;does this sharpen the existing spine or fill a hole in it&rdquo; &#8212; six passed, three did not.
+</div>
+</section>
+
+<p class="ethos">Stillness sharpens sight.</p>
+
+<footer>
+<strong>Gameday Playsheet</strong> &#183; Skills Lab &#183; <span class="num">usr.safety</span> playbook companion.
+Open the week in-app: <em>Skills &rarr; Lab lens &rarr; Generate week &rarr; Safety usering</em>.
+Related in-app reading: the <em>Coverage Lab</em> for the shells named above, and the
+<em>Personnel Lab</em> for why Bates plays deep and the front has no interior answer.<br>
+Source: Perplexity digest &ldquo;Madden safety user tips&rdquo;, 17 mixed community sources,
+audited 2026-09-02 against EA's Madden 27 launch ratings and Bates' first-party ability text.
+No claim on this page is a tested lab result unless the app says so.<br>
+built by nnnsightnnn &#8212; signal from noise
+</footer>
+
+</div>
+</body>
+</html>

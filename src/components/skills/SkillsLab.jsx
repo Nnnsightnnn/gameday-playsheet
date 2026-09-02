@@ -108,6 +108,16 @@ function PlaybookBrief({ book }) {
     <div className="skl-book">
       <div className="skl-book__hd">
         <span className="skl-book__chip">{book.label}</span>
+        {book.guide && (
+          <a
+            className="skl-book__guide"
+            href={import.meta.env.BASE_URL + book.guide}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Full guide &rarr;
+          </a>
+        )}
         <p className="skl-book__premise">{book.premise}</p>
       </div>
       <div className="skl-book__tabs">
