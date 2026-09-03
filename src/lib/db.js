@@ -136,6 +136,26 @@ db.version(10).stores({
   personnelCharts: 'id, planId, game, updatedAt'
 });
 
+// Version 11: Game debriefs — the two-minute post-game diagnosis. Row:
+// { id, playedAt, game, mode, result, focusSkillId, focusOutcome, leaks[],
+// holds[], minutes, opponent, note }. Chip ids resolve against
+// src/lib/skills/debrief.js; the recommendation is computed, never stored.
+db.version(11).stores({
+  myPlays: '++id, playId, playbook, formationGroup, formation, playName, playType, side, tags, notes, rating, addedAt',
+  gameSessions: '++id, opponent, date, result, notes',
+  playPerformance: '++id, sessionId, playId, callCount, successCount, yardsGained, notes',
+  gameContext: 'id',
+  sheetAssignments: 'id',
+  sheetSettings: 'id',
+  formations: 'id, side, name, updatedAt',
+  setupChecks: 'id',
+  callSheets: 'id, name, game, updatedAt',
+  skillAssessments: 'id, createdAt',
+  labPlans: 'id, weekOf',
+  personnelCharts: 'id, planId, game, updatedAt',
+  gameDebriefs: 'id, playedAt, game, mode'
+});
+
 // Sheet assignments helpers — fresh-object factories so the module-level
 // defaults are never aliased into the live React state.
 //
@@ -478,6 +498,28 @@ export async function updateLabPlanSession(planId, idx, patch) {
 
 export async function deleteLabPlan(id) {
   return await db.labPlans.delete(id);
+}
+
+// ── Game debriefs ───────────────────────────────────────────────────────────
+// Newest-first. Each game is one row; the Debrief lens tallies them into a
+// recommended next focus.
+
+export async function getGameDebriefs() {
+  return await db.gameDebriefs.orderBy('playedAt').reverse().toArray();
+}
+
+export async function saveGameDebrief(debrief) {
+  const row = {
+    id: debrief.id || `gd_${Math.random().toString(36).slice(2, 10)}`,
+    createdAt: debrief.createdAt || new Date().toISOString(),
+    ...structuredClone(debrief),
+  };
+  await db.gameDebriefs.put(row);
+  return row;
+}
+
+export async function deleteGameDebrief(id) {
+  return await db.gameDebriefs.delete(id);
 }
 
 // ── Personnel charts ────────────────────────────────────────────────────────

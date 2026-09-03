@@ -1,8 +1,9 @@
 // built by nnnsightnnn — signal from noise
 // Skills Lab — rate the skills that separate elite from good, find the gap,
-// attack it. Three lenses: Assess (snapshot yourself against the taxonomy),
-// Gaps (where you're weakest, what to attack next), Progress (snapshots over
-// time — the deltas are the point).
+// attack it. Lenses: Debrief (two-minute post-game diagnosis → next focus),
+// Gaps (where you're weakest), Plan (the lab week), Assess (snapshot yourself
+// against the taxonomy), Progress (snapshots over time — the deltas are the
+// point).
 
 import { useMemo, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
@@ -14,7 +15,11 @@ import {
   saveLabPlan,
   updateLabPlanSession,
   deleteLabPlan,
+  getGameDebriefs,
+  saveGameDebrief,
+  deleteGameDebrief,
 } from '../../lib/db';
+import DebriefLens from './DebriefLens';
 import { buildWeekPlan, sessionMinutes, resolvePlan } from '../../lib/skills/labPlan';
 import { playbookFor } from '../../lib/skills/playbooks';
 import {
@@ -201,8 +206,9 @@ export default function SkillsLab({ game }) {
     [activePlan],
   );
   const [planSkillId, setPlanSkillId] = useState('');
+  const debriefs = useLiveQuery(() => getGameDebriefs(), [], null);
 
-  const [mode, setMode] = useState('gaps');
+  const [mode, setMode] = useState('debrief');
   // Default the filter to the game currently active on the call sheet.
   const [gameFilter, setGameFilter] = useState(
     game === 'cfb' || game === 'madden' ? game : 'both',
@@ -287,6 +293,12 @@ export default function SkillsLab({ game }) {
       <div className="skl-hd">
         <div className="trends-tabs">
           <button
+            className={'trend-tab' + (mode === 'debrief' ? ' trend-tab--on' : '')}
+            onClick={() => setMode('debrief')}
+          >
+            Debrief
+          </button>
+          <button
             className={'trend-tab' + (mode === 'gaps' ? ' trend-tab--on' : '')}
             onClick={() => setMode('gaps')}
           >
@@ -325,6 +337,23 @@ export default function SkillsLab({ game }) {
       </div>
 
       {savedFlash && <div className="skl-flash">Snapshot saved.</div>}
+
+      {/* ── DEBRIEF ────────────────────────────────────────────────────── */}
+      {mode === 'debrief' && (
+        <DebriefLens
+          game={game}
+          debriefs={debriefs || []}
+          activePlan={activePlan}
+          onSave={saveGameDebrief}
+          onDelete={(id) => {
+            if (window.confirm('Delete this game debrief?')) deleteGameDebrief(id);
+          }}
+          onStageWeek={(skill) => {
+            saveLabPlan(buildWeekPlan(skill, new Date().toISOString().slice(0, 10)));
+            setMode('plan');
+          }}
+        />
+      )}
 
       {/* ── ASSESS ─────────────────────────────────────────────────────── */}
       {mode === 'assess' && draft && (
@@ -449,7 +478,7 @@ export default function SkillsLab({ game }) {
       {/* ── PLAN ───────────────────────────────────────────────────────── */}
       {mode === 'plan' && (
         <>
-          {!latest ? (
+          {!latest && !activePlan ? (
             <div className="skl-empty">
               <p>
                 The plan is generated from your gaps, so it needs a snapshot
@@ -494,6 +523,11 @@ export default function SkillsLab({ game }) {
                   pressure test → repair → pressure test → review + re-rate.
                   Defaults to your lowest-rated high-leverage gap.
                 </p>
+                {!latest && (
+                  <p className="skl-cat__blurb">
+                    No snapshot yet, so the picker is empty — stage weeks from the Debrief lens, or rate yourself once in Assess.
+                  </p>
+                )}
                 <div className="trends-yt__row">
                   <select
                     className="trends-input"

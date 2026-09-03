@@ -60,7 +60,7 @@ and is read with `useLiveQuery`; `settings.view` decides which view renders.
 | `planner` | `planner/FormationPlanner` | Drag 11 tokens on a field; the app names the formation, reads DL techniques + gap responsibility, and validates it against NFL/NCAA rules. |
 | `coverage` | `coverage/CoverageLab` | Defense-only coverage study model: animate a coverage vs a route concept, compare two coverages side by side, work a 14-lesson Learn track with quizzes and a miss drill, search a glossary. |
 | `trends` | `trends/TrendsBoard` | Curated meta digest from `public/data/trends.json`, plus an optional live YouTube search (Kenny supplies his own API key, stored in settings). |
-| `skills` | `skills/SkillsLab` | Self-assessment against a 31-skill elite taxonomy → gap list → dated progress history. |
+| `skills` | `skills/SkillsLab` | Five lenses. **Debrief** (`skills/DebriefLens`, default): two-minute post-game diagnosis — chips map to skill ids, `src/lib/skills/debrief.js` ranks recent leaks into a recommended focus and emits the Vault log line. Gaps / Plan / Assess / Progress: self-assessment against a 31-skill elite taxonomy → gap list → lab week → dated history. Dexie `gameDebriefs` (schema v11). |
 | `personnel` | `personnel/PersonnelLab` | **Who fills each job.** 24 scheme roles per team — the job, the ratings that do it, the trap ratings, EA's archetype, the current holder graded fit/stretch/hole, the failure mode, and between-play reads. Four lenses: Roles · Build (depth-chart procedure) · In-Game (adjustment reads) · Gaps. |
 
 Offense/Defense tabs are hidden on `coverage`, `trends`, `skills`, and
@@ -88,7 +88,7 @@ src/
     coverage/              CoverageLab, CoverageField, AssignmentSheet,
                            CoverageBriefing, LessonMode, GlossaryPanel
     trends/                TrendsBoard
-    skills/                SkillsLab
+    skills/                SkillsLab, DebriefLens
     personnel/             PersonnelLab, RoleCard
   lib/
     db.js                  Dexie schema v8 + every persistence helper
