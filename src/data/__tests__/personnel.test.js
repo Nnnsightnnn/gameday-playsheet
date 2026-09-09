@@ -177,19 +177,31 @@ describe('Falcons roster reality', () => {
   const plan = planById('falcons-m27');
 
   it('does not model the Falcons as a base 3-4', () => {
-    // No DT above 74 OVR and two edges with Man Coverage in the 30s-40s.
-    // The doctrine has to say nickel, and it has to say why.
+    // One real DT (Dexter, 79) and edges that cannot cover. The doctrine has
+    // to say nickel, and it has to say why the odd front is a package only.
     expect(plan.doctrine.defense.toLowerCase()).toMatch(/nickel/);
     expect(plan.doctrine.honest.toLowerCase()).toMatch(/3-4/);
     expect(plan.doctrine.honest.toLowerCase()).toMatch(/nose/);
   });
 
-  it('grades the interior defensive line as a roster hole', () => {
-    const dts = plan.roles.filter((r) => r.pos === 'DT');
-    expect(dts.length).toBeGreaterThanOrEqual(2);
-    dts.forEach((r) => {
-      expect(r.holder.grade, r.id).toBe('hole');
-      expect(r.holder.ovr, r.id).toBeLessThanOrEqual(74);
+  it('puts Dexter at nose and keeps the 3-tech graded as a hole', () => {
+    // Week 1 roster (9/9/26): Gervon Dexter Sr. arrived from Chicago on
+    // cutdown day. He is the only DT above 74; the interior is still thin.
+    const nose = plan.roles.find((r) => r.id === 'def.1t');
+    const three = plan.roles.find((r) => r.id === 'def.3t');
+    expect(nose.holder.name).toMatch(/Dexter/);
+    expect(nose.holder.ovr).toBe(79);
+    expect(nose.holder.grade).not.toBe('hole');
+    expect(three.holder.grade).toBe('hole');
+    expect(three.holder.ovr).toBeLessThanOrEqual(74);
+  });
+
+  it('does not start players who are unavailable on the Week 1 roster', () => {
+    // Pearce: 8-game suspension. Walker: IR (ACL). Andersen: released 8/7.
+    // Phillips: traded to CHI 8/30. None may be a holder anywhere.
+    const holders = plan.roles.map((r) => r.holder.name);
+    holders.forEach((n) => {
+      expect(n).not.toMatch(/Pearce|Jalon Walker|Andersen|Phillips/);
     });
   });
 

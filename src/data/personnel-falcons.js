@@ -2,15 +2,25 @@
 // Atlanta Falcons — Madden 27 role sheet.
 //
 // Ratings are EA's official Madden 27 launch numbers (ea.com ratings site,
-// cross-checked against maddenratings.com for sub-attributes). Roster is the
-// 8/13/26 launch roster — it does NOT know about Jalon Walker's camp ACL or
-// Michael Penix's rehab, so in-game both are available.
+// cross-checked against maddenratings.com for sub-attributes). Roster
+// refreshed 9/9/26 for the Week 1 (53-man) roster update against the real
+// Falcons transactions (source: falcons-tracker + atlantafalcons.com):
+//   + DT Gervon Dexter Sr. (79) — trade from CHI on cutdown day, 8/30
+//   + REDG Za'Darius Smith (75) — signed 8/18
+//   + CB C.J. Henderson (70), SS Sydney Brown (72), LEDG Cameron Thomas (70)
+//   + rookies WILL Kendal Daniels (69), MIKE Harold Perkins Jr. (64)
+//   - CB Clark Phillips III (traded to CHI), MIKE Troy Andersen (released)
+//   - LEDG Jalon Walker (IR, ACL), REDG James Pearce Jr. (suspended 8 games)
+// Availability of IR/suspended players depends on the mode: online H2H with
+// the live roster hides them; Play Now with injuries off does not. Check the
+// depth chart in-game before assuming Pearce is there.
 //
-// THE DOCTRINE CORRECTION: this repo has carried a "personnel-first 3-4"
-// note for the Falcons since 8/06. The roster does not support it. There is
-// not one defensive tackle above 74 OVR on this team, both starting edges
-// have Man Coverage in the 30s, and the two best defenders are safeties.
-// This is a nickel team with an odd-front pressure package, not a 3-4 team.
+// THE DOCTRINE, UPDATED: this repo carried a "personnel-first 3-4" note for
+// the Falcons since 8/06 and corrected it to nickel on 8/14 because there was
+// no nose. Dexter changes the arithmetic without changing the answer: he is a
+// real 1-technique (326 lb, 85 STR, 81 BSH, 87 TAK), so the five-man odd
+// front is now a legitimate package. It is still not a base, because the
+// second DT is a 74 and the edges still cannot drop.
 
 import { CONFIDENCE } from './personnel';
 
@@ -20,15 +30,15 @@ export const FALCONS_PERSONNEL = {
   team: 'Atlanta Falcons',
   name: 'Falcons — Madden 27 personnel',
   teamOvr: '81 OVR — 83 offense / 78 defense, 19th in the league',
-  updatedAt: '2026-08-14',
+  updatedAt: '2026-09-09',
 
   doctrine: {
     offense:
       'Stefanski/Rees wide-zone and play-action, run-first, under center and pistol, heavy 11 and 12 personnel. The identity is Bijan behind Lindstrom, then boot and PA off that action to London. You are not a dropback team — Tua is 69 AWR with 90 short accuracy, which is a rhythm thrower, not a full-field progression reader.',
     defense:
-      'Nickel base (4-2-5) with a five-man odd front as a run-down and pressure package. Ulbrich ran nickel 70% of snaps in New York and is Cover 1 heavy. Your talent is Bates + Terrell + a stack of 88–92 speed corners. Live in five DBs and get Bowman on the grass instead of a third linebacker.',
+      'Nickel base (4-2-5) with a five-man odd front as a run-down and pressure package. Ulbrich ran nickel 70% of snaps in New York and is Cover 1 heavy. Your talent is Bates + Terrell + a stack of 88–92 speed corners, and as of cutdown day a real nose in Gervon Dexter. Live in five DBs and get Bowman on the grass instead of a third linebacker; bring the odd front out on early downs now that Dexter can anchor it.',
     honest:
-      'The single biggest lie you could tell yourself with this roster is that it is a 3-4. You have no nose tackle. Playing base 3-4 puts a 69 OVR body at the most important run-defense job on the field and asks two 36-MCV speed rushers to drop into curl-flat. Use the odd front as a package, never as your base.',
+      'The single biggest lie you could tell yourself with this roster used to be that it is a 3-4, because you had no nose tackle. Dexter fixes exactly one spot: he is the nose, and the odd front is playable on first and second down. It is still not your base. The second DT is Hand at 74, and the edges you actually have this week (Ebukam, Za\'Darius Smith, Cameron Thomas) are 25 to 57 in coverage, so any 3-4 call that drops an edge gives away a zone. Use the odd front as a package, never as your base.',
   },
 
   roles: [
@@ -440,17 +450,17 @@ export const FALCONS_PERSONNEL = {
       ],
       archetype: { name: 'Speed Rusher', keys: ['FMV', 'TAK', 'PUR'], conf: 'ea' },
       holder: {
-        name: 'James Pearce Jr.',
-        ovr: 79,
-        grade: 'fit',
-        line: 'SPD 90 · ACC 92 · FMV 81 · PMV 71 · BSH 70 · MCV 40 · ZCV 50 · AWR 85',
-        verdict: 'A pure finesse rusher: 81 FMV against 71 PMV is a clear specialist, so rush him with the swim/rip and never bull. The 40 man coverage and 50 zone coverage are the numbers that kill the 3-4 idea — if a play asks him to drop into curl-flat, you have given up that zone.',
+        name: 'Samson Ebukam',
+        ovr: 76,
+        grade: 'stretch',
+        line: 'SPD 83 · ACC 86 · FMV 78 · PMV 67 · BSH 80 · STR 83 · TAK 82 · MCV 41',
+        verdict: 'The speed-rusher job by default, 9/9: Pearce is suspended eight games and Walker is on IR, so Ebukam is the best finesse move left on the roster (78 FMV, and 67 PMV says never bull with him). He is slower off the ball than the two rookies were, which is why this drops from fit to stretch. Same rule as before: he rushes, he does not drop.',
       },
       backup: {
-        name: 'Jalon Walker',
+        name: 'James Pearce Jr. (suspended)',
         ovr: 79,
-        line: 'SPD 86 · ACC 92 · FMV 79 · PMV 70 · BSH 76 · MCV 36 · ZCV 48',
-        verdict: 'Nearly the same player with slightly better shed. Note: in real life he tore an ACL in camp and is out for 2026 — the launch roster does not know that, so he is available in-game.',
+        line: 'SPD 90 · ACC 92 · FMV 81 · PMV 71 · BSH 70 · MCV 40 · ZCV 50',
+        verdict: 'The real answer at this spot whenever the mode lets you use him: 81 FMV on 92 acceleration is the roster\'s only elite get-off. Eight-game suspension in real life; the Week 1 roster update should carry it, so check the depth chart before you count on him. Walker (79, ACL) is out for the year either way.',
       },
       breaks:
         'Ask him to drop and you have a 40-MCV body in space. Ask him to two-gap and 70 block shedding gets him washed out of the run fit. He rushes. That is the whole job.',
@@ -478,23 +488,23 @@ export const FALCONS_PERSONNEL = {
       ],
       archetype: { name: 'Run Stopper', keys: ['BSH', 'TAK', 'PRC'], conf: 'read' },
       holder: {
-        name: 'Samson Ebukam',
-        ovr: 76,
-        grade: 'stretch',
-        line: 'SPD 83 · STR 83 · BSH 80 · FMV 78 · PMV 67 · TAK 82',
-        verdict: 'Downgraded fit → stretch on 8/19. He has the best Block Shedding (80) and Strength (83) of any Falcons edge, so he is the right pick — but EA labels him a Smaller Speed Rusher, not a Run Stopper. There is NO Run Stopper edge on this roster; five of six are Smaller Speed Rushers. He is your run-down edge because Pearce cannot be, not because he is good at this.',
+        name: 'Za\'Darius Smith',
+        ovr: 75,
+        grade: 'fit',
+        line: 'STR 86 · BSH 78 · TAK 81 · PUR 85 · PMV 78 · FMV 72 · SPD 80 · MCV 46 · ZCV 57 · 275 lb',
+        verdict: 'Signed 8/18 and the first edge on this roster EA labels a Power Rusher instead of a Smaller Speed Rusher. 86 strength is the highest of any Falcons edge and the point-of-attack number this job is built on; 78 PMV means he bull-rushes, which is exactly what you want from the strong side. 80 speed is the ceiling: he sets the edge, he does not chase.',
       },
       alt: {
-        name: 'Jalon Walker',
-        ovr: 79,
-        line: 'SPD 86 · STR 80 · BSH 76 · TAK 84 · PUR 84 · AGI 85',
-        verdict: 'Give back 4 BSH and 3 STR, get +3 OVR, +2 TAK, +2 PUR and +7 AGI. The right answer on early downs is not choosing — play Ebukam AND Walker together and sit Pearce (BSH 70, worst on the roster). Flip it on third and long.',
+        name: 'Cameron Thomas',
+        ovr: 70,
+        line: 'TAK 83 · PUR 82 · BSH 75 · PMV 73 · SPD 80 · ACC 83 · MCV 25 · ZCV 35',
+        verdict: 'Second power body, and the one to pair with Za\'Darius when you want two run-down edges in the odd front and are willing to give up the pass rush entirely. 25 man coverage is the lowest on the team: never let a call drop him.',
       },
       breaks:
-        'Play two pure speed rushers at once on early downs and you have no edge — outside zone and the toss game will run you out of the building. That is exactly what happens if you chase sacks with the personnel. Note the honest ceiling: Ebukam\'s PMV 67 is the lowest of the six edges, so he costs you a down as a rusher.',
+        'Play two pure speed rushers at once on early downs and you have no edge — outside zone and the toss game will run you out of the building. Za\'Darius is the first edge here who is built for the job rather than assigned to it. The honest ceiling is the other direction now: with Pearce out, your edge rush is Ebukam\'s 78 FMV and nothing else, so the pressure has to come from Dexter inside or from a blitz.',
       reads: [
         { when: 'They are running outside zone to his side and gaining', do: 'Set Gap Integrity to Conservative. That makes defenders shed toward their assigned gap instead of anywhere, which trades big wins for fewer explosive runs.' },
-        { when: 'It is third and long', do: 'Sub him out for Pearce (FMV 81) and keep Walker. Edge-setting has no value on a passing down.' },
+        { when: 'It is third and long', do: 'Sub him out for Pearce if the mode lets you use him (FMV 81); otherwise slide Ebukam to the strong side and bring Zach Harrison (ACC 87) off the weak edge. Edge-setting has no value on a passing down.' },
         { when: 'You are in 2-4-5 Over Wide and they run inside zone', do: 'The wide alignment is the problem, not the personnel. Pinch the line manually — RS-left into the D-line menu, then LS-down — or check out of the formation entirely.' },
       ],
     },
@@ -520,7 +530,13 @@ export const FALCONS_PERSONNEL = {
         ovr: 73,
         grade: 'hole',
         line: 'STR 84 · BSH 79 · PMV 77 · FMV 72 · TAK 79 · SPD 77',
-        verdict: 'The best interior rusher on the roster, and he is 73 overall. Adequate, not disruptive. You will not win a game because of your 3-technique this year.',
+        verdict: 'The best interior finesse rusher on the roster, and he is 73 overall. Adequate, not disruptive. Dexter can flip to this spot on passing downs (81 PMV), which is a better pocket-collapse than Dorlus gives you, but then nobody is anchoring the A-gap.',
+      },
+      backup: {
+        name: 'Zach Harrison',
+        ovr: 73,
+        line: 'SPD 83 · ACC 87 · STR 81 · PMV 78 · TAK 81 · POW 85',
+        verdict: 'A converted edge filed at DT: the most acceleration on the interior and 78 PMV. The passing-down 3-tech when you want Dexter to stay at nose. Do not ask him to hold a double.',
       },
       breaks:
         'A 73 at 3-tech means the guard wins most reps, which means the pocket never collapses inside, which means the quarterback steps up and away from Pearce. Your entire pass rush is edge-dependent as a result.',
@@ -545,23 +561,24 @@ export const FALCONS_PERSONNEL = {
       traps: [],
       archetype: { name: 'Nose Tackle', keys: ['BSH', 'TAK', 'PRC'], conf: 'ea' },
       holder: {
-        name: 'Da\'Shawn Hand',
-        ovr: 74,
-        grade: 'hole',
-        line: 'STR 88 · BSH 78 · PMV 74 · TAK 84 · SPD 76',
-        verdict: 'A rotational veteran being asked to be an anchor. 88 strength is real; 74 overall is not an anchor. He is the best you have, which is the problem.',
+        name: 'Gervon Dexter Sr.',
+        ovr: 79,
+        grade: 'stretch',
+        line: 'STR 85 · BSH 81 · TAK 87 · PMV 81 · PRC 81 · AWR 85 · IBL 89 · SPD 76 · 6\'6" 326 lb',
+        verdict: 'Acquired from Chicago on cutdown day (8/30) for Clark Phillips and a fifth, and he is the whole reason the odd front is back on the table: 326 pounds, 81 block shedding, 87 tackle, and 81 play recognition hit all three legs of EA\'s nose triad. Stretch rather than fit only because EA files him as a Power Rusher (81 PMV), not a two-gap nose, so he wins by penetrating rather than by holding a double still. Best interior lineman on the roster by five points.',
       },
       backup: {
-        name: 'Maason Smith',
-        ovr: 69,
-        line: 'STR 83 · BSH 77 · PMV 72 · SPD 72 · AWR 64',
-        verdict: 'A 69 OVR with 64 awareness at the most important run-defense job on the field. This is the specific hole that makes a base 3-4 unplayable.',
+        name: 'Da\'Shawn Hand',
+        ovr: 74,
+        line: 'STR 88 · BSH 78 · PMV 74 · TAK 84 · SPD 76',
+        verdict: 'Was the starter here through 9/8 and is now the second DT in the odd front. 88 strength still holds a double; 74 overall is still not an anchor. Maason Smith (69, AWR 64) is behind him and should not see early downs.',
       },
       breaks:
-        'This is THE roster hole and the reason the doctrine changed. Atlanta lost Onyemata, Orhorhoro, and Street, and there is not a single DT above 74 to replace them. Without a nose who eats doubles, your linebackers get climbed to on every inside run — and your linebacker room is thin behind Deablo.',
+        'Through August this was THE roster hole and the reason the doctrine changed to nickel. Dexter closes it at one spot, not two: the moment you go to three down linemen, Hand is your other DT, and against a real duo team the double still lands on him. Without Dexter on the field, nothing has changed since launch and your linebackers get climbed to on every inside run.',
       reads: [
-        { when: 'They keep running inside zone and your MIKE is being blocked', do: 'The nose is not eating the double. Slant the line, or bring Watts down as an eighth defender.' },
-        { when: 'You are in base 3-4 personnel', do: 'Get out of it. This is the exact alignment where a 69-OVR nose is exposed. Nickel is your base for a reason.' },
+        { when: 'They keep running inside zone and your MIKE is being blocked', do: 'Check where Dexter is. If he is at nose and Deablo is still getting climbed to, slant the line toward the run or bring Watts down; if Dexter got moved to 3-tech for the pass rush, move him back.' },
+        { when: 'You are in the 3-4 odd front on first or second down', do: 'Fine now, with Dexter at nose and Hand at the 4-tech. Get out of it on third down: the edges cannot drop and Hand cannot rush.' },
+        { when: 'They are running duo at Hand\'s side', do: 'That is the remaining hole. Flip the front so Dexter is over the play-side guard, or get back to nickel and let Bowman fill from the slot.' },
       ],
     },
     {
@@ -598,7 +615,7 @@ export const FALCONS_PERSONNEL = {
       breaks:
         'With 67 block shedding, the failure mode is not missing tackles — it is never arriving. If your nose does not occupy the double, Deablo gets climbed to and the run hits the second level clean.',
       reads: [
-        { when: 'Tight end seams are open all game', do: 'This is your structural weakness — Deablo at 78 ZCV is the ONLY linebacker who can cover, and Andersen is 58. Get a safety over the seam or play more two-high.' },
+        { when: 'Tight end seams are open all game', do: 'This is your structural weakness — Deablo at 78 ZCV is the ONLY linebacker who can cover, and the rookie Daniels is 68. Get a safety over the seam or play more two-high.' },
         { when: 'A back is beating him on a wheel route', do: 'Match coverage just made it a man rep at 72 MCV. Change the call or user him yourself.' },
       ],
     },
@@ -616,7 +633,7 @@ export const FALCONS_PERSONNEL = {
         { key: 'ZCV', tier: 'support', conf: 'm26', why: 'The number that tells you when to take him off the field. Under 65 means you are giving up the flat.' },
       ],
       traps: [
-        { key: 'POW', conf: 'm26', why: 'Andersen\'s 84 and Harris\'s 86 Hit Power are OVR, not production.' },
+        { key: 'POW', conf: 'm26', why: 'Daniels\' 79 and Harris\'s 86 Hit Power are OVR, not production.' },
       ],
       archetype: { name: 'Run Stopper', keys: ['POW', 'PUR', 'TAK'], conf: 'ea' },
       holder: {
@@ -624,16 +641,16 @@ export const FALCONS_PERSONNEL = {
         ovr: 72,
         grade: 'fit',
         line: 'SPD 89 · ACC 93 · PUR 84 · TAK 78 · MCV 65 · ZCV 65',
-        verdict: 'Corrected 8/19: Harris starts here, not Andersen. He is the only Falcons linebacker EA actually labels Run Stopper, and PUR 84 is the highest pursuit number in the room — the chase-down player this job describes.',
+        verdict: 'Harris starts here. He and the rookie Daniels are the two Falcons linebackers EA labels Run Stopper, and PUR 84 is the highest pursuit number in the room — the chase-down player this job describes. Andersen (54 MCV) was released 8/7, which removed the worst coverage number that could have been on your field.',
       },
       alt: {
-        name: 'Troy Andersen',
-        ovr: 70,
-        line: 'SPD 90 · ACC 93 · POW 84 · TAK 81 · MCV 54 · ZCV 58',
-        verdict: 'Was the listed starter through 8/14 and should not have been. He gives back 11 points of Man Coverage and 7 of Zone against Harris, for 3 points of Tackle and 1 of Speed. 54 MCV is the single worst coverage number that can be on your field.',
+        name: 'Kendal Daniels (R)',
+        ovr: 69,
+        line: 'SPD 86 · ACC 88 · PUR 83 · TAK 81 · BSH 66 · MCV 58 · ZCV 68 · POW 79',
+        verdict: 'Fourth-round rookie, 6\'5" converted safety. Against Harris he gives back 3 speed and 7 man coverage but is 3 better in zone and 3 better as a tackler. The right third linebacker for the odd front on run downs; the wrong one in any man call.',
       },
       breaks:
-        'Start Andersen here and the offense will find him. His 54/58 coverage is a free first down to any competent passing game — a TE seam or a back on a wheel is uncontested. Harris at 65/65 is not good coverage either, but it is the difference between a hole and a soft spot.',
+        'Play the third linebacker in coverage and the offense will find him. Daniels at 58 man is a free first down on a back on a wheel; Harris at 65/65 is not good coverage either, but it is the difference between a hole and a soft spot. Neither belongs on the field on third and six.',
       reads: [
         { when: 'They go to 11 personnel on 3rd and 6+', do: 'Sub the second linebacker out entirely for a sixth defensive back. This is a dime situation, not a linebacker situation, regardless of which of the two is on the field.' },
         { when: 'They are running outside zone away from him', do: 'His speed is the answer — set Defender Aggression to Aggressive so he plays downhill, and accept the play-action risk.' },
@@ -697,10 +714,10 @@ export const FALCONS_PERSONNEL = {
         verdict: 'The right profile for the job — 82 press and 78 zone with the zone number ahead of the man number. Play him in zone and he is fine; ask him to travel in man and he is not Terrell.',
       },
       backup: {
-        name: 'Clark Phillips III',
-        ovr: 75,
-        line: 'SPD 89 · ACC 94 · COD 90 · MCV 78 · ZCV 74 · TAK 55',
-        verdict: 'The inverse profile — better man than zone, and 94 acceleration. 55 tackle is a real liability in the run game. Use him when you want man on both sides.',
+        name: 'C.J. Henderson',
+        ovr: 70,
+        line: 'SPD 91 · ACC 90 · AGI 88 · COD 87 · PRS 71 · ZCV 70 · MCV 69',
+        verdict: 'Phillips went to Chicago in the Dexter trade (8/30), and Henderson is what is left: 91 speed and a 71 press that is only fair. The trade cost you your man-on-both-sides option; Avieon Terrell (75) is now the better fourth corner and Henderson is the speed-only body for a burner matchup.',
       },
       breaks:
         'A zone corner who cannot recognize the route concept bites on the double move. That is a PRC failure, not a speed failure, and it is why PRC belongs above SPD in your evaluation order.',
@@ -742,9 +759,9 @@ export const FALCONS_PERSONNEL = {
       breaks:
         'The alternative to this role is a third linebacker, and your third linebacker is 58 zone coverage. That is the whole argument for nickel as base on this roster. Getting the slot wrong means you are choosing between a green corner and an unplayable linebacker.',
       reads: [
-        { when: 'They come out in 11 personnel', do: 'He is on the field. Do not check to base — that puts Andersen in coverage.' },
+        { when: 'They come out in 11 personnel', do: 'He is on the field. Do not check to base — that puts a rookie linebacker (Daniels, 58 MCV) in coverage.' },
         { when: 'They are running at him with a tight end lead', do: 'This is the run-support cost. Bring Watts down as an extra body rather than replacing him.' },
-        { when: 'Their slot is winning on option routes', do: '70 awareness is being exploited. Bracket with the safety or put Phillips in the slot instead.' },
+        { when: 'Their slot is winning on option routes', do: '70 awareness is being exploited. Bracket with the safety or put Avieon Terrell in the slot instead.' },
       ],
     },
     {
@@ -803,6 +820,12 @@ export const FALCONS_PERSONNEL = {
         line: 'SPD 86 · ZCV 81 · MCV 72 · AWR 81 · PRC 78 · POW 78',
         verdict: 'Solid and versatile. 81 zone coverage means he can play deep in a two-high shell, which is what makes the Bates/Watts pairing work — you can rotate either one down without telling the offense which.',
       },
+      backup: {
+        name: 'Sydney Brown',
+        ovr: 72,
+        line: 'SPD 90 · ACC 95 · POW 85 · MCV 71 · ZCV 66 · TAK 64 · AWR 71',
+        verdict: 'Acquired from Philadelphia in March. 95 acceleration and 85 hit power is the profile of a blitzing dime safety, and 64 tackle is the reason he is not the box safety. Use him as the sixth DB on the DBL SAFETY BLITZ calls, not as Watts\' replacement.',
+      },
       breaks:
         'This roster has no nose tackle, which means the eighth defender in the box is not optional against a good run team. If he cannot fill, inside zone runs forever.',
       reads: [
@@ -835,7 +858,7 @@ export const FALCONS_PERSONNEL = {
       step: 3,
       title: 'Sort each position by the ratings for the ROLE, never by OVR',
       do: 'For every slot, write down the two or three ratings that role needs, then sort the room on those. Overall is a weighted average designed to sell cards, not to fill a job.',
-      why: 'The clearest example on this roster: Clark Phillips and Mike Hughes are both 75 OVR, and they are not interchangeable — Hughes is 82 press / 78 zone, Phillips is 78 man / 74 zone with 55 tackle. Same OVR, opposite jobs.',
+      why: 'The clearest example on this roster: Mike Hughes and Avieon Terrell are both 75 OVR, and they are not interchangeable — Hughes is 82 press / 78 zone, Terrell is 70 press / 73 zone with 91 agility and 77 awareness. Same OVR, different jobs.',
       conf: 'read',
     },
     {
@@ -855,7 +878,7 @@ export const FALCONS_PERSONNEL = {
     {
       step: 6,
       title: 'Set the sub packages, then verify them in practice',
-      do: 'Define who comes off the field on 3rd and long (Andersen, Ebukam) and who comes on (Phillips or Avieon Terrell, a second finesse rusher). Then run the situation in practice and confirm the right bodies actually appear.',
+      do: 'Define who comes off the field on 3rd and long (Daniels, Za\'Darius Smith) and who comes on (Avieon Terrell, Zach Harrison as a second interior rusher, Pearce if the mode allows him). Then run the situation in practice and confirm the right bodies actually appear.',
       why: 'Depth chart order and package personnel are not the same thing, and the difference only shows up on the snap that matters.',
       conf: 'read',
     },
@@ -941,7 +964,7 @@ export const FALCONS_PERSONNEL = {
       phase: 'Between plays',
       side: 'defense',
       tell: 'Three straight inside runs of 4+ yards',
-      fix: 'Your nose is not eating the double — with no DT above 74 this will happen. Bring Watts down as the eighth defender. Do NOT check to base 3-4 personnel; that puts a 69-OVR nose on the field, which is the exact opposite of the fix.',
+      fix: 'Your nose is not eating the double. First check that Dexter is actually at nose and not slid to 3-tech; if he is there and it is still happening, bring Watts down as the eighth defender. Do NOT check to base 3-4 personnel on third down; that puts Hand at the second DT and drops an edge that cannot cover.',
       conf: 'read',
     },
     {
@@ -949,7 +972,7 @@ export const FALCONS_PERSONNEL = {
       phase: 'Between plays',
       side: 'defense',
       tell: 'The tight end seam is open every snap',
-      fix: 'This is the structural weakness — Deablo (78 ZCV) is your only linebacker who can cover and Andersen is 58. Either get a safety over the seam or play two-high. You cannot fix this with a linebacker on the roster.',
+      fix: 'This is the structural weakness — Deablo (78 ZCV) is your only linebacker who can cover and the rookie Daniels is 68. Either get a safety over the seam or play two-high. You cannot fix this with a linebacker on the roster.',
       conf: 'read',
     },
     {
