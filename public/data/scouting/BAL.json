@@ -1,0 +1,1594 @@
+{
+  "schemaVersion": 1,
+  "game": "madden",
+  "opponent": "BAL",
+  "scoutedBy": "ATL",
+  "facts": {
+    "team": {
+      "abbr": "BAL",
+      "name": "Baltimore Ravens"
+    },
+    "iteration": {
+      "label": "Week 1",
+      "releaseDate": "2026-09-10",
+      "scrapedAt": "2026-09-16T01:58:52+00:00",
+      "source": "madden.tools (current roster iteration) + ea.com ratings (ability labels)"
+    },
+    "units": {
+      "qb": 92.3,
+      "receivers": 82.5,
+      "run": 87.3,
+      "passPro": 81,
+      "passRush": 81.5,
+      "runDefense": 84.9,
+      "coverage": 83.4,
+      "offense": 82.5,
+      "defense": 84.4
+    },
+    "ranks": {
+      "qb": 3,
+      "receivers": 16,
+      "run": 9,
+      "passPro": 19,
+      "passRush": 7,
+      "runDefense": 3,
+      "coverage": 1,
+      "offense": 10,
+      "defense": 4
+    },
+    "falconsUnits": {
+      "qb": 83.8,
+      "receivers": 81,
+      "run": 88.1,
+      "passPro": 83.8,
+      "passRush": 77.1,
+      "runDefense": 78.9,
+      "coverage": 81.9,
+      "offense": 82.1,
+      "defense": 78.6
+    },
+    "starters": {
+      "offense": [
+        {
+          "name": "Lamar Jackson",
+          "pos": "QB",
+          "ovr": 94,
+          "ratings": {
+            "THP": 93,
+            "SAC": 92,
+            "MAC": 94,
+            "DAC": 82,
+            "RUN": 95,
+            "TUP": 95,
+            "SPD": 95
+          },
+          "abilities": [
+            {
+              "name": "Fastbreak",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Truzz",
+              "type": "xFactor"
+            },
+            {
+              "name": "Juke Box",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Gift-Wrapped",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "QB"
+        },
+        {
+          "name": "Derrick Henry",
+          "pos": "HB",
+          "ovr": 93,
+          "ratings": {
+            "SPD": 93,
+            "ACC": 87,
+            "BCV": 97,
+            "BTK": 92,
+            "JKM": 84,
+            "TRK": 91,
+            "CTH": 66
+          },
+          "abilities": [
+            {
+              "name": "Backlash",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Freight Train",
+              "type": "xFactor"
+            },
+            {
+              "name": "Arm Bar",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Steamroller",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Tank",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "HB"
+        },
+        {
+          "name": "Zay Flowers",
+          "pos": "WR",
+          "ovr": 88,
+          "ratings": {
+            "SPD": 93,
+            "ACC": 92,
+            "RLS": 79,
+            "SRR": 86,
+            "MRR": 89,
+            "DRR": 85,
+            "CIT": 83,
+            "SPC": 85
+          },
+          "abilities": [],
+          "slot": "WR1"
+        },
+        {
+          "name": "Rashod Bateman",
+          "pos": "WR",
+          "ovr": 77,
+          "ratings": {
+            "SPD": 90,
+            "ACC": 91,
+            "RLS": 83,
+            "SRR": 79,
+            "MRR": 78,
+            "DRR": 80,
+            "CIT": 83,
+            "SPC": 85
+          },
+          "abilities": [],
+          "slot": "WR2"
+        },
+        {
+          "name": "Ja'Kobi Lane",
+          "pos": "WR",
+          "ovr": 72,
+          "ratings": {
+            "SPD": 90,
+            "ACC": 91,
+            "RLS": 70,
+            "SRR": 72,
+            "MRR": 74,
+            "DRR": 75,
+            "CIT": 81,
+            "SPC": 83
+          },
+          "abilities": [],
+          "slot": "WR3"
+        },
+        {
+          "name": "Mark Andrews",
+          "pos": "TE",
+          "ovr": 90,
+          "ratings": {
+            "SPD": 87,
+            "SRR": 81,
+            "MRR": 77,
+            "CIT": 90,
+            "RBK": 68,
+            "PBK": 54
+          },
+          "abilities": [
+            {
+              "name": "Matchup Nightmare",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "TE"
+        },
+        {
+          "name": "Ronnie Stanley",
+          "pos": "LT",
+          "ovr": 86,
+          "ratings": {
+            "PBK": 87,
+            "PBP": 85,
+            "PBF": 87,
+            "RBK": 86,
+            "RBP": 88,
+            "RBF": 84,
+            "STR": 92
+          },
+          "abilities": [
+            {
+              "name": "Secure Protector",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Edge Protector",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "LT"
+        },
+        {
+          "name": "John Simpson",
+          "pos": "LG",
+          "ovr": 80,
+          "ratings": {
+            "PBK": 78,
+            "PBP": 80,
+            "PBF": 73,
+            "RBK": 82,
+            "RBP": 84,
+            "RBF": 79,
+            "STR": 92
+          },
+          "abilities": [],
+          "slot": "LG"
+        },
+        {
+          "name": "Ethan Pocic",
+          "pos": "C",
+          "ovr": 72,
+          "ratings": {
+            "PBK": 75,
+            "PBP": 75,
+            "PBF": 73,
+            "RBK": 80,
+            "RBP": 77,
+            "RBF": 82,
+            "STR": 88
+          },
+          "abilities": [],
+          "slot": "C"
+        },
+        {
+          "name": "Olaivavega Ioane",
+          "pos": "RG",
+          "ovr": 78,
+          "ratings": {
+            "PBK": 79,
+            "PBP": 79,
+            "PBF": 76,
+            "RBK": 80,
+            "RBP": 83,
+            "RBF": 77,
+            "STR": 89
+          },
+          "abilities": [],
+          "slot": "RG"
+        },
+        {
+          "name": "Roger Rosengarten",
+          "pos": "RT",
+          "ovr": 78,
+          "ratings": {
+            "PBK": 81,
+            "PBP": 79,
+            "PBF": 83,
+            "RBK": 80,
+            "RBP": 81,
+            "RBF": 82,
+            "STR": 82
+          },
+          "abilities": [],
+          "slot": "RT"
+        }
+      ],
+      "defense": [
+        {
+          "name": "Zion Young",
+          "pos": "LEDGE",
+          "ovr": 76,
+          "ratings": {
+            "SPD": 81,
+            "ACC": 78,
+            "PMV": 75,
+            "FMV": 68,
+            "BSH": 83,
+            "STR": 88
+          },
+          "abilities": [],
+          "slot": "LEDGE"
+        },
+        {
+          "name": "Trey Hendrickson",
+          "pos": "REDGE",
+          "ovr": 90,
+          "ratings": {
+            "SPD": 83,
+            "ACC": 86,
+            "PMV": 85,
+            "FMV": 94,
+            "BSH": 78,
+            "STR": 83
+          },
+          "abilities": [
+            {
+              "name": "Edge Threat",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "No Outsiders",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "REDGE"
+        },
+        {
+          "name": "Nnamdi Madubuike",
+          "pos": "DT",
+          "ovr": 90,
+          "ratings": {
+            "STR": 92,
+            "BSH": 89,
+            "PMV": 76,
+            "FMV": 87,
+            "TAK": 96
+          },
+          "abilities": [
+            {
+              "name": "Inside Stuff",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "B.O.G.O.",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "DT1"
+        },
+        {
+          "name": "Calais Campbell",
+          "pos": "DT",
+          "ovr": 82,
+          "ratings": {
+            "STR": 89,
+            "BSH": 89,
+            "PMV": 81,
+            "FMV": 73,
+            "TAK": 83
+          },
+          "abilities": [],
+          "slot": "DT2"
+        },
+        {
+          "name": "Roquan Smith",
+          "pos": "MIKE",
+          "ovr": 93,
+          "ratings": {
+            "SPD": 86,
+            "PUR": 97,
+            "TAK": 96,
+            "BSH": 79,
+            "ZCV": 77,
+            "MCV": 71,
+            "PRC": 92
+          },
+          "abilities": [
+            {
+              "name": "Deflator",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Reinforcement",
+              "type": "xFactor"
+            }
+          ],
+          "slot": "MIKE"
+        },
+        {
+          "name": "Trenton Simpson",
+          "pos": "WILL",
+          "ovr": 78,
+          "ratings": {
+            "SPD": 91,
+            "PUR": 84,
+            "TAK": 83,
+            "BSH": 75,
+            "ZCV": 66,
+            "MCV": 62,
+            "PRC": 75
+          },
+          "abilities": [],
+          "slot": "WILL"
+        },
+        {
+          "name": "Marlon Humphrey",
+          "pos": "CB",
+          "ovr": 85,
+          "ratings": {
+            "SPD": 91,
+            "ACC": 92,
+            "MCV": 81,
+            "ZCV": 84,
+            "PRS": 96,
+            "AGI": 85,
+            "JMP": 85
+          },
+          "abilities": [],
+          "slot": "CB1"
+        },
+        {
+          "name": "Chidobe Awuzie",
+          "pos": "CB",
+          "ovr": 83,
+          "ratings": {
+            "SPD": 89,
+            "ACC": 92,
+            "MCV": 83,
+            "ZCV": 85,
+            "PRS": 78,
+            "AGI": 86,
+            "JMP": 91
+          },
+          "abilities": [],
+          "slot": "CB2"
+        },
+        {
+          "name": "Nate Wiggins",
+          "pos": "CB",
+          "ovr": 81,
+          "ratings": {
+            "SPD": 96,
+            "ACC": 95,
+            "MCV": 82,
+            "ZCV": 75,
+            "PRS": 68,
+            "AGI": 92,
+            "JMP": 86
+          },
+          "abilities": [],
+          "slot": "CB3"
+        },
+        {
+          "name": "Malaki Starks",
+          "pos": "FS",
+          "ovr": 78,
+          "ratings": {
+            "SPD": 89,
+            "ZCV": 76,
+            "MCV": 73,
+            "PRC": 73,
+            "TAK": 76,
+            "POW": 79
+          },
+          "abilities": [],
+          "slot": "FS"
+        },
+        {
+          "name": "Kyle Hamilton",
+          "pos": "SS",
+          "ovr": 92,
+          "ratings": {
+            "SPD": 88,
+            "ZCV": 84,
+            "MCV": 87,
+            "PRC": 95,
+            "TAK": 80,
+            "POW": 88
+          },
+          "abilities": [
+            {
+              "name": "Out My Way",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Outmatched",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "SS"
+        }
+      ],
+      "special": [
+        {
+          "name": "Tyler Loop",
+          "pos": "K",
+          "ovr": 78,
+          "ratings": {
+            "KPW": 97,
+            "KAC": 85
+          },
+          "abilities": [],
+          "slot": "K"
+        },
+        {
+          "name": "Ryan Eckley",
+          "pos": "P",
+          "ovr": 72,
+          "ratings": {
+            "KPW": 92,
+            "KAC": 80
+          },
+          "abilities": [],
+          "slot": "P"
+        }
+      ]
+    },
+    "threats": [
+      {
+        "name": "Lamar Jackson",
+        "pos": "QB",
+        "ovr": 94,
+        "ratings": {
+          "THP": 93,
+          "SAC": 92,
+          "MAC": 94,
+          "DAC": 82,
+          "RUN": 95,
+          "TUP": 95,
+          "SPD": 95
+        },
+        "abilities": [
+          {
+            "name": "Fastbreak",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Truzz",
+            "type": "xFactor"
+          },
+          {
+            "name": "Juke Box",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Gift-Wrapped",
+            "type": "superstarAbility"
+          }
+        ],
+        "slot": "QB",
+        "side": "offense",
+        "xFactor": true
+      },
+      {
+        "name": "Derrick Henry",
+        "pos": "HB",
+        "ovr": 93,
+        "ratings": {
+          "SPD": 93,
+          "ACC": 87,
+          "BCV": 97,
+          "BTK": 92,
+          "JKM": 84,
+          "TRK": 91,
+          "CTH": 66
+        },
+        "abilities": [
+          {
+            "name": "Backlash",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Freight Train",
+            "type": "xFactor"
+          },
+          {
+            "name": "Arm Bar",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Steamroller",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Tank",
+            "type": "superstarAbility"
+          }
+        ],
+        "slot": "HB",
+        "side": "offense",
+        "xFactor": true
+      },
+      {
+        "name": "Roquan Smith",
+        "pos": "MIKE",
+        "ovr": 93,
+        "ratings": {
+          "SPD": 86,
+          "PUR": 97,
+          "TAK": 96,
+          "BSH": 79,
+          "ZCV": 77,
+          "MCV": 71,
+          "PRC": 92
+        },
+        "abilities": [
+          {
+            "name": "Deflator",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Reinforcement",
+            "type": "xFactor"
+          }
+        ],
+        "slot": "MIKE",
+        "side": "defense",
+        "xFactor": true
+      },
+      {
+        "name": "Kyle Hamilton",
+        "pos": "SS",
+        "ovr": 92,
+        "ratings": {
+          "SPD": 88,
+          "ZCV": 84,
+          "MCV": 87,
+          "PRC": 95,
+          "TAK": 80,
+          "POW": 88
+        },
+        "abilities": [
+          {
+            "name": "Out My Way",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Outmatched",
+            "type": "superstarAbility"
+          }
+        ],
+        "slot": "SS",
+        "side": "defense",
+        "xFactor": false
+      },
+      {
+        "name": "Mark Andrews",
+        "pos": "TE",
+        "ovr": 90,
+        "ratings": {
+          "SPD": 87,
+          "SRR": 81,
+          "MRR": 77,
+          "CIT": 90,
+          "RBK": 68,
+          "PBK": 54
+        },
+        "abilities": [
+          {
+            "name": "Matchup Nightmare",
+            "type": "superstarAbility"
+          }
+        ],
+        "slot": "TE",
+        "side": "offense",
+        "xFactor": false
+      },
+      {
+        "name": "Trey Hendrickson",
+        "pos": "REDGE",
+        "ovr": 90,
+        "ratings": {
+          "SPD": 83,
+          "ACC": 86,
+          "PMV": 85,
+          "FMV": 94,
+          "BSH": 78,
+          "STR": 83
+        },
+        "abilities": [
+          {
+            "name": "Edge Threat",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "No Outsiders",
+            "type": "superstarAbility"
+          }
+        ],
+        "slot": "REDGE",
+        "side": "defense",
+        "xFactor": false
+      }
+    ],
+    "weakLinks": [
+      {
+        "unit": "Pass protection",
+        "side": "offense",
+        "player": "Ethan Pocic",
+        "slot": "C",
+        "score": 76,
+        "unitAvg": 81,
+        "gap": 5,
+        "worstRating": {
+          "key": "PBF",
+          "value": 73
+        }
+      },
+      {
+        "unit": "Run blocking",
+        "side": "offense",
+        "player": "Ethan Pocic",
+        "slot": "C",
+        "score": 81.1,
+        "unitAvg": 83.1,
+        "gap": 1.9,
+        "worstRating": {
+          "key": "RBP",
+          "value": 77
+        }
+      },
+      {
+        "unit": "Receivers",
+        "side": "offense",
+        "player": "Ja'Kobi Lane",
+        "slot": "WR3",
+        "score": 78.1,
+        "unitAvg": 82.5,
+        "gap": 4.4,
+        "worstRating": {
+          "key": "RLS",
+          "value": 70
+        }
+      },
+      {
+        "unit": "Pass rush",
+        "side": "defense",
+        "player": "Zion Young",
+        "slot": "LEDGE",
+        "score": 76.6,
+        "unitAvg": 81.5,
+        "gap": 4.8,
+        "worstRating": {
+          "key": "FMV",
+          "value": 68
+        }
+      },
+      {
+        "unit": "Run fits",
+        "side": "defense",
+        "player": "Trenton Simpson",
+        "slot": "WILL",
+        "score": 78.2,
+        "unitAvg": 84.9,
+        "gap": 6.6,
+        "worstRating": {
+          "key": "BSH",
+          "value": 75
+        }
+      },
+      {
+        "unit": "Coverage",
+        "side": "defense",
+        "player": "Trenton Simpson",
+        "slot": "WILL",
+        "score": 75.3,
+        "unitAvg": 82.7,
+        "gap": 7.4,
+        "worstRating": {
+          "key": "MCV",
+          "value": 62
+        }
+      }
+    ],
+    "speedMap": {
+      "offense": [
+        {
+          "name": "Lamar Jackson",
+          "slot": "QB",
+          "SPD": 95,
+          "ACC": 94
+        },
+        {
+          "name": "Derrick Henry",
+          "slot": "HB",
+          "SPD": 93,
+          "ACC": 87
+        },
+        {
+          "name": "Zay Flowers",
+          "slot": "WR1",
+          "SPD": 93,
+          "ACC": 92
+        },
+        {
+          "name": "Rashod Bateman",
+          "slot": "WR2",
+          "SPD": 90,
+          "ACC": 91
+        },
+        {
+          "name": "Ja'Kobi Lane",
+          "slot": "WR3",
+          "SPD": 90,
+          "ACC": 91
+        },
+        {
+          "name": "Mark Andrews",
+          "slot": "TE",
+          "SPD": 87,
+          "ACC": 89
+        }
+      ],
+      "defense": [
+        {
+          "name": "Zion Young",
+          "slot": "LEDGE",
+          "SPD": 81,
+          "ACC": 78
+        },
+        {
+          "name": "Trey Hendrickson",
+          "slot": "REDGE",
+          "SPD": 83,
+          "ACC": 86
+        },
+        {
+          "name": "Roquan Smith",
+          "slot": "MIKE",
+          "SPD": 86,
+          "ACC": 88
+        },
+        {
+          "name": "Trenton Simpson",
+          "slot": "WILL",
+          "SPD": 91,
+          "ACC": 95
+        },
+        {
+          "name": "Marlon Humphrey",
+          "slot": "CB1",
+          "SPD": 91,
+          "ACC": 92
+        },
+        {
+          "name": "Chidobe Awuzie",
+          "slot": "CB2",
+          "SPD": 89,
+          "ACC": 92
+        },
+        {
+          "name": "Nate Wiggins",
+          "slot": "CB3",
+          "SPD": 96,
+          "ACC": 95
+        },
+        {
+          "name": "Malaki Starks",
+          "slot": "FS",
+          "SPD": 89,
+          "ACC": 91
+        },
+        {
+          "name": "Kyle Hamilton",
+          "slot": "SS",
+          "SPD": 88,
+          "ACC": 91
+        }
+      ]
+    },
+    "qbProfile": {
+      "name": "Lamar Jackson",
+      "arm": 91.6,
+      "legs": 94.9,
+      "scrambler": true
+    },
+    "matchups": {
+      "attack": [
+        {
+          "label": "WR1 vs CB1",
+          "kind": "pass",
+          "falcons": {
+            "name": "Drake London",
+            "slot": "WR1",
+            "score": 88.9,
+            "SPD": 88
+          },
+          "opponent": {
+            "name": "Marlon Humphrey",
+            "slot": "CB1",
+            "score": 87.4,
+            "SPD": 91
+          },
+          "speedDelta": -3,
+          "edge": 1.5
+        },
+        {
+          "label": "WR2 vs CB2",
+          "kind": "pass",
+          "falcons": {
+            "name": "Jahan Dotson",
+            "slot": "WR2",
+            "score": 79.1,
+            "SPD": 92
+          },
+          "opponent": {
+            "name": "Chidobe Awuzie",
+            "slot": "CB2",
+            "score": 85.6,
+            "SPD": 89
+          },
+          "speedDelta": 3,
+          "edge": -6.5
+        },
+        {
+          "label": "WR3 vs CB3",
+          "kind": "pass",
+          "falcons": {
+            "name": "Zachariah Branch",
+            "slot": "WR3",
+            "score": 77.8,
+            "SPD": 95
+          },
+          "opponent": {
+            "name": "Nate Wiggins",
+            "slot": "CB3",
+            "score": 83.5,
+            "SPD": 96
+          },
+          "speedDelta": -1,
+          "edge": -5.7
+        },
+        {
+          "label": "TE vs WILL",
+          "kind": "pass",
+          "falcons": {
+            "name": "Kyle Pitts Sr",
+            "slot": "TE",
+            "score": 78.3,
+            "SPD": 90
+          },
+          "opponent": {
+            "name": "Trenton Simpson",
+            "slot": "WILL",
+            "score": 75.3,
+            "SPD": 91
+          },
+          "speedDelta": -1,
+          "edge": 3
+        },
+        {
+          "label": "HB vs WILL",
+          "kind": "pass",
+          "falcons": {
+            "name": "Bijan Robinson",
+            "slot": "HB",
+            "score": 72.2,
+            "SPD": 93
+          },
+          "opponent": {
+            "name": "Trenton Simpson",
+            "slot": "WILL",
+            "score": 75.3,
+            "SPD": 91
+          },
+          "speedDelta": 2,
+          "edge": -3.1
+        },
+        {
+          "label": "LT vs REDGE",
+          "kind": "protection",
+          "falcons": {
+            "name": "Jake Matthews",
+            "slot": "LT",
+            "score": 90.6,
+            "SPD": 70
+          },
+          "opponent": {
+            "name": "Trey Hendrickson",
+            "slot": "REDGE",
+            "score": 86.4,
+            "SPD": 83
+          },
+          "speedDelta": -13,
+          "edge": 4.2
+        },
+        {
+          "label": "RT vs LEDGE",
+          "kind": "protection",
+          "falcons": {
+            "name": "Jawaan Taylor",
+            "slot": "RT",
+            "score": 81.6,
+            "SPD": 66
+          },
+          "opponent": {
+            "name": "Zion Young",
+            "slot": "LEDGE",
+            "score": 76.6,
+            "SPD": 81
+          },
+          "speedDelta": -15,
+          "edge": 5
+        },
+        {
+          "label": "LG vs DT1",
+          "kind": "protection",
+          "falcons": {
+            "name": "Matthew Bergeron",
+            "slot": "LG",
+            "score": 78.1,
+            "SPD": 63
+          },
+          "opponent": {
+            "name": "Nnamdi Madubuike",
+            "slot": "DT1",
+            "score": 83.9,
+            "SPD": 80
+          },
+          "speedDelta": -17,
+          "edge": -5.8
+        },
+        {
+          "label": "RG vs DT2",
+          "kind": "protection",
+          "falcons": {
+            "name": "Chris Lindstrom",
+            "slot": "RG",
+            "score": 86.1,
+            "SPD": 76
+          },
+          "opponent": {
+            "name": "Calais Campbell",
+            "slot": "DT2",
+            "score": 79,
+            "SPD": 73
+          },
+          "speedDelta": 3,
+          "edge": 7.1
+        },
+        {
+          "label": "Run game vs front",
+          "kind": "run",
+          "falcons": {
+            "name": "OL + Bijan Robinson",
+            "score": 87.2
+          },
+          "opponent": {
+            "name": "Front six",
+            "score": 84.9
+          },
+          "speedDelta": 0,
+          "edge": 2.3
+        }
+      ],
+      "defend": [
+        {
+          "label": "REDGE vs LT",
+          "kind": "rush",
+          "falcons": {
+            "name": "Samson Ebukam",
+            "slot": "REDGE",
+            "score": 78.4,
+            "SPD": 83
+          },
+          "opponent": {
+            "name": "Ronnie Stanley",
+            "slot": "LT",
+            "score": 88.4,
+            "SPD": 70
+          },
+          "speedDelta": 13,
+          "edge": -10
+        },
+        {
+          "label": "LEDGE vs RT",
+          "kind": "rush",
+          "falcons": {
+            "name": "Za'Darius Smith",
+            "slot": "LEDGE",
+            "score": 77.3,
+            "SPD": 80
+          },
+          "opponent": {
+            "name": "Roger Rosengarten",
+            "slot": "RT",
+            "score": 81.4,
+            "SPD": 75
+          },
+          "speedDelta": 5,
+          "edge": -4.1
+        },
+        {
+          "label": "DT1 vs LG",
+          "kind": "rush",
+          "falcons": {
+            "name": "Gervon Dexter Sr",
+            "slot": "DT1",
+            "score": 78,
+            "SPD": 76
+          },
+          "opponent": {
+            "name": "John Simpson",
+            "slot": "LG",
+            "score": 80,
+            "SPD": 69
+          },
+          "speedDelta": 7,
+          "edge": -2
+        },
+        {
+          "label": "DT2 vs RG",
+          "kind": "rush",
+          "falcons": {
+            "name": "Da'Shawn Hand",
+            "slot": "DT2",
+            "score": 73.8,
+            "SPD": 76
+          },
+          "opponent": {
+            "name": "Olaivavega Ioane",
+            "slot": "RG",
+            "score": 79.4,
+            "SPD": 62
+          },
+          "speedDelta": 14,
+          "edge": -5.6
+        },
+        {
+          "label": "CB1 vs WR1",
+          "kind": "pass",
+          "falcons": {
+            "name": "A.J. Terrell Jr",
+            "slot": "CB1",
+            "score": 90.5,
+            "SPD": 91
+          },
+          "opponent": {
+            "name": "Zay Flowers",
+            "slot": "WR1",
+            "score": 86.7,
+            "SPD": 93
+          },
+          "speedDelta": -2,
+          "edge": 3.8
+        },
+        {
+          "label": "CB2 vs WR2",
+          "kind": "pass",
+          "falcons": {
+            "name": "Mike Hughes",
+            "slot": "CB2",
+            "score": 81.6,
+            "SPD": 88
+          },
+          "opponent": {
+            "name": "Rashod Bateman",
+            "slot": "WR2",
+            "score": 82.3,
+            "SPD": 90
+          },
+          "speedDelta": -2,
+          "edge": -0.7
+        },
+        {
+          "label": "CB3 vs WR3",
+          "kind": "pass",
+          "falcons": {
+            "name": "Avieon Terrell",
+            "slot": "CB3",
+            "score": 79,
+            "SPD": 88
+          },
+          "opponent": {
+            "name": "Ja'Kobi Lane",
+            "slot": "WR3",
+            "score": 78.1,
+            "SPD": 90
+          },
+          "speedDelta": -2,
+          "edge": 0.9
+        },
+        {
+          "label": "WILL vs TE",
+          "kind": "pass",
+          "falcons": {
+            "name": "Kendal Daniels",
+            "slot": "WILL",
+            "score": 70.5,
+            "SPD": 86
+          },
+          "opponent": {
+            "name": "Mark Andrews",
+            "slot": "TE",
+            "score": 82.9,
+            "SPD": 87
+          },
+          "speedDelta": -1,
+          "edge": -12.4
+        },
+        {
+          "label": "WILL vs HB",
+          "kind": "pass",
+          "falcons": {
+            "name": "Kendal Daniels",
+            "slot": "WILL",
+            "score": 70.5,
+            "SPD": 86
+          },
+          "opponent": {
+            "name": "Derrick Henry",
+            "slot": "HB",
+            "score": 58.5,
+            "SPD": 93
+          },
+          "speedDelta": -7,
+          "edge": 12
+        },
+        {
+          "label": "Front vs run game",
+          "kind": "run",
+          "falcons": {
+            "name": "Front six",
+            "score": 78.9
+          },
+          "opponent": {
+            "name": "OL + Derrick Henry",
+            "score": 86.5
+          },
+          "speedDelta": 0,
+          "edge": -7.6
+        }
+      ]
+    },
+    "playbooks": {
+      "offense": {
+        "id": "ravens-off",
+        "formations": [
+          "Singleback Ace Double Wing",
+          "Singleback Bunch Ace",
+          "Singleback Deuce Close",
+          "Singleback Tight Doubles",
+          "Singleback U Off Stack",
+          "Singleback Wing Close",
+          "Singleback Wing Tight Z",
+          "I Form H Tight",
+          "I Form Wing",
+          "I Form Y Off Close",
+          "Strong Wing",
+          "Strong Y Off Close",
+          "Pistol Ace Double Wing",
+          "Pistol Full House TE",
+          "Pistol Strong",
+          "Pistol U Off Trips",
+          "Pistol Wing Tight Z",
+          "Gun Bunch Open Offset",
+          "Gun Bunch Y-Flex",
+          "Gun Deuce Close",
+          "Gun Doubles HB Wk",
+          "Gun Empty Quads",
+          "Gun Heavy Raven",
+          "Gun Normal Y Off Close",
+          "Gun Split Wing Nasty",
+          "Gun Spread Dbl Flex",
+          "Gun Tight Slot Flip",
+          "Gun Tight Slots",
+          "Gun Tight Y Off Wk",
+          "Gun Trey Open",
+          "Gun Trey Open Str",
+          "Gun Trips TE Offset",
+          "Gun Trips TE Offset Wk",
+          "Gun Trips X Nasty Off Wk",
+          "Gun U Off Trips",
+          "Gun Wing Slot Offset",
+          "Gun Wing Slot Wk",
+          "Gun Y Off Trio Close",
+          "Gun Y Off Trio Wk",
+          "Goal Line Normal",
+          "Goal Line Sneak",
+          "Hail Mary Hail Mary"
+        ]
+      },
+      "defense": {
+        "id": "ravens-def",
+        "formations": [
+          "3-4 Cub",
+          "3-4 Odd",
+          "3-4 Over",
+          "3-4 Over Solid",
+          "3-4 Under",
+          "4-3 Odd Leo",
+          "4-3 Under",
+          "4-4 Split",
+          "Nickel 2-4",
+          "Nickel 2-4 Dbl Mug",
+          "Nickel 2-4 Load Dbl Mug",
+          "Nickel 2-4 Wide",
+          "Nickel 3-3 Cub",
+          "Nickel 3-3 Load Mug",
+          "Nickel 3-3 Single Mug",
+          "Nickel Swap Dbl Mug",
+          "Nickel Triple",
+          "Dime 1-4",
+          "Dime 2-3",
+          "Dime 2-3 Odd",
+          "Dime 2-3 Single Mug",
+          "Prevent 3 Deep",
+          "Goal Line 5-3",
+          "Goal Line 6-2",
+          "Goal Line Pinch",
+          "Quarter Over Load"
+        ]
+      }
+    },
+    "unavailable": [],
+    "falconsUnavailable": [
+      {
+        "name": "Jalon Walker",
+        "why": "IR (ACL)",
+        "since": "2026-08-30"
+      },
+      {
+        "name": "James Pearce Jr",
+        "why": "Suspended 8 games",
+        "since": "2026-08-30"
+      }
+    ]
+  },
+  "report": {
+    "rosterIteration": "Week 1",
+    "builtAt": "2026-09-16",
+    "threatLevel": 4,
+    "headline": "Lamar and Henry vs our 78.9 front, and the No. 1 coverage in the league",
+    "bottomLine": "Baltimore is better than the Falcons in six of nine units and ranks 1st in coverage and 3rd in run defense, so there is no easy passing game. The win is the right side of their line: Lindstrom +7.1 on Calais Campbell and Pitts on Trenton Simpson (MCV 62). On defense the game is lost if Lamar (95 SPD) escapes contain or Henry gets free runs at a 78.9 front; keep five DBs, spy, and make them drive it.",
+    "identity": {
+      "offense": "A two-X-Factor run offense: Lamar (95 SPD, RUN 95) plus Henry (BCV 97, TRK 91) behind Stanley (88.4). The book is heavy on 12/13 personnel sets like Gun Heavy Raven and Pistol Full House TE, with Andrews (CIT 90) as the chain mover. Receivers rank only 16th.",
+      "defense": "A top-4 defense built from the back: Hamilton (PRC 95, MCV 87) as a roaming chess piece, three corners at 81 to 85 OVR, Roquan Smith (PUR 97) cleaning up the run, Hendrickson (FMV 94) and Madubuike (TAK 96) the pressure. The soft spots are Zion Young at LEDGE and Simpson at WILL.",
+      "expectFromUser": [
+        "Scramble Lamar outside the edge on any third down where the first read is covered",
+        "Pound Henry in heavy sets until Freight Train is live, then keep feeding him",
+        "Throw Andrews over the middle against linebackers, especially our WILL",
+        "User Hamilton or Roquan in the middle of the field to take away our dig and seam",
+        "Bring Hendrickson off our left side and a DT twist at Bergeron"
+      ]
+    },
+    "keys": [
+      {
+        "title": "Keep Lamar in the pocket",
+        "detail": "Lamar is 95 SPD against edges at 80 and 83. Contain rush on every passing down, a QB spy on third down, and never let an edge crash inside. Make him win as a 82 DAC thrower.",
+        "conf": "read"
+      },
+      {
+        "title": "Run at Campbell and Young",
+        "detail": "Lindstrom is +7.1 on Calais Campbell and Taylor is +5 on Zion Young (FMV 68). Duo and stretch to the right keep Madubuike away from Bergeron (-5.8) and keep us on schedule.",
+        "conf": "read"
+      },
+      {
+        "title": "Take away Andrews, not the outside WRs",
+        "detail": "Terrell is +3.8 on Flowers, but our WILL vs Andrews is -12.4, the worst matchup on the field. Bracket or double the TE and live with Bateman and Lane outside.",
+        "conf": "read"
+      }
+    ],
+    "attack": {
+      "plan": "Stay run-first and aim it right. Lindstrom (+7.1) and Taylor (+5) win the right side, so duo and stretch go there, away from Madubuike on Bergeron (-5.8). Baltimore ranks 1st in coverage, so the passing game lives on play-action and the TE: Pitts vs Trenton Simpson (MCV 62) on boots and seams, short rhythm throws to London against Humphrey (+1.5). No shot plays at Wiggins (96 SPD) or into Hamilton's half unless PA pulls him down.",
+      "targets": [
+        {
+          "player": "Trenton Simpson",
+          "why": "WILL is the weakest cover player: MCV 62, ZCV 66, coverage gap 7.4 below unit. Pitts is +3 on him.",
+          "how": "PA TE Seam and Y Stick from Wing Tight/Wing Pair, Pitts isolated on the WILL.",
+          "conf": "read"
+        },
+        {
+          "player": "Calais Campbell",
+          "why": "DT2 score 79, SPD 73. Lindstrom is +7.1 on him, our best line matchup.",
+          "how": "HB Duo and HB Stretch aimed right, double Campbell and climb to Simpson.",
+          "conf": "read"
+        },
+        {
+          "player": "Zion Young",
+          "why": "LEDGE FMV 68, pass rush gap 4.8. Taylor is +5 on him in protection.",
+          "how": "Boot away from Hendrickson toward Young's side, and stretch run right to his edge.",
+          "conf": "read"
+        },
+        {
+          "player": "Malaki Starks",
+          "why": "FS 78, PRC 73 next to Hamilton at 95. The young deep safety is the one to bite on run action.",
+          "how": "PA Boot Flood and PA TE Seam after two right-side runs to pull Starks down.",
+          "conf": "read"
+        }
+      ],
+      "avoid": [
+        {
+          "player": "Nnamdi Madubuike",
+          "why": "DT1 TAK 96, Inside Stuff. Bergeron is -5.8 against him and 17 SPD slower.",
+          "conf": "read"
+        },
+        {
+          "player": "Kyle Hamilton",
+          "why": "SS PRC 95, MCV 87, Outmatched. Throws into his area off a scramble are picks.",
+          "conf": "read"
+        },
+        {
+          "player": "Nate Wiggins",
+          "why": "CB3 96 SPD, MCV 82. Branch is -5.7 and -1 SPD, so no go routes to the slot.",
+          "conf": "read"
+        }
+      ],
+      "calls": [
+        {
+          "playId": "falcons-off-singleback-wing-tight-hb-duo",
+          "name": "HB DUO",
+          "formation": "Singleback Wing Tight",
+          "why": "Already on the sheet. Aim it at Campbell where Lindstrom is +7.1; the duo double removes Campbell and climbs to Simpson (BSH 75)."
+        },
+        {
+          "playId": "falcons-off-singleback-wing-tight-hb-stretch",
+          "name": "HB STRETCH",
+          "formation": "Singleback Wing Tight",
+          "why": "Stretch right to Zion Young (BSH 83 but FMV 68, SPD 81). Bijan 93 SPD beats Roquan to the edge if he flows late."
+        },
+        {
+          "playId": "falcons-off-singleback-wing-tight-pa-boot-flood",
+          "name": "PA BOOT FLOOD",
+          "formation": "Singleback Wing Tight",
+          "why": "Off the stretch look. Boot away from Hendrickson; the flood puts Pitts or London on a flat defender with Starks (PRC 73) biting."
+        },
+        {
+          "playId": "falcons-off-singleback-wing-tight-y-stick",
+          "name": "Y STICK",
+          "formation": "Singleback Wing Tight",
+          "why": "Rhythm throw for Tua into Simpson (ZCV 66). Beats the Cover 3 and match coverage Baltimore's corners live in."
+        },
+        {
+          "playId": "falcons-off-singleback-wing-pair-pa-te-seam",
+          "name": "PA TE SEAM",
+          "formation": "Singleback Wing Pair",
+          "why": "Pitts 90 SPD up the seam on Simpson (MCV 62) when Hamilton is in the box. One shot per half, not a staple."
+        },
+        {
+          "playId": "falcons-off-gun-bunch-te-mesh",
+          "name": "MESH",
+          "formation": "Gun Bunch TE",
+          "why": "Third-and-medium answer to man. Crossers rub Simpson and Roquan (MCV 71), and the ball is out before Hendrickson (FMV 94) arrives."
+        }
+      ],
+      "counters": [
+        {
+          "tell": "Hamilton walks down into the box on first down",
+          "answer": "PA TE Seam or PA Boot Flood; only Starks (PRC 73) is deep."
+        },
+        {
+          "tell": "Hendrickson beating Matthews by the third drop",
+          "answer": "Chip with Pitts, then boot away to Young's side and use Mesh."
+        },
+        {
+          "tell": "Roquan fills the duo gap before the double climbs",
+          "answer": "Switch to HB Stretch; his 86 SPD lags Bijan's 93 to the edge."
+        }
+      ]
+    },
+    "defend": {
+      "plan": "Nickel base with contain rush and a spy on passing downs. Lamar (95 SPD, RUN 95) is the biggest problem: no edge crashes, Cover 1 Contain or QB Spy on third down, and user a linebacker on him when they go empty. Henry vs our 78.9 front is -7.6, so on early downs use the odd front with Dexter at nose and fit the run with a safety. The TE matchup is -12.4, so Andrews gets a bracket. Pressure Pocic (PBF 73) up the middle instead of off the edges, where Stanley is +10 on Ebukam.",
+      "mustStop": [
+        {
+          "player": "Lamar Jackson",
+          "why": "95 SPD, RUN 95, Truzz X-Factor. qbProfile legs 94.9 vs arm 91.6. Every edge blitz that loses contain is a 20-yard run.",
+          "how": "Contain on every rush, spy call on third down, user the MIKE as a mirror spy. Force throws into Terrell's side.",
+          "conf": "read"
+        },
+        {
+          "player": "Derrick Henry",
+          "why": "BCV 97, TRK 91, Freight Train X-Factor. Our front is -7.6 against the OL plus Henry.",
+          "how": "Odd front with Dexter at nose on early downs, safety fits the run, gang tackle. Keep him under 4.0 to stop the zone meter.",
+          "conf": "read"
+        },
+        {
+          "player": "Mark Andrews",
+          "why": "CIT 90, Matchup Nightmare. Our WILL vs Andrews is -12.4, the worst edge in this game.",
+          "how": "Nickel 2-4 1 Double TE on passing downs; in zone, drop a safety over the seam.",
+          "conf": "read"
+        }
+      ],
+      "exploit": [
+        {
+          "player": "Ethan Pocic",
+          "why": "C score 76 in pass pro, 5 below unit, PBF 73. Weakest link on their line.",
+          "how": "A-gap sim pressure (Nickel Sim 2) and Pinch Buck O. Interior pressure does not open a scramble lane outside.",
+          "conf": "read"
+        },
+        {
+          "player": "Ja'Kobi Lane",
+          "why": "WR3 72 OVR, RLS 70. Avieon Terrell is +0.9 in the slot matchup.",
+          "how": "Press the slot in man, and funnel Lamar's reads toward Lane instead of Flowers or Andrews.",
+          "conf": "read"
+        }
+      ],
+      "calls": [
+        {
+          "playId": "falcons-def-nickel-2--4-cover-1-contain",
+          "name": "COVER 1 CONTAIN",
+          "formation": "Nickel 2-4",
+          "why": "Third-down base. Edges rush to contain Lamar's 95 SPD, man across the board, and the hole defender helps on Andrews."
+        },
+        {
+          "playId": "falcons-def-3--4-under-4-tech-cover-1-qb-spy",
+          "name": "COVER 1 QB SPY",
+          "formation": "3-4 Under 4 Tech",
+          "why": "Early-down answer to heavy sets: odd front vs Henry plus a dedicated spy on Lamar. Dexter at nose anchors it."
+        },
+        {
+          "playId": "falcons-def-nickel-2--4-1-double-te",
+          "name": "1 DOUBLE TE",
+          "formation": "Nickel 2-4",
+          "why": "Brackets Andrews (CIT 90) where our WILL is -12.4. Terrell handles Flowers solo at +3.8."
+        },
+        {
+          "playId": "falcons-def-nickel-2--4-load-dbl-mug-nickel-sim-2",
+          "name": "NICKEL SIM 2",
+          "formation": "Nickel 2-4 Load Dbl Mug",
+          "why": "Four-man sim through Pocic (PBF 73) with two deep. Pressure inside without giving Lamar the edge."
+        },
+        {
+          "playId": "falcons-def-3--4-odd-pinch-buck-o",
+          "name": "PINCH BUCK O",
+          "formation": "3-4 Odd",
+          "why": "On the sheet. Run-down pinch at Pocic (RBP 77) and the guards to muddy Henry's inside zone read."
+        },
+        {
+          "playId": "falcons-def-nickel-2--4-cover-3-match",
+          "name": "COVER 3 MATCH",
+          "formation": "Nickel 2-4",
+          "why": "On the sheet. Eyes-on-QB zone for early downs; defenders face Lamar instead of turning their backs in man."
+        },
+        {
+          "playId": "falcons-def-goal-line-6--2-60-pinch",
+          "name": "60 PINCH",
+          "formation": "Goal Line 6-2",
+          "why": "Short yardage vs Henry and the Lamar sneak. Eight in the box, pinch the A gaps Pocic has to hold."
+        }
+      ],
+      "counters": [
+        {
+          "tell": "Lamar escapes contain twice on man coverage",
+          "answer": "Go to Cover 1 QB Spy or Cover 3 Match; zone eyes stay on the QB."
+        },
+        {
+          "tell": "Henry 5+ yards a carry vs nickel",
+          "answer": "Odd front with Dexter at nose, bring Watts down, stop blitzing the edge."
+        },
+        {
+          "tell": "Andrews catching seams vs Cover 3",
+          "answer": "1 Double TE or put Bates user-deep over the seam hash."
+        }
+      ]
+    },
+    "liveTells": [
+      {
+        "watch": "Does Lamar pull the ball on read options and where he goes on third down",
+        "meaning": "A user who runs Lamar is ignoring the pass; one who stays in pocket is reading.",
+        "response": "Runner: spy every down. Passer: rush four and double Andrews."
+      },
+      {
+        "watch": "Personnel on first down: 12/13 heavy vs 11",
+        "meaning": "Heavy means Henry pounding toward Freight Train; 11 means spread and scramble.",
+        "response": "Heavy: odd front, Cover 1 QB Spy. 11: nickel Cover 3 Match."
+      },
+      {
+        "watch": "Who they user on our pass plays (Hamilton or Roquan)",
+        "meaning": "User in the middle takes away digs and seams.",
+        "response": "Attack outside with boot flats and Y Stick, run duo at the vacated side."
+      },
+      {
+        "watch": "Whether Hendrickson lines up over Matthews or moves",
+        "meaning": "Moving him to the right edge targets Taylor, who is 17 SPD slower.",
+        "response": "Slide protection his way, chip with Pitts, boot the other way."
+      }
+    ],
+    "specialTeams": "Tyler Loop has KPW 97, KAC 85, so midfield is field goal range around their 40 on a good kick; do not give them a short field. Punter Eckley KPW 92. No listed return X-Factor. On 4th and short against Henry and Lamar, assume they go for it.",
+    "sources": [
+      {
+        "label": "EA Madden NFL 27 Title Update, September 16, 2026",
+        "url": "https://www.ea.com/games/madden-nfl/madden-nfl-27/news/madden-nfl-27-title-update-september-16"
+      },
+      {
+        "label": "ClutchPoints: All Madden 27 X-Factors",
+        "url": "https://clutchpoints.com/gaming/madden-27-x-factors"
+      },
+      {
+        "label": "Huddle.gg: Ravens Offense Playbook, Madden 27",
+        "url": "https://huddle.gg/playbooks/ravens-off/"
+      },
+      {
+        "label": "Madden School: Madden 27 Ravens Playbook",
+        "url": "https://www.madden-school.com/playbooks/ravens/"
+      }
+    ]
+  }
+}

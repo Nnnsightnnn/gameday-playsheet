@@ -1,0 +1,1256 @@
+{
+  "schemaVersion": 1,
+  "game": "madden",
+  "opponent": "SEA",
+  "scoutedBy": "ATL",
+  "facts": {
+    "team": {
+      "abbr": "SEA",
+      "name": "Seattle Seahawks"
+    },
+    "iteration": {
+      "label": "Week 1",
+      "releaseDate": "2026-09-10",
+      "scrapedAt": "2026-09-16T01:58:52+00:00",
+      "source": "madden.tools (current roster iteration) + ea.com ratings (ability labels)"
+    },
+    "units": {
+      "qb": 89.4,
+      "receivers": 83.9,
+      "run": 83.8,
+      "passPro": 79.3,
+      "passRush": 80.3,
+      "runDefense": 83.5,
+      "coverage": 80.4,
+      "offense": 80.7,
+      "defense": 81.8
+    },
+    "ranks": {
+      "qb": 10,
+      "receivers": 8,
+      "run": 30,
+      "passPro": 27,
+      "passRush": 15,
+      "runDefense": 5,
+      "coverage": 23,
+      "offense": 17,
+      "defense": 9
+    },
+    "falconsUnits": {
+      "qb": 83.8,
+      "receivers": 81,
+      "run": 88.1,
+      "passPro": 83.8,
+      "passRush": 77.1,
+      "runDefense": 78.9,
+      "coverage": 81.9,
+      "offense": 82.1,
+      "defense": 78.6
+    },
+    "starters": {
+      "offense": [
+        {
+          "name": "Sam Darnold",
+          "pos": "QB",
+          "ovr": 87,
+          "ratings": {
+            "THP": 91,
+            "SAC": 92,
+            "MAC": 91,
+            "DAC": 96,
+            "RUN": 90,
+            "TUP": 90,
+            "SPD": 82
+          },
+          "abilities": [],
+          "slot": "QB"
+        },
+        {
+          "name": "Zach Charbonnet",
+          "pos": "HB",
+          "ovr": 83,
+          "ratings": {
+            "SPD": 88,
+            "ACC": 89,
+            "BCV": 86,
+            "BTK": 86,
+            "JKM": 82,
+            "TRK": 92,
+            "CTH": 73
+          },
+          "abilities": [],
+          "slot": "HB"
+        },
+        {
+          "name": "Jaxon Smith-Njigba",
+          "pos": "WR",
+          "ovr": 99,
+          "ratings": {
+            "SPD": 93,
+            "ACC": 95,
+            "RLS": 98,
+            "SRR": 97,
+            "MRR": 99,
+            "DRR": 97,
+            "CIT": 93,
+            "SPC": 98
+          },
+          "abilities": [
+            {
+              "name": "Double Me",
+              "type": "xFactor"
+            },
+            {
+              "name": "Deep Out Elite",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Mid Out Elite",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Quick Jump",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "WR1"
+        },
+        {
+          "name": "Cooper Kupp",
+          "pos": "WR",
+          "ovr": 83,
+          "ratings": {
+            "SPD": 87,
+            "ACC": 90,
+            "RLS": 85,
+            "SRR": 84,
+            "MRR": 85,
+            "DRR": 81,
+            "CIT": 87,
+            "SPC": 86
+          },
+          "abilities": [],
+          "slot": "WR2"
+        },
+        {
+          "name": "Rashid Shaheed",
+          "pos": "WR",
+          "ovr": 79,
+          "ratings": {
+            "SPD": 95,
+            "ACC": 95,
+            "RLS": 72,
+            "SRR": 74,
+            "MRR": 78,
+            "DRR": 85,
+            "CIT": 77,
+            "SPC": 79
+          },
+          "abilities": [],
+          "slot": "WR3"
+        },
+        {
+          "name": "A.J. Barner",
+          "pos": "TE",
+          "ovr": 75,
+          "ratings": {
+            "SPD": 78,
+            "SRR": 69,
+            "MRR": 63,
+            "CIT": 82,
+            "RBK": 62,
+            "PBK": 60
+          },
+          "abilities": [],
+          "slot": "TE"
+        },
+        {
+          "name": "Charles Cross",
+          "pos": "LT",
+          "ovr": 83,
+          "ratings": {
+            "PBK": 87,
+            "PBP": 84,
+            "PBF": 89,
+            "RBK": 81,
+            "RBP": 77,
+            "RBF": 84,
+            "STR": 84
+          },
+          "abilities": [],
+          "slot": "LT"
+        },
+        {
+          "name": "Grey Zabel",
+          "pos": "LG",
+          "ovr": 75,
+          "ratings": {
+            "PBK": 76,
+            "PBP": 73,
+            "PBF": 78,
+            "RBK": 77,
+            "RBP": 75,
+            "RBF": 78,
+            "STR": 88
+          },
+          "abilities": [],
+          "slot": "LG"
+        },
+        {
+          "name": "Jalen Sundell",
+          "pos": "C",
+          "ovr": 69,
+          "ratings": {
+            "PBK": 75,
+            "PBP": 72,
+            "PBF": 77,
+            "RBK": 73,
+            "RBP": 70,
+            "RBF": 75,
+            "STR": 84
+          },
+          "abilities": [],
+          "slot": "C"
+        },
+        {
+          "name": "Anthony Bradford",
+          "pos": "RG",
+          "ovr": 72,
+          "ratings": {
+            "PBK": 69,
+            "PBP": 72,
+            "PBF": 65,
+            "RBK": 77,
+            "RBP": 79,
+            "RBF": 74,
+            "STR": 92
+          },
+          "abilities": [],
+          "slot": "RG"
+        },
+        {
+          "name": "Abraham Lucas",
+          "pos": "RT",
+          "ovr": 83,
+          "ratings": {
+            "PBK": 84,
+            "PBP": 82,
+            "PBF": 85,
+            "RBK": 86,
+            "RBP": 83,
+            "RBF": 87,
+            "STR": 87
+          },
+          "abilities": [],
+          "slot": "RT"
+        }
+      ],
+      "defense": [
+        {
+          "name": "DeMarcus Lawrence",
+          "pos": "LEDGE",
+          "ovr": 87,
+          "ratings": {
+            "SPD": 84,
+            "ACC": 82,
+            "PMV": 77,
+            "FMV": 80,
+            "BSH": 87,
+            "STR": 87
+          },
+          "abilities": [
+            {
+              "name": "No Outsiders",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Instant Rebate",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Edge Threat",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "LEDGE"
+        },
+        {
+          "name": "Uchenna Nwosu",
+          "pos": "REDGE",
+          "ovr": 76,
+          "ratings": {
+            "SPD": 82,
+            "ACC": 85,
+            "PMV": 72,
+            "FMV": 78,
+            "BSH": 79,
+            "STR": 73
+          },
+          "abilities": [],
+          "slot": "REDGE"
+        },
+        {
+          "name": "Leonard Williams",
+          "pos": "DT",
+          "ovr": 88,
+          "ratings": {
+            "STR": 90,
+            "BSH": 88,
+            "PMV": 86,
+            "FMV": 73,
+            "TAK": 87
+          },
+          "abilities": [
+            {
+              "name": "B.O.G.O.",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "DT1"
+        },
+        {
+          "name": "Byron Murphy II",
+          "pos": "DT",
+          "ovr": 85,
+          "ratings": {
+            "STR": 91,
+            "BSH": 82,
+            "PMV": 84,
+            "FMV": 79,
+            "TAK": 89
+          },
+          "abilities": [],
+          "slot": "DT2"
+        },
+        {
+          "name": "Ernest Jones IV",
+          "pos": "MIKE",
+          "ovr": 84,
+          "ratings": {
+            "SPD": 87,
+            "PUR": 91,
+            "TAK": 92,
+            "BSH": 80,
+            "ZCV": 67,
+            "MCV": 63,
+            "PRC": 86
+          },
+          "abilities": [],
+          "slot": "MIKE"
+        },
+        {
+          "name": "Tyrice Knight",
+          "pos": "WILL",
+          "ovr": 75,
+          "ratings": {
+            "SPD": 85,
+            "PUR": 85,
+            "TAK": 84,
+            "BSH": 74,
+            "ZCV": 67,
+            "MCV": 63,
+            "PRC": 72
+          },
+          "abilities": [],
+          "slot": "WILL"
+        },
+        {
+          "name": "Devon Witherspoon",
+          "pos": "CB",
+          "ovr": 91,
+          "ratings": {
+            "SPD": 91,
+            "ACC": 93,
+            "MCV": 88,
+            "ZCV": 86,
+            "PRS": 82,
+            "AGI": 91,
+            "JMP": 89
+          },
+          "abilities": [
+            {
+              "name": "Short Route KO",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Inside Shade",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "CB1"
+        },
+        {
+          "name": "Josh Jobe",
+          "pos": "CB",
+          "ovr": 77,
+          "ratings": {
+            "SPD": 89,
+            "ACC": 89,
+            "MCV": 76,
+            "ZCV": 79,
+            "PRS": 75,
+            "AGI": 80,
+            "JMP": 84
+          },
+          "abilities": [],
+          "slot": "CB2"
+        },
+        {
+          "name": "Terrion Arnold",
+          "pos": "CB",
+          "ovr": 76,
+          "ratings": {
+            "SPD": 90,
+            "ACC": 94,
+            "MCV": 73,
+            "ZCV": 75,
+            "PRS": 76,
+            "AGI": 93,
+            "JMP": 88
+          },
+          "abilities": [],
+          "slot": "CB3"
+        },
+        {
+          "name": "Bud Clark",
+          "pos": "FS",
+          "ovr": 75,
+          "ratings": {
+            "SPD": 91,
+            "ZCV": 72,
+            "MCV": 70,
+            "PRC": 72,
+            "TAK": 69,
+            "POW": 73
+          },
+          "abilities": [],
+          "slot": "FS"
+        },
+        {
+          "name": "Nick Emmanwori",
+          "pos": "SS",
+          "ovr": 86,
+          "ratings": {
+            "SPD": 93,
+            "ZCV": 76,
+            "MCV": 79,
+            "PRC": 86,
+            "TAK": 77,
+            "POW": 83
+          },
+          "abilities": [],
+          "slot": "SS"
+        }
+      ],
+      "special": [
+        {
+          "name": "Jason Myers",
+          "pos": "K",
+          "ovr": 84,
+          "ratings": {
+            "KPW": 95,
+            "KAC": 94
+          },
+          "abilities": [],
+          "slot": "K"
+        },
+        {
+          "name": "Michael Dickson",
+          "pos": "P",
+          "ovr": 86,
+          "ratings": {
+            "KPW": 96,
+            "KAC": 96
+          },
+          "abilities": [],
+          "slot": "P"
+        }
+      ]
+    },
+    "threats": [
+      {
+        "name": "Jaxon Smith-Njigba",
+        "pos": "WR",
+        "ovr": 99,
+        "ratings": {
+          "SPD": 93,
+          "ACC": 95,
+          "RLS": 98,
+          "SRR": 97,
+          "MRR": 99,
+          "DRR": 97,
+          "CIT": 93,
+          "SPC": 98
+        },
+        "abilities": [
+          {
+            "name": "Double Me",
+            "type": "xFactor"
+          },
+          {
+            "name": "Deep Out Elite",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Mid Out Elite",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Quick Jump",
+            "type": "superstarAbility"
+          }
+        ],
+        "slot": "WR1",
+        "side": "offense",
+        "xFactor": true
+      },
+      {
+        "name": "Devon Witherspoon",
+        "pos": "CB",
+        "ovr": 91,
+        "ratings": {
+          "SPD": 91,
+          "ACC": 93,
+          "MCV": 88,
+          "ZCV": 86,
+          "PRS": 82,
+          "AGI": 91,
+          "JMP": 89
+        },
+        "abilities": [
+          {
+            "name": "Short Route KO",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Inside Shade",
+            "type": "superstarAbility"
+          }
+        ],
+        "slot": "CB1",
+        "side": "defense",
+        "xFactor": false
+      },
+      {
+        "name": "Leonard Williams",
+        "pos": "DT",
+        "ovr": 88,
+        "ratings": {
+          "STR": 90,
+          "BSH": 88,
+          "PMV": 86,
+          "FMV": 73,
+          "TAK": 87
+        },
+        "abilities": [
+          {
+            "name": "B.O.G.O.",
+            "type": "superstarAbility"
+          }
+        ],
+        "slot": "DT1",
+        "side": "defense",
+        "xFactor": false
+      },
+      {
+        "name": "Sam Darnold",
+        "pos": "QB",
+        "ovr": 87,
+        "ratings": {
+          "THP": 91,
+          "SAC": 92,
+          "MAC": 91,
+          "DAC": 96,
+          "RUN": 90,
+          "TUP": 90,
+          "SPD": 82
+        },
+        "abilities": [],
+        "slot": "QB",
+        "side": "offense",
+        "xFactor": false
+      },
+      {
+        "name": "DeMarcus Lawrence",
+        "pos": "LEDGE",
+        "ovr": 87,
+        "ratings": {
+          "SPD": 84,
+          "ACC": 82,
+          "PMV": 77,
+          "FMV": 80,
+          "BSH": 87,
+          "STR": 87
+        },
+        "abilities": [
+          {
+            "name": "No Outsiders",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Instant Rebate",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Edge Threat",
+            "type": "superstarAbility"
+          }
+        ],
+        "slot": "LEDGE",
+        "side": "defense",
+        "xFactor": false
+      },
+      {
+        "name": "Nick Emmanwori",
+        "pos": "SS",
+        "ovr": 86,
+        "ratings": {
+          "SPD": 93,
+          "ZCV": 76,
+          "MCV": 79,
+          "PRC": 86,
+          "TAK": 77,
+          "POW": 83
+        },
+        "abilities": [],
+        "slot": "SS",
+        "side": "defense",
+        "xFactor": false
+      }
+    ],
+    "weakLinks": [
+      {
+        "unit": "Pass protection",
+        "side": "offense",
+        "player": "Anthony Bradford",
+        "slot": "RG",
+        "score": 72.3,
+        "unitAvg": 79.3,
+        "gap": 7.1,
+        "worstRating": {
+          "key": "PBF",
+          "value": 65
+        }
+      },
+      {
+        "unit": "Run blocking",
+        "side": "offense",
+        "player": "Jalen Sundell",
+        "slot": "C",
+        "score": 74.9,
+        "unitAvg": 80,
+        "gap": 5.1,
+        "worstRating": {
+          "key": "RBP",
+          "value": 70
+        }
+      },
+      {
+        "unit": "Receivers",
+        "side": "offense",
+        "player": "A.J. Barner",
+        "slot": "TE",
+        "score": 72.9,
+        "unitAvg": 83.9,
+        "gap": 11,
+        "worstRating": {
+          "key": "DRR",
+          "value": 62
+        }
+      },
+      {
+        "unit": "Pass rush",
+        "side": "defense",
+        "player": "Uchenna Nwosu",
+        "slot": "REDGE",
+        "score": 77.8,
+        "unitAvg": 80.7,
+        "gap": 2.9,
+        "worstRating": {
+          "key": "PMV",
+          "value": 72
+        }
+      },
+      {
+        "unit": "Run fits",
+        "side": "defense",
+        "player": "Tyrice Knight",
+        "slot": "WILL",
+        "score": 76.6,
+        "unitAvg": 83.5,
+        "gap": 7,
+        "worstRating": {
+          "key": "STR",
+          "value": 71
+        }
+      },
+      {
+        "unit": "Coverage",
+        "side": "defense",
+        "player": "Tyrice Knight",
+        "slot": "WILL",
+        "score": 71.6,
+        "unitAvg": 79.5,
+        "gap": 7.9,
+        "worstRating": {
+          "key": "PRS",
+          "value": 49
+        }
+      }
+    ],
+    "speedMap": {
+      "offense": [
+        {
+          "name": "Sam Darnold",
+          "slot": "QB",
+          "SPD": 82,
+          "ACC": 81
+        },
+        {
+          "name": "Zach Charbonnet",
+          "slot": "HB",
+          "SPD": 88,
+          "ACC": 89
+        },
+        {
+          "name": "Jaxon Smith-Njigba",
+          "slot": "WR1",
+          "SPD": 93,
+          "ACC": 95
+        },
+        {
+          "name": "Cooper Kupp",
+          "slot": "WR2",
+          "SPD": 87,
+          "ACC": 90
+        },
+        {
+          "name": "Rashid Shaheed",
+          "slot": "WR3",
+          "SPD": 95,
+          "ACC": 95
+        },
+        {
+          "name": "A.J. Barner",
+          "slot": "TE",
+          "SPD": 78,
+          "ACC": 85
+        }
+      ],
+      "defense": [
+        {
+          "name": "DeMarcus Lawrence",
+          "slot": "LEDGE",
+          "SPD": 84,
+          "ACC": 82
+        },
+        {
+          "name": "Uchenna Nwosu",
+          "slot": "REDGE",
+          "SPD": 82,
+          "ACC": 85
+        },
+        {
+          "name": "Ernest Jones IV",
+          "slot": "MIKE",
+          "SPD": 87,
+          "ACC": 87
+        },
+        {
+          "name": "Tyrice Knight",
+          "slot": "WILL",
+          "SPD": 85,
+          "ACC": 90
+        },
+        {
+          "name": "Devon Witherspoon",
+          "slot": "CB1",
+          "SPD": 91,
+          "ACC": 93
+        },
+        {
+          "name": "Josh Jobe",
+          "slot": "CB2",
+          "SPD": 89,
+          "ACC": 89
+        },
+        {
+          "name": "Terrion Arnold",
+          "slot": "CB3",
+          "SPD": 90,
+          "ACC": 94
+        },
+        {
+          "name": "Bud Clark",
+          "slot": "FS",
+          "SPD": 91,
+          "ACC": 91
+        },
+        {
+          "name": "Nick Emmanwori",
+          "slot": "SS",
+          "SPD": 93,
+          "ACC": 93
+        }
+      ]
+    },
+    "qbProfile": {
+      "name": "Sam Darnold",
+      "arm": 91.1,
+      "legs": 82.6,
+      "scrambler": true
+    },
+    "matchups": {
+      "attack": [
+        {
+          "label": "WR1 vs CB1",
+          "kind": "pass",
+          "falcons": {
+            "name": "Drake London",
+            "slot": "WR1",
+            "score": 88.9,
+            "SPD": 88
+          },
+          "opponent": {
+            "name": "Devon Witherspoon",
+            "slot": "CB1",
+            "score": 88.8,
+            "SPD": 91
+          },
+          "speedDelta": -3,
+          "edge": 0.1
+        },
+        {
+          "label": "WR2 vs CB2",
+          "kind": "pass",
+          "falcons": {
+            "name": "Jahan Dotson",
+            "slot": "WR2",
+            "score": 79.1,
+            "SPD": 92
+          },
+          "opponent": {
+            "name": "Josh Jobe",
+            "slot": "CB2",
+            "score": 81.4,
+            "SPD": 89
+          },
+          "speedDelta": 3,
+          "edge": -2.3
+        },
+        {
+          "label": "WR3 vs CB3",
+          "kind": "pass",
+          "falcons": {
+            "name": "Zachariah Branch",
+            "slot": "WR3",
+            "score": 77.8,
+            "SPD": 95
+          },
+          "opponent": {
+            "name": "Terrion Arnold",
+            "slot": "CB3",
+            "score": 80.8,
+            "SPD": 90
+          },
+          "speedDelta": 5,
+          "edge": -3
+        },
+        {
+          "label": "TE vs WILL",
+          "kind": "pass",
+          "falcons": {
+            "name": "Kyle Pitts Sr",
+            "slot": "TE",
+            "score": 78.3,
+            "SPD": 90
+          },
+          "opponent": {
+            "name": "Tyrice Knight",
+            "slot": "WILL",
+            "score": 71.6,
+            "SPD": 85
+          },
+          "speedDelta": 5,
+          "edge": 6.7
+        },
+        {
+          "label": "HB vs WILL",
+          "kind": "pass",
+          "falcons": {
+            "name": "Bijan Robinson",
+            "slot": "HB",
+            "score": 72.2,
+            "SPD": 93
+          },
+          "opponent": {
+            "name": "Tyrice Knight",
+            "slot": "WILL",
+            "score": 71.6,
+            "SPD": 85
+          },
+          "speedDelta": 8,
+          "edge": 0.6
+        },
+        {
+          "label": "LT vs REDGE",
+          "kind": "protection",
+          "falcons": {
+            "name": "Jake Matthews",
+            "slot": "LT",
+            "score": 90.6,
+            "SPD": 70
+          },
+          "opponent": {
+            "name": "Uchenna Nwosu",
+            "slot": "REDGE",
+            "score": 77.8,
+            "SPD": 82
+          },
+          "speedDelta": -12,
+          "edge": 12.8
+        },
+        {
+          "label": "RT vs LEDGE",
+          "kind": "protection",
+          "falcons": {
+            "name": "Jawaan Taylor",
+            "slot": "RT",
+            "score": 81.6,
+            "SPD": 66
+          },
+          "opponent": {
+            "name": "DeMarcus Lawrence",
+            "slot": "LEDGE",
+            "score": 81.5,
+            "SPD": 84
+          },
+          "speedDelta": -18,
+          "edge": 0.1
+        },
+        {
+          "label": "LG vs DT1",
+          "kind": "protection",
+          "falcons": {
+            "name": "Matthew Bergeron",
+            "slot": "LG",
+            "score": 78.1,
+            "SPD": 63
+          },
+          "opponent": {
+            "name": "Leonard Williams",
+            "slot": "DT1",
+            "score": 80.8,
+            "SPD": 77
+          },
+          "speedDelta": -14,
+          "edge": -2.7
+        },
+        {
+          "label": "RG vs DT2",
+          "kind": "protection",
+          "falcons": {
+            "name": "Chris Lindstrom",
+            "slot": "RG",
+            "score": 86.1,
+            "SPD": 76
+          },
+          "opponent": {
+            "name": "Byron Murphy II",
+            "slot": "DT2",
+            "score": 82.6,
+            "SPD": 77
+          },
+          "speedDelta": -1,
+          "edge": 3.5
+        },
+        {
+          "label": "Run game vs front",
+          "kind": "run",
+          "falcons": {
+            "name": "OL + Bijan Robinson",
+            "score": 87.2
+          },
+          "opponent": {
+            "name": "Front six",
+            "score": 83.5
+          },
+          "speedDelta": 0,
+          "edge": 3.7
+        }
+      ],
+      "defend": [
+        {
+          "label": "REDGE vs LT",
+          "kind": "rush",
+          "falcons": {
+            "name": "Samson Ebukam",
+            "slot": "REDGE",
+            "score": 78.4,
+            "SPD": 83
+          },
+          "opponent": {
+            "name": "Charles Cross",
+            "slot": "LT",
+            "score": 86.5,
+            "SPD": 73
+          },
+          "speedDelta": 10,
+          "edge": -8.1
+        },
+        {
+          "label": "LEDGE vs RT",
+          "kind": "rush",
+          "falcons": {
+            "name": "Za'Darius Smith",
+            "slot": "LEDGE",
+            "score": 77.3,
+            "SPD": 80
+          },
+          "opponent": {
+            "name": "Abraham Lucas",
+            "slot": "RT",
+            "score": 84.6,
+            "SPD": 74
+          },
+          "speedDelta": 6,
+          "edge": -7.3
+        },
+        {
+          "label": "DT1 vs LG",
+          "kind": "rush",
+          "falcons": {
+            "name": "Gervon Dexter Sr",
+            "slot": "DT1",
+            "score": 78,
+            "SPD": 76
+          },
+          "opponent": {
+            "name": "Grey Zabel",
+            "slot": "LG",
+            "score": 77.5,
+            "SPD": 74
+          },
+          "speedDelta": 2,
+          "edge": 0.5
+        },
+        {
+          "label": "DT2 vs RG",
+          "kind": "rush",
+          "falcons": {
+            "name": "Da'Shawn Hand",
+            "slot": "DT2",
+            "score": 73.8,
+            "SPD": 76
+          },
+          "opponent": {
+            "name": "Anthony Bradford",
+            "slot": "RG",
+            "score": 72.3,
+            "SPD": 70
+          },
+          "speedDelta": 6,
+          "edge": 1.5
+        },
+        {
+          "label": "CB1 vs WR1",
+          "kind": "pass",
+          "falcons": {
+            "name": "A.J. Terrell Jr",
+            "slot": "CB1",
+            "score": 90.5,
+            "SPD": 91
+          },
+          "opponent": {
+            "name": "Jaxon Smith-Njigba",
+            "slot": "WR1",
+            "score": 96,
+            "SPD": 93
+          },
+          "speedDelta": -2,
+          "edge": -5.5
+        },
+        {
+          "label": "CB2 vs WR2",
+          "kind": "pass",
+          "falcons": {
+            "name": "Mike Hughes",
+            "slot": "CB2",
+            "score": 81.6,
+            "SPD": 88
+          },
+          "opponent": {
+            "name": "Cooper Kupp",
+            "slot": "WR2",
+            "score": 85.8,
+            "SPD": 87
+          },
+          "speedDelta": 1,
+          "edge": -4.2
+        },
+        {
+          "label": "CB3 vs WR3",
+          "kind": "pass",
+          "falcons": {
+            "name": "Avieon Terrell",
+            "slot": "CB3",
+            "score": 79,
+            "SPD": 88
+          },
+          "opponent": {
+            "name": "Rashid Shaheed",
+            "slot": "WR3",
+            "score": 80.9,
+            "SPD": 95
+          },
+          "speedDelta": -7,
+          "edge": -1.9
+        },
+        {
+          "label": "WILL vs TE",
+          "kind": "pass",
+          "falcons": {
+            "name": "Kendal Daniels",
+            "slot": "WILL",
+            "score": 70.5,
+            "SPD": 86
+          },
+          "opponent": {
+            "name": "A.J. Barner",
+            "slot": "TE",
+            "score": 72.9,
+            "SPD": 78
+          },
+          "speedDelta": 8,
+          "edge": -2.4
+        },
+        {
+          "label": "WILL vs HB",
+          "kind": "pass",
+          "falcons": {
+            "name": "Kendal Daniels",
+            "slot": "WILL",
+            "score": 70.5,
+            "SPD": 86
+          },
+          "opponent": {
+            "name": "Zach Charbonnet",
+            "slot": "HB",
+            "score": 62.8,
+            "SPD": 88
+          },
+          "speedDelta": -2,
+          "edge": 7.7
+        },
+        {
+          "label": "Front vs run game",
+          "kind": "run",
+          "falcons": {
+            "name": "Front six",
+            "score": 78.9
+          },
+          "opponent": {
+            "name": "OL + Zach Charbonnet",
+            "score": 83
+          },
+          "speedDelta": 0,
+          "edge": -4.1
+        }
+      ]
+    },
+    "playbooks": {
+      "offense": {
+        "id": "seahawks-off",
+        "formations": [
+          "Singleback Bunch X Nasty",
+          "Singleback Deuce Close",
+          "Singleback Tight Y Off Flex",
+          "Singleback Wing Close",
+          "Singleback Wing Flex Close",
+          "Singleback Wing Stack",
+          "Singleback Wing Tight Left",
+          "Singleback Y Off Trio Close",
+          "Singleback Y Trips Close Wing",
+          "I Form Pro",
+          "I Form Slot Close",
+          "I Form Wing",
+          "I Form Y Off Close",
+          "Weak 3WR Flex",
+          "Weak Close Flex",
+          "Weak Wing",
+          "Gun Box Y Off",
+          "Gun Bunch Open Offset",
+          "Gun Bunch Spread Nasty",
+          "Gun Bunch X Nasty",
+          "Gun Deuce",
+          "Gun Doubles Flex Y Off Close",
+          "Gun Doubles Z Close Wk",
+          "Gun Empty Base Flex",
+          "Gun Empty Bunch Quads",
+          "Gun Empty Trey Stack",
+          "Gun Normal Flex Snug",
+          "Gun Split Twins Offset",
+          "Gun Spread Dbl Flex",
+          "Gun Tight Base Flex",
+          "Gun Tight Flex Offset",
+          "Gun Tight Flex Wk",
+          "Gun Tight Slot Flip",
+          "Gun Tight Y Off",
+          "Gun Trips TE",
+          "Gun Wing Tight Nasty",
+          "Gun Y Off Trio Close",
+          "Gun Y Trips Wk",
+          "Goal Line Normal",
+          "Goal Line Sneak",
+          "Hail Mary Hail Mary"
+        ]
+      },
+      "defense": {
+        "id": "seahawks-def",
+        "formations": [
+          "3-4 Over",
+          "3-4 Over Ed",
+          "3-4 Tite 5 Tech",
+          "3-4 Under",
+          "4-3 Odd Leo",
+          "4-3 Over Solid",
+          "4-3 Under",
+          "4-4 Split",
+          "Nickel 2-4",
+          "Nickel 2-4 Dbl Mug",
+          "Nickel 2-4 Load Mug",
+          "Nickel 2-4 Single Mug",
+          "Nickel 2-4 Wide",
+          "Nickel 3-3 Cub",
+          "Nickel 3-3 Odd",
+          "3-3-5 Over Flex",
+          "Dime 1-4 Dbl Mug",
+          "Dime 2-3",
+          "Dime 3-2 Rush",
+          "Dime 3-2 Swap Dbl Mug",
+          "Prevent 3 Deep",
+          "Goal Line 5-3",
+          "Goal Line 6-2",
+          "Goal Line Pinch",
+          "Quarter Over Load",
+          "2-4-5 Over Wide",
+          "2-5 Over Wide"
+        ]
+      }
+    },
+    "unavailable": [],
+    "falconsUnavailable": [
+      {
+        "name": "Jalon Walker",
+        "why": "IR (ACL)",
+        "since": "2026-08-30"
+      },
+      {
+        "name": "James Pearce Jr",
+        "why": "Suspended 8 games",
+        "since": "2026-08-30"
+      }
+    ]
+  },
+  "report": null
+}

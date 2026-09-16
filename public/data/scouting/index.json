@@ -1,0 +1,1063 @@
+{
+  "updatedAt": "2026-09-16",
+  "teams": [
+    {
+      "abbr": "ARI",
+      "name": "Arizona Cardinals",
+      "units": {
+        "qb": 82.2,
+        "receivers": 84.2,
+        "run": 84.8,
+        "passPro": 82,
+        "passRush": 78,
+        "runDefense": 79.6,
+        "coverage": 79.3,
+        "offense": 80.6,
+        "defense": 77.9
+      },
+      "ranks": {
+        "qb": 30,
+        "receivers": 6,
+        "run": 23,
+        "passPro": 16,
+        "passRush": 29,
+        "runDefense": 30,
+        "coverage": 29,
+        "offense": 18,
+        "defense": 30
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": []
+    },
+    {
+      "abbr": "BAL",
+      "name": "Baltimore Ravens",
+      "units": {
+        "qb": 92.3,
+        "receivers": 82.5,
+        "run": 87.3,
+        "passPro": 81,
+        "passRush": 81.5,
+        "runDefense": 84.9,
+        "coverage": 83.4,
+        "offense": 82.5,
+        "defense": 84.4
+      },
+      "ranks": {
+        "qb": 3,
+        "receivers": 16,
+        "run": 9,
+        "passPro": 19,
+        "passRush": 7,
+        "runDefense": 3,
+        "coverage": 1,
+        "offense": 10,
+        "defense": 4
+      },
+      "iteration": "Week 1",
+      "hasReport": true,
+      "stale": false,
+      "threatLevel": 4,
+      "headline": "Lamar and Henry vs our 78.9 front, and the No. 1 coverage in the league",
+      "xFactors": [
+        "Lamar Jackson",
+        "Derrick Henry",
+        "Roquan Smith"
+      ]
+    },
+    {
+      "abbr": "BUF",
+      "name": "Buffalo Bills",
+      "units": {
+        "qb": 94,
+        "receivers": 82.3,
+        "run": 87.6,
+        "passPro": 82.9,
+        "passRush": 81.3,
+        "runDefense": 80.4,
+        "coverage": 80.5,
+        "offense": 83.7,
+        "defense": 79.1
+      },
+      "ranks": {
+        "qb": 1,
+        "receivers": 17,
+        "run": 8,
+        "passPro": 10,
+        "passRush": 8,
+        "runDefense": 27,
+        "coverage": 19,
+        "offense": 6,
+        "defense": 26
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Josh Allen"
+      ]
+    },
+    {
+      "abbr": "CAR",
+      "name": "Carolina Panthers",
+      "units": {
+        "qb": 85.6,
+        "receivers": 81.3,
+        "run": 86.1,
+        "passPro": 82.6,
+        "passRush": 79.7,
+        "runDefense": 82.8,
+        "coverage": 80.5,
+        "offense": 79.5,
+        "defense": 81
+      },
+      "ranks": {
+        "qb": 20,
+        "receivers": 23,
+        "run": 12,
+        "passPro": 11,
+        "passRush": 19,
+        "runDefense": 7,
+        "coverage": 20,
+        "offense": 23,
+        "defense": 12
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": []
+    },
+    {
+      "abbr": "CHI",
+      "name": "Chicago Bears",
+      "units": {
+        "qb": 89.5,
+        "receivers": 81.2,
+        "run": 85.4,
+        "passPro": 84.3,
+        "passRush": 78.6,
+        "runDefense": 80.7,
+        "coverage": 81.5,
+        "offense": 82.3,
+        "defense": 79.8
+      },
+      "ranks": {
+        "qb": 9,
+        "receivers": 24,
+        "run": 17,
+        "passPro": 4,
+        "passRush": 26,
+        "runDefense": 24,
+        "coverage": 11,
+        "offense": 12,
+        "defense": 21
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Caleb Williams"
+      ]
+    },
+    {
+      "abbr": "CIN",
+      "name": "Cincinnati Bengals",
+      "units": {
+        "qb": 93.7,
+        "receivers": 84.4,
+        "run": 82.9,
+        "passPro": 79.3,
+        "passRush": 80.5,
+        "runDefense": 80.9,
+        "coverage": 78.2,
+        "offense": 80.8,
+        "defense": 78.5
+      },
+      "ranks": {
+        "qb": 2,
+        "receivers": 5,
+        "run": 32,
+        "passPro": 26,
+        "passRush": 13,
+        "runDefense": 21,
+        "coverage": 31,
+        "offense": 15,
+        "defense": 29
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Ja'Marr Chase",
+        "Joe Burrow"
+      ]
+    },
+    {
+      "abbr": "CLE",
+      "name": "Cleveland Browns",
+      "units": {
+        "qb": 79.6,
+        "receivers": 79.9,
+        "run": 84.5,
+        "passPro": 82.2,
+        "passRush": 79.9,
+        "runDefense": 79.8,
+        "coverage": 82.2,
+        "offense": 78.1,
+        "defense": 80.9
+      },
+      "ranks": {
+        "qb": 32,
+        "receivers": 30,
+        "run": 26,
+        "passPro": 14,
+        "passRush": 18,
+        "runDefense": 28,
+        "coverage": 7,
+        "offense": 28,
+        "defense": 14
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": []
+    },
+    {
+      "abbr": "DAL",
+      "name": "Dallas Cowboys",
+      "units": {
+        "qb": 90.5,
+        "receivers": 83.8,
+        "run": 87,
+        "passPro": 78.9,
+        "passRush": 80.7,
+        "runDefense": 81,
+        "coverage": 80.4,
+        "offense": 82.8,
+        "defense": 80.5
+      },
+      "ranks": {
+        "qb": 7,
+        "receivers": 9,
+        "run": 11,
+        "passPro": 29,
+        "passRush": 12,
+        "runDefense": 20,
+        "coverage": 22,
+        "offense": 9,
+        "defense": 17
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "CeeDee Lamb",
+        "Dak Prescott"
+      ]
+    },
+    {
+      "abbr": "DEN",
+      "name": "Denver Broncos",
+      "units": {
+        "qb": 86.7,
+        "receivers": 82.6,
+        "run": 87,
+        "passPro": 85.5,
+        "passRush": 83,
+        "runDefense": 82.2,
+        "coverage": 82.5,
+        "offense": 83.5,
+        "defense": 83.8
+      },
+      "ranks": {
+        "qb": 17,
+        "receivers": 15,
+        "run": 10,
+        "passPro": 1,
+        "passRush": 5,
+        "runDefense": 13,
+        "coverage": 6,
+        "offense": 7,
+        "defense": 6
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Patrick Surtain II"
+      ]
+    },
+    {
+      "abbr": "DET",
+      "name": "Detroit Lions",
+      "units": {
+        "qb": 87.6,
+        "receivers": 84.7,
+        "run": 88.2,
+        "passPro": 81.1,
+        "passRush": 81.2,
+        "runDefense": 82.8,
+        "coverage": 81.3,
+        "offense": 83.8,
+        "defense": 82
+      },
+      "ranks": {
+        "qb": 14,
+        "receivers": 3,
+        "run": 4,
+        "passPro": 18,
+        "passRush": 9,
+        "runDefense": 8,
+        "coverage": 12,
+        "offense": 5,
+        "defense": 8
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Jahmyr Gibbs",
+        "Amon-Ra St. Brown",
+        "Aidan Hutchinson"
+      ]
+    },
+    {
+      "abbr": "GB",
+      "name": "Green Bay Packers",
+      "units": {
+        "qb": 88.7,
+        "receivers": 81.7,
+        "run": 85,
+        "passPro": 77.9,
+        "passRush": 83.2,
+        "runDefense": 80.8,
+        "coverage": 80.7,
+        "offense": 78.7,
+        "defense": 81
+      },
+      "ranks": {
+        "qb": 11,
+        "receivers": 20,
+        "run": 22,
+        "passPro": 32,
+        "passRush": 4,
+        "runDefense": 22,
+        "coverage": 16,
+        "offense": 27,
+        "defense": 13
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Micah Parsons",
+        "Xavier McKinney"
+      ]
+    },
+    {
+      "abbr": "HOU",
+      "name": "Houston Texans",
+      "units": {
+        "qb": 84.3,
+        "receivers": 84.2,
+        "run": 85.1,
+        "passPro": 78.5,
+        "passRush": 84.7,
+        "runDefense": 82.5,
+        "coverage": 83.3,
+        "offense": 79.5,
+        "defense": 84.5
+      },
+      "ranks": {
+        "qb": 23,
+        "receivers": 7,
+        "run": 21,
+        "passPro": 31,
+        "passRush": 2,
+        "runDefense": 10,
+        "coverage": 2,
+        "offense": 24,
+        "defense": 2
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Derek Stingley Jr",
+        "Nico Collins"
+      ]
+    },
+    {
+      "abbr": "IND",
+      "name": "Indianapolis Colts",
+      "units": {
+        "qb": 85.7,
+        "receivers": 83.1,
+        "run": 90.2,
+        "passPro": 82.5,
+        "passRush": 80.1,
+        "runDefense": 80.8,
+        "coverage": 82.6,
+        "offense": 82.9,
+        "defense": 81.2
+      },
+      "ranks": {
+        "qb": 19,
+        "receivers": 11,
+        "run": 1,
+        "passPro": 12,
+        "passRush": 16,
+        "runDefense": 23,
+        "coverage": 5,
+        "offense": 8,
+        "defense": 10
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Jonathan Taylor"
+      ]
+    },
+    {
+      "abbr": "JAX",
+      "name": "Jacksonville Jaguars",
+      "units": {
+        "qb": 87.6,
+        "receivers": 81.5,
+        "run": 83.3,
+        "passPro": 79.5,
+        "passRush": 79.7,
+        "runDefense": 80.5,
+        "coverage": 81.2,
+        "offense": 77.9,
+        "defense": 79.3
+      },
+      "ranks": {
+        "qb": 13,
+        "receivers": 21,
+        "run": 31,
+        "passPro": 25,
+        "passRush": 20,
+        "runDefense": 26,
+        "coverage": 13,
+        "offense": 29,
+        "defense": 24
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Josh Hines-Allen"
+      ]
+    },
+    {
+      "abbr": "KC",
+      "name": "Kansas City Chiefs",
+      "units": {
+        "qb": 90.7,
+        "receivers": 82.8,
+        "run": 87.8,
+        "passPro": 84.3,
+        "passRush": 79.3,
+        "runDefense": 82.6,
+        "coverage": 80.3,
+        "offense": 84.2,
+        "defense": 80.5
+      },
+      "ranks": {
+        "qb": 6,
+        "receivers": 14,
+        "run": 7,
+        "passPro": 3,
+        "passRush": 22,
+        "runDefense": 9,
+        "coverage": 25,
+        "offense": 4,
+        "defense": 16
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Chris Jones",
+        "Patrick Mahomes"
+      ]
+    },
+    {
+      "abbr": "LV",
+      "name": "Las Vegas Raiders",
+      "units": {
+        "qb": 83.1,
+        "receivers": 82.2,
+        "run": 85.4,
+        "passPro": 80.5,
+        "passRush": 78.5,
+        "runDefense": 82.2,
+        "coverage": 79.6,
+        "offense": 79.7,
+        "defense": 79.2
+      },
+      "ranks": {
+        "qb": 27,
+        "receivers": 18,
+        "run": 18,
+        "passPro": 22,
+        "passRush": 27,
+        "runDefense": 14,
+        "coverage": 27,
+        "offense": 22,
+        "defense": 25
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Maxx Crosby",
+        "Brock Bowers"
+      ]
+    },
+    {
+      "abbr": "LAC",
+      "name": "Los Angeles Chargers",
+      "units": {
+        "qb": 90.2,
+        "receivers": 81.1,
+        "run": 85.3,
+        "passPro": 82.1,
+        "passRush": 80,
+        "runDefense": 82,
+        "coverage": 81.2,
+        "offense": 80.4,
+        "defense": 80.1
+      },
+      "ranks": {
+        "qb": 8,
+        "receivers": 25,
+        "run": 19,
+        "passPro": 15,
+        "passRush": 17,
+        "runDefense": 16,
+        "coverage": 14,
+        "offense": 20,
+        "defense": 20
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": []
+    },
+    {
+      "abbr": "LAR",
+      "name": "Los Angeles Rams",
+      "units": {
+        "qb": 91.4,
+        "receivers": 84.6,
+        "run": 88,
+        "passPro": 80.3,
+        "passRush": 88.4,
+        "runDefense": 86,
+        "coverage": 82.1,
+        "offense": 84.5,
+        "defense": 85.4
+      },
+      "ranks": {
+        "qb": 5,
+        "receivers": 4,
+        "run": 6,
+        "passPro": 24,
+        "passRush": 1,
+        "runDefense": 1,
+        "coverage": 8,
+        "offense": 2,
+        "defense": 1
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Matthew Stafford",
+        "Myles Garrett",
+        "Puka Nacua"
+      ]
+    },
+    {
+      "abbr": "MIA",
+      "name": "Miami Dolphins",
+      "units": {
+        "qb": 82.1,
+        "receivers": 77.1,
+        "run": 86.1,
+        "passPro": 79,
+        "passRush": 76.9,
+        "runDefense": 78.6,
+        "coverage": 76.5,
+        "offense": 76.3,
+        "defense": 75.5
+      },
+      "ranks": {
+        "qb": 31,
+        "receivers": 32,
+        "run": 13,
+        "passPro": 28,
+        "passRush": 32,
+        "runDefense": 32,
+        "coverage": 32,
+        "offense": 32,
+        "defense": 32
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": []
+    },
+    {
+      "abbr": "MIN",
+      "name": "Minnesota Vikings",
+      "units": {
+        "qb": 83.2,
+        "receivers": 85.3,
+        "run": 84.7,
+        "passPro": 83.1,
+        "passRush": 79,
+        "runDefense": 79.8,
+        "coverage": 80.7,
+        "offense": 81.6,
+        "defense": 80.4
+      },
+      "ranks": {
+        "qb": 26,
+        "receivers": 1,
+        "run": 24,
+        "passPro": 8,
+        "passRush": 23,
+        "runDefense": 29,
+        "coverage": 17,
+        "offense": 14,
+        "defense": 19
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Justin Jefferson"
+      ]
+    },
+    {
+      "abbr": "NE",
+      "name": "New England Patriots",
+      "units": {
+        "qb": 91.7,
+        "receivers": 82.9,
+        "run": 86.1,
+        "passPro": 83,
+        "passRush": 78.5,
+        "runDefense": 81.1,
+        "coverage": 83.1,
+        "offense": 82.5,
+        "defense": 83.3
+      },
+      "ranks": {
+        "qb": 4,
+        "receivers": 13,
+        "run": 14,
+        "passPro": 9,
+        "passRush": 28,
+        "runDefense": 19,
+        "coverage": 3,
+        "offense": 11,
+        "defense": 7
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Christian Gonzalez",
+        "Drake Maye"
+      ]
+    },
+    {
+      "abbr": "NO",
+      "name": "New Orleans Saints",
+      "units": {
+        "qb": 84.6,
+        "receivers": 81.4,
+        "run": 86,
+        "passPro": 81.9,
+        "passRush": 77.9,
+        "runDefense": 81.4,
+        "coverage": 79.4,
+        "offense": 79.7,
+        "defense": 77.9
+      },
+      "ranks": {
+        "qb": 22,
+        "receivers": 22,
+        "run": 15,
+        "passPro": 17,
+        "passRush": 30,
+        "runDefense": 17,
+        "coverage": 28,
+        "offense": 21,
+        "defense": 31
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": []
+    },
+    {
+      "abbr": "NYG",
+      "name": "New York Giants",
+      "units": {
+        "qb": 84.6,
+        "receivers": 80.6,
+        "run": 83.9,
+        "passPro": 83.4,
+        "passRush": 79.6,
+        "runDefense": 82.1,
+        "coverage": 80.5,
+        "offense": 79.2,
+        "defense": 80.6
+      },
+      "ranks": {
+        "qb": 21,
+        "receivers": 28,
+        "run": 29,
+        "passPro": 7,
+        "passRush": 21,
+        "runDefense": 15,
+        "coverage": 21,
+        "offense": 25,
+        "defense": 15
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": []
+    },
+    {
+      "abbr": "NYJ",
+      "name": "New York Jets",
+      "units": {
+        "qb": 82.6,
+        "receivers": 80.5,
+        "run": 84.6,
+        "passPro": 80.4,
+        "passRush": 79,
+        "runDefense": 80.6,
+        "coverage": 80.7,
+        "offense": 77.7,
+        "defense": 79.5
+      },
+      "ranks": {
+        "qb": 29,
+        "receivers": 29,
+        "run": 25,
+        "passPro": 23,
+        "passRush": 24,
+        "runDefense": 25,
+        "coverage": 18,
+        "offense": 30,
+        "defense": 22
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Demario Davis"
+      ]
+    },
+    {
+      "abbr": "PHI",
+      "name": "Philadelphia Eagles",
+      "units": {
+        "qb": 86.8,
+        "receivers": 83,
+        "run": 88.4,
+        "passPro": 85.5,
+        "passRush": 81.1,
+        "runDefense": 83.9,
+        "coverage": 81.7,
+        "offense": 84.8,
+        "defense": 84.5
+      },
+      "ranks": {
+        "qb": 16,
+        "receivers": 12,
+        "run": 3,
+        "passPro": 2,
+        "passRush": 10,
+        "runDefense": 4,
+        "coverage": 10,
+        "offense": 1,
+        "defense": 3
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Saquon Barkley",
+        "Jalen Hurts"
+      ]
+    },
+    {
+      "abbr": "PIT",
+      "name": "Pittsburgh Steelers",
+      "units": {
+        "qb": 83.6,
+        "receivers": 82,
+        "run": 85.2,
+        "passPro": 80.6,
+        "passRush": 83.3,
+        "runDefense": 85.3,
+        "coverage": 82.7,
+        "offense": 78.9,
+        "defense": 84.2
+      },
+      "ranks": {
+        "qb": 25,
+        "receivers": 19,
+        "run": 20,
+        "passPro": 21,
+        "passRush": 3,
+        "runDefense": 2,
+        "coverage": 4,
+        "offense": 26,
+        "defense": 5
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Cam Heyward",
+        "T.J. Watt",
+        "Jalen Ramsey"
+      ]
+    },
+    {
+      "abbr": "SF",
+      "name": "San Francisco 49ers",
+      "units": {
+        "qb": 88.6,
+        "receivers": 84.8,
+        "run": 89.6,
+        "passPro": 80.7,
+        "passRush": 82.9,
+        "runDefense": 83.3,
+        "coverage": 80.4,
+        "offense": 84.4,
+        "defense": 80.5
+      },
+      "ranks": {
+        "qb": 12,
+        "receivers": 2,
+        "run": 2,
+        "passPro": 20,
+        "passRush": 6,
+        "runDefense": 6,
+        "coverage": 24,
+        "offense": 3,
+        "defense": 18
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Fred Warner",
+        "Christian McCaffrey",
+        "Nick Bosa",
+        "Mike Evans"
+      ]
+    },
+    {
+      "abbr": "SEA",
+      "name": "Seattle Seahawks",
+      "units": {
+        "qb": 89.4,
+        "receivers": 83.9,
+        "run": 83.8,
+        "passPro": 79.3,
+        "passRush": 80.3,
+        "runDefense": 83.5,
+        "coverage": 80.4,
+        "offense": 80.7,
+        "defense": 81.8
+      },
+      "ranks": {
+        "qb": 10,
+        "receivers": 8,
+        "run": 30,
+        "passPro": 27,
+        "passRush": 15,
+        "runDefense": 5,
+        "coverage": 23,
+        "offense": 17,
+        "defense": 9
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Jaxon Smith-Njigba"
+      ]
+    },
+    {
+      "abbr": "TB",
+      "name": "Tampa Bay Buccaneers",
+      "units": {
+        "qb": 87.2,
+        "receivers": 81,
+        "run": 85.7,
+        "passPro": 84.1,
+        "passRush": 80.4,
+        "runDefense": 82.5,
+        "coverage": 81,
+        "offense": 80.7,
+        "defense": 81.2
+      },
+      "ranks": {
+        "qb": 15,
+        "receivers": 27,
+        "run": 16,
+        "passPro": 5,
+        "passRush": 14,
+        "runDefense": 11,
+        "coverage": 15,
+        "offense": 16,
+        "defense": 11
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Vita Vea",
+        "Antoine Winfield Jr"
+      ]
+    },
+    {
+      "abbr": "TEN",
+      "name": "Tennessee Titans",
+      "units": {
+        "qb": 83,
+        "receivers": 79.7,
+        "run": 84.2,
+        "passPro": 78.6,
+        "passRush": 81,
+        "runDefense": 82.4,
+        "coverage": 78.9,
+        "offense": 76.5,
+        "defense": 79.4
+      },
+      "ranks": {
+        "qb": 28,
+        "receivers": 31,
+        "run": 28,
+        "passPro": 30,
+        "passRush": 11,
+        "runDefense": 12,
+        "coverage": 30,
+        "offense": 31,
+        "defense": 23
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": []
+    },
+    {
+      "abbr": "WAS",
+      "name": "Washington Commanders",
+      "units": {
+        "qb": 86,
+        "receivers": 83.2,
+        "run": 84.5,
+        "passPro": 82.3,
+        "passRush": 78.8,
+        "runDefense": 81.2,
+        "coverage": 79.7,
+        "offense": 80.5,
+        "defense": 78.7
+      },
+      "ranks": {
+        "qb": 18,
+        "receivers": 10,
+        "run": 27,
+        "passPro": 13,
+        "passRush": 25,
+        "runDefense": 18,
+        "coverage": 26,
+        "offense": 19,
+        "defense": 27
+      },
+      "iteration": "Week 1",
+      "hasReport": false,
+      "stale": false,
+      "threatLevel": null,
+      "headline": null,
+      "xFactors": [
+        "Terry McLaurin"
+      ]
+    }
+  ]
+}

@@ -34,6 +34,7 @@ import CoverageLab from './components/coverage/CoverageLab'
 import TrendsBoard from './components/trends/TrendsBoard'
 import SkillsLab from './components/skills/SkillsLab'
 import PersonnelLab from './components/personnel/PersonnelLab'
+import ScoutingRoom from './components/scouting/ScoutingRoom'
 import BrandCredit from './BrandCredit'
 
 const DENSITY_SLOTS = { compact: 3, regular: 4, comfy: 5 }
@@ -301,6 +302,12 @@ function App() {
           Personnel
         </button>
         <button
+          className={'view-tab' + (view === 'scouting' ? ' view-tab--on' : '')}
+          onClick={() => setView('scouting')}
+        >
+          Scouting
+        </button>
+        <button
           className={'view-tab' + (view === 'trends' ? ' view-tab--on' : '')}
           onClick={() => setView('trends')}
         >
@@ -320,7 +327,8 @@ function App() {
       {view !== 'coverage' &&
         view !== 'trends' &&
         view !== 'skills' &&
-        view !== 'personnel' && (
+        view !== 'personnel' &&
+        view !== 'scouting' && (
       <div className="sides">
         <button
           className={
@@ -376,6 +384,8 @@ function App() {
         <TrendsBoard game={game} trendsCfg={trendsCfg} setTrendsCfg={setTrendsCfg} />
       ) : view === 'skills' ? (
         <SkillsLab game={game} />
+      ) : view === 'scouting' ? (
+        <ScoutingRoom />
       ) : view === 'personnel' ? (
         <PersonnelLab game={game} side={side} />
       ) : view === 'planner' ? (

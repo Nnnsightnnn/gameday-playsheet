@@ -1,0 +1,1347 @@
+{
+  "schemaVersion": 1,
+  "game": "madden",
+  "opponent": "LAR",
+  "scoutedBy": "ATL",
+  "facts": {
+    "team": {
+      "abbr": "LAR",
+      "name": "Los Angeles Rams"
+    },
+    "iteration": {
+      "label": "Week 1",
+      "releaseDate": "2026-09-10",
+      "scrapedAt": "2026-09-16T01:58:52+00:00",
+      "source": "madden.tools (current roster iteration) + ea.com ratings (ability labels)"
+    },
+    "units": {
+      "qb": 91.4,
+      "receivers": 84.6,
+      "run": 88,
+      "passPro": 80.3,
+      "passRush": 88.4,
+      "runDefense": 86,
+      "coverage": 82.1,
+      "offense": 84.5,
+      "defense": 85.4
+    },
+    "ranks": {
+      "qb": 5,
+      "receivers": 4,
+      "run": 6,
+      "passPro": 24,
+      "passRush": 1,
+      "runDefense": 1,
+      "coverage": 8,
+      "offense": 2,
+      "defense": 1
+    },
+    "falconsUnits": {
+      "qb": 83.8,
+      "receivers": 81,
+      "run": 88.1,
+      "passPro": 83.8,
+      "passRush": 77.1,
+      "runDefense": 78.9,
+      "coverage": 81.9,
+      "offense": 82.1,
+      "defense": 78.6
+    },
+    "starters": {
+      "offense": [
+        {
+          "name": "Matthew Stafford",
+          "pos": "QB",
+          "ovr": 99,
+          "ratings": {
+            "THP": 95,
+            "SAC": 99,
+            "MAC": 97,
+            "DAC": 94,
+            "RUN": 90,
+            "TUP": 84,
+            "SPD": 77
+          },
+          "abilities": [
+            {
+              "name": "No-Look Deadeye",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Long Range Deadeye",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Lofting Deadeye",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Dots",
+              "type": "xFactor"
+            }
+          ],
+          "slot": "QB"
+        },
+        {
+          "name": "Kyren Williams",
+          "pos": "HB",
+          "ovr": 89,
+          "ratings": {
+            "SPD": 88,
+            "ACC": 90,
+            "BCV": 88,
+            "BTK": 91,
+            "JKM": 88,
+            "TRK": 93,
+            "CTH": 72
+          },
+          "abilities": [
+            {
+              "name": "Reach For It",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "HB"
+        },
+        {
+          "name": "Puka Nacua",
+          "pos": "WR",
+          "ovr": 98,
+          "ratings": {
+            "SPD": 93,
+            "ACC": 92,
+            "RLS": 92,
+            "SRR": 98,
+            "MRR": 96,
+            "DRR": 92,
+            "CIT": 98,
+            "SPC": 99
+          },
+          "abilities": [
+            {
+              "name": "Short In Elite",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Mid In Elite",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Route Technician",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Double Me",
+              "type": "xFactor"
+            },
+            {
+              "name": "Quick Jump",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "WR1"
+        },
+        {
+          "name": "Davante Adams",
+          "pos": "WR",
+          "ovr": 90,
+          "ratings": {
+            "SPD": 89,
+            "ACC": 88,
+            "RLS": 96,
+            "SRR": 91,
+            "MRR": 91,
+            "DRR": 89,
+            "CIT": 91,
+            "SPC": 94
+          },
+          "abilities": [
+            {
+              "name": "Route Technician",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Acrobat",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Quick Jump",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "WR2"
+        },
+        {
+          "name": "Tutu Atwell",
+          "pos": "WR",
+          "ovr": 75,
+          "ratings": {
+            "SPD": 93,
+            "ACC": 93,
+            "RLS": 59,
+            "SRR": 76,
+            "MRR": 77,
+            "DRR": 79,
+            "CIT": 79,
+            "SPC": 81
+          },
+          "abilities": [],
+          "slot": "WR3"
+        },
+        {
+          "name": "Tyler Higbee",
+          "pos": "TE",
+          "ovr": 73,
+          "ratings": {
+            "SPD": 82,
+            "SRR": 68,
+            "MRR": 62,
+            "CIT": 81,
+            "RBK": 64,
+            "PBK": 60
+          },
+          "abilities": [],
+          "slot": "TE"
+        },
+        {
+          "name": "Alaric Jackson",
+          "pos": "LT",
+          "ovr": 85,
+          "ratings": {
+            "PBK": 84,
+            "PBP": 85,
+            "PBF": 82,
+            "RBK": 90,
+            "RBP": 88,
+            "RBF": 92,
+            "STR": 88
+          },
+          "abilities": [],
+          "slot": "LT"
+        },
+        {
+          "name": "Steve Avila",
+          "pos": "LG",
+          "ovr": 79,
+          "ratings": {
+            "PBK": 79,
+            "PBP": 82,
+            "PBF": 76,
+            "RBK": 82,
+            "RBP": 85,
+            "RBF": 81,
+            "STR": 88
+          },
+          "abilities": [],
+          "slot": "LG"
+        },
+        {
+          "name": "Coleman Shelton",
+          "pos": "C",
+          "ovr": 78,
+          "ratings": {
+            "PBK": 74,
+            "PBP": 72,
+            "PBF": 76,
+            "RBK": 87,
+            "RBP": 86,
+            "RBF": 87,
+            "STR": 83
+          },
+          "abilities": [],
+          "slot": "C"
+        },
+        {
+          "name": "Kevin Dotson",
+          "pos": "RG",
+          "ovr": 90,
+          "ratings": {
+            "PBK": 79,
+            "PBP": 82,
+            "PBF": 76,
+            "RBK": 94,
+            "RBP": 96,
+            "RBF": 92,
+            "STR": 92
+          },
+          "abilities": [],
+          "slot": "RG"
+        },
+        {
+          "name": "Warren McClendon Jr",
+          "pos": "RT",
+          "ovr": 73,
+          "ratings": {
+            "PBK": 75,
+            "PBP": 78,
+            "PBF": 72,
+            "RBK": 80,
+            "RBP": 77,
+            "RBF": 83,
+            "STR": 88
+          },
+          "abilities": [],
+          "slot": "RT"
+        }
+      ],
+      "defense": [
+        {
+          "name": "Byron Young",
+          "pos": "LEDGE",
+          "ovr": 84,
+          "ratings": {
+            "SPD": 92,
+            "ACC": 93,
+            "PMV": 85,
+            "FMV": 80,
+            "BSH": 78,
+            "STR": 74
+          },
+          "abilities": [
+            {
+              "name": "Quick Jump",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "LEDGE"
+        },
+        {
+          "name": "Myles Garrett",
+          "pos": "REDGE",
+          "ovr": 99,
+          "ratings": {
+            "SPD": 86,
+            "ACC": 90,
+            "PMV": 99,
+            "FMV": 93,
+            "BSH": 96,
+            "STR": 96
+          },
+          "abilities": [
+            {
+              "name": "Edge Threat",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "El Toro",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Unstoppable Force",
+              "type": "xFactor"
+            },
+            {
+              "name": "Demoralizer",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Enforcer",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Quick Jump",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "REDGE"
+        },
+        {
+          "name": "Aaron Donald",
+          "pos": "DT",
+          "ovr": 95,
+          "ratings": {
+            "STR": 97,
+            "BSH": 92,
+            "PMV": 94,
+            "FMV": 88,
+            "TAK": 89
+          },
+          "abilities": [],
+          "slot": "DT1"
+        },
+        {
+          "name": "Kobie Turner",
+          "pos": "DT",
+          "ovr": 85,
+          "ratings": {
+            "STR": 89,
+            "BSH": 87,
+            "PMV": 86,
+            "FMV": 78,
+            "TAK": 81
+          },
+          "abilities": [],
+          "slot": "DT2"
+        },
+        {
+          "name": "Nate Landman",
+          "pos": "MIKE",
+          "ovr": 86,
+          "ratings": {
+            "SPD": 82,
+            "PUR": 89,
+            "TAK": 91,
+            "BSH": 78,
+            "ZCV": 72,
+            "MCV": 67,
+            "PRC": 94
+          },
+          "abilities": [],
+          "slot": "MIKE"
+        },
+        {
+          "name": "Omar Speights",
+          "pos": "WILL",
+          "ovr": 78,
+          "ratings": {
+            "SPD": 84,
+            "PUR": 86,
+            "TAK": 85,
+            "BSH": 71,
+            "ZCV": 73,
+            "MCV": 69,
+            "PRC": 79
+          },
+          "abilities": [],
+          "slot": "WILL"
+        },
+        {
+          "name": "Trent McDuffie",
+          "pos": "CB",
+          "ovr": 94,
+          "ratings": {
+            "SPD": 93,
+            "ACC": 94,
+            "MCV": 94,
+            "ZCV": 92,
+            "PRS": 88,
+            "AGI": 94,
+            "JMP": 91
+          },
+          "abilities": [
+            {
+              "name": "Deep Route KO",
+              "type": "superstarAbility"
+            },
+            {
+              "name": "Inside Shade",
+              "type": "superstarAbility"
+            }
+          ],
+          "slot": "CB1"
+        },
+        {
+          "name": "Jaylen Watson",
+          "pos": "CB",
+          "ovr": 79,
+          "ratings": {
+            "SPD": 92,
+            "ACC": 92,
+            "MCV": 79,
+            "ZCV": 82,
+            "PRS": 77,
+            "AGI": 81,
+            "JMP": 90
+          },
+          "abilities": [],
+          "slot": "CB2"
+        },
+        {
+          "name": "Emmanuel Forbes Jr",
+          "pos": "CB",
+          "ovr": 75,
+          "ratings": {
+            "SPD": 94,
+            "ACC": 95,
+            "MCV": 76,
+            "ZCV": 72,
+            "PRS": 58,
+            "AGI": 89,
+            "JMP": 89
+          },
+          "abilities": [],
+          "slot": "CB3"
+        },
+        {
+          "name": "Kamren Kinchens",
+          "pos": "FS",
+          "ovr": 81,
+          "ratings": {
+            "SPD": 86,
+            "ZCV": 83,
+            "MCV": 74,
+            "PRC": 85,
+            "TAK": 75,
+            "POW": 88
+          },
+          "abilities": [],
+          "slot": "FS"
+        },
+        {
+          "name": "Kam Curl",
+          "pos": "SS",
+          "ovr": 83,
+          "ratings": {
+            "SPD": 89,
+            "ZCV": 77,
+            "MCV": 72,
+            "PRC": 83,
+            "TAK": 83,
+            "POW": 79
+          },
+          "abilities": [],
+          "slot": "SS"
+        }
+      ],
+      "special": [
+        {
+          "name": "Harrison Mevis",
+          "pos": "K",
+          "ovr": 76,
+          "ratings": {
+            "KPW": 96,
+            "KAC": 84
+          },
+          "abilities": [],
+          "slot": "K"
+        },
+        {
+          "name": "Ethan Evans",
+          "pos": "P",
+          "ovr": 79,
+          "ratings": {
+            "KPW": 95,
+            "KAC": 88
+          },
+          "abilities": [],
+          "slot": "P"
+        }
+      ]
+    },
+    "threats": [
+      {
+        "name": "Matthew Stafford",
+        "pos": "QB",
+        "ovr": 99,
+        "ratings": {
+          "THP": 95,
+          "SAC": 99,
+          "MAC": 97,
+          "DAC": 94,
+          "RUN": 90,
+          "TUP": 84,
+          "SPD": 77
+        },
+        "abilities": [
+          {
+            "name": "No-Look Deadeye",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Long Range Deadeye",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Lofting Deadeye",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Dots",
+            "type": "xFactor"
+          }
+        ],
+        "slot": "QB",
+        "side": "offense",
+        "xFactor": true
+      },
+      {
+        "name": "Myles Garrett",
+        "pos": "REDGE",
+        "ovr": 99,
+        "ratings": {
+          "SPD": 86,
+          "ACC": 90,
+          "PMV": 99,
+          "FMV": 93,
+          "BSH": 96,
+          "STR": 96
+        },
+        "abilities": [
+          {
+            "name": "Edge Threat",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "El Toro",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Unstoppable Force",
+            "type": "xFactor"
+          },
+          {
+            "name": "Demoralizer",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Enforcer",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Quick Jump",
+            "type": "superstarAbility"
+          }
+        ],
+        "slot": "REDGE",
+        "side": "defense",
+        "xFactor": true
+      },
+      {
+        "name": "Puka Nacua",
+        "pos": "WR",
+        "ovr": 98,
+        "ratings": {
+          "SPD": 93,
+          "ACC": 92,
+          "RLS": 92,
+          "SRR": 98,
+          "MRR": 96,
+          "DRR": 92,
+          "CIT": 98,
+          "SPC": 99
+        },
+        "abilities": [
+          {
+            "name": "Short In Elite",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Mid In Elite",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Route Technician",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Double Me",
+            "type": "xFactor"
+          },
+          {
+            "name": "Quick Jump",
+            "type": "superstarAbility"
+          }
+        ],
+        "slot": "WR1",
+        "side": "offense",
+        "xFactor": true
+      },
+      {
+        "name": "Aaron Donald",
+        "pos": "DT",
+        "ovr": 95,
+        "ratings": {
+          "STR": 97,
+          "BSH": 92,
+          "PMV": 94,
+          "FMV": 88,
+          "TAK": 89
+        },
+        "abilities": [],
+        "slot": "DT1",
+        "side": "defense",
+        "xFactor": false
+      },
+      {
+        "name": "Trent McDuffie",
+        "pos": "CB",
+        "ovr": 94,
+        "ratings": {
+          "SPD": 93,
+          "ACC": 94,
+          "MCV": 94,
+          "ZCV": 92,
+          "PRS": 88,
+          "AGI": 94,
+          "JMP": 91
+        },
+        "abilities": [
+          {
+            "name": "Deep Route KO",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Inside Shade",
+            "type": "superstarAbility"
+          }
+        ],
+        "slot": "CB1",
+        "side": "defense",
+        "xFactor": false
+      },
+      {
+        "name": "Davante Adams",
+        "pos": "WR",
+        "ovr": 90,
+        "ratings": {
+          "SPD": 89,
+          "ACC": 88,
+          "RLS": 96,
+          "SRR": 91,
+          "MRR": 91,
+          "DRR": 89,
+          "CIT": 91,
+          "SPC": 94
+        },
+        "abilities": [
+          {
+            "name": "Route Technician",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Acrobat",
+            "type": "superstarAbility"
+          },
+          {
+            "name": "Quick Jump",
+            "type": "superstarAbility"
+          }
+        ],
+        "slot": "WR2",
+        "side": "offense",
+        "xFactor": false
+      }
+    ],
+    "weakLinks": [
+      {
+        "unit": "Pass protection",
+        "side": "offense",
+        "player": "Warren McClendon Jr",
+        "slot": "RT",
+        "score": 76.3,
+        "unitAvg": 80.3,
+        "gap": 4.1,
+        "worstRating": {
+          "key": "PBF",
+          "value": 72
+        }
+      },
+      {
+        "unit": "Run blocking",
+        "side": "offense",
+        "player": "Warren McClendon Jr",
+        "slot": "RT",
+        "score": 81.5,
+        "unitAvg": 86.7,
+        "gap": 5.2,
+        "worstRating": {
+          "key": "RBP",
+          "value": 77
+        }
+      },
+      {
+        "unit": "Receivers",
+        "side": "offense",
+        "player": "Tyler Higbee",
+        "slot": "TE",
+        "score": 72.9,
+        "unitAvg": 84.6,
+        "gap": 11.7,
+        "worstRating": {
+          "key": "DRR",
+          "value": 60
+        }
+      },
+      {
+        "unit": "Pass rush",
+        "side": "defense",
+        "player": "Byron Young",
+        "slot": "LEDGE",
+        "score": 83.5,
+        "unitAvg": 88.2,
+        "gap": 4.7,
+        "worstRating": {
+          "key": "STR",
+          "value": 74
+        }
+      },
+      {
+        "unit": "Run fits",
+        "side": "defense",
+        "player": "Omar Speights",
+        "slot": "WILL",
+        "score": 78.2,
+        "unitAvg": 86,
+        "gap": 7.8,
+        "worstRating": {
+          "key": "BSH",
+          "value": 71
+        }
+      },
+      {
+        "unit": "Coverage",
+        "side": "defense",
+        "player": "Nate Landman",
+        "slot": "MIKE",
+        "score": 75.6,
+        "unitAvg": 81.4,
+        "gap": 5.8,
+        "worstRating": {
+          "key": "PRS",
+          "value": 54
+        }
+      }
+    ],
+    "speedMap": {
+      "offense": [
+        {
+          "name": "Matthew Stafford",
+          "slot": "QB",
+          "SPD": 77,
+          "ACC": 73
+        },
+        {
+          "name": "Kyren Williams",
+          "slot": "HB",
+          "SPD": 88,
+          "ACC": 90
+        },
+        {
+          "name": "Puka Nacua",
+          "slot": "WR1",
+          "SPD": 93,
+          "ACC": 92
+        },
+        {
+          "name": "Davante Adams",
+          "slot": "WR2",
+          "SPD": 89,
+          "ACC": 88
+        },
+        {
+          "name": "Tutu Atwell",
+          "slot": "WR3",
+          "SPD": 93,
+          "ACC": 93
+        },
+        {
+          "name": "Tyler Higbee",
+          "slot": "TE",
+          "SPD": 82,
+          "ACC": 79
+        }
+      ],
+      "defense": [
+        {
+          "name": "Byron Young",
+          "slot": "LEDGE",
+          "SPD": 92,
+          "ACC": 93
+        },
+        {
+          "name": "Myles Garrett",
+          "slot": "REDGE",
+          "SPD": 86,
+          "ACC": 90
+        },
+        {
+          "name": "Nate Landman",
+          "slot": "MIKE",
+          "SPD": 82,
+          "ACC": 86
+        },
+        {
+          "name": "Omar Speights",
+          "slot": "WILL",
+          "SPD": 84,
+          "ACC": 91
+        },
+        {
+          "name": "Trent McDuffie",
+          "slot": "CB1",
+          "SPD": 93,
+          "ACC": 94
+        },
+        {
+          "name": "Jaylen Watson",
+          "slot": "CB2",
+          "SPD": 92,
+          "ACC": 92
+        },
+        {
+          "name": "Emmanuel Forbes Jr",
+          "slot": "CB3",
+          "SPD": 94,
+          "ACC": 95
+        },
+        {
+          "name": "Kamren Kinchens",
+          "slot": "FS",
+          "SPD": 86,
+          "ACC": 88
+        },
+        {
+          "name": "Kam Curl",
+          "slot": "SS",
+          "SPD": 89,
+          "ACC": 89
+        }
+      ]
+    },
+    "qbProfile": {
+      "name": "Matthew Stafford",
+      "arm": 94.5,
+      "legs": 79,
+      "scrambler": false
+    },
+    "matchups": {
+      "attack": [
+        {
+          "label": "WR1 vs CB1",
+          "kind": "pass",
+          "falcons": {
+            "name": "Drake London",
+            "slot": "WR1",
+            "score": 88.9,
+            "SPD": 88
+          },
+          "opponent": {
+            "name": "Trent McDuffie",
+            "slot": "CB1",
+            "score": 93.1,
+            "SPD": 93
+          },
+          "speedDelta": -5,
+          "edge": -4.2
+        },
+        {
+          "label": "WR2 vs CB2",
+          "kind": "pass",
+          "falcons": {
+            "name": "Jahan Dotson",
+            "slot": "WR2",
+            "score": 79.1,
+            "SPD": 92
+          },
+          "opponent": {
+            "name": "Jaylen Watson",
+            "slot": "CB2",
+            "score": 83.3,
+            "SPD": 92
+          },
+          "speedDelta": 0,
+          "edge": -4.2
+        },
+        {
+          "label": "WR3 vs CB3",
+          "kind": "pass",
+          "falcons": {
+            "name": "Zachariah Branch",
+            "slot": "WR3",
+            "score": 77.8,
+            "SPD": 95
+          },
+          "opponent": {
+            "name": "Emmanuel Forbes Jr",
+            "slot": "CB3",
+            "score": 79.9,
+            "SPD": 94
+          },
+          "speedDelta": 1,
+          "edge": -2.1
+        },
+        {
+          "label": "TE vs MIKE",
+          "kind": "pass",
+          "falcons": {
+            "name": "Kyle Pitts Sr",
+            "slot": "TE",
+            "score": 78.3,
+            "SPD": 90
+          },
+          "opponent": {
+            "name": "Nate Landman",
+            "slot": "MIKE",
+            "score": 75.6,
+            "SPD": 82
+          },
+          "speedDelta": 8,
+          "edge": 2.7
+        },
+        {
+          "label": "HB vs MIKE",
+          "kind": "pass",
+          "falcons": {
+            "name": "Bijan Robinson",
+            "slot": "HB",
+            "score": 72.2,
+            "SPD": 93
+          },
+          "opponent": {
+            "name": "Nate Landman",
+            "slot": "MIKE",
+            "score": 75.6,
+            "SPD": 82
+          },
+          "speedDelta": 11,
+          "edge": -3.4
+        },
+        {
+          "label": "LT vs REDGE",
+          "kind": "protection",
+          "falcons": {
+            "name": "Jake Matthews",
+            "slot": "LT",
+            "score": 90.6,
+            "SPD": 70
+          },
+          "opponent": {
+            "name": "Myles Garrett",
+            "slot": "REDGE",
+            "score": 94.5,
+            "SPD": 86
+          },
+          "speedDelta": -16,
+          "edge": -3.9
+        },
+        {
+          "label": "RT vs LEDGE",
+          "kind": "protection",
+          "falcons": {
+            "name": "Jawaan Taylor",
+            "slot": "RT",
+            "score": 81.6,
+            "SPD": 66
+          },
+          "opponent": {
+            "name": "Byron Young",
+            "slot": "LEDGE",
+            "score": 83.5,
+            "SPD": 92
+          },
+          "speedDelta": -26,
+          "edge": -1.9
+        },
+        {
+          "label": "LG vs DT1",
+          "kind": "protection",
+          "falcons": {
+            "name": "Matthew Bergeron",
+            "slot": "LG",
+            "score": 78.1,
+            "SPD": 63
+          },
+          "opponent": {
+            "name": "Aaron Donald",
+            "slot": "DT1",
+            "score": 91.1,
+            "SPD": 83
+          },
+          "speedDelta": -20,
+          "edge": -13
+        },
+        {
+          "label": "RG vs DT2",
+          "kind": "protection",
+          "falcons": {
+            "name": "Chris Lindstrom",
+            "slot": "RG",
+            "score": 86.1,
+            "SPD": 76
+          },
+          "opponent": {
+            "name": "Kobie Turner",
+            "slot": "DT2",
+            "score": 83.5,
+            "SPD": 74
+          },
+          "speedDelta": 2,
+          "edge": 2.6
+        },
+        {
+          "label": "Run game vs front",
+          "kind": "run",
+          "falcons": {
+            "name": "OL + Bijan Robinson",
+            "score": 87.2
+          },
+          "opponent": {
+            "name": "Front six",
+            "score": 86
+          },
+          "speedDelta": 0,
+          "edge": 1.2
+        }
+      ],
+      "defend": [
+        {
+          "label": "REDGE vs LT",
+          "kind": "rush",
+          "falcons": {
+            "name": "Samson Ebukam",
+            "slot": "REDGE",
+            "score": 78.4,
+            "SPD": 83
+          },
+          "opponent": {
+            "name": "Alaric Jackson",
+            "slot": "LT",
+            "score": 85.4,
+            "SPD": 63
+          },
+          "speedDelta": 20,
+          "edge": -7
+        },
+        {
+          "label": "LEDGE vs RT",
+          "kind": "rush",
+          "falcons": {
+            "name": "Za'Darius Smith",
+            "slot": "LEDGE",
+            "score": 77.3,
+            "SPD": 80
+          },
+          "opponent": {
+            "name": "Warren McClendon Jr",
+            "slot": "RT",
+            "score": 76.3,
+            "SPD": 69
+          },
+          "speedDelta": 11,
+          "edge": 1
+        },
+        {
+          "label": "DT1 vs LG",
+          "kind": "rush",
+          "falcons": {
+            "name": "Gervon Dexter Sr",
+            "slot": "DT1",
+            "score": 78,
+            "SPD": 76
+          },
+          "opponent": {
+            "name": "Steve Avila",
+            "slot": "LG",
+            "score": 80.5,
+            "SPD": 65
+          },
+          "speedDelta": 11,
+          "edge": -2.5
+        },
+        {
+          "label": "DT2 vs RG",
+          "kind": "rush",
+          "falcons": {
+            "name": "Da'Shawn Hand",
+            "slot": "DT2",
+            "score": 73.8,
+            "SPD": 76
+          },
+          "opponent": {
+            "name": "Kevin Dotson",
+            "slot": "RG",
+            "score": 82.6,
+            "SPD": 69
+          },
+          "speedDelta": 7,
+          "edge": -8.8
+        },
+        {
+          "label": "CB1 vs WR1",
+          "kind": "pass",
+          "falcons": {
+            "name": "A.J. Terrell Jr",
+            "slot": "CB1",
+            "score": 90.5,
+            "SPD": 91
+          },
+          "opponent": {
+            "name": "Puka Nacua",
+            "slot": "WR1",
+            "score": 95.6,
+            "SPD": 93
+          },
+          "speedDelta": -2,
+          "edge": -5.1
+        },
+        {
+          "label": "CB2 vs WR2",
+          "kind": "pass",
+          "falcons": {
+            "name": "Mike Hughes",
+            "slot": "CB2",
+            "score": 81.6,
+            "SPD": 88
+          },
+          "opponent": {
+            "name": "Davante Adams",
+            "slot": "WR2",
+            "score": 90.6,
+            "SPD": 89
+          },
+          "speedDelta": -1,
+          "edge": -9
+        },
+        {
+          "label": "CB3 vs WR3",
+          "kind": "pass",
+          "falcons": {
+            "name": "Avieon Terrell",
+            "slot": "CB3",
+            "score": 79,
+            "SPD": 88
+          },
+          "opponent": {
+            "name": "Tutu Atwell",
+            "slot": "WR3",
+            "score": 79.2,
+            "SPD": 93
+          },
+          "speedDelta": -5,
+          "edge": -0.2
+        },
+        {
+          "label": "WILL vs TE",
+          "kind": "pass",
+          "falcons": {
+            "name": "Kendal Daniels",
+            "slot": "WILL",
+            "score": 70.5,
+            "SPD": 86
+          },
+          "opponent": {
+            "name": "Tyler Higbee",
+            "slot": "TE",
+            "score": 72.9,
+            "SPD": 82
+          },
+          "speedDelta": 4,
+          "edge": -2.4
+        },
+        {
+          "label": "WILL vs HB",
+          "kind": "pass",
+          "falcons": {
+            "name": "Kendal Daniels",
+            "slot": "WILL",
+            "score": 70.5,
+            "SPD": 86
+          },
+          "opponent": {
+            "name": "Kyren Williams",
+            "slot": "HB",
+            "score": 68.5,
+            "SPD": 88
+          },
+          "speedDelta": -2,
+          "edge": 2
+        },
+        {
+          "label": "Front vs run game",
+          "kind": "run",
+          "falcons": {
+            "name": "Front six",
+            "score": 78.9
+          },
+          "opponent": {
+            "name": "OL + Kyren Williams",
+            "score": 87.7
+          },
+          "speedDelta": 0,
+          "edge": -8.8
+        }
+      ]
+    },
+    "playbooks": {
+      "offense": {
+        "id": "rams-off",
+        "formations": [
+          "Singleback Ace Close",
+          "Singleback Bunch TE",
+          "Singleback Bunch X Nasty",
+          "Singleback Deuce Close",
+          "Singleback Tight Y Off",
+          "Singleback Tight Y Off Flex",
+          "Singleback Trips",
+          "Singleback Trips Close",
+          "Singleback Wing Close",
+          "Singleback Wing Flex Close",
+          "Singleback Wing Pair",
+          "Singleback Wing Tight",
+          "Singleback Wing Tight Nasty",
+          "Singleback Wing Tight Z",
+          "Singleback Y Trips Close",
+          "I Form Close",
+          "I Form Slot Stack",
+          "Pistol Bunch TE",
+          "Pistol Tight Slots",
+          "Gun Bunch Offset",
+          "Gun Bunch Spread",
+          "Gun Bunch Spread Nasty",
+          "Gun Bunch TE",
+          "Gun Bunch Wide Nasty",
+          "Gun Doubles Y Off",
+          "Gun Empty Bunch Open",
+          "Gun Empty Chips Nasty",
+          "Gun Empty Strong Slots",
+          "Gun Flanker Close",
+          "Gun Normal Y Off Close",
+          "Gun Split WR Backfield",
+          "Gun Spread Y Slot Wk",
+          "Gun Tight Flex",
+          "Gun Tight Flex Wk",
+          "Gun Tight Y Off",
+          "Gun Trio Y-Flex",
+          "Gun Trips HB Wk",
+          "Gun Trips TE",
+          "Gun Wing Slot Offset",
+          "Gun Y Off Trio Close",
+          "Gun Y Off Trio Wk",
+          "Goal Line Normal",
+          "Hail Mary Hail Mary"
+        ]
+      },
+      "defense": {
+        "id": "rams-def",
+        "formations": [
+          "3-4 Cub",
+          "3-4 Even",
+          "3-4 Odd",
+          "3-4 Over",
+          "3-4 Under 4 Tech",
+          "4-3 Even 6-1",
+          "Nickel 2-4",
+          "Nickel 2-4 Dbl Mug",
+          "Nickel 2-4 Load Dbl Mug",
+          "Nickel 2-4 Load Mug",
+          "Nickel 2-4 Single Mug",
+          "Nickel 2-4 Wide",
+          "3-3-5 Penny",
+          "Dime 2-3",
+          "Dime 2-3 Single Mug",
+          "Dime 3-2 Rush",
+          "Prevent 3 Deep",
+          "Goal Line 5-3",
+          "Goal Line 6-2",
+          "Goal Line Pinch",
+          "Quarter Normal",
+          "2-4-5 Over Wide"
+        ]
+      }
+    },
+    "unavailable": [],
+    "falconsUnavailable": [
+      {
+        "name": "Jalon Walker",
+        "why": "IR (ACL)",
+        "since": "2026-08-30"
+      },
+      {
+        "name": "James Pearce Jr",
+        "why": "Suspended 8 games",
+        "since": "2026-08-30"
+      }
+    ]
+  },
+  "report": null
+}
