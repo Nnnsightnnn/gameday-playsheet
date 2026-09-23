@@ -35,6 +35,7 @@ import TrendsBoard from './components/trends/TrendsBoard'
 import SkillsLab from './components/skills/SkillsLab'
 import PersonnelLab from './components/personnel/PersonnelLab'
 import ScoutingRoom from './components/scouting/ScoutingRoom'
+import PackageForge from './components/packages/PackageForge'
 import BrandCredit from './BrandCredit'
 
 const DENSITY_SLOTS = { compact: 3, regular: 4, comfy: 5 }
@@ -158,6 +159,54 @@ function App() {
     saveSheetSettings({ ...(settings || {}), team, side, tweaks, coverageLab: next })
   const setTrendsCfg = (next) =>
     saveSheetSettings({ ...(settings || {}), team, side, tweaks, trends: next })
+
+  // Package Forge → Coverage Lab: open the shown-vs-played comparison.
+  const studyInLab = (lab) =>
+    saveSheetSettings({
+      ...(settings || {}),
+      team,
+      side,
+      tweaks,
+      view: 'coverage',
+      coverageLab: {
+        ...(coverageLab || {}),
+        mode: 'compare',
+        coverage: lab.played,
+        compareWith: lab.shown,
+        formation: lab.formation,
+        concept: lab.concept,
+      },
+    })
+
+  // Package Forge → call sheet: the package's base call lands in a block of
+  // its own game's sheet, with the macro named in the coaching note.
+  const addPackageToSheet = (pkg, situationId) => {
+    const byGame = sheetRow?.byGame || {}
+    const gameSheet = byGame[pkg.game] ?? { offense: {}, defense: {} }
+    const cur = gameSheet[pkg.side] || {}
+    const list = cur[situationId] || []
+    const sit = SITUATIONS[pkg.side].find((s) => s.id === situationId)
+    if (list.some((p) => p.playId === pkg.base.playId)) {
+      showToast('Already in ' + (sit?.name || 'that block'), sit?.color)
+      return
+    }
+    const play = {
+      playId: pkg.base.playId,
+      name: pkg.base.name,
+      type: pkg.base.type,
+      formation: pkg.base.formation,
+      playbook: pkg.playbook,
+      note: `Macro: ${pkg.name}. ${pkg.tagline || ''}`.trim(),
+    }
+    saveSheetAssignments({
+      ...(sheetRow || {}),
+      byGame: {
+        ...byGame,
+        [pkg.game]: { ...gameSheet, [pkg.side]: { ...cur, [situationId]: [...list, play] } },
+      },
+    })
+    showToast(`${pkg.name} added to ${sit?.name || 'sheet'}`, sit?.color)
+  }
 
   const openDrawer = (situationId) => {
     setTargetId(situationId || situations[0].id)
@@ -308,6 +357,12 @@ function App() {
           Scouting
         </button>
         <button
+          className={'view-tab' + (view === 'packages' ? ' view-tab--on' : '')}
+          onClick={() => setView('packages')}
+        >
+          Packages
+        </button>
+        <button
           className={'view-tab' + (view === 'trends' ? ' view-tab--on' : '')}
           onClick={() => setView('trends')}
         >
@@ -322,13 +377,14 @@ function App() {
       </div>
 
       {/* The Coverage Lab is defense-only; Trends, Skills and Personnel span
-          both sides (Personnel carries its own side filter), so the
-          offense/defense tabs would be a no-op on those views. */}
+          both sides (Personnel and Packages carry their own side filter), so
+          the offense/defense tabs would be a no-op on those views. */}
       {view !== 'coverage' &&
         view !== 'trends' &&
         view !== 'skills' &&
         view !== 'personnel' &&
-        view !== 'scouting' && (
+        view !== 'scouting' &&
+        view !== 'packages' && (
       <div className="sides">
         <button
           className={
@@ -384,6 +440,14 @@ function App() {
         <TrendsBoard game={game} trendsCfg={trendsCfg} setTrendsCfg={setTrendsCfg} />
       ) : view === 'skills' ? (
         <SkillsLab game={game} />
+      ) : view === 'packages' ? (
+        <PackageForge
+          game={game}
+          playbooks={playbooks}
+          loading={pbLoading}
+          onAddToSheet={addPackageToSheet}
+          onStudy={studyInLab}
+        />
       ) : view === 'scouting' ? (
         <ScoutingRoom />
       ) : view === 'personnel' ? (

@@ -156,6 +156,30 @@ db.version(11).stores({
   gameDebriefs: 'id, playedAt, game, mode'
 });
 
+// Version 12: Package Forge — Kenny's own custom adjustment packages
+// (macroPackages, same shape as src/data/packages-*.js with custom: true) and
+// one arsenal row per game holding which package sits in which macro slot
+// and whether it is one of the 10 active: { id: <game>, slots: { [pkgId]:
+// { slot, active } }, updatedAt }. Curated packages are static data; only
+// their slot and active flag are ever persisted.
+db.version(12).stores({
+  myPlays: '++id, playId, playbook, formationGroup, formation, playName, playType, side, tags, notes, rating, addedAt',
+  gameSessions: '++id, opponent, date, result, notes',
+  playPerformance: '++id, sessionId, playId, callCount, successCount, yardsGained, notes',
+  gameContext: 'id',
+  sheetAssignments: 'id',
+  sheetSettings: 'id',
+  formations: 'id, side, name, updatedAt',
+  setupChecks: 'id',
+  callSheets: 'id, name, game, updatedAt',
+  skillAssessments: 'id, createdAt',
+  labPlans: 'id, weekOf',
+  personnelCharts: 'id, planId, game, updatedAt',
+  gameDebriefs: 'id, playedAt, game, mode',
+  macroPackages: 'id, game, side, updatedAt',
+  macroArsenal: 'id'
+});
+
 // Sheet assignments helpers — fresh-object factories so the module-level
 // defaults are never aliased into the live React state.
 //
@@ -579,4 +603,40 @@ export async function ensureFormationsSeeded() {
   const count = await db.formations.count();
   if (count > 0) return;
   await db.formations.bulkPut(starterFormations());
+}
+
+// ── Package Forge ─────────────────────────────────────────────────────────
+export async function getMacroPackages(game) {
+  return db.macroPackages.where('game').equals(game).toArray();
+}
+
+export async function saveMacroPackage(pkg) {
+  const row = { ...pkg, custom: true, updatedAt: Date.now() };
+  await db.macroPackages.put(row);
+  return row;
+}
+
+// Deleting a package also frees its macro slot.
+export async function deleteMacroPackage(pkg) {
+  await db.transaction('rw', db.macroPackages, db.macroArsenal, async () => {
+    await db.macroPackages.delete(pkg.id);
+    const row = await db.macroArsenal.get(pkg.game);
+    if (row?.slots?.[pkg.id]) {
+      const slots = { ...row.slots };
+      delete slots[pkg.id];
+      await db.macroArsenal.put({ ...row, slots, updatedAt: Date.now() });
+    }
+  });
+}
+
+export async function getMacroArsenal(game) {
+  return (await db.macroArsenal.get(game)) ?? { id: game, slots: {} };
+}
+
+// patch: { slot?, active? }; slot: null takes the package out of the arsenal.
+export async function saveMacroSlot(game, pkgId, patch) {
+  const row = (await db.macroArsenal.get(game)) ?? { id: game, slots: {} };
+  const next = { ...(row.slots[pkgId] || {}), ...patch };
+  const slots = { ...row.slots, [pkgId]: next };
+  await db.macroArsenal.put({ ...row, slots, updatedAt: Date.now() });
 }
