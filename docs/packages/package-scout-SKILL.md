@@ -78,15 +78,27 @@ gate. Default FAIL.
   A two-move sequence, not a one-shot trick. "Unbeatable" is not the bar.
 - **Offense also:** no `flip-fragile` warning.
 
-**Play art rule (G2/G5).** huddle.gg ships play names only. Pull real
-assignments and route shapes from madden.tools formation pages
-(`https://madden.tools/playbooks/formation/<group>/<formation>/<play>`) and
-quote them exactly. Anything unconfirmed is tagged `read`, stated as a
-one-sentence dependency, and falsified by a practice rep. A load-bearing
-claim that contradicts the cited page is an automatic FAIL; in the first run
-this caught an invented built-in spy, a mirrored whip route and a wrong
-down-lineman count. Prefer programming a job with the macro (ind-spy,
-ind-blitz, ind-zone) over assuming the play art does it.
+**Play art rule (G2/G5).** huddle.gg ships play names only. Real M27 play
+art for the team's own book is on civil.gg: the team formation grid pages,
+`https://www.civil.gg/playbooks/team/nfl/defense/<team>/<group>/<formation>`
+(and `/offense/`), draw every play in the formation with its title under the
+tile. The art is an image, so read it in the browser: scroll the tile into
+view and zoom it. Do not trust direct play URLs
+(`.../<formation>/<play>`): the single-page app often renders a stale play,
+so always confirm the title under the tile. Opponent calls not in Kenny's book
+are on `https://www.civil.gg/playbooks/madden/plays/<group>/<formation>/<play>`;
+check the title there too. Write what the art shows into a shared
+`ART.md` (offense-left/right, depths, who rushes, who drops where) and give
+it to builders and critics, since subagents cannot see the images. The art
+never names players, so which named player is in which slot stays `read`.
+madden.tools text pages are a secondary source. Anything unconfirmed is
+tagged `read`, stated as a dependency, and falsified by a practice rep. A
+load-bearing claim that contradicts the art is an automatic FAIL; in the
+first run the art overturned a "fired corner leaves the flat" premise (DB
+Fire 2 plays cloud corners), a pass-strength roll (the Sky safety is fixed),
+and a route swap that deleted the one route that exploited the hover. Prefer
+programming a job with the macro (ind-spy, ind-blitz, ind-zone, hot routes on
+TE/HB/WR3) over assuming the play art does it.
 
 "Base call unused" means no package in the arsenal already uses that
 `base.playId`. G6 means analyzePackage shows no `objective-position` or
@@ -108,7 +120,7 @@ including `userObjectives`, `practice: [{ setup, verify }]` (three) and
 the repo. It runs G1 on its own file before handing back.
 
 **Critic wave.** One Explore agent per package, on a different model from
-the builders. Blind: the critic gets the artifact and the bar only, no
+the builders. Blind: the critic gets the artifact, the bar and ART.md only, no
 builder notes, no chat history. It returns PASS or FAIL per gate with one
 line of evidence each, defaulting to FAIL when it cannot verify. On any FAIL
 it writes exactly one revision request: the gate, the line, what would pass.
