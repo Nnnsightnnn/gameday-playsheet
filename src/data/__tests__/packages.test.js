@@ -6,7 +6,7 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { PACKAGES } from '../packages'
 import { buildCatalog, analyzePackage, arsenalChecks, resolveArsenal, disguiseScore, countOffense } from '../../lib/packages/engine'
-import { adjustmentById, DEF_POSITIONS, OFF_POSITIONS } from '../../lib/packages/vocab'
+import { adjustmentById, DEF_POSITIONS, OFF_POSITIONS, SHELL_OF_COVERAGE_SHELL } from '../../lib/packages/vocab'
 import { threatById } from '../../lib/packages/metas'
 import { COVERAGES } from '../../lib/coverage/coverages'
 import { FORMATIONS } from '../../lib/coverage/formations'
@@ -75,7 +75,9 @@ describe.each(PACKAGES)('package: $name', (pkg) => {
     for (const a of pkg.adjustments) {
       const def = adjustmentById(a.adj)
       expect(def, a.adj).toBeTruthy()
+      // curated data is written in the current vocabulary, never via an alias
       expect(def.options).toContain(a.value)
+      if (def.game) expect(def.game).toBe(pkg.game)
       expect(CONFIDENCE[a.conf], `${a.adj} conf`).toBeTruthy()
       expect(a.why.length, a.adj).toBeGreaterThan(30)
       if (a.target) {
@@ -123,8 +125,16 @@ describe('defensive packages are real disguises', () => {
     const g = PACKAGES.find((p) => p.id === 'falcons-pkg-ghost-zero')
     expect(g.look.rush).toBe(6)
     expect(g.truth.rush).toBe(4)
-    const hooks = g.adjustments.filter((a) => a.adj === 'ind-zone' && a.value === 'Hook/Curl')
+    const hooks = g.adjustments.filter((a) => a.adj === 'ind-zone' && a.value === 'Hook Curl')
     expect(hooks.length).toBeGreaterThanOrEqual(2)
+  })
+
+  // The shell they are meant to see has to be in the macro, and has to be
+  // the shell the package says it shows.
+  it.each(def)('$name programs the Coverage Shell its look describes', (pkg) => {
+    const shells = pkg.adjustments.filter((a) => a.adj === 'coverage-shell')
+    expect(shells).toHaveLength(1)
+    expect(SHELL_OF_COVERAGE_SHELL[shells[0].value]).toBe(pkg.look.shell)
   })
 })
 
@@ -144,5 +154,27 @@ describe('shipped arsenal', () => {
       const list = PACKAGES.filter((p) => p.game === game)
       expect(arsenalChecks(list, resolveArsenal(list))).toEqual([])
     }
+  })
+})
+
+// Gauntlet packages carry a counter-sequence (G9) and practice reps (G8):
+// every sequence call is a real play from the same look, and the reps exist.
+describe.each(PACKAGES.filter((p) => p.gauntlet))('gauntlet package: $name', (pkg) => {
+  const catalog = catalogFor(pkg.game)
+  it('every counter-sequence call shares the base formation', () => {
+    expect(pkg.sequence.length).toBeGreaterThanOrEqual(2)
+    for (const s of pkg.sequence) {
+      const c = catalog.get(s.playId)
+      expect(c, s.playId).toBeTruthy()
+      expect(c.formation, s.playId).toBe(pkg.base.formation)
+      expect(s.if.length).toBeGreaterThan(10)
+    }
+  })
+  it('has three practice reps that say what to verify', () => {
+    expect(pkg.practice).toHaveLength(3)
+    for (const r of pkg.practice) expect(r.verify.length).toBeGreaterThan(30)
+  })
+  it('names a structured user objective', () => {
+    expect(pkg.userObjectives.length).toBeGreaterThan(0)
   })
 })

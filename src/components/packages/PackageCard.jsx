@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { threatById } from '../../lib/packages/metas'
 import { recipeText, MACRO_CAP } from '../../lib/packages/engine'
 import { SHELLS } from '../../lib/packages/vocab'
-import { ShellGlyph, DisguiseMeter, ChecksList, Conf } from './PackageBits'
+import { ShellGlyph, DisguiseMeter, ChecksList, Conf, UserObjectivesView } from './PackageBits'
 
 const shellName = (n) => SHELLS.find((s) => s.id === n)?.label ?? '—'
 
@@ -167,12 +167,14 @@ export default function PackageCard({
             </li>
           ))}
         </ol>
-        {isDef && pkg.user && (
-          <p className="pkg-user">
-            <span>User</span> {pkg.user}
-          </p>
-        )}
       </section>
+
+      {(!!pkg.userObjectives?.length || pkg.user) && (
+        <section className="pkg-sec">
+          <h3 className="pkg-h3">Your user</h3>
+          <UserObjectivesView rows={pkg.userObjectives} note={pkg.user} />
+        </section>
+      )}
 
       {!!pkg.twins?.length && (
         <section className="pkg-sec">
@@ -213,6 +215,33 @@ export default function PackageCard({
         <section className="pkg-sec">
           <h3 className="pkg-h3">Tells and rules</h3>
           <ul className="pkg-bullets">{pkg.tells.map((t, i) => <li key={i}>{t}</li>)}</ul>
+        </section>
+      )}
+
+      {!!pkg.sequence?.length && (
+        <section className="pkg-sec">
+          <h3 className="pkg-h3">When they adjust</h3>
+          <ol className="pkg-seq">
+            {pkg.sequence.map((s, i) => (
+              <li key={i}>
+                <span className="pkg-seq__if">{s.if}</span>
+                <span className="pkg-seq__call">{s.call}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+      {!!pkg.practice?.length && (
+        <section className="pkg-sec">
+          <h3 className="pkg-h3">Prove it in practice</h3>
+          <ol className="pkg-practice">
+            {pkg.practice.map((r, i) => (
+              <li key={i}>
+                {r.setup && <span className="pkg-practice__setup">{r.setup}</span>}
+                <span>{r.verify}</span>
+              </li>
+            ))}
+          </ol>
         </section>
       )}
 

@@ -7,7 +7,7 @@ import { analyzePackage, formationPlays } from '../../lib/packages/engine'
 import { threatsFor } from '../../lib/packages/metas'
 import { SHELLS } from '../../lib/packages/vocab'
 import AdjustmentStack from './AdjustmentStack'
-import { DisguiseMeter, ChecksList } from './PackageBits'
+import { DisguiseMeter, ChecksList, UserObjectivesEditor } from './PackageBits'
 
 const toLines = (s) => s.split('\n').map((x) => x.trim()).filter(Boolean)
 
@@ -30,7 +30,8 @@ function LinesField({ label, value, onChange, placeholder }) {
 }
 
 export default function PackageEditor({ initial, playbooks, catalog, onSave, onCancel }) {
-  const [pkg, setPkg] = useState(initial)
+  // Blank and older saved packages carry no userObjectives; treat as none.
+  const [pkg, setPkg] = useState(() => ({ ...initial, userObjectives: initial.userObjectives || [] }))
   const set = (patch) => setPkg((p) => ({ ...p, ...patch }))
   const setLook = (patch) => set({ look: { ...pkg.look, ...patch } })
   const setTruth = (patch) => set({ truth: { ...pkg.truth, ...patch } })
@@ -208,12 +209,17 @@ export default function PackageEditor({ initial, playbooks, catalog, onSave, onC
         <h3 className="pkg-h3">Adjustment stack</h3>
         <AdjustmentStack side={pkg.side} rows={pkg.adjustments} onChange={(adjustments) => set({ adjustments })} />
 
-        {isDef && (
-          <label className="pkg-field">
-            <span>Who you user, and his job</span>
-            <input value={pkg.user} onChange={(e) => set({ user: e.target.value })} placeholder="FS Bates. Bail to the deep middle at the snap." />
-          </label>
-        )}
+        <h3 className="pkg-h3">User objectives</h3>
+        <p className="pkg-hint">One player, one job per phase. Each objective shows what it takes away and what it hands back.</p>
+        <UserObjectivesEditor side={pkg.side} rows={pkg.userObjectives} onChange={(userObjectives) => set({ userObjectives })} />
+        <label className="pkg-field pkg-uobj__notes">
+          <span>User notes</span>
+          <input
+            value={pkg.user || ''}
+            onChange={(e) => set({ user: e.target.value })}
+            placeholder={isDef ? 'FS Bates. Bail to the deep middle at the snap.' : 'User the slot on the dig; high-point anything thrown late.'}
+          />
+        </label>
 
         <div className="pkg-grid2">
           <LinesField label="Beats (one per line)" value={pkg.beats} onChange={(beats) => set({ beats })} />

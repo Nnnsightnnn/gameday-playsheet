@@ -21,12 +21,33 @@
 // Offensive packages use look.picture + truth.blockers/releases instead of
 // shells; the engine derives releases from the block adjustments.
 
-import { adjustmentById, MENUS, FLIP_FRAGILE, SHELLS } from './vocab.js'
+import {
+  adjustmentById,
+  MENUS,
+  FLIP_FRAGILE,
+  SHELLS,
+  HOT_ROUTES_BY_ALIGNMENT,
+  HOT_ALIGNMENTS_FOR,
+  isShellAdjustment,
+  shellOfAdjustment,
+  normalizeAdjustments,
+} from './vocab.js'
 import { threatById, threatsFor } from './metas.js'
+import { checkUserObjectives } from './userObjectives.js'
 
 export const MACRO_CAP = { built: 20, active: 10 }
 
 const shellLabel = (n) => SHELLS.find((s) => s.id === n)?.short ?? '?'
+
+// Every read goes through the vocabulary's legacy aliases, so a package saved
+// before the research pass ("Chip then Release", "Hook/Curl") still counts.
+const adjsOf = (pkg) => normalizeAdjustments(pkg.adjustments)
+
+// The shell the macro actually programs, when it has a Coverage Shell step.
+export function programmedShell(pkg) {
+  const a = adjsOf(pkg).find((x) => isShellAdjustment(x.adj))
+  return a ? shellOfAdjustment(a) : undefined
+}
 
 // ── disguise ──────────────────────────────────────────────────────────────
 // How far the pre-snap picture is from the post-snap truth, 0-100. Shell is
@@ -38,13 +59,17 @@ export function disguiseScore(pkg) {
   if (pkg.side !== 'defense') return offenseDisguise(pkg)
   const look = pkg.look || {}
   const truth = pkg.truth || {}
-  const shellDelta = Math.abs((look.shell ?? 0) - (truth.shell ?? 0))
+  const adjs = adjsOf(pkg)
+  // A programmed Coverage Shell is what they actually see; look.shell is the
+  // intent, and checkPackage errors when the two disagree.
+  const shown = programmedShell(pkg) ?? look.shell ?? 0
+  const shellDelta = Math.abs(shown - (truth.shell ?? 0))
   const rushDelta = Math.abs((look.rush ?? 4) - (truth.rush ?? 4))
   const pressBail = look.press && (truth.deep ?? 0) >= 2 ? 13 : 0
   // A shell change that also rotates (roll or an offset midpoint) moves the
   // help after the snap, which is the part a pre-snap read cannot see.
   const rotates = shellDelta > 0 &&
-    (pkg.adjustments || []).some((a) => a.adj === 'roll' || a.adj === 'safety-midpoint')
+    adjs.some((a) => a.adj === 'roll' || a.adj === 'safety-midpoint')
   const score = Math.min(
     100,
     shellDelta * 25 + Math.min(rushDelta, 3) * 12 + pressBail + (rotates ? 15 : 0),
@@ -76,17 +101,27 @@ export function countDefense(pkg) {
   return { rush, deep, droppers, under: droppers - deep }
 }
 
+// Offense, counted against pressure:
+//   Pass Block          a blocker, not a receiver
+//   Max Protect         every back and attached TE stays in; counted as
+//                       truth.maxProtectIn (default 2) and it absorbs any
+//                       Pass Block rows, which are the same backs
+//   Block and Release   a blocker if they come, a late receiver if not, so
+//                       it adds a blocker without taking away a release
+//   Chip (and Release)  a blocker for the first beat only
 export function countOffense(pkg) {
-  const blocksIn = (pkg.adjustments || []).filter(
-    (a) => a.adj === 'ind-block' && a.value === 'Pass Block',
-  ).length
-  const chips = (pkg.adjustments || []).filter(
-    (a) => a.adj === 'ind-block' && a.value === 'Chip then Release',
-  ).length
+  const adjs = adjsOf(pkg)
+  const is = (id, value) => (a) => a.adj === id && (value == null || a.value === value)
+  const passBlocks = adjs.filter(is('ind-block', 'Pass Block')).length
+  const maxProtect = adjs.some(is('max-protect', 'On'))
+  const stayIn = maxProtect ? Math.max(pkg.truth?.maxProtectIn ?? 2, passBlocks) : passBlocks
+  const blockRelease = adjs.filter(is('ind-block', 'Block and Release')).length
+  const chips =
+    adjs.filter(is('ind-block', 'Chip and Release')).length + adjs.filter(is('chip-block')).length
   const baseBlockers = pkg.truth?.blockers ?? 5
-  const blockers = baseBlockers + blocksIn
-  const releases = Math.max(0, (pkg.truth?.releases ?? 5) - blocksIn)
-  return { blockers, releases, chips, firstBeat: blockers + chips }
+  const blockers = baseBlockers + stayIn + blockRelease
+  const releases = Math.max(0, (pkg.truth?.releases ?? 5) - stayIn)
+  return { blockers, releases, chips, blockRelease, maxProtect, firstBeat: blockers + chips }
 }
 
 // ── checks ────────────────────────────────────────────────────────────────
@@ -95,7 +130,7 @@ export function countOffense(pkg) {
 export function checkPackage(pkg, catalog) {
   const out = []
   const push = (level, code, msg) => out.push({ level, code, msg })
-  const adjs = pkg.adjustments || []
+  const adjs = adjsOf(pkg)
 
   // vocabulary + duplicate targets
   const seenTarget = new Map()
@@ -107,6 +142,8 @@ export function checkPackage(pkg, catalog) {
     }
     if (def.side !== pkg.side)
       push('error', 'wrong-side', `${def.label} is a ${def.side} adjustment on a ${pkg.side} package.`)
+    if (def.game && pkg.game && def.game !== pkg.game)
+      push('error', 'wrong-game', `${def.label} only exists in ${def.game === 'cfb' ? 'CFB 27' : 'Madden 27'}.`)
     if (!def.options.includes(a.value))
       push('error', 'bad-value', `${def.label}: "${a.value}" is not an option.`)
     if (def.target && !a.target)
@@ -155,6 +192,9 @@ export function checkPackage(pkg, catalog) {
   if (pkg.side === 'defense') defenseChecks(pkg, adjs, push)
   else offenseChecks(pkg, adjs, push)
 
+  // who the user is (no-user and the objective checks live in userObjectives)
+  out.push(...checkUserObjectives(pkg))
+
   const manual = adjs.filter((a) => adjustmentById(a.adj)?.macro === false)
   if (manual.length)
     push('info', 'manual-steps', `${manual.length} step${manual.length > 1 ? 's are' : ' is'} set by hand at the line; the macro will not store ${manual.length > 1 ? 'them' : 'it'}.`)
@@ -177,6 +217,19 @@ function defenseChecks(pkg, adjs, push) {
   if (d.score === 0)
     push('warn', 'no-disguise', 'The look matches the call. Fine football, but it teaches them nothing false.')
 
+  // Coverage Shell: the picture has to be programmed, and has to be the one
+  // the package says it shows.
+  const shellAdjs = adjs.filter((a) => isShellAdjustment(a.adj))
+  if (shellAdjs.length > 1)
+    push('error', 'shell-twice', 'Two Coverage Shell steps. A macro stores one shell; the second overwrites the first.')
+  for (const a of shellAdjs) {
+    const n = shellOfAdjustment(a)
+    if (n != null && pkg.look?.shell != null && n !== pkg.look.shell)
+      push('error', 'shell-mismatch', `Coverage Shell ${a.value} shows ${shellLabel(n)}, but the look says ${shellLabel(pkg.look.shell)}. Program the shell you mean them to see.`)
+  }
+  if (!shellAdjs.length && d.shellDelta > 0)
+    push('info', 'no-shell', `The look is ${shellLabel(pkg.look?.shell)} and the call plays ${shellLabel(pkg.truth?.shell)}, but no Coverage Shell step is stored: the shell you want them to see is not programmed.`)
+
   const has = (id, value) => adjs.some((a) => a.adj === id && (value == null || a.value === value))
   if (has('cov-align', 'Press') && !has('cov-leverage'))
     push('warn', 'press-leverage', 'Press with no leverage set. Since TU Sep 16 a press corner shaded the wrong way loses the release.')
@@ -184,7 +237,6 @@ function defenseChecks(pkg, adjs, push) {
     push('warn', 'qb-escape', 'Built for the QB run but nobody contains or spies.')
   if (has('contain-all') || has('ind-contain'))
     push('info', 'contain-now', 'Since TU Sep 3 tackles pick up contain rushers: contain keeps him in the pocket, it will not win on its own.')
-  if (!pkg.user) push('warn', 'no-user', 'No user assignment. Decide who you are before the snap, not after.')
 }
 
 function offenseChecks(pkg, adjs, push) {
@@ -204,6 +256,15 @@ function offenseChecks(pkg, adjs, push) {
     push('warn', 'flip-fragile', `${fragile.map((a) => a.target).join(', ')} adjusted in a macro. Macros bind to the depth chart, so a flipped formation sends the route to the wrong side. Macro TE, HB and WR3; set WR1/WR2 by hand.`)
   if (adjs.some((a) => a.adj === 'block-style' && a.value === 'Aggressive'))
     push('warn', 'holding', 'Aggressive Blocking draws real holding since TU Sep 3.')
+  // Hot route menus differ by alignment: a Sluggo is not on the back's menu.
+  for (const a of adjs) {
+    if (a.adj !== 'hot-route' || !a.target) continue
+    const aligns = HOT_ALIGNMENTS_FOR[a.target]
+    if (aligns && !aligns.some((k) => HOT_ROUTES_BY_ALIGNMENT[k].includes(a.value)))
+      push('warn', 'hot-alignment', `${a.target} does not get ${a.value} from where he lines up. Check the ${aligns.join(' / ')} hot route menu.`)
+  }
+  if (adjs.some((a) => a.adj === 'id-mike') && adjs.some((a) => a.adj === 'protect' && a.value === 'Empty'))
+    push('warn', 'mike-empty', 'ID the Mike does nothing in Empty protection: the back is releasing, so nobody owns the Mike.')
 }
 
 // ── recipe ────────────────────────────────────────────────────────────────
@@ -211,7 +272,7 @@ function offenseChecks(pkg, adjs, push) {
 // lists them. Manual-at-the-line steps come last and are flagged, so the
 // macro screen shows exactly what the macro holds.
 export function macroRecipe(pkg) {
-  return (pkg.adjustments || [])
+  return adjsOf(pkg)
     .map((a, i) => {
       const def = adjustmentById(a.adj)
       const menu = MENUS[def?.menu] || MENUS.line
