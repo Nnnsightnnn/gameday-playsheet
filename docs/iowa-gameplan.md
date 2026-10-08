@@ -1,8 +1,39 @@
 # Iowa Game Plan — CFB 27 Online H2H
 
-*Built Aug 2026 from current meta research (post-1.006 patch). Load it in-app:
+*Built Aug 2026 from current meta research (post-1.006 patch); refreshed Oct 8, 2026 for TU5 (v1.014). Load it in-app:
 Tweaks panel → Game plan → Load. Every play on the sheet carries its coaching
 note. This doc is the layer the sheet can't hold: doctrine, protocol, counters.*
+
+---
+
+## Patch facts since 1.006 (refreshed Oct 8, 2026 · current: TU5, v1.014)
+
+- **TU3 (Aug 6):** Cover 3 Match checks retuned vs 4-strong (weak seam-flat
+  defender plays tighter), and hook/curl defenders no longer play skate rules
+  vs bunch once **Underneath** or **Over The Top** is set. Untarget User
+  Defender **no longer works on run plays**. Defenders win more jump balls,
+  the formation-shift trick that stuffed 4-5 receivers into heavy sets is
+  closed, stunts no longer leave rushers unblocked. New plays went to other
+  books (Odd Ghost blitzes, 3-3 Wide Jack Cover 4/6/9 Zone, Press Quarters,
+  Under Wide in 4-2-5 Zone Pressure); **4-2-5 Man Pressure** got none, so nothing on this
+  sheet was added or removed.
+- **TU4 (Sep 3):** shading Man Press the wrong way vs the release costs more;
+  Combo no longer turns into Lock from press; defensive hot routes now work
+  on man-check (Combo) defenders; Cloud Flats honor your drop depth; your
+  coverage shell holds when you leave the play call. Receivers keep more
+  separation after winning a jostle.
+- **TU4.5 (Sep 22) / TU5 (Oct 1):** QB spin behind the line nerfed; run-action
+  blocking picks up threats better; custom contain calls respected. The DL
+  no longer auto pinches or spreads when they audible into or out of QB
+  sneak, so read the line again after their audible. QB slide super-dive at
+  the sticks fixed. Nothing touched blitzes, sims, tempo, RPOs or the sneak
+  meter.
+- **On this sheet:** Cover 3 Match got better vs 4-strong (vs10 call) and
+  needs Underneath vs bunch in the red zone. Mike Blitz 0 is still the money
+  blitz, but Cover 0 eats the TU4 press tax hardest: no guess shades, press
+  only where you've read the release. Combo holding in press makes the
+  Combo check vs bunch usable again. Iowa's book picked up six Jet plays
+  out of Singleback Slot on cfb.fan; not added, the four pictures stay.
 
 ---
 

@@ -1,6 +1,12 @@
 // Iowa (CFB 27) offense + 4-2-5 Man Pressure defense, built from the
 // Aug 2026 online H2H meta (post-1.006). Every playId validated against
 // public/data/playbooks-cfb27.json (see validation-report.txt).
+// 2026-10-08: refreshed for TU5 (v1.014, Oct 1) after a TU3-aware catalog
+// re-scrape. TU3 retuned Cover 3 Match checks vs 4-strong and fixed its
+// bunch pass-offs (with Underneath/OTT set); TU4 taxed wrong-way press
+// shading, stopped Combo turning into Lock in press, allowed hot routes on
+// man-check defenders, and made Cloud Flats honor drop depth. Man Pressure
+// stays home: no plays removed; Cover 0 notes now say don't guess-shade.
 //
 // Doctrine (see docs/iowa-gameplan.md):
 // - Underdog ball: shorten the game, bleed clock, take the checkdown.
@@ -102,7 +108,7 @@ export const IOWA_PLAN = {
     ],
     vs10: [
       { playId: 'cfb27:4-2-5-man-pressure-def:dime-3--2:cover-4-palms', name: 'COVER 4 PALMS', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Traps smash and corner-route spam' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-double-mug:cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Show 6, drop out; wrecks his hot read' },
+      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-double-mug:cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Show 6, drop out; TU3 fixed its 4-strong checks' },
       { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:nickel-blitz-3', name: 'NICKEL BLITZ 3', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Slot heat with a 3-deep net' },
       { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:cover-1-robber', name: 'COVER 1 ROBBER', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Robber sits at the sticks' },
     ],
@@ -131,7 +137,7 @@ export const IOWA_PLAN = {
       { playId: 'cfb27:4-2-5-man-pressure-def:dime-3--2:cover-6-willie', name: 'COVER 6 WILLIE', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Vs boundary-iso spam' },
     ],
     pressure: [
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:mike-blitz-0', name: 'MIKE BLITZ 0', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Money blitz this cycle; needs run answers' },
+      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:mike-blitz-0', name: 'MIKE BLITZ 0', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Still the money blitz; no guess press shades' },
       { playId: 'cfb27:4-2-5-man-pressure-def:nickel-double-mug:mid-blitz', name: 'MID BLITZ', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Meta nano: pinch DL, mug LB bails' },
       { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:3-sam-will-blitz', name: '3 SAM WILL BLITZ', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Overload look, 3-deep net; safest heat' },
       { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:olb-blitz-1', name: 'OLB BLITZ 1', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Man-free edge when Mike 0 gets scouted' },
@@ -140,7 +146,7 @@ export const IOWA_PLAN = {
       { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:cover-4-show-2', name: 'COVER 4 SHOW 2', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Match the corner/slant windows; no islands' },
       { playId: 'cfb27:4-2-5-man-pressure-def:4--2--5-even:cover-2-man', name: 'COVER 2 MAN', type: 'pass', formation: '4-2-5 Even', playbook: DEF, note: 'Vs fade / slant spam' },
       { playId: 'cfb27:4-2-5-man-pressure-def:nickel-3--3-cub:cover-1-robber', name: 'COVER 1 ROBBER', type: 'pass', formation: 'Nickel 3-3 Cub', playbook: DEF, note: 'Robber takes the backside slant' },
-      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-double-mug:cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Passes off the bunch traffic' },
+      { playId: 'cfb27:4-2-5-man-pressure-def:nickel-double-mug:cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Vs bunch: set Underneath (TU3 made it hold)' },
     ],
     goalline: [
       { playId: 'cfb27:4-2-5-man-pressure-def:goal-line-6--2:60-pinch', name: '60 PINCH', type: 'pass', formation: 'Goal Line 6-2', playbook: DEF, note: 'Vs sneak / dive' },

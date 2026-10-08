@@ -14,6 +14,10 @@
 // one look to lab. Added zone faces + sim pressures from the SAME pictures
 // (Double Mug sound fits, Tite trap, sims from Mint/Mug), boot/quick-out
 // answers vs empty and 12, RZ DT drop, GL man for after-the-stuff downs.
+// 2026-10-08: refreshed for TU5 (v1.014, Oct 1) after a TU3-aware catalog
+// re-scrape. TU3 (Aug 6) fixed Cover 3 Match skate rules vs bunch once
+// Underneath/Over The Top is set and retuned its checks vs 4-strong; TU4
+// (Sep 3) taxed wrong-way press shading. No plays removed; notes updated.
 //
 // Doctrine (see docs/olemiss-gameplan.md):
 // - Underdog ball: shorten the game, bleed clock, take the checkdown.
@@ -157,7 +161,7 @@ export const OLE_MISS_PLAN = {
     ],
     pressure: [
       { playId: 'cfb27:4-2-5-def:nickel-double-mug:mid-blitz-0', name: 'MID BLITZ 0', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Meta nano: pinch DL, mug LB bails' },
-      { playId: 'cfb27:4-2-5-def:3--3--5-penny:mike-blitz-0', name: 'MIKE BLITZ 0', type: 'pass', formation: '3-3-5 Penny', playbook: DEF, note: 'Best confusion pressure this cycle' },
+      { playId: 'cfb27:4-2-5-def:3--3--5-penny:mike-blitz-0', name: 'MIKE BLITZ 0', type: 'pass', formation: '3-3-5 Penny', playbook: DEF, note: 'Confusion heat; no guess press shades (TU4)' },
       { playId: 'cfb27:4-2-5-def:nickel-double-mug:buck-zone-blitz', name: 'BUCK ZONE BLITZ', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Low-risk heat: 3-deep behind it' },
       { playId: 'cfb27:4-2-5-def:dime-3--2:edge-blitz-3', name: 'EDGE BLITZ 3', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Obvious-pass edge heat, corner safe' },
       { playId: 'cfb27:4-2-5-def:nickel-3--3-mint:tampa-sim-pressure', name: 'TAMPA SIM PRESSURE', type: 'pass', formation: 'Nickel 3-3 Mint', playbook: DEF, note: 'Shows heat, rushes 4; eats the hot throw' },
@@ -165,7 +169,7 @@ export const OLE_MISS_PLAN = {
     ],
     redzone: [
       { playId: 'cfb27:4-2-5-def:4--2--5-even:cover-2-man', name: 'COVER 2 MAN', type: 'pass', formation: '4-2-5 Even', playbook: DEF, note: 'Vs fade / slant spam' },
-      { playId: 'cfb27:4-2-5-def:nickel-double-mug:cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Passes off the bunch traffic' },
+      { playId: 'cfb27:4-2-5-def:nickel-double-mug:cover-3-match', name: 'COVER 3 MATCH', type: 'pass', formation: 'Nickel Double Mug', playbook: DEF, note: 'Vs bunch: set Underneath (TU3 made it hold)' },
       { playId: 'cfb27:4-2-5-def:dime-3--2:cover-1-robber-press', name: 'COVER 1 ROBBER PRESS', type: 'pass', formation: 'Dime 3-2', playbook: DEF, note: 'Robber sits in the slant window' },
       { playId: 'cfb27:4-2-5-def:nickel-load-dbl-mug:redzone-dt-drop', name: 'REDZONE DT DROP', type: 'pass', formation: 'Nickel Load Dbl Mug', playbook: DEF, note: 'DT sits in the slant lane; RZ purpose-built' },
     ],

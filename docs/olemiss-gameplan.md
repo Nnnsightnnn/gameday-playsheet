@@ -1,8 +1,37 @@
 # Ole Miss Game Plan — CFB 27 Online H2H
 
-*Built Aug 2026 from current meta research (post-1.006 patch). Load it in-app:
+*Built Aug 2026 from current meta research (post-1.006 patch); refreshed Oct 8, 2026 for TU5 (v1.014). Load it in-app:
 Tweaks panel → Game plan → Load. Every play on the sheet carries its coaching
 note. This doc is the layer the sheet can't hold: doctrine, protocol, counters.*
+
+---
+
+## Patch facts since 1.006 (refreshed Oct 8, 2026 · current: TU5, v1.014)
+
+- **TU3 (Aug 6):** Cover 3 Match checks retuned vs 4-strong (weak seam-flat
+  defender plays tighter), and hook/curl defenders no longer play skate rules
+  vs bunch once **Underneath** or **Over The Top** is set. Untarget User
+  Defender **no longer works on run plays**. Defenders win more jump balls,
+  the formation-shift trick that stuffed 4-5 receivers into heavy sets is
+  closed, stunts no longer leave rushers unblocked. New plays went to other
+  books (Odd Ghost blitzes, 3-3 Wide Jack Cover 4/6/9 Zone, Press Quarters,
+  Under Wide in 4-2-5 Zone Pressure); **4-2-5** got none, so nothing on this
+  sheet was added or removed.
+- **TU4 (Sep 3):** shading Man Press the wrong way vs the release costs more;
+  Combo no longer turns into Lock from press; defensive hot routes now work
+  on man-check (Combo) defenders; Cloud Flats honor your drop depth; your
+  coverage shell holds when you leave the play call. Receivers keep more
+  separation after winning a jostle.
+- **TU4.5 (Sep 22) / TU5 (Oct 1):** QB spin behind the line nerfed; run-action
+  blocking picks up threats better; custom contain calls respected. The DL
+  no longer auto pinches or spreads when they audible into or out of QB
+  sneak, so read the line again after their audible. QB slide super-dive at
+  the sticks fixed. Nothing touched blitzes, sims, tempo, RPOs or the sneak
+  meter.
+- **On this sheet:** red-zone Cover 3 Match (Double Mug) vs bunch now needs
+  Underneath set to pass off cleanly. Penny Mike Blitz 0 is still in, but
+  never guess a press shade behind it; press only where you've read the
+  release.
 
 ---
 
@@ -305,7 +334,9 @@ menu; the macro system below is how you actually run it in 25 seconds.
 - **Selective press** only where you win the release; never blind-press bunch
   (Combo/Point Combo checks instead). TU 2.5 shrank timing-catch windows in
   tight coverage — correct shade/bracket pays more than ever.
-- **Untarget User Defender: ON** — hides your user from their ID-Mike logic.
+- **Untarget User Defender: ON vs pass only.** Hides your user from their
+  ID-Mike logic. Since TU3 (Aug 6) it no longer applies on run plays; you
+  can still target at the line of scrimmage.
 
 ### The 10-slot macro bank (Kenny's build · PS5)
 
