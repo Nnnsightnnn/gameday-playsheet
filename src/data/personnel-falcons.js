@@ -30,7 +30,7 @@ export const FALCONS_PERSONNEL = {
   team: 'Atlanta Falcons',
   name: 'Falcons — Madden 27 personnel',
   teamOvr: '81 OVR — 83 offense / 78 defense, 19th in the league',
-  updatedAt: '2026-09-09',
+  updatedAt: '2026-10-27',
 
   doctrine: {
     offense:
@@ -684,7 +684,7 @@ export const FALCONS_PERSONNEL = {
       breaks:
         'A corner who cannot press in Madden 27 gives up the release for free, and the route is won at the line before coverage ever matters. Terrell at 95 press is the one piece of this defense that is genuinely above the meta.',
       reads: [
-        { when: 'Their best receiver is running slants and digs', do: 'Inside Shade is exactly this ability — set inside leverage and let 95 press take the inside-breaking route away.' },
+        { when: 'Their best receiver is running slants and digs', do: 'Inside Shade is exactly this ability — set inside leverage and let 95 press take the inside-breaking route away. Since TU Sep 16 a wrong-way press shade costs more, so confirm the inside release before you commit to it.' },
         { when: 'They are motioning to get their WR1 away from him', do: 'They are telling you they respect him. Follow with the matchup, or take the free read — whoever they moved him to is the guy they want.' },
         { when: 'You keep getting beat deep outside', do: 'That is the leverage cost of inside shade. Change to outside leverage or roll a safety over the top.' },
       ],
@@ -980,7 +980,7 @@ export const FALCONS_PERSONNEL = {
       phase: 'Pre-snap read',
       side: 'defense',
       tell: 'Their WR1 is winning inside-breaking routes',
-      fix: 'Set inside leverage on Terrell and use Inside Shade. M27 press is route-aware — the defender now knows a slant wants to win inside. But EA caps this: leverage does not erase a talent gap, and Terrell\'s 95 press is what makes it work.',
+      fix: 'Set inside leverage on Terrell and use Inside Shade. M27 press is route-aware — the defender now knows a slant wants to win inside. But EA caps this: leverage does not erase a talent gap, and Terrell\'s 95 press is what makes it work. TU Sep 16 raised the penalty for shading the wrong way on press: only set Inside Shade once he has shown you the inside release twice. Against a mixed release, play him straight and let 95 press do the work.',
       conf: 'ea',
     },
     {

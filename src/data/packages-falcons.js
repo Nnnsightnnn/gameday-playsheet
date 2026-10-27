@@ -32,7 +32,22 @@
 // Personnel assumptions come from src/data/personnel-falcons.js and the
 // Falcons plan header: Bates (FS, user him deep), Watts (SS, zone not man),
 // Deablo (MIKE, coverage backer), Harris (WILL, PUR 84, the free runner),
-// Clark Phillips III to the slot on man calls.
+// Bowman to the slot on man calls (Clark Phillips III was traded to CHI 8/30).
+//
+// TU Oct 21 (v1.008) check, 2026-10-27: no package needs a new call.
+//   - "Defenders 'Untargeted' by the User will now be completely ignored."
+//     WHIPSAW and VACANCY untarget on purpose, so this makes them do exactly
+//     what they claim: no lineman spends a block on the untargeted backer
+//     (read: EA gives no detail beyond that one line; check in practice).
+//     The flip side is sharper too. If an untargeted man rushes instead of
+//     dropping, nobody but Bijan can touch him. Their "if it happens twice,
+//     remove the untarget rows" rule matters more now, not less.
+//   - Quarters safeties (Pounder, Roll Ring, Roll King, Cover 9) now match
+//     verticals regardless of the underneath man/match calls. Palms is not
+//     on EA's list, so PALM READER is unchanged; the plan now carries a
+//     Cover 9 call (Nickel 2-4 Wide) as the split-field option.
+//   - DBs no longer swap Combo / Point Combo assignments when the receiver
+//     blocks, and (TU Sep 16) Combo no longer turns into Lock when pressed.
 //
 // Honest limits: huddle.gg ships play names, not assignments, so the stock
 // rush count of each base call is a read until it is checked in practice

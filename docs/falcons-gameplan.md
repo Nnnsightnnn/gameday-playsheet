@@ -1,15 +1,43 @@
 # Falcons Game Plan — Madden 27
 
-**Refreshed 2026-08-19** · patch state: TU1 (Aug 10) + Live Content Update (Aug 17)
+**Refreshed 2026-10-27** · patch state: TU v1.008 (Oct 21), plus TU Sep 3 (v1.005) and TU Sep 16 (v1.006)
 Load in-app: Tweaks panel → Game plans → Falcons · Madden 27 → Load.
 
-This is the first refresh against a **real, playable build**. The previous pass (Aug 10)
-was pre-launch lab intel — the game had not shipped. Everything below is checked against
-EA's launch ratings and the two patches that have actually landed.
+This is a patch diff, not a rebuild. The drive scripts, counters, 2-4-5 Over Wide base and
+the ritual are unchanged, because you have reps in them. Three title updates touched the
+rules underneath a handful of calls, and the roster moved under the plan's notes.
 
 ---
 
-## What changed in this refresh
+## What changed on 10/27
+
+**1. Empty protection is manual now.** Since Oct 21, Empty protection no longer picks up
+anyone outside the tackle box unless you ID him. A slot or edge blitzer against Empty walks
+in free. HB SCREEN (Gun Empty Chips Quads), JAILBREAK SLOT SCREEN and MTN EMPTY SMASH Y-POST
+now carry "ID first" notes. See vs Blitz below for how.
+
+**2. The untarget macro was rewritten.** Oct 21 made untargeted defenders "completely
+ignored." That turns untarget from a nudge into a bet. See vs Blitz.
+
+**3. Press shading costs more.** Sep 16 raised the penalty for shading the wrong way on man
+press. GAP PRESS and COVER 2 MAN notes now say shade only to a release you have seen.
+
+**4. Tempo got easier on defense.** Sep 3 made your pre-play adjustments survive no-huddle,
+and Oct 21 closed a hurry-up audible loophole. Watch-list item 2 is resolved.
+
+**5. One new call: COVER 9 ZONE** (Nickel 2-4 Wide) in the vs 12 block. Oct 21 fixed
+Quarters-family safeties (Pounder, Roll Ring, Roll King, Cover 9) so they match verticals
+regardless of the underneath calls. Split-field coverage against play-action is viable now.
+
+**6. Roster names.** Clark Phillips III was traded (8/30, the Dexter deal), Troy Andersen
+released, Jalon Walker is on IR and James Pearce Jr. is suspended. The plan's notes now say
+**Billy Bowman Jr.** for the man slot and **Za'Darius Smith** where they said Walker or
+Pearce. The live depth chart is the personnel sheet (9/9), not the 8/19 notes further down.
+
+No plays or playbooks were added in any TU since the Aug 7 catalog scrape, so every call on
+the sheet still exists.
+
+## What changed on 8/19
 
 **1. The sheet is now drive scripts, not down and distance.** You work a block top to
 bottom instead of hunting by down. Each drive block carries 1–2 core calls plus 1–2 tagged
@@ -35,22 +63,31 @@ That changes the passing doctrine — see below.
 |---|---|---|
 | **Aug 10 — TU1** | Removed an unintended Speed Boost on certain cut moves | If you got run away from in early access, that was it. Fixed. |
 | **Aug 17 — LCU** | **Untarget Defender no longer works on RPO plays**; Buck Sweep handoff warp fixed | This helps you. Blocking a back and untargeting the user defender was the cleanest offensive answer to a user rusher. On RPOs it no longer exists. Still works on normal dropbacks. |
+| **Sep 3 — TU v1.005** | **Pre-play defensive adjustments are now preserved** vs no-huddle and hurry-up, not wiped | Your one tempo adjustment sticks. |
+| **Sep 16 — TU v1.006** | Bigger penalty for **man-press shading the wrong way**; Combo no longer converts to Lock when pressed; user coverage shell respected; Half Slide no longer flips to Full Slide | Shade only to a release you've seen. Shells you set now hold. |
+| **Oct 21 — TU v1.008** | **Empty Protection no longer targets players outside the tackle box unless manually ID'd** | Your empty answers vs blitz need a pre-snap ID or the slot blitzer is free. |
+| | **"Untargeted" defenders are now "completely ignored"** | Untarget is a bet he drops. If he rushes, nobody blocks him. EA gives no further detail. |
+| | Fixed audibling during hurry-up without resetting the defensive package | Closes a tempo loophole. |
+| | **Pounder / Roll Ring / Roll King / Cover 9** safeties now match verticals regardless of underneath man/match | Split-field calls are viable. COVER 9 ZONE added. |
+| | DBs no longer swap Combo / Point Combo assignments when the receiver blocks | Combo calls are trustworthy again. |
 
-**Next updates:** expected around Aug 20 and Sept 9. Neither is an EA commitment.
+Nothing newer than Oct 21 has shipped as of Oct 27. A known post-1.008 issue keeps some players
+out of Online Franchise and Superstar; it does not touch head-to-head.
 
 ### Meta honesty
 
-Madden 27 is six days old. MaddenTurf edited its playbook tier list on **Aug 18** and still
-refused to rank anything, on the record: *"anyone publishing a settled Madden 27 tier list
-this week is guessing."* That is five tournament creators declining to publish.
-
-**No creator has covered 2-4-5 Over Wide at all.** Treat this defense as a hypothesis you
-are testing, not a scheme with community backing. Any "M27 tier list" circulating right now
-is recycled Madden 26 — MaddenTurf's own formation database is dated 2026-03-15.
+The launch-week caveat (nobody would rank anything) is retired; the game is ten weeks old.
+This refresh did **not** re-survey tier lists. It is a patch diff. 2-4-5 Over Wide is still
+your base by choice, not because the community backs it.
 
 ---
 
 ## Do this before you load the plan
+
+> **10/27 roster note.** This section is the 8/19 picture. Phillips (traded), Andersen
+> (released), Walker (IR) and Pearce (suspended) are gone. Man slot is now **Bowman**; the
+> edge pair is **Ebukam + Za'Darius Smith**; **Gervon Dexter** is the nose. The personnel
+> sheet in the app has the current depth chart.
 
 Four depth-chart changes, all from EA's launch ratings.
 
@@ -140,7 +177,7 @@ Two-high means five or six in the box and no free middle-of-field defender. Make
 twice: run at the light box, then throw into the vacated middle.
 
 - **HB DUO** — punish it on the ground first. Always.
-- **MTN EMPTY SMASH Y-POST** — the post splits the safeties. If the safety widens, take the smash corner.
+- **MTN EMPTY SMASH Y-POST** — the post splits the safeties. If the safety widens, take the smash corner. It motions to Empty, so since Oct 21 **ID any slot or edge blitzer** before the snap.
 - **MTN X-GO DIG** — the go clears the corner, the dig lands in the hole.
 - **DOUBLE DIG** — two digs at the same depth. Throw away from the hook defender.
 
@@ -160,6 +197,10 @@ on verticals. If the post gets carried, go to **MESH DIG**.
 
 ### vs Man Press
 
+> **Sep 16 note, from your side of the ball.** EA raised the penalty for a pressing defender who
+> shades the wrong way against the release. Defenses that guess on press lose more now, which
+> makes your release inputs and bunch splits worth even more.
+
 EA rebuilt WR/DB interactions this year — hand-fighting, jostling and leverage at press,
 release and catch point, with route awareness added so the receiver knows which way he needs
 to win. The practical consequence: **bunch and stack releases now decide who even gets
@@ -174,13 +215,35 @@ pressed.** This book has eight bunch/stack formations. That is its biggest struc
 
 - **STICK** (Gun Trips TE Flex) — the best hot call in the book. The HB flat is the valve.
 - **DOUBLE SLANTS** — ball out in about 1.2 seconds into the vacated side.
-- **JAILBREAK SLOT SCREEN** — whole line releases. Best against an all-out look.
+- **JAILBREAK SLOT SCREEN** — whole line releases. Best against an all-out look. Empty set:
+  ID the edge blitzer first.
 - **HB SLIP SCREEN** — Bijan at 95 in space. This is a real counter, not a change-up.
+- **HB SCREEN** (Gun Empty Chips Quads, backed-up block) — Empty set: ID the slot blitzer first.
 
-Build a **custom adjustment macro** for "HB pass block + untarget the user defender" so it's
-one bumper press at the line. Note the trap: macros map to **depth-chart position, not field
-position**, so they break when the formation flips. Only macro players who don't move — TE,
-HB, WR3 — or build explicit left and right versions.
+**Empty protection after Oct 21.** EA's line is that players outside the tackle box "will no
+longer be targeted with Empty Protection unless manually ID'd." So in any Empty look, a slot
+corner or a wide edge who blitzes is unblocked by default. Before the snap, open protection
+(R2/RT + right stick) and put the flame on the man outside the box you think is coming. EA names
+manual ID as the fix and nothing else, so don't count on a slide to save it.
+
+**The untarget macro, rewritten.** The old note said to build "HB pass block + untarget the
+user defender" as one macro. Oct 21 made untargeted defenders "completely ignored." EA gives no
+more detail. The likely reading is that your blockers now skip him entirely. Untarget used to
+be a nudge. Now it's a bet:
+
+- **Use it when you've seen the user drop.** Two snaps of him bailing from a mug into a hook
+  zone and the macro is right: no lineman wastes a block, and the HB picks up a real rusher.
+- **Kill it the first time he comes.** An untargeted user who rushes is free, and with this
+  patch nobody will drift onto him. Keep a second macro that is **HB pass block only**, with
+  no untarget, and switch to it.
+- Still dead on RPOs (Aug 17 LCU).
+
+Same trap as before: macros map to **depth-chart position, not field position**, so they
+break when the formation flips. Only macro players who don't move (TE, HB, WR3), or build
+explicit left and right versions.
+
+On defense it cuts the other way. If an opponent untargets your user Bates on COVER 1 STING,
+the one call where he's in the box, a rush from him is now unblocked.
 
 ### vs Tempo
 
@@ -206,6 +269,11 @@ one-page book, which is what makes it tempo-proof.
 **Base / Tempo — the four blind-safe calls you audible between:**
 COVER 3 SKY · TAMPA 2 · COVER 4 QUARTERS · COVER 1 ROBBER.
 
+**Tempo got friendlier on Sep 3.** Pre-play defensive adjustments are now preserved against
+no-huddle and hurry-up instead of being wiped. Whatever single adjustment you set (pinch, roll,
+press) survives their next snap. Oct 21 also fixed a hurry-up audible that dodged the
+defensive package reset.
+
 ### The Bates correction — read this one twice
 
 You have been playing **Jessie Bates in the box**. The ratings say don't.
@@ -230,8 +298,9 @@ roster. But his **MCV 72** is mid-pack, and the real disqualifier is **AGI 82 / 
 seven to nine points below every corner. The slot is a two-way go with no sideline; a defender
 who can't flip his hips loses the option route regardless of his coverage rating.
 
-**So: zone → Watts in the slot. Man → Clark Phillips III (MCV 78, ACC 94, COD 90).** Watts
-stays on the field either way, just not matched up.
+**So: zone → Watts in the slot. Man → Billy Bowman Jr. (MCV 71, AGI 89, SPD 92).** Phillips
+was traded on 8/30, and Bowman is the honest downgrade: his hips are the reason, not his man
+number. Watts stays on the field either way, just not matched up.
 
 ### The hole — say it out loud
 
@@ -248,7 +317,16 @@ personnel your way out of it.** Two answers:
 
 1. **Pinch the line manually** — RS-left into the D-line menu, then LS-down.
 2. **Check out of 2-4-5 against 12, 21 and 22 personnel.** That is what the vs 12 and vs 22/31
-   blocks are for: Nickel 2-4 COVER 3 MATCH, 3-4 Over COVER 4 QUARTERS, 3-4 Odd PINCH BUCK O.
+   blocks are for: Nickel 2-4 COVER 3 MATCH, 3-4 Over COVER 4 QUARTERS, 3-4 Odd PINCH BUCK O,
+   and since Oct 21 **Nickel 2-4 Wide COVER 9 ZONE**: a split-field call whose quarters safeties
+   now match verticals regardless of the underneath calls. It's the answer to 12-personnel
+   play-action shots.
+
+**Man press, after Sep 16.** EA raised the penalty for shading the wrong way against the
+release. On GAP PRESS and COVER 2 MAN, shade only to a release you have actually seen. Against
+a receiver who mixes it, play the corner straight and let the press rating work. Combo also no
+longer turns into Lock when pressed, and (Oct 21) DBs no longer swap Combo assignments when a
+receiver blocks.
 
 If you take one thing from this refresh: **2-4-5 Over Wide is your base against 11 and 10
 personnel. It is not your base against a tight end run team.**
@@ -297,7 +375,7 @@ hitting it on film in a real head-to-head game. Their **watch list**, carried fr
 shared code and *not confirmed in Madden 27*:
 
 1. Formation shifting stacking hot routes past the normal limit
-2. Defensive packages resetting on no-huddle (was broken in CFB 27, patched there July 16)
+2. Defensive packages resetting on no-huddle. **Resolved:** TU Sep 3 preserves pre-play adjustments vs no-huddle, and TU Oct 21 fixed the hurry-up audible that skipped the package reset
 3. Cover 2 shells aligning differently against identical offensive formations
 4. Timing catch failing off a chip release — M27's timing catch is new code, highest-risk area
 5. Slot corners not travelling on motion; user defenders frozen after a flip
@@ -308,6 +386,11 @@ in practice mode.
 ---
 
 ## Sources
+
+Patch facts (10/27) are from EA's own title-update notes: Sep 16
+(ea.com/games/madden-nfl/madden-nfl-27/news/madden-nfl-27-title-update-september-16) and Oct 21
+(ea.com/games/madden-nfl/madden-nfl-27/news/madden-nfl-27-title-update-october-21), with Sep 3
+via madden-school.com and cross-checks from mp1st and butwhytho.net.
 
 Ratings are EA first-party (ea.com Madden 27 ratings) cross-checked against maddenratings.com
 for sub-attributes. Patch facts from EA Forums and EA's @MaddenNFLDirect. Meta reads from
