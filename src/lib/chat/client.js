@@ -2,7 +2,9 @@
 // for a browser that has opted in, because probing localhost makes Chromium ask
 // for local network permission, and no other visitor should ever see that prompt.
 
-const SERVER = 'http://127.0.0.1:5199';
+// localhost, not 127.0.0.1: Comet fails the IP instantly from an https page, with no
+// permission prompt, while the name gets the local network prompt.
+const SERVER = 'http://localhost:5199';
 const OPT_IN_KEY = 'gameday-chat';
 
 export function chatOptedIn() {
