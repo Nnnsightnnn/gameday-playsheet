@@ -58,6 +58,48 @@ function formationPlays({ side, playbook, formation }, { playbooks }) {
   throw new Error(`No formation "${formation}" in ${playbook}. Check get_playbook_outline.`);
 }
 
+const MAX_ART_PER_CALL = 6;
+
+// Finds what the art lookup needs. The sheet stores only the play id.
+function locatePlay(playbooks, playId) {
+  for (const pb of playbooks) {
+    for (const g of pb.formationGroups || []) {
+      for (const f of g.formations || []) {
+        const p = (f.plays || []).find((x) => x.id === playId);
+        if (p) return { book: pb.id, formation: f.slug, play: p.slug, name: p.name, formationName: f.name };
+      }
+    }
+  }
+  return null;
+}
+
+// Each play reports on its own, so one missing image doesn't cost the rest.
+async function playArt({ playIds }, { game, playbooks, loadArt }) {
+  if (game !== 'madden') {
+    throw new Error('Play art is only available for Madden. Ask Kenny to paste a screenshot of the play.');
+  }
+  if (playIds.length > MAX_ART_PER_CALL) {
+    throw new Error(`Ask for at most ${MAX_ART_PER_CALL} plays per call.`);
+  }
+  const blocks = [];
+  for (const playId of playIds) {
+    const found = locatePlay(playbooks, playId);
+    if (!found) {
+      blocks.push({ type: 'text', text: `${playId}: not in this game's catalog.` });
+      continue;
+    }
+    const label = `${found.name} (${found.formationName}, ${playId})`;
+    try {
+      const { media_type, data } = await loadArt(found);
+      blocks.push({ type: 'text', text: label });
+      blocks.push({ type: 'image', source: { type: 'base64', media_type, data } });
+    } catch (err) {
+      blocks.push({ type: 'text', text: `${label}: ${err.message}` });
+    }
+  }
+  return { blocks };
+}
+
 function debriefs({ limit }, { debriefs: rows }) {
   const n = Math.min(Math.max(limit || 10, 1), MAX_DEBRIEFS);
   return { total: rows.length, games: rows.slice(0, n) };
@@ -144,6 +186,7 @@ const RUNNERS = {
   search_plays: searchPlays,
   get_playbook_outline: playbookOutline,
   get_formation_plays: formationPlays,
+  get_play_art: playArt,
   get_debriefs: debriefs,
   get_game_plan: gamePlan,
   get_trends: (_, { loadTrends }) => loadTrends(),
@@ -176,6 +219,7 @@ export async function runTool(block, ctx) {
   if (!runner) return { result: reply(`Unknown tool ${block.name}`, true) };
   try {
     const out = await runner(block.input, ctx);
+    if (out?.blocks) return { result: reply(out.blocks) };
     if (out?.change) return { result: reply('Applied.'), change: out.change };
     return { result: reply(JSON.stringify(out)) };
   } catch (err) {

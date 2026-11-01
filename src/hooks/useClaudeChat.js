@@ -21,7 +21,7 @@ import {
   saveChatThread,
   undoChatChange,
 } from '../lib/db'
-import { fetchResearch, streamTurn } from '../lib/chat/client'
+import { fetchArt, fetchResearch, streamTurn } from '../lib/chat/client'
 import { contentForHistory, runTool } from '../lib/chat/tools'
 
 const GAME_LABEL = { madden: 'Madden 27', cfb: 'CFB 27' }
@@ -89,6 +89,7 @@ async function toolContext(game, playbooks) {
     saveSheet: saveCallSheet,
     saveSlot: saveMacroSlot,
     loadResearch: fetchResearch,
+    loadArt: fetchArt,
     loadScouting,
     loadGuide,
     loadTrends: () => loadTrends(game),
@@ -189,7 +190,7 @@ export function useClaudeChat({ game, side, view, playbooks }) {
   )
 
   const send = useCallback(
-    async (text) => {
+    async (text, attachments = []) => {
       const cur = threadRef.current
       if (!cur || abortRef.current) return
       setError(null)
@@ -200,7 +201,17 @@ export function useClaudeChat({ game, side, view, playbooks }) {
         pendingNotes: [],
         messages: [
           ...cur.messages,
-          { role: 'user', content: [{ type: 'text', text: state }, { type: 'text', text }] },
+          {
+            role: 'user',
+            content: [
+              { type: 'text', text: state },
+              ...attachments.flatMap((a) => [
+                ...(a.label ? [{ type: 'text', text: a.label }] : []),
+                { type: 'image', source: { type: 'base64', media_type: a.media_type, data: a.data } },
+              ]),
+              { type: 'text', text },
+            ],
+          },
         ],
       })
       const controller = new AbortController()

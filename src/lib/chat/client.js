@@ -37,6 +37,14 @@ export async function fetchResearch(file) {
   return body;
 }
 
+export async function fetchArt({ book, formation, play }) {
+  const query = new URLSearchParams({ book, formation, play });
+  const r = await fetch(`${SERVER}/art?${query}`);
+  const body = await r.json();
+  if (!r.ok) throw new Error(body.error);
+  return body;
+}
+
 // One model turn. Calls onEvent for each streamed piece and resolves with the
 // complete message.
 export async function streamTurn(messages, onEvent, signal) {

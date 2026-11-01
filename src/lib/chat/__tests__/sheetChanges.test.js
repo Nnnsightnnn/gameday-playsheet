@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { applySheetChanges, validateProposal } from '../sheetChanges'
 import { contentForHistory, runTool } from '../tools'
+import { frameTimes } from '../media'
 
 const playbooks = [
   {
@@ -167,5 +168,50 @@ describe('whole-plan tools', () => {
   it('keeps scouting to Madden', async () => {
     const r = await runTool({ id: 'x', name: 'get_scouting', input: { team: '' } }, { game: 'cfb' })
     expect(r.result.is_error).toBe(true)
+  })
+})
+
+describe('get_play_art', () => {
+  const book = [{ id: 'falcons-off', name: 'Falcons', type: 'offense', formationGroups: [
+    { name: 'Gun', formations: [{ name: 'Gun Bunch TE', slug: 'gun-bunch-te', plays: [{ id: 'mesh', slug: 'mesh', name: 'MESH', type: 'pass' }, { id: 'stick', slug: 'stick', name: 'STICK', type: 'pass' }] }] },
+  ] }]
+  const ctx = (loadArt) => ({ game: 'madden', playbooks: book, loadArt })
+  const art = (playIds, c) => runTool({ id: 'a', name: 'get_play_art', input: { playIds } }, c)
+
+  it('looks a play up by id and returns its image', async () => {
+    const seen = []
+    const { result } = await art(['mesh'], ctx(async (ref) => { seen.push(ref); return { media_type: 'image/jpeg', data: 'abc' } }))
+    expect(seen[0]).toMatchObject({ book: 'falcons-off', formation: 'gun-bunch-te', play: 'mesh' })
+    expect(result.content.find((b) => b.type === 'image').source.data).toBe('abc')
+  })
+
+  it('reports a missing play or image without losing the rest', async () => {
+    const loadArt = async ({ play }) => {
+      if (play === 'stick') throw new Error('no art')
+      return { media_type: 'image/jpeg', data: 'abc' }
+    }
+    const { result } = await art(['mesh', 'stick', 'nope'], ctx(loadArt))
+    expect(result.is_error).toBeUndefined()
+    expect(result.content.filter((b) => b.type === 'image')).toHaveLength(1)
+    expect(result.content.map((b) => b.text).join(' ')).toMatch(/no art.*not in this game/)
+  })
+
+  it('points CFB at screenshots and caps a call', async () => {
+    const loadArt = async () => ({})
+    expect((await art(['mesh'], { ...ctx(loadArt), game: 'cfb' })).result.content).toMatch(/screenshot/)
+    expect((await art(Array(7).fill('mesh'), ctx(loadArt))).result.is_error).toBe(true)
+  })
+})
+
+describe('frameTimes', () => {
+  it('samples about one frame a second, inside the clip', () => {
+    expect(frameTimes(4)).toEqual([0.5, 1.5, 2.5, 3.5])
+  })
+
+  it('caps long clips and handles very short ones', () => {
+    const long = frameTimes(120)
+    expect(long).toHaveLength(16)
+    expect(long.at(-1)).toBeLessThan(120)
+    expect(frameTimes(0.4)).toEqual([0.2])
   })
 })

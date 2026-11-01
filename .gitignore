@@ -48,3 +48,6 @@ tools/scraper/output/
 AGENTS.md
 CLAUDE.md
 CLAUDE.md
+
+# Play art cached by the local chat server, never published
+.play-art/

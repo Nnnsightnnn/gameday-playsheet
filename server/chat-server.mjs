@@ -4,7 +4,7 @@
 // debriefs live in that browser's IndexedDB. Start with `npm run chat`.
 
 import { spawn } from 'node:child_process';
-import { readdir, readFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import http from 'node:http';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -13,7 +13,8 @@ import { SYSTEM_PROMPT, TOOLS } from './prompt.mjs';
 import { PORT, originAllowed, requestAllowed } from './requestGate.mjs';
 
 const MODEL = 'claude-opus-5-5';
-const MAX_BODY_BYTES = 8 * 1024 * 1024;
+// Roomy because history carries pasted images and clip frames.
+const MAX_BODY_BYTES = 64 * 1024 * 1024;
 
 if (!process.env.ANTHROPIC_API_KEY) {
   console.error('No ANTHROPIC_API_KEY. Start this with `npm run chat`, which loads it through withapi.');
@@ -163,6 +164,47 @@ async function handleChat(req, res, headers) {
   res.end();
 }
 
+// Madden play art, fetched from huddle.gg one play at a time when Claude asks and
+// kept in .play-art so a play is only ever requested once. Slugs are checked and
+// hosts are fixed, so a request can't point this at anything else. cfb.fan refuses
+// these requests, so there is deliberately no CFB source.
+const SLUG = /^[a-z0-9-]+$/;
+const ART_HOST = 'https://play-art.s3.amazonaws.com/';
+
+async function findArtUrl(book, formation, play) {
+  const page = await fetch(`https://huddle.gg/27/playbooks/${book}/${formation}/`, { signal: AbortSignal.timeout(15000) });
+  if (!page.ok) throw new Error(`huddle.gg answered ${page.status} for this formation.`);
+  const urls = (await page.text()).match(/https:\/\/play-art\.s3\.amazonaws\.com\/[^"' ]+?\.jpg/g) || [];
+  return urls.find((u) => u.startsWith(ART_HOST) && u.endsWith(`/${play}.jpg`));
+}
+
+async function handleArt(req, res, headers) {
+  const params = new URL(req.url, 'http://localhost').searchParams;
+  const [book, formation, play] = ['book', 'formation', 'play'].map((k) => params.get(k) || '');
+  const reply = (status, body) => {
+    res.writeHead(status, { ...headers, 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(body));
+  };
+  if (![book, formation, play].every((s) => SLUG.test(s))) return reply(400, { error: 'Bad play reference.' });
+
+  const file = path.join(REPO, '.play-art', book, formation, `${play}.jpg`);
+  try {
+    let bytes = await readFile(file).catch(() => null);
+    if (!bytes) {
+      const url = await findArtUrl(book, formation, play);
+      if (!url) return reply(404, { error: 'huddle.gg has no art for this play.' });
+      const image = await fetch(url, { signal: AbortSignal.timeout(15000) });
+      if (!image.ok) return reply(502, { error: `The art host answered ${image.status}.` });
+      bytes = Buffer.from(await image.arrayBuffer());
+      await mkdir(path.dirname(file), { recursive: true });
+      await writeFile(file, bytes);
+    }
+    return reply(200, { media_type: 'image/jpeg', data: bytes.toString('base64') });
+  } catch (err) {
+    return reply(502, { error: `Could not fetch art: ${err.message}` });
+  }
+}
+
 const server = http.createServer(async (req, res) => {
   const headers = corsHeaders(req.headers.origin);
   if (!requestAllowed(req.headers)) {
@@ -178,6 +220,8 @@ const server = http.createServer(async (req, res) => {
     res.end(JSON.stringify({ ok: true, model: MODEL }));
   } else if (req.method === 'GET' && req.url.startsWith('/research')) {
     await handleResearch(req, res, headers);
+  } else if (req.method === 'GET' && req.url.startsWith('/art')) {
+    await handleArt(req, res, headers);
   } else if (req.method === 'POST' && req.url === '/chat') {
     await handleChat(req, res, headers);
   } else {

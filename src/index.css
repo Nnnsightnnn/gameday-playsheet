@@ -4004,6 +4004,16 @@ body:has(.drawer--on) .tweaks__fab { display: none; }
 }
 .chat__btn--on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink, #fff); }
 .chat__btn:disabled { opacity: 0.45; cursor: default; }
+.chat__thumbs { display: flex; flex-wrap: wrap; gap: 6px; }
+.chat__thumbs img { max-width: 100%; max-height: 180px; border-radius: 6px; border: 1px solid var(--paper-line); }
+.chat__tray {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+  padding: 8px 14px 0; border-top: 1px solid var(--paper-line);
+}
+.chat__tray-item { padding: 0; border: 1px solid var(--paper-line); border-radius: 4px; background: none; cursor: pointer; line-height: 0; }
+.chat__tray-item img { height: 44px; border-radius: 3px; }
+.chat__traynote { color: #b3392f; font-size: 12px; }
+.chat__attach { padding: 6px 10px; }
 .chat__compose {
   display: flex; align-items: flex-end; gap: 8px; padding: 10px 14px 14px;
   border-top: 1px solid var(--paper-line);

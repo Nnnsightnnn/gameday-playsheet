@@ -4,6 +4,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useClaudeChat } from '../../hooks/useClaudeChat'
 import { chatOptedIn, serverIsUp } from '../../lib/chat/client'
+import { filesToAttachments } from '../../lib/chat/media'
 
 const ACTION_LABEL = { add: 'Add', remove: 'Remove', move: 'Move', set_note: 'Note' }
 
@@ -35,14 +36,37 @@ function ChangeCard({ change, canUndo, onUndo }) {
   )
 }
 
+function Thumbs({ images }) {
+  if (!images.length) return null
+  return (
+    <div className="chat__thumbs">
+      {images.map((b, i) => (
+        <img key={i} src={`data:${b.source.media_type};base64,${b.source.data}`} alt="" />
+      ))}
+    </div>
+  )
+}
+
 function Message({ message, proposals, undoableId, onUndo }) {
   const blocks = typeof message.content === 'string'
     ? [{ type: 'text', text: message.content }]
     : message.content
   if (message.role === 'user') {
-    // A person's message is [app_state, text]; tool results have no text to show.
+    // A person's message ends in their text. Tool results have none, but play art
+    // Claude looked at is shown too, so you both see the same diagram.
     const said = blocks.filter((b) => b.type === 'text').at(-1)
-    return said ? <div className="chat__msg chat__msg--me">{said.text}</div> : null
+    const images = [
+      ...blocks.filter((b) => b.type === 'image'),
+      ...blocks.flatMap((b) =>
+        b.type === 'tool_result' && Array.isArray(b.content) ? b.content.filter((c) => c.type === 'image') : [],
+      ),
+    ]
+    return (
+      <>
+        <Thumbs images={images} />
+        {said && <div className="chat__msg chat__msg--me">{said.text}</div>}
+      </>
+    )
   }
   return blocks.map((b, i) => {
     if (b.type === 'text' && b.text.trim()) {
@@ -65,6 +89,10 @@ function Message({ message, proposals, undoableId, onUndo }) {
 function Panel({ game, side, view, playbooks, onClose }) {
   const { thread, live, error, send, stop, undo, reset } = useClaudeChat({ game, side, view, playbooks })
   const [draft, setDraft] = useState('')
+  const [attachments, setAttachments] = useState([])
+  const [attachError, setAttachError] = useState(null)
+  const [reading, setReading] = useState(false)
+  const fileRef = useRef(null)
   const endRef = useRef(null)
   const messages = thread?.messages ?? []
   // Newest change only: undoing in order means each one restores a known sheet.
@@ -76,11 +104,28 @@ function Panel({ game, side, view, playbooks, onClose }) {
     endRef.current?.scrollIntoView({ block: 'end' })
   }, [messages.length, live?.text, live?.status])
 
+  const addFiles = async (files) => {
+    if (!files.length) return
+    setAttachError(null)
+    setReading(true)
+    try {
+      const added = await filesToAttachments(files)
+      setAttachments((cur) => [...cur, ...added])
+    } catch (err) {
+      setAttachError(err.message)
+    } finally {
+      setReading(false)
+    }
+  }
+
+  const canSend = (draft.trim() || attachments.length > 0) && !reading
+
   const submit = () => {
-    const text = draft.trim()
-    if (!text || live) return
+    if (!canSend || live) return
+    const text = draft.trim() || 'What do you see here?'
     setDraft('')
-    send(text)
+    setAttachments([])
+    send(text, attachments)
   }
 
   const newChat = () => {
@@ -88,7 +133,15 @@ function Panel({ game, side, view, playbooks, onClose }) {
   }
 
   return (
-    <aside className="chat" aria-label="Claude">
+    <aside
+      className="chat"
+      aria-label="Claude"
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={(e) => {
+        e.preventDefault()
+        addFiles([...e.dataTransfer.files])
+      }}
+    >
       <header className="chat__hd">
         <b>Claude</b>
         <span>{game === 'cfb' ? 'CFB 27' : 'Madden 27'} · {side}</span>
@@ -101,7 +154,7 @@ function Panel({ game, side, view, playbooks, onClose }) {
           <div className="chat__empty">
             Build the whole game plan together. Claude can see your sheet, every playbook, the meta
             research, packages, scouting, personnel and debriefs, and can change the sheet when you
-            ask. Every sheet change gets an Undo.
+            ask. Every sheet change gets an Undo. Paste images or drop clips from your games.
           </div>
         )}
         {messages.map((m, i) => (
@@ -119,12 +172,47 @@ function Panel({ game, side, view, playbooks, onClose }) {
         <div ref={endRef} />
       </div>
 
+      {(attachments.length > 0 || reading || attachError) && (
+        <div className="chat__tray">
+          {attachments.map((a, i) => (
+            <button
+              key={i}
+              className="chat__tray-item"
+              title={`Remove ${a.label || a.name}`}
+              onClick={() => setAttachments((cur) => cur.filter((_, j) => j !== i))}
+            >
+              <img src={`data:${a.media_type};base64,${a.data}`} alt={a.label || a.name} />
+            </button>
+          ))}
+          {reading && <span className="chat__status">Reading…</span>}
+          {attachError && <span className="chat__traynote">{attachError}</span>}
+        </div>
+      )}
       <div className="chat__compose">
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/*,video/*"
+          multiple
+          hidden
+          onChange={(e) => {
+            addFiles([...e.target.files])
+            e.target.value = ''
+          }}
+        />
+        <button className="chat__btn chat__attach" title="Attach images or a clip" onClick={() => fileRef.current?.click()}>+</button>
         <textarea
           rows={3}
           value={draft}
           placeholder="What are we working on?"
           onChange={(e) => setDraft(e.target.value)}
+          onPaste={(e) => {
+            const files = [...e.clipboardData.files]
+            if (files.length) {
+              e.preventDefault()
+              addFiles(files)
+            }
+          }}
           onKeyDown={(e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
               e.preventDefault()
@@ -135,7 +223,7 @@ function Panel({ game, side, view, playbooks, onClose }) {
         {live ? (
           <button className="chat__btn" onClick={stop}>Stop</button>
         ) : (
-          <button className="chat__btn chat__btn--on" onClick={submit} disabled={!draft.trim()}>Send</button>
+          <button className="chat__btn chat__btn--on" onClick={submit} disabled={!canSend}>Send</button>
         )}
       </div>
     </aside>
