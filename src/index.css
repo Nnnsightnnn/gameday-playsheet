@@ -2894,6 +2894,12 @@ body:has(.drawer--on) .tweaks__fab { display: none; }
 .dbf-tag { font-size: 14px; padding: 2px 8px; border-radius: 999px; border: 1px solid; }
 .dbf-tag--leak { color: var(--sig-bad); border-color: color-mix(in oklab, var(--token-bad) 45%, transparent); }
 .dbf-tag--hold { color: var(--sig-match); border-color: color-mix(in oklab, var(--cv-match) 45%, transparent); }
+.dbf-tag--faced { color: var(--ink); border-color: var(--paper-line); }
+.dbf-board__hint { font-size: 14px; color: var(--ink-soft); margin: 0 0 6px; }
+.dbf-threat { padding: 8px 0; border-top: 1px solid var(--paper-line); }
+.dbf-threat__hd { display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+.dbf-threat__name { flex: 1; min-width: 180px; font-size: 15px; color: var(--ink); }
+.dbf-threat__call { font-size: 14px; color: var(--ink-soft); margin-top: 3px; }
 .dbf-game__note { font-size: 14px; color: var(--ink); margin-top: 5px; font-style: italic; }
 @media (max-width: 600px) {
   .dbf-side { flex-direction: column; gap: 4px; }

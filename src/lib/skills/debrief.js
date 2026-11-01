@@ -8,6 +8,7 @@
 // what to lab next — and a Log line the Vault note already knows how to count.
 
 import { ALL_SKILLS, skillById } from '../../data/skills';
+import { META_THREATS, threatById } from '../packages/metas';
 
 export const GAMES = [
   { id: 'madden', label: 'Madden 27' },
@@ -82,6 +83,101 @@ export const SIDES = [
   { id: 'head', label: 'Head' },
 ];
 
+// What the opponent did to you, in H2H only. Nobody publishes what regs players
+// actually run, so this is the only record of it, and "something new" is how a
+// real loss becomes a candidate threat. One threat per game keeps it to taps.
+export const NEW_THREAT = 'new';
+
+export const FACED_OUTCOMES = [
+  { id: 'stopped', label: 'Stopped it' },
+  { id: 'slowed', label: 'Slowed it' },
+  { id: 'failed', label: 'Didn’t work' },
+  { id: 'noanswer', label: 'Had no answer' },
+];
+
+export const threatsForGame = (game) => META_THREATS.filter((t) => t.game === game);
+
+// Packages that declare this threat, so the likely answer is one tap.
+export const answersFor = (threatId, packages) =>
+  (packages || []).filter((p) => p.counters?.includes(threatId));
+
+export const emptyFaced = () => ({
+  threatId: null,
+  note: '',
+  packageId: null,
+  call: '',
+  outcome: null,
+});
+
+// The saved shape. Switching mode or game can leave a hidden pick in the draft,
+// and a CPU game must never count as evidence of what opponents run, so `faced`
+// is dropped unless it is an H2H game with a threat from that game's list.
+export function normalizeDebrief(d) {
+  const { faced, ...rest } = d;
+  const known =
+    faced?.threatId === NEW_THREAT ||
+    threatsForGame(d.game).some((t) => t.id === faced?.threatId);
+  if (d.mode !== 'h2h' || !known) return rest;
+  const noAnswer = faced.outcome === 'noanswer';
+  return {
+    ...rest,
+    faced: {
+      threatId: faced.threatId,
+      note: faced.threatId === NEW_THREAT ? (faced.note || '').trim() : '',
+      packageId: noAnswer ? null : faced.packageId || null,
+      call: noAnswer ? '' : (faced.call || '').trim(),
+      outcome: faced.outcome || null,
+    },
+  };
+}
+
+const facedName = (f) => {
+  if (f.threatId === NEW_THREAT) return f.note ? `new: ${f.note}` : 'new, not named';
+  return threatById(f.threatId)?.name || f.threatId;
+};
+
+export function facedLine(f) {
+  const outcome = FACED_OUTCOMES.find((o) => o.id === f.outcome);
+  if (f.outcome === 'noanswer') return `faced ${facedName(f)}: no answer`;
+  const called = f.call ? `, called ${f.call}` : '';
+  return `faced ${facedName(f)}${called}${outcome ? `: ${outcome.label.toLowerCase()}` : ''}`;
+}
+
+// Counts, never rates: a single player rarely logs enough games on one threat
+// for a percentage to mean anything.
+export function threatBoard(debriefs, game) {
+  const acc = new Map();
+  const blank = () => ({ stopped: 0, slowed: 0, failed: 0, noanswer: 0 });
+  (debriefs || []).forEach((d) => {
+    const f = d.faced;
+    if (!f?.threatId || d.mode !== 'h2h' || d.game !== game) return;
+    const isNew = f.threatId === NEW_THREAT;
+    const key = isNew ? `new:${(f.note || '').trim().toLowerCase()}` : f.threatId;
+    const cur = acc.get(key) || {
+      key,
+      isNew,
+      name: facedName(f),
+      games: 0,
+      wins: 0,
+      outcomes: blank(),
+      calls: new Map(),
+    };
+    cur.games += 1;
+    if (RESULTS.find((r) => r.id === d.result)?.win) cur.wins += 1;
+    if (f.outcome) cur.outcomes[f.outcome] += 1;
+    if (f.call) {
+      const c = cur.calls.get(f.call) || { call: f.call, games: 0, ...blank() };
+      c.games += 1;
+      if (f.outcome) c[f.outcome] += 1;
+      cur.calls.set(f.call, c);
+    }
+    acc.set(key, cur);
+  });
+  return [...acc.values()]
+    .map((t) => ({ ...t, calls: [...t.calls.values()].sort((a, b) => b.games - a.games) }))
+    .sort((a, b) => b.games - a.games || a.name.localeCompare(b.name));
+}
+
 export const MAX_LEAKS = 3;
 export const MAX_HOLDS = 2;
 
@@ -101,6 +197,7 @@ export function emptyDebrief(defaults = {}) {
     leaks: [],
     holds: [],
     minutes: 60,
+    faced: emptyFaced(),
     opponent: '',
     note: '',
     playedAt: defaults.playedAt || new Date().toISOString(),
@@ -109,7 +206,8 @@ export function emptyDebrief(defaults = {}) {
 
 // A debrief is complete once the parts that feed the recommendation exist.
 export function isComplete(d) {
-  return Boolean(d && d.game && d.mode && d.result && (d.leaks.length || d.holds.length || d.note));
+  if (!d || !d.game || !d.mode || !d.result) return false;
+  return Boolean(d.leaks.length || d.holds.length || d.note || normalizeDebrief(d).faced);
 }
 
 // ── Recommendation ─────────────────────────────────────────────────────────
@@ -191,6 +289,7 @@ export function vaultLine(d) {
   if (fs && d.focusOutcome) parts.push(`focus ${fs.name.toLowerCase()}: ${d.focusOutcome}`);
   if (d.leaks.length) parts.push(`leaked: ${d.leaks.map((id) => leakById(id)?.label).filter(Boolean).join('; ')}`);
   if (d.holds.length) parts.push(`held: ${d.holds.map((id) => holdById(id)?.label).filter(Boolean).join('; ')}`);
+  if (d.faced?.threatId) parts.push(facedLine(d.faced));
   if (d.opponent) parts.push(`vs ${d.opponent}`);
   if (d.note) parts.push(d.note.trim());
   return `- ${day} · game · ${d.minutes}m · ${parts.join(' · ')}`;

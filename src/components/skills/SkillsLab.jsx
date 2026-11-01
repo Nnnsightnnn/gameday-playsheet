@@ -17,6 +17,7 @@ import {
   deleteLabPlan,
   getGameDebriefs,
   saveGameDebrief,
+  getMacroPackages,
   deleteGameDebrief,
 } from '../../lib/db';
 import DebriefLens from './DebriefLens';
@@ -207,6 +208,12 @@ export default function SkillsLab({ game }) {
   );
   const [planSkillId, setPlanSkillId] = useState('');
   const debriefs = useLiveQuery(() => getGameDebriefs(), [], null);
+  // Both games: the debrief's own game chip can differ from the active sheet.
+  const customPackages = useLiveQuery(
+    async () => [...(await getMacroPackages('madden')), ...(await getMacroPackages('cfb'))],
+    [],
+    null,
+  );
 
   const [mode, setMode] = useState('debrief');
   // Default the filter to the game currently active on the call sheet.
@@ -343,6 +350,7 @@ export default function SkillsLab({ game }) {
         <DebriefLens
           game={game}
           debriefs={debriefs || []}
+          customPackages={customPackages || []}
           activePlan={activePlan}
           onSave={saveGameDebrief}
           onDelete={(id) => {

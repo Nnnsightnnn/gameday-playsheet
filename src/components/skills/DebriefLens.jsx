@@ -17,9 +17,16 @@ import {
   SIDES,
   MAX_LEAKS,
   MAX_HOLDS,
+  FACED_OUTCOMES,
+  NEW_THREAT,
+  answersFor,
   chipsForMode,
   emptyDebrief,
+  facedLine,
   isComplete,
+  normalizeDebrief,
+  threatBoard,
+  threatsForGame,
   recommendFocus,
   skillSignals,
   vaultLine,
@@ -28,6 +35,7 @@ import {
   holdById,
 } from '../../lib/skills/debrief';
 import { skillById } from '../../data/skills';
+import { packagesForGame } from '../../data/packages';
 
 const fmtDay = (iso) =>
   new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
@@ -70,6 +78,101 @@ function ChipGroups({ chips, mode, value, onToggle, max }) {
   });
 }
 
+// Offense and defense threats share one question: what hurt you most?
+function FacedStep({ n, draft, customPackages, onChange }) {
+  const f = draft.faced;
+  const threats = threatsForGame(draft.game);
+  const groups = [
+    { id: 'offense', label: 'Their offense' },
+    { id: 'defense', label: 'Their defense' },
+  ];
+  const packages = [
+    ...packagesForGame(draft.game),
+    ...(customPackages || []).filter((p) => p.game === draft.game),
+  ];
+  const answers = answersFor(f.threatId, packages);
+  const pickThreat = (id) =>
+    onChange(f.threatId === id ? { threatId: null } : { threatId: id, packageId: null, call: '' });
+
+  return (
+    <div className="dbf-step">
+      <span className="dbf-step__n">{n}</span>
+      <div className="dbf-step__body">
+        <div className="dbf-step__q">
+          What hurt you most? <em>optional, the one thing they did that you’d prepare for</em>
+        </div>
+        {groups.map((g) => (
+          <div key={g.id} className="dbf-side">
+            <span className="dbf-side__lbl">{g.label}</span>
+            <Chips
+              items={threats.filter((t) => t.threat === g.id).map((t) => ({ id: t.id, label: t.name }))}
+              value={f.threatId}
+              single
+              onPick={pickThreat}
+            />
+          </div>
+        ))}
+        <div className="dbf-side">
+          <span className="dbf-side__lbl">Not listed</span>
+          <Chips
+            items={[{ id: NEW_THREAT, label: 'Something new' }]}
+            value={f.threatId}
+            single
+            onPick={pickThreat}
+          />
+        </div>
+        {f.threatId === NEW_THREAT && (
+          <input
+            className="trends-input"
+            placeholder="What was it? Formation and play if you saw them."
+            value={f.note}
+            onChange={(e) => onChange({ note: e.target.value })}
+          />
+        )}
+        {f.threatId && (
+          <>
+            <div className="dbf-step__q">What did you go to?</div>
+            {answers.length > 0 && (
+              <Chips
+                items={answers.map((p) => ({ id: p.id, label: p.name }))}
+                value={f.packageId}
+                single
+                onPick={(id) => {
+                  const on = f.packageId === id;
+                  const pkg = answers.find((p) => p.id === id);
+                  onChange({ packageId: on ? null : id, call: on ? '' : pkg.name });
+                }}
+              />
+            )}
+            <input
+              className="trends-input"
+              placeholder="Or type the call"
+              value={f.packageId ? '' : f.call}
+              onChange={(e) => onChange({ packageId: null, call: e.target.value })}
+            />
+            <Chips
+              items={FACED_OUTCOMES}
+              value={f.outcome}
+              single
+              onPick={(id) => onChange({ outcome: f.outcome === id ? null : id })}
+            />
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+const outcomeCounts = (o) =>
+  [
+    o.stopped && `${o.stopped} stopped`,
+    o.slowed && `${o.slowed} slowed`,
+    o.failed && `${o.failed} failed`,
+    o.noanswer && `${o.noanswer} no answer`,
+  ]
+    .filter(Boolean)
+    .join(', ');
+
 async function copyText(text) {
   try {
     await navigator.clipboard.writeText(text);
@@ -83,6 +186,7 @@ export default function DebriefLens({
   game,
   debriefs,
   activePlan,
+  customPackages,
   onSave,
   onDelete,
   onStageWeek,
@@ -96,6 +200,13 @@ export default function DebriefLens({
     [debriefs, activePlan],
   );
   const signals = useMemo(() => skillSignals(debriefs).slice(0, 6), [debriefs]);
+  // Per logged game, not the app's active game: a Madden log must stay visible
+  // while the call sheet happens to be on CFB.
+  const boards = useMemo(
+    () =>
+      GAMES.map((g) => ({ ...g, threats: threatBoard(debriefs, g.id) })).filter((g) => g.threats.length),
+    [debriefs],
+  );
   const focusSkill = activePlan ? skillById(activePlan.skillId) : null;
 
   const start = () =>
@@ -121,10 +232,12 @@ export default function DebriefLens({
   };
 
   const save = async () => {
-    const row = await onSave(draft);
-    const ok = await copyText(vaultLine(row));
+    const row = await onSave(normalizeDebrief(draft));
+    // Close before touching the clipboard: writeText can wait on a permission
+    // prompt, and an open form invites a second save and a duplicate game.
     setDraft(null);
-    say(ok ? 'Saved. Log line copied — paste it into Madden-Elite.md.' : 'Saved.');
+    say('Saved.');
+    if (await copyText(vaultLine(row))) say('Saved. Log line copied. Paste it into Madden-Elite.md.');
   };
 
   return (
@@ -199,8 +312,17 @@ export default function DebriefLens({
             </div>
           </div>
 
+          {draft.mode === 'h2h' && (
+            <FacedStep
+              n={focusSkill ? 5 : 4}
+              draft={draft}
+              customPackages={customPackages}
+              onChange={(patch) => setDraft((d) => ({ ...d, faced: { ...d.faced, ...patch } }))}
+            />
+          )}
+
           <div className="dbf-step">
-            <span className="dbf-step__n">{focusSkill ? 5 : 4}</span>
+            <span className="dbf-step__n">{(focusSkill ? 5 : 4) + (draft.mode === 'h2h' ? 1 : 0)}</span>
             <div className="dbf-step__body">
               <div className="dbf-row">
                 <Chips
@@ -292,6 +414,31 @@ export default function DebriefLens({
         </section>
       )}
 
+      {/* ── THREATS FACED ────────────────────────────────────────────── */}
+      {!draft && boards.map((b) => (
+        <section key={b.id} className="skl-cat">
+          <h3 className="skl-cat__hd">What you’re facing, {b.label} H2H</h3>
+          <p className="dbf-board__hint">Counts, not verdicts. A few games can’t prove a call works.</p>
+          {b.threats.map((t) => (
+            <div key={t.key} className="dbf-threat">
+              <div className="dbf-threat__hd">
+                <span className="dbf-threat__name">{t.name}</span>
+                <span className="skl-gap__cat">
+                  {t.games} game{t.games === 1 ? '' : 's'} · {t.wins}-{t.games - t.wins}
+                  {outcomeCounts(t.outcomes) && ` · ${outcomeCounts(t.outcomes)}`}
+                </span>
+              </div>
+              {t.calls.map((c) => (
+                <div key={c.call} className="dbf-threat__call">
+                  {c.call}: {c.games} game{c.games === 1 ? '' : 's'}
+                  {outcomeCounts(c) && `, ${outcomeCounts(c)}`}
+                </div>
+              ))}
+            </div>
+          ))}
+        </section>
+      ))}
+
       {/* ── RECENT GAMES ─────────────────────────────────────────────── */}
       {debriefs.length > 0 && !draft && (
         <section className="skl-cat">
@@ -328,8 +475,11 @@ export default function DebriefLens({
                     delete
                   </button>
                 </div>
-                {(d.leaks.length > 0 || d.holds.length > 0) && (
+                {(d.leaks.length > 0 || d.holds.length > 0 || d.faced?.threatId) && (
                   <div className="dbf-game__chips">
+                    {d.faced?.threatId && (
+                      <span className="dbf-tag dbf-tag--faced">{facedLine(d.faced)}</span>
+                    )}
                     {d.leaks.map((id) => (
                       <span key={id} className="dbf-tag dbf-tag--leak">{leakById(id)?.label}</span>
                     ))}
