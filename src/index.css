@@ -3945,3 +3945,72 @@ body:has(.drawer--on) .tweaks__fab { display: none; }
 .stage--atlas footer a { color: var(--ink-soft) !important; }
 .stage--atlas footer strong { color: var(--ink) !important; }
 .stage--atlas footer svg { filter: invert(1); }
+
+/* ── Claude chat (local server only) ──────────────────────────────────── */
+.chat__fab {
+  position: fixed; right: 16px; bottom: 70px; z-index: 70;
+  height: 36px; padding: 0 14px; border-radius: 18px;
+  border: 1px solid var(--paper-line); background: var(--ink); color: var(--paper);
+  font-family: var(--font-narrow); font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+  cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+.stage:has(.walk) .chat__fab { display: none; }
+.chat {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 75;
+  width: min(440px, 100vw); display: flex; flex-direction: column;
+  background: var(--paper); color: var(--ink);
+  border-left: 1px solid var(--paper-line);
+  box-shadow: -12px 0 32px rgba(0,0,0,0.18);
+  font-family: var(--font-body); font-size: 14px; line-height: 1.5;
+}
+.chat__hd {
+  display: flex; align-items: center; gap: 10px; padding: 12px 14px;
+  border-bottom: 1px solid var(--paper-line);
+}
+.chat__hd b { font-family: var(--font-display); font-size: 20px; letter-spacing: 0.02em; }
+.chat__hd span { color: var(--ink-soft); font-size: 12px; flex: 1; }
+.chat__link, .chat__x {
+  background: none; border: none; color: var(--ink-soft); cursor: pointer;
+  font: inherit; font-size: 12px; padding: 4px;
+}
+.chat__link:hover, .chat__x:hover { color: var(--ink); }
+.chat__link:disabled { opacity: 0.4; cursor: default; }
+.chat__log {
+  flex: 1; overflow-y: auto; padding: 14px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.chat__empty { color: var(--ink-soft); font-size: 13px; }
+.chat__msg { white-space: pre-wrap; overflow-wrap: anywhere; }
+.chat__msg--me {
+  align-self: flex-end; max-width: 85%; padding: 8px 12px; border-radius: 12px;
+  background: var(--paper-edge);
+}
+.chat__status { color: var(--ink-soft); font-size: 12px; font-style: italic; white-space: pre-wrap; }
+.chat__error {
+  color: #b3392f; font-size: 13px; padding: 8px 10px;
+  border: 1px solid currentColor; border-radius: 8px;
+}
+.chat__card { border: 1px solid var(--paper-line); border-left: 3px solid var(--accent); border-radius: 8px; padding: 10px 12px; }
+.chat__cardhd { font-weight: 600; }
+.chat__cardhd span { display: block; font-weight: 400; color: var(--ink-soft); font-size: 12px; }
+.chat__changes { list-style: none; margin: 8px 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+.chat__changes span { color: var(--ink-soft); font-size: 12px; }
+.chat__changes em { display: block; color: var(--ink-soft); font-size: 12px; }
+.chat__cardbtns { display: flex; gap: 8px; }
+.chat__cardstate { color: var(--ink-soft); font-size: 12px; }
+.chat__btn {
+  padding: 6px 14px; border-radius: 6px; cursor: pointer; font: inherit; font-size: 13px;
+  border: 1px solid var(--paper-line); background: transparent; color: var(--ink);
+}
+.chat__btn--on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink, #fff); }
+.chat__btn:disabled { opacity: 0.45; cursor: default; }
+.chat__compose {
+  display: flex; align-items: flex-end; gap: 8px; padding: 10px 14px 14px;
+  border-top: 1px solid var(--paper-line);
+}
+.chat__compose textarea {
+  flex: 1; resize: none; padding: 8px 10px; border-radius: 8px;
+  border: 1px solid var(--paper-line); background: transparent; color: var(--ink);
+  font: inherit;
+}
+.chat__compose textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; }

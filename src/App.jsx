@@ -35,6 +35,7 @@ import SkillsLab from './components/skills/SkillsLab'
 import PersonnelLab from './components/personnel/PersonnelLab'
 import ScoutingRoom from './components/scouting/ScoutingRoom'
 import PackageForge from './components/packages/PackageForge'
+import ClaudeChat from './components/chat/ClaudeChat'
 import BrandCredit from './BrandCredit'
 
 const DENSITY_SLOTS = { compact: 3, regular: 4, comfy: 5 }
@@ -559,6 +560,8 @@ function App() {
         onSaveSheet={saveCurrentSheet}
         onDeleteSheet={deleteSavedSheet}
       />
+
+      <ClaudeChat game={game} side={side} view={view} playbooks={playbooks} />
 
       <BrandCredit />
     </div>

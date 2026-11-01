@@ -2,6 +2,7 @@ import Dexie from 'dexie';
 import { SHEET_SEED } from '../data/seed';
 import { OLE_MISS_PLAN } from '../data/gameplans';
 import { starterFormations } from './field/formationFactory';
+import { applySheetChanges } from './chat/sheetChanges';
 
 export const db = new Dexie('GamedayPlaysheet');
 
@@ -199,6 +200,26 @@ db.version(13).stores({
   macroPackages: 'id, game, side, updatedAt',
   macroArsenal: 'id',
   vaultFiles: 'id'
+});
+
+db.version(14).stores({
+  myPlays: '++id, playId, playbook, formationGroup, formation, playName, playType, side, tags, notes, rating, addedAt',
+  gameSessions: '++id, opponent, date, result, notes',
+  playPerformance: '++id, sessionId, playId, callCount, successCount, yardsGained, notes',
+  gameContext: 'id',
+  sheetAssignments: 'id',
+  sheetSettings: 'id',
+  formations: 'id, side, name, updatedAt',
+  setupChecks: 'id',
+  callSheets: 'id, name, game, updatedAt',
+  skillAssessments: 'id, createdAt',
+  labPlans: 'id, weekOf',
+  personnelCharts: 'id, planId, game, updatedAt',
+  gameDebriefs: 'id, playedAt, game, mode',
+  macroPackages: 'id, game, side, updatedAt',
+  macroArsenal: 'id',
+  vaultFiles: 'id',
+  chatThreads: 'id'
 });
 
 // Sheet assignments helpers — fresh-object factories so the module-level
@@ -675,4 +696,42 @@ export async function setVaultNoteHandle(handle) {
 
 export async function clearVaultNoteHandle() {
   await db.vaultFiles.delete(VAULT_NOTE_ID);
+}
+
+// ── Claude chat ─────────────────────────────────────────────────────────────
+// One running thread. Messages are stored exactly as the API returned them,
+// because editing earlier turns invalidates the model's thinking blocks.
+const CHAT_THREAD_ID = 'current';
+
+export async function getChatThread() {
+  return (
+    (await db.chatThreads.get(CHAT_THREAD_ID)) ?? {
+      id: CHAT_THREAD_ID,
+      messages: [],
+      proposals: {},
+      pendingNotes: [],
+    }
+  );
+}
+
+export async function saveChatThread(thread) {
+  await db.chatThreads.put({ ...thread, id: CHAT_THREAD_ID, updatedAt: Date.now() });
+}
+
+export async function clearChatThread() {
+  await db.chatThreads.delete(CHAT_THREAD_ID);
+}
+
+// Same safety as loading a plan: the sheet is backed up before Claude's change
+// lands, so one reload from Tweaks undoes it.
+export async function applyChatProposal({ game, side, summary, changes }) {
+  await backupCurrentSheet(game, `Claude: ${summary}`);
+  const row = await getSheetAssignments();
+  const gameSheet = row.byGame?.[game] ?? { offense: {}, defense: {} };
+  const { sideSheet, applied, skipped } = applySheetChanges(gameSheet[side] || {}, changes);
+  await saveSheetAssignments({
+    ...row,
+    byGame: { ...row.byGame, [game]: { ...gameSheet, [side]: sideSheet } },
+  });
+  return { applied, skipped };
 }

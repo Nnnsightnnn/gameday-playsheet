@@ -51,7 +51,7 @@ function collect(playbooks, side, books, query) {
   return found
 }
 
-export function searchQuick(playbooks, query, side, sideAssign) {
+export function searchQuick(playbooks, query, side, sideAssign, limit = LIMIT) {
   const q = query.trim().toLowerCase()
   if (q.length < 2) return []
   const books = booksOnSheet(sideAssign)
@@ -59,6 +59,6 @@ export function searchQuick(playbooks, query, side, sideAssign) {
   if (!found.length) found = collect(playbooks, side, null, q)
   return found
     .sort((a, b) => a.rank - b.rank || a.play.name.localeCompare(b.play.name))
-    .slice(0, LIMIT)
+    .slice(0, limit)
     .map((f) => f.play)
 }
