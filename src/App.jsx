@@ -132,8 +132,6 @@ function App() {
   )
 
   // ── handlers ────────────────────────────────────────────────────────────
-  const setTeam = (t) =>
-    saveSheetSettings({ ...(settings || {}), team: t, side, tweaks })
   const setSide = (s) =>
     saveSheetSettings({ ...(settings || {}), team, side: s, tweaks })
   const setGame = (g) =>
@@ -345,10 +343,7 @@ function App() {
       className="stage stage--atlas"
       style={rootStyle}
     >
-      <Coordinator
-        team={team}
-        setTeam={setTeam}
-      />
+      <Coordinator game={game} />
 
       <div className="viewswitch">
         <button

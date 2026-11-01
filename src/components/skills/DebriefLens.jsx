@@ -5,7 +5,7 @@
 // where points leaked (≤3) · what held (≤2) · minutes · one line. Recent
 // games roll up into a recommended next lab focus; one tap stages the week.
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   GAMES,
   MODES,
@@ -34,6 +34,8 @@ import {
   leakById,
   holdById,
 } from '../../lib/skills/debrief';
+import { NoLogSectionError, canSaveToNote, saveLinesToNote } from '../../lib/skills/vaultLog';
+import { clearVaultNoteHandle, getVaultNoteHandle, setVaultNoteHandle } from '../../lib/db';
 import { skillById } from '../../data/skills';
 import { packagesForGame } from '../../data/packages';
 
@@ -194,6 +196,11 @@ export default function DebriefLens({
   const [draft, setDraft] = useState(null);
   const [flash, setFlash] = useState('');
   const [showLog, setShowLog] = useState(false);
+  const [noteName, setNoteName] = useState(null);
+
+  useEffect(() => {
+    if (canSaveToNote()) getVaultNoteHandle().then((h) => setNoteName(h?.name ?? null));
+  }, []);
 
   const rec = useMemo(
     () => recommendFocus(debriefs, activePlan?.skillId),
@@ -231,12 +238,75 @@ export default function DebriefLens({
     setTimeout(() => setFlash(''), 2400);
   };
 
+  const forgetNote = async () => {
+    await clearVaultNoteHandle();
+    setNoteName(null);
+  };
+
+  const pickNote = async () => {
+    const [handle] = await window.showOpenFilePicker({
+      types: [{ description: 'Markdown note', accept: { 'text/markdown': ['.md'] } }],
+    });
+    return handle;
+  };
+
+  // Returns how many lines went in, or null if nothing could be saved. Permission
+  // can lapse between sessions, and asking again needs the click that got us here.
+  const saveToNote = async (lines, handle) => {
+    try {
+      let granted = await handle.queryPermission({ mode: 'readwrite' });
+      if (granted !== 'granted') granted = await handle.requestPermission({ mode: 'readwrite' });
+      if (granted !== 'granted') {
+        say('The browser needs permission to save to that note.');
+        return null;
+      }
+      const { added } = await saveLinesToNote(handle, lines);
+      await setVaultNoteHandle(handle);
+      setNoteName(handle.name);
+      return added;
+    } catch (err) {
+      if (err instanceof NoLogSectionError) {
+        await forgetNote();
+        say(`${handle.name} has no "## Log" section, so nothing was saved. Choose Madden-Elite.md.`);
+      } else if (err.name === 'NotFoundError') {
+        await forgetNote();
+        say(`Can't find ${handle.name}. It may have moved. Click Save to vault to choose it again.`);
+      } else {
+        say(`Could not save to ${handle.name}. Use Copy all as Vault log instead.`);
+      }
+      return null;
+    }
+  };
+
+  const saveAllToNote = async (choose) => {
+    let handle;
+    try {
+      handle = (!choose && (await getVaultNoteHandle())) || (await pickNote());
+    } catch (err) {
+      if (err.name !== 'AbortError') say('Could not open the file picker.');
+      return;
+    }
+    const added = await saveToNote(vaultBlock(debriefs).split('\n'), handle);
+    if (added === null) return;
+    say(
+      added
+        ? `Saved ${added} new ${added === 1 ? 'game' : 'games'} to ${handle.name}.`
+        : `${handle.name} already has every game.`,
+    );
+  };
+
   const save = async () => {
     const row = await onSave(normalizeDebrief(draft));
     // Close before touching the clipboard: writeText can wait on a permission
     // prompt, and an open form invites a second save and a duplicate game.
     setDraft(null);
     say('Saved.');
+    const handle = canSaveToNote() ? await getVaultNoteHandle() : null;
+    if (handle) {
+      const added = await saveToNote([vaultLine(row)], handle);
+      if (added !== null) say(`Saved and logged to ${handle.name}.`);
+      return;
+    }
     if (await copyText(vaultLine(row))) say('Saved. Log line copied. Paste it into Madden-Elite.md.');
   };
 
@@ -444,6 +514,18 @@ export default function DebriefLens({
         <section className="skl-cat">
           <div className="dbf-loghd">
             <h3 className="skl-cat__hd">Recent games</h3>
+            {canSaveToNote() && (
+              <>
+                <button className="trends-btn" onClick={() => saveAllToNote(false)}>
+                  {noteName ? `Save to ${noteName}` : 'Save to vault'}
+                </button>
+                {noteName && (
+                  <button className="trends-btn trends-btn--ghost" onClick={() => saveAllToNote(true)}>
+                    Change note
+                  </button>
+                )}
+              </>
+            )}
             <button
               className="trends-btn trends-btn--ghost"
               onClick={async () => {

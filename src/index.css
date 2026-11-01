@@ -109,10 +109,8 @@ html, body {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: #f3eede;
-  border: none; background: transparent; padding: 0;
-  outline: none;
+  margin: 0;
 }
-.coord__team:focus { color: #fff; }
 .coord__meta {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -3385,8 +3383,7 @@ body:has(.drawer--on) .tweaks__fab { display: none; }
 /* header */
 .stage--atlas .crest { box-shadow: none; font-family: var(--font-serif); font-weight: 600; }
 .stage--atlas .coord__brand { color: var(--ink); }
-.stage--atlas .coord__team,
-.stage--atlas .coord__team:focus {
+.stage--atlas .coord__team {
   font-family: var(--font-serif);
   font-weight: 600;
   text-transform: none;

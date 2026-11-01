@@ -180,6 +180,27 @@ db.version(12).stores({
   macroArsenal: 'id'
 });
 
+// v13: vaultFiles keeps the browser's file handle for the vault note, so the
+// debrief can save to it without picking the file every time.
+db.version(13).stores({
+  myPlays: '++id, playId, playbook, formationGroup, formation, playName, playType, side, tags, notes, rating, addedAt',
+  gameSessions: '++id, opponent, date, result, notes',
+  playPerformance: '++id, sessionId, playId, callCount, successCount, yardsGained, notes',
+  gameContext: 'id',
+  sheetAssignments: 'id',
+  sheetSettings: 'id',
+  formations: 'id, side, name, updatedAt',
+  setupChecks: 'id',
+  callSheets: 'id, name, game, updatedAt',
+  skillAssessments: 'id, createdAt',
+  labPlans: 'id, weekOf',
+  personnelCharts: 'id, planId, game, updatedAt',
+  gameDebriefs: 'id, playedAt, game, mode',
+  macroPackages: 'id, game, side, updatedAt',
+  macroArsenal: 'id',
+  vaultFiles: 'id'
+});
+
 // Sheet assignments helpers — fresh-object factories so the module-level
 // defaults are never aliased into the live React state.
 //
@@ -639,4 +660,19 @@ export async function saveMacroSlot(game, pkgId, patch) {
   const next = { ...(row.slots[pkgId] || {}), ...patch };
   const slots = { ...row.slots, [pkgId]: next };
   await db.macroArsenal.put({ ...row, slots, updatedAt: Date.now() });
+}
+
+// The vault note the debrief saves to. The handle only works in this browser.
+const VAULT_NOTE_ID = 'debriefLog';
+
+export async function getVaultNoteHandle() {
+  return (await db.vaultFiles.get(VAULT_NOTE_ID))?.handle ?? null;
+}
+
+export async function setVaultNoteHandle(handle) {
+  await db.vaultFiles.put({ id: VAULT_NOTE_ID, handle });
+}
+
+export async function clearVaultNoteHandle() {
+  await db.vaultFiles.delete(VAULT_NOTE_ID);
 }
