@@ -1,9 +1,9 @@
-// Floating tweaks panel — paper material, accent color, slot density, gloss.
+// Floating tweaks panel — paper material, accent color, slot density.
 
 import { useState } from 'react'
 
 const PAPER_PALETTES = [
-  ['#f4efe2', '#e7e0cf', '#d8cfb8', '#1c1a14'], // Cardstock cream
+  ['#e9ede6', '#dde2d9', '#aeb8ad', '#14212b'], // Survey map
   ['#f3f4f2', '#e3e5e1', '#cfd2cc', '#181a1e'], // Cool white
   ['#efe6d2', '#e0d4ba', '#cbbd9c', '#241f15'], // Field tan
 ]
@@ -81,18 +81,6 @@ function TweaksPanel({
             })}
           </div>
         </div>
-        <div className="tweaks__row tweaks__row-h">
-          <div className="tweaks__lbl">Lamination gloss</div>
-          <button
-            type="button"
-            className="toggle"
-            data-on={tweaks.gloss ? '1' : '0'}
-            onClick={() => setTweak('gloss', !tweaks.gloss)}
-          >
-            <i />
-          </button>
-        </div>
-
         <div className="tweaks__sect">Team accent</div>
         <div className="tweaks__row">
           <div className="tweaks__lbl">Accent</div>

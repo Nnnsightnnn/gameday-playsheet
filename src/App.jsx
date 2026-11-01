@@ -4,8 +4,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import {
-  getGameContext,
-  updateGameContext,
   getSheetAssignments,
   saveSheetAssignments,
   getSheetSettings,
@@ -24,6 +22,7 @@ import {
 import { SITUATIONS } from './data/situations'
 import { GAME_PLANS } from './data/gameplans'
 import Coordinator from './components/laminated/Coordinator'
+import CallMap from './components/laminated/CallMap'
 import Sheet from './components/laminated/Sheet'
 import SetupSheet from './components/laminated/SetupSheet'
 import PlayBank from './components/laminated/PlayBank'
@@ -43,11 +42,13 @@ const PLAYBOOK_FILES = {
   madden: 'data/playbooks.json',
   cfb: 'data/playbooks-cfb27.json',
 }
+const SURVEY_PAPER = ['#e9ede6', '#dde2d9', '#aeb8ad', '#14212b']
+// Saved settings still hold the old default, which is no longer offered.
+const CARDSTOCK_CREAM = '#f4efe2'
 const DEFAULT_TWEAKS = {
-  paper: ['#f4efe2', '#e7e0cf', '#d8cfb8', '#1c1a14'],
+  paper: SURVEY_PAPER,
   accent: '#2f7d4f',
   density: 'regular',
-  gloss: true,
 }
 
 function App() {
@@ -59,7 +60,6 @@ function App() {
 
   // ── persisted state via Dexie ───────────────────────────────────────────
   const settings = useLiveQuery(() => getSheetSettings(), [], null)
-  const ctxRow = useLiveQuery(() => getGameContext(), [], null)
   const sheetRow = useLiveQuery(() => getSheetAssignments(), [], null)
   const checksRow = useLiveQuery(() => getSetupChecks(), [], null)
   const savedSheets = useLiveQuery(() => getCallSheets(), [], null)
@@ -92,13 +92,14 @@ function App() {
   const pbLoading = !playbookCache[game]
   const tweaks = settings?.tweaks ?? DEFAULT_TWEAKS
   const view = settings?.view ?? 'sheet'
-  // Call Sheet layout: by situation (calling plays) or by formation
-  // (walking the in-game favorites menu on setup day).
-  const sheetMode = settings?.sheetMode ?? 'situation'
+  // Call Sheet layout: the map (find a play and keep your place), every section
+  // at once, or favorites setup. A new key, so existing saved settings still
+  // open on the map rather than the old default.
+  const sheetMode = settings?.callSheetMode ?? 'map'
+  const mapPlaces = settings?.mapPlaces ?? {}
   const coverageLab = settings?.coverageLab ?? null
   const trendsCfg = settings?.trends ?? null
 
-  const ctx = ctxRow ?? { down: 1, distance: 10, fieldSide: 'own', yardLine: 25 }
   // Per-game sheet: the Madden sheet and the CFB sheet live side by side.
   const assignments = useMemo(
     () => sheetRow?.byGame?.[game] ?? { offense: {}, defense: {} },
@@ -122,12 +123,6 @@ function App() {
   const situations = SITUATIONS[side]
   const sideAssign = assignments[side] || {}
 
-  const liveList = situations.filter((s) => s.match && s.match(ctx))
-  const liveIds = new Set(liveList.map((s) => s.id))
-  const liveText = liveList.length
-    ? liveList.map((s) => s.name).join(' · ')
-    : 'Set the situation'
-
   const slotCount = DENSITY_SLOTS[tweaks.density] || 4
   const sideChecks = checksRow?.byGame?.[game]?.[side] ?? {}
   const assignedIds = (sideAssign[targetId] || []).map((p) => p.playId)
@@ -150,11 +145,21 @@ function App() {
       side,
       tweaks: { ...tweaks, [key]: val },
     })
-  const setCtx = (patch) => updateGameContext(patch)
   const setView = (v) =>
     saveSheetSettings({ ...(settings || {}), team, side, tweaks, view: v })
   const setSheetMode = (m) =>
-    saveSheetSettings({ ...(settings || {}), team, side, tweaks, sheetMode: m })
+    saveSheetSettings({ ...(settings || {}), team, side, tweaks, callSheetMode: m })
+  const saveMapPlace = (place) =>
+    saveSheetSettings({
+      ...(settings || {}),
+      team,
+      side,
+      tweaks,
+      mapPlaces: {
+        ...mapPlaces,
+        [game]: { ...mapPlaces[game], [side]: place },
+      },
+    })
   const setCoverageLab = (next) =>
     saveSheetSettings({ ...(settings || {}), team, side, tweaks, coverageLab: next })
   const setTrendsCfg = (next) =>
@@ -232,6 +237,25 @@ function App() {
     showToast('Added to ' + (sit?.name || 'sheet'), sit?.color)
   }
 
+  // The map's quick add names its section instead of using the drawer's target.
+  const addPlayTo = (situationId, play) => {
+    const cur = assignments[side] || {}
+    const list = cur[situationId] || []
+    if (list.some((p) => p.playId === play.playId)) return
+    saveGameAssignments({
+      ...assignments,
+      [side]: { ...cur, [situationId]: [...list, play] },
+    })
+  }
+
+  // Undo for a removal: the play goes back in its old row, note included.
+  const restorePlay = (situationId, play, at) => {
+    const cur = assignments[side] || {}
+    const list = (cur[situationId] || []).filter((p) => p.playId !== play.playId)
+    list.splice(at, 0, play)
+    saveGameAssignments({ ...assignments, [side]: { ...cur, [situationId]: list } })
+  }
+
   const removePlay = (situationId, playId) => {
     const cur = assignments[side] || {}
     const list = (cur[situationId] || []).filter((p) => p.playId !== playId)
@@ -296,18 +320,19 @@ function App() {
   }
 
   // CSS custom properties for live theming
+  const paper = tweaks.paper[0] === CARDSTOCK_CREAM ? SURVEY_PAPER : tweaks.paper
   const rootStyle = {
-    '--paper': tweaks.paper[0],
-    '--paper-edge': tweaks.paper[1],
-    '--paper-line': tweaks.paper[2],
-    '--ink': tweaks.paper[3],
+    '--paper': paper[0],
+    '--paper-edge': paper[1],
+    '--paper-line': paper[2],
+    '--ink': paper[3],
     '--accent': tweaks.accent,
   }
 
   // Wait for Dexie to hydrate to avoid flicker on first paint
-  if (!settings || !ctxRow || !sheetRow) {
+  if (!settings || !sheetRow) {
     return (
-      <div className="stage" style={rootStyle}>
+      <div className="stage stage--atlas" style={rootStyle}>
         <div className="foot" style={{ marginTop: 80 }}>
           Loading sheet…
         </div>
@@ -316,13 +341,13 @@ function App() {
   }
 
   return (
-    <div className="stage" style={rootStyle}>
+    <div
+      className="stage stage--atlas"
+      style={rootStyle}
+    >
       <Coordinator
         team={team}
         setTeam={setTeam}
-        ctx={ctx}
-        setCtx={setCtx}
-        liveSituations={liveText}
       />
 
       <div className="viewswitch">
@@ -410,11 +435,20 @@ function App() {
               <button
                 className={
                   'sheetmode__btn' +
+                  (sheetMode === 'map' ? ' sheetmode__btn--on' : '')
+                }
+                onClick={() => setSheetMode('map')}
+              >
+                Map
+              </button>
+              <button
+                className={
+                  'sheetmode__btn' +
                   (sheetMode === 'situation' ? ' sheetmode__btn--on' : '')
                 }
                 onClick={() => setSheetMode('situation')}
               >
-                By Situation
+                All Sections
               </button>
               <button
                 className={
@@ -423,7 +457,7 @@ function App() {
                 }
                 onClick={() => setSheetMode('formation')}
               >
-                By Formation
+                Favorites
               </button>
             </div>
             <span className="sheetmode__count">
@@ -456,13 +490,30 @@ function App() {
         <FormationPlanner side={side} />
       ) : (
         <>
-          {sheetMode === 'formation' ? (
+          {sheetMode === 'map' ? (
+            <CallMap
+              key={game + '-' + side}
+              situations={situations}
+              assignments={sideAssign}
+              saved={mapPlaces[game]?.[side]}
+              paused={drawerOpen}
+              side={side}
+              playbooks={playbooks}
+              onPlace={saveMapPlace}
+              onBrowse={openDrawer}
+              onAdd={addPlayTo}
+              onRemove={removePlay}
+              onRestore={restorePlay}
+              onNote={setPlayNote}
+            />
+          ) : sheetMode === 'formation' ? (
             <SetupSheet
               situations={situations}
               assignments={sideAssign}
               playbooks={playbooks}
               checks={sideChecks}
-              gloss={tweaks.gloss}
+              game={game}
+              onGame={setGame}
               onToggle={(playId) => toggleSetupCheck(game, side, playId)}
               onClear={() => clearSetupChecks(game, side)}
             />
@@ -470,20 +521,18 @@ function App() {
             <Sheet
               situations={situations}
               assignments={sideAssign}
-              liveIds={liveIds}
               slotCount={slotCount}
-              gloss={tweaks.gloss}
               onAdd={openDrawer}
               onRemove={removePlay}
               onNote={setPlayNote}
             />
           )}
 
-          <div className="foot">
-            {sheetMode === 'formation'
-              ? 'Favorites sort newest-first in game — follow the numbered order and the menu comes out matching your sheet.'
-              : 'Set the down, distance & field position — the live block lights up. Tap any slot to call from the play bank.'}
-          </div>
+          {sheetMode === 'situation' && (
+            <div className="foot">
+              Tap + in a section to add a play from the play bank.
+            </div>
+          )}
 
           <PlayBank
             key={side + '-' + game}

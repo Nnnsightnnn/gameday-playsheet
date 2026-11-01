@@ -2,10 +2,12 @@
 // favorited lands on TOP of the in-game menu. So the default mode here is a
 // numbered favoriting sequence: the sheet's priority order reversed. Favorite
 // in checklist order (1, 2, 3…) and the finished menu mirrors the call sheet,
-// slot 1 of block 1 on top. A second mode groups by playbook → formation for
-// finding plays while navigating the add menu. Checks persist per game + side.
+// slot 1 of block 1 on top. Walk shows that same sequence one play at a time. A
+// third mode groups by playbook → formation for finding plays while navigating
+// the add menu. Checks persist per game + side.
 
 import { useState } from 'react'
+import SetupWalk from './SetupWalk'
 
 // Flatten in sheet priority order: situations top-to-bottom, slots in order.
 // Dedupe by playId — a play keeps its highest (first) occurrence.
@@ -111,11 +113,12 @@ function SetupSheet({
   assignments,
   playbooks,
   checks,
-  gloss,
+  game,
+  onGame,
   onToggle,
   onClear,
 }) {
-  const [mode, setMode] = useState('sequence')
+  const [mode, setMode] = useState('walk')
 
   const entries = flattenBySide(situations, assignments)
   const groups = groupForSetup(entries, playbooks)
@@ -129,16 +132,38 @@ function SetupSheet({
 
   return (
     <div className="sheet-wrap">
-      <div className={'sheet' + (gloss ? '' : ' no-gloss')}>
+      <div className="sheet">
         <div className="setup-hd">
           <div className="setup-hd__titles">
             <div className="setup-hd__name">Favorites Setup</div>
             <div className="setup-hd__sub">
-              {mode === 'sequence'
+              {mode === 'walk'
+                ? 'Find this play in the game, favorite it, then press Next. Your place is saved.'
+                : mode === 'sequence'
                 ? 'CFB 27 puts the last play favorited on top. Favorite in this exact order and the finished menu mirrors your call sheet.'
                 : 'Grouped like the playbook add-menu — use this to find where each play lives.'}
             </div>
             <div className="setup-modes">
+              {[['madden', 'Madden 27'], ['cfb', 'CFB 27']].map(([id, label]) => (
+                <button
+                  key={id}
+                  className={'setup-mode' + (game === id ? ' setup-mode--on' : '')}
+                  aria-pressed={game === id}
+                  onClick={() => onGame(id)}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <div className="setup-modes">
+              <button
+                className={
+                  'setup-mode' + (mode === 'walk' ? ' setup-mode--on' : '')
+                }
+                onClick={() => setMode('walk')}
+              >
+                Walk
+              </button>
               <button
                 className={
                   'setup-mode' + (mode === 'sequence' ? ' setup-mode--on' : '')
@@ -180,6 +205,10 @@ function SetupSheet({
           <div className="dempty" style={{ color: 'var(--ink-faint)' }}>
             Nothing on the sheet yet — fill the call sheet first.
           </div>
+        )}
+
+        {mode === 'walk' && total > 0 && (
+          <SetupWalk sequence={sequence} checks={checks} onToggle={onToggle} />
         )}
 
         {mode === 'sequence' && total > 0 && (
