@@ -153,6 +153,14 @@ describe('vocabulary', () => {
     expect(checkPackage(legacy).filter((c) => c.level === 'error')).toEqual([])
   })
 
+  it('a threat cannot be vouched for by a site that sells boosts or coins', () => {
+    const vouched = META_THREATS.filter((t) => t.conf === 'm27' || t.conf === 'ea')
+    for (const t of vouched) {
+      expect(t.source, t.id).toBeTruthy()
+      expect(t.source, t.id).not.toMatch(/timesaver|mmoexp|u4gm|game cloud/i)
+    }
+  })
+
   it('every meta threat names what beats it and carries a conf tag', () => {
     for (const t of META_THREATS) {
       expect(t.beatenBy.length, t.id).toBeGreaterThan(20)

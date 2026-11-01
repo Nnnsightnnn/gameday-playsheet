@@ -7,21 +7,27 @@
 // `beatenBy` is the football principle, not a play; packages carry the plays.
 // `trend` points at the Trends board entry the threat was drawn from, when
 // there is one. Confidence tags follow src/data/personnel.js CONFIDENCE.
+//
+// A site that sells boosts or coins can suggest a threat but can't vouch for
+// one, so its claim stays `read` until a named competitor or match footage
+// backs it. The Oct 2026 sources are captions from competitor videos, not
+// watched film, and nearly all predate the Oct 21 patch. engine.test.js fails
+// any `m27` or `ea` threat that cites a seller.
 
 export const META_THREATS = [
   // ── Madden 27: offensive metas (beat them with a defensive package) ─────
   { id: 'm27-o-return', game: 'madden', threat: 'offense', name: 'Return routes',
     what: 'Cheat Flat X Post, Ohio Return, Return Bench: a receiver runs up, stops and comes back into grass the zone just left. The strongest M27 books are built on it.',
     beatenBy: 'Match rules or Look For Work, so the zone that passed the route off finds it again on the way back.',
-    conf: 'm27', source: 'Timesaver money plays (Sep 2026)' },
+    conf: 'read', source: 'Timesaver (sells wins boosts). Not found as a meta item in 38 competitor videos; Return Bench was on screen, browsed not called, in the Sep 16 MCS broadcast' },
   { id: 'm27-o-clamp', game: 'madden', threat: 'offense', name: 'Clamp Stack + motion shuffle',
     what: 'Gun Doubles Clamp Stack (Cardinals): Flood Seam, Motion Shuffle Smash and Mesh Rail. Stacks break man leverage and motion re-declares strength.',
     beatenBy: 'Rotate the help to the stack after the snap and squat the flat, so the flood runs into a corner instead of grass.',
-    conf: 'm27', source: 'Timesaver money plays; trends m27-off-book-tiers', trend: 'm27-off-book-tiers' },
-  { id: 'm27-o-flood', game: 'madden', threat: 'offense', name: 'Flood / PA Flood',
+    conf: 'm27', source: 'Drini 09-06 (best offense), Wesley 10-22 (slightly fallen out of the meta), MF88 10-27 (gets caged). Real but aging; motion shuffle has one tournament mention', trend: 'm27-off-book-tiers' },
+  { id: 'm27-o-flood', game: 'madden', threat: 'offense', name: 'Flood',
     what: 'Three levels to one sideline: flat, sail, go. Stresses the curl-flat defender and the corner in one throw.',
     beatenBy: 'A cloud corner in the flat and a deep third over the sail, rolled to the flood side.',
-    conf: 'm27', source: 'Timesaver money plays' },
+    conf: 'm27', source: 'Chosen vs Millz MCS broadcast (casters), MF88 10-16, Wesley 10-13, as a flood away from the stunt. PA Flood has no competitor support; they say PA Boot' },
   { id: 'm27-o-quickhot', game: 'madden', threat: 'offense', name: 'Quick-game hot answers',
     what: 'The universal answer to a zero look: slant, stick or drag out in a beat, caught on a green timing release.',
     beatenBy: 'Show zero, drop a defender into the hot window, and let the QB throw the ball into him.',
@@ -33,21 +39,25 @@ export const META_THREATS = [
   { id: 'm27-o-qbrun', game: 'madden', threat: 'offense', name: 'QB run and scramble',
     what: 'QB Zone / QB Wrap from Pistol and Gun Wing Slot Offset, plus the extend-and-run escape.',
     beatenBy: 'Contain both edges or spy, and plaster the zones once he breaks the pocket.',
-    conf: 'm27', source: 'Timesaver money plays; trends m27-plaster-logic', trend: 'm27-plaster-logic' },
+    conf: 'm27', source: 'Chosen vs Millz MCS broadcast (casters: Millz, Sebatron). Needs a mobile QB, per Drini', trend: 'm27-plaster-logic' },
+  { id: 'm27-o-run-rpo', game: 'madden', threat: 'offense', name: 'Inside run and RPO',
+    what: 'Pistol Bunch TE and Pistol Deuce Close: HB Zone, Dive, Speed Option and RPOs that chew clock. Inside zone and duo at the A gap is also the stated hole in the Falcons 2-4-5.',
+    beatenBy: 'Man up the linebacker on the RPO player, pinch the front by hand against inside runs, and check out of 2-4-5 against heavy personnel.',
+    conf: 'm27', source: 'Noah vs Sebatron MCS broadcast 09-16 (casters); Wesley 10-03 for the man-up; gameplans-falcons.js for the hole. Henry says he cannot stop an RPO, so no answer here is proven' },
 
   // ── Madden 27: defensive metas (beat them with an offensive package) ────
   { id: 'm27-d-loop0', game: 'madden', threat: 'defense', name: 'Loop Man 0',
     what: 'Nickel 2-4 Double Mug Mid Blitz 0: shows six, rushes four with pinch technique, inside point of attack and contain both sides, man behind with 15-yard hook drops.',
     beatenBy: 'Hold six in protection, then beat man with a rub or a crosser before the loopers arrive.',
-    shows: 6, rush: 4, conf: 'm27', source: 'MMOExp Loop Man 0 guide via trends m27-loop-man-0', trend: 'm27-loop-man-0' },
+    shows: 6, rush: 4, conf: 'read', source: 'MMOExp (sells coins), no named player. No hit in 38 competitor videos', trend: 'm27-loop-man-0' },
   { id: 'm27-d-hover', game: 'madden', threat: 'defense', name: 'A-gap hover and show blitz',
     what: 'A user hovering a mug in the A gap plus linebackers showing blitz, so protection sets to the wrong man.',
     beatenBy: 'ID the man in the A gap and keep the back in; the free rusher is the one you did not name.',
     shows: 6, rush: 5, conf: 'm27', source: 'Civil.GG defense guide (hover concept)' },
   { id: 'm27-d-match', game: 'madden', threat: 'defense', name: 'Match coverage (Cover 3 / Quarters / Palms Match)',
-    what: 'Zone that passes routes off like man. It is the money answer to return routes and floods this year.',
+    what: 'Zone that passes routes off like man. Top players moved here from man by October, mostly Cover 2 Match from Nickel 2-4 Wide.',
     beatenBy: 'Force the pass-off: bunch releases, crossers and switch routes, or run it at a light box.',
-    shows: 4, rush: 4, conf: 'm27', source: 'Timesaver money plays' },
+    shows: 4, rush: 4, conf: 'm27', source: 'Astro on the MCS stage (Cody breakdown), MF88 10-16, Wesley 10-22 on the shift from man' },
   { id: 'm27-d-3high', game: 'madden', threat: 'defense', name: 'Three-high shells',
     what: 'Three High Penny / Three High Over (Cardinals) and 4-2-5 3 High: three deep, six in the box.',
     beatenBy: 'Run it. Six in the box is a numbers win for inside zone with a double team on the nose.',
@@ -55,7 +65,7 @@ export const META_THREATS = [
   { id: 'm27-d-sim', game: 'madden', threat: 'defense', name: 'Sim and fire-zone pressure',
     what: 'DB Fire 2, Will Go Fire 3: pressure from a coverage look, with droppers sitting in the hot windows.',
     beatenBy: 'Throw away from the dropper: screens and routes that break outside the hook.',
-    shows: 4, rush: 5, conf: 'm27', source: 'Timesaver money plays; Madden Prodigy blitz guide' },
+    shows: 4, rush: 5, conf: 'read', source: 'Timesaver (sells wins boosts) and a Madden Prodigy guide. No sim or fire-zone hit in 38 competitor videos, though pros may name it differently' },
 
   // ── CFB 27 ──────────────────────────────────────────────────────────────
   { id: 'cfb-o-power', game: 'cfb', threat: 'offense', name: 'Gun Power I run bludgeon',
