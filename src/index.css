@@ -3698,6 +3698,8 @@ body:has(.drawer--on) .tweaks__fab { display: none; }
   padding-top: 18px;
 }
 .callmap__rail { grid-area: rail; display: flex; flex-direction: column; }
+.callmap__group { padding: 0 8px 6px; font-family: var(--font-serif); font-size: 17px; font-weight: 600; color: var(--ink); }
+.callmap__sec--after { margin-top: 18px; border-top: 1px solid var(--ink); }
 .callmap__sec {
   display: flex;
   align-items: center;
@@ -3922,6 +3924,8 @@ body:has(.drawer--on) .tweaks__fab { display: none; }
   .callmap { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'rail' 'pin' 'list'; gap: 18px; padding-top: 10px; }
   .callmap__rail { flex-direction: row; overflow-x: auto; gap: 6px; padding-bottom: 6px; }
   .callmap__sec { flex: none; width: auto; border: 1px solid var(--paper-line); border-radius: 3px; white-space: nowrap; }
+  .callmap__group { display: none; }
+  .callmap__sec--after { margin: 0 0 0 10px; border-top: 1px solid var(--paper-line); }
   .callmap__more { flex: none; margin: 0; white-space: nowrap; }
   .callmap__formation { font-size: 34px; }
   .callmap__name { font-size: 30px; }

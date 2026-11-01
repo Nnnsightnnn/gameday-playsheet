@@ -135,20 +135,25 @@ function CallMap({
     }
   }
 
-  const hiddenCount = sections.filter((s) => !s.plays.length && s.id !== sectionId).length
+  // Coverage sections stay listed while empty: they are there to be filled.
+  const shownWhenEmpty = (s) => s.coverage || s.id === sectionId
+  const hiddenCount = sections.filter((s) => !s.plays.length && !shownWhenEmpty(s)).length
   const railSections = sections.filter(
-    (s) => showEmpty || s.plays.length > 0 || s.id === sectionId,
+    (s) => showEmpty || s.plays.length > 0 || shownWhenEmpty(s),
   )
+  const coverageCount = railSections.filter((s) => s.coverage).length
 
   return (
     <div className="sheet-wrap">
       <div className="callmap">
         <nav className="callmap__rail" aria-label="Sections" ref={railRef}>
-          {railSections.map((s) => (
+          {coverageCount > 0 && <div className="callmap__group">Beat the coverage</div>}
+          {railSections.map((s, i) => (
             <button
               key={s.id}
               className={
                 'callmap__sec' +
+                (i === coverageCount && coverageCount > 0 ? ' callmap__sec--after' : '') +
                 (s.id === sectionId ? ' callmap__sec--on' : '') +
                 (s.plays.length ? '' : ' callmap__sec--empty')
               }

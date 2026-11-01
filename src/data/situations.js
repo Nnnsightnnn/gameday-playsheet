@@ -17,6 +17,14 @@ const backedUp = (c) => c.fieldSide === 'own' && c.yardLine <= 10;
 // situation id resolves here). Delete them once those two plans are rebuilt
 // into drive scripts — that is the agreed follow-up, not an oversight.
 export const OFFENSE = [
+  // ── Beat the coverage: what the defense calls a bunch, with your beaters.
+  // Kenny fills these himself; `coverage` keeps them in the map's rail while empty.
+  { id: 'beatc4',      name: 'Cover 4',      sub: 'Your beaters', color: '#1f7d77', coverage: true },
+  { id: 'beatc3',      name: 'Cover 3',      sub: 'Your beaters', color: '#45597e', coverage: true },
+  { id: 'beatc2',      name: 'Cover 2',      sub: 'Your beaters', color: '#2a4a7f', coverage: true },
+  { id: 'beatmanblitz', name: 'Man Blitz',   sub: 'Your beaters', color: '#b3392f', coverage: true },
+  { id: 'beatc2man',   name: 'Cover 2 Man',  sub: 'Your beaters', color: '#6a4a9c', coverage: true },
+
   // ── Drive scripts: work top-to-bottom, in order ──
   { id: 'openers',      name: 'Opening Script',  sub: 'Drive 1 · call in order',  color: '#2a4a7f' },
   { id: 'drivecontrol', name: 'Ball-Control',    sub: 'Grind · bleed the clock',  color: '#2f7d4f' },
