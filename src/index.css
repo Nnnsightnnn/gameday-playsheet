@@ -741,7 +741,8 @@ html, body {
   /* Next stays in reach on a phone, even when a long name pushes it down */
   .walk__controls { position: sticky; bottom: 8px; z-index: 2; }
   /* the floating Tweaks button would otherwise sit on top of Next */
-  .stage:has(.walk) .tweaks__fab { display: none; }
+  .stage:has(.walk) .tweaks__fab,
+  .stage:has(.walk) .chat__fab { display: none; }
 }
 
 /* ---------- scrim + drawer ---------- */
@@ -3954,7 +3955,6 @@ body:has(.drawer--on) .tweaks__fab { display: none; }
   font-family: var(--font-narrow); font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
   cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.3);
 }
-.stage:has(.walk) .chat__fab { display: none; }
 .chat {
   position: fixed; top: 0; right: 0; bottom: 0; z-index: 75;
   width: min(440px, 100vw); display: flex; flex-direction: column;
