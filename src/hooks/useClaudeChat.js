@@ -1,19 +1,31 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { GAME_PLANS } from '../data/gameplans'
 import { packagesForGame } from '../data/packages'
+import { PERSONNEL_PLANS } from '../data/personnelPlans'
 import {
-  applyChatProposal,
+  applyChatChange,
+  backupCurrentSheet,
+  chatChangeIsCurrent,
   clearChatThread,
   getChatThread,
+  getCallSheets,
   getGameDebriefs,
+  getLabPlans,
   getMacroArsenal,
+  getMacroPackages,
+  getPersonnelCharts,
   getSheetAssignments,
+  getSkillAssessments,
+  saveCallSheet,
+  saveMacroSlot,
   saveChatThread,
+  undoChatChange,
 } from '../lib/db'
-import { streamTurn } from '../lib/chat/client'
+import { fetchResearch, streamTurn } from '../lib/chat/client'
 import { contentForHistory, runTool } from '../lib/chat/tools'
 
 const GAME_LABEL = { madden: 'Madden 27', cfb: 'CFB 27' }
+const PLAYBOOK_FILES = { madden: 'data/playbooks.json', cfb: 'data/playbooks-cfb27.json' }
 const asset = (path) => import.meta.env.BASE_URL + path
 
 async function loadGuide(file) {
@@ -24,6 +36,14 @@ async function loadGuide(file) {
   return doc.body.textContent.replace(/\s+/g, ' ').trim()
 }
 
+// Empty team means the index of all opponents.
+async function loadScouting(team) {
+  const file = team ? `${team.toUpperCase()}.json` : 'index.json'
+  const r = await fetch(asset(`data/scouting/${file}`))
+  if (!r.ok) throw new Error(`No scouting file for "${team}".`)
+  return r.json()
+}
+
 async function loadTrends(game) {
   const r = await fetch(asset('data/trends.json'))
   if (!r.ok) throw new Error('Could not load the trends digest.')
@@ -31,21 +51,45 @@ async function loadTrends(game) {
   return { updatedAt: data.updatedAt, ...data.games[game] }
 }
 
+// The app's copy is empty while it loads, and an empty catalog would read to
+// Claude as "that play doesn't exist", so fetch it rather than answer wrongly.
+async function loadCatalog(game, playbooks) {
+  if (playbooks.length) return playbooks
+  const r = await fetch(asset(PLAYBOOK_FILES[game]))
+  if (!r.ok) throw new Error('Could not load the play catalog.')
+  return (await r.json()).playbooks || []
+}
+
 // Read fresh for every batch of tools, so Claude sees edits Kenny just made.
 async function toolContext(game, playbooks) {
-  const [row, debriefs, arsenal] = await Promise.all([
+  const [row, debriefs, arsenal, catalog, custom, labPlans, assessments, savedSheets, personnelCharts] = await Promise.all([
     getSheetAssignments(),
     getGameDebriefs(),
     getMacroArsenal(game),
+    loadCatalog(game, playbooks),
+    getMacroPackages(game),
+    getLabPlans(),
+    getSkillAssessments(),
+    getCallSheets(),
+    getPersonnelCharts(),
   ])
   return {
     game,
-    playbooks,
+    playbooks: catalog,
     debriefs,
     arsenal,
     sheet: row.byGame?.[game],
     plans: GAME_PLANS,
-    packages: packagesForGame(game),
+    packages: [...packagesForGame(game), ...custom],
+    labPlans,
+    assessments,
+    savedSheets,
+    personnelPlans: PERSONNEL_PLANS,
+    personnelCharts,
+    saveSheet: saveCallSheet,
+    saveSlot: saveMacroSlot,
+    loadResearch: fetchResearch,
+    loadScouting,
     loadGuide,
     loadTrends: () => loadTrends(game),
   }
@@ -108,21 +152,36 @@ export function useClaudeChat({ game, side, view, playbooks }) {
         commit(withReply)
         if (!hasTool) return
 
+        // One at a time, because a sheet change has to be visible to the next call.
         const ctx = await toolContext(game, playbooks)
-        const outcomes = await Promise.all(
-          content.filter((b) => b.type === 'tool_use').map((b) => runTool(b, ctx)),
-        )
         const proposals = { ...withReply.proposals }
-        for (const o of outcomes) {
-          if (o.proposal) proposals[o.result.tool_use_id] = o.proposal
+        const backedUp = { ...withReply.backedUp }
+        const results = []
+        for (const block of content.filter((b) => b.type === 'tool_use')) {
+          const { result, change } = await runTool(block, ctx)
+          if (!change) {
+            results.push(result)
+            continue
+          }
+          // The Tweaks auto-backup holds the sheet from before Claude's first
+          // change in this chat, because it only keeps one row per game.
+          if (!backedUp[change.game]) {
+            await backupCurrentSheet(change.game, 'Claude chat')
+            backedUp[change.game] = true
+          }
+          const applied = await applyChatChange(change)
+          proposals[block.id] = { ...change, ...applied, status: 'applied' }
+          ctx.sheet = (await getSheetAssignments()).byGame?.[game]
+          results.push({
+            ...result,
+            content: `Applied ${applied.applied} of ${change.changes.length} changes. ${applied.skipped} no longer fit the sheet.`,
+          })
         }
         commit({
           ...withReply,
           proposals,
-          messages: [
-            ...withReply.messages,
-            { role: 'user', content: outcomes.map((o) => o.result) },
-          ],
+          backedUp,
+          messages: [...withReply.messages, { role: 'user', content: results }],
         })
       }
     },
@@ -162,20 +221,23 @@ export function useClaudeChat({ game, side, view, playbooks }) {
 
   const stop = useCallback(() => abortRef.current?.abort(), [])
 
-  const decide = useCallback(
-    async (id, apply) => {
+  // Asks first if the sheet changed since, because Undo restores the whole side.
+  const undo = useCallback(
+    async (id) => {
       const cur = threadRef.current
-      const proposal = cur.proposals[id]
-      if (!proposal || proposal.status !== 'open') return
-      const outcome = apply ? await applyChatProposal(proposal) : null
-      const status = apply ? 'applied' : 'skipped'
-      const note = apply
-        ? `Kenny applied "${proposal.summary}" (${outcome.applied} changes, ${outcome.skipped} no longer fit).`
-        : `Kenny skipped "${proposal.summary}".`
+      const change = cur.proposals[id]
+      if (!change || change.status !== 'applied') return
+      if (!(await chatChangeIsCurrent(change))) {
+        const ok = window.confirm(
+          `The ${change.side} sheet has changed since this. Undo anyway? Edits made after it on that side are lost too.`,
+        )
+        if (!ok) return
+      }
+      await undoChatChange(change)
       commit({
         ...cur,
-        proposals: { ...cur.proposals, [id]: { ...proposal, status, outcome } },
-        pendingNotes: [...cur.pendingNotes, note],
+        proposals: { ...cur.proposals, [id]: { ...change, status: 'undone' } },
+        pendingNotes: [...cur.pendingNotes, `Kenny undid "${change.summary}".`],
       })
     },
     [commit],
@@ -189,5 +251,5 @@ export function useClaudeChat({ game, side, view, playbooks }) {
     setError(null)
   }, [])
 
-  return { thread, live, error, send, stop, decide, reset }
+  return { thread, live, error, send, stop, undo, reset }
 }

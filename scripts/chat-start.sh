@@ -6,7 +6,9 @@
 export PATH="/opt/homebrew/bin:$HOME/.local/bin:$PATH"
 cd "${0:A:h}/.." || exit 1
 
-URL="https://nnnsightnnn.github.io/gameday-playsheet/?chat"
+# A fresh query string skips the 10-minute page cache, so the icon always loads
+# the panel that matches the server it just started.
+URL="https://nnnsightnnn.github.io/gameday-playsheet/?chat=$(date +%s)"
 ORIGIN="https://nnnsightnnn.github.io"
 up() { curl -fs -o /dev/null -H "Origin: $ORIGIN" http://127.0.0.1:5199/health; }
 

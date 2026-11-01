@@ -722,16 +722,31 @@ export async function clearChatThread() {
   await db.chatThreads.delete(CHAT_THREAD_ID);
 }
 
-// Same safety as loading a plan: the sheet is backed up before Claude's change
-// lands, so one reload from Tweaks undoes it.
-export async function applyChatProposal({ game, side, summary, changes }) {
-  await backupCurrentSheet(game, `Claude: ${summary}`);
+async function writeSheetSide(game, side, sideSheet) {
   const row = await getSheetAssignments();
   const gameSheet = row.byGame?.[game] ?? { offense: {}, defense: {} };
-  const { sideSheet, applied, skipped } = applySheetChanges(gameSheet[side] || {}, changes);
   await saveSheetAssignments({
     ...row,
     byGame: { ...row.byGame, [game]: { ...gameSheet, [side]: sideSheet } },
   });
-  return { applied, skipped };
+}
+
+// Keeps the side before and after, which is what Undo restores and checks.
+export async function applyChatChange({ game, side, changes }) {
+  const row = await getSheetAssignments();
+  const before = row.byGame?.[game]?.[side] || {};
+  const { sideSheet: after, applied, skipped } = applySheetChanges(before, changes);
+  await writeSheetSide(game, side, after);
+  return { before, after, applied, skipped };
+}
+
+// True when the sheet still matches what this change left, so Undo can't
+// silently erase an edit made since.
+export async function chatChangeIsCurrent({ game, side, after }) {
+  const row = await getSheetAssignments();
+  return JSON.stringify(row.byGame?.[game]?.[side] || {}) === JSON.stringify(after);
+}
+
+export async function undoChatChange({ game, side, before }) {
+  await writeSheetSide(game, side, before);
 }

@@ -4,7 +4,10 @@
 // debriefs live in that browser's IndexedDB. Start with `npm run chat`.
 
 import { spawn } from 'node:child_process';
+import { readdir, readFile } from 'node:fs/promises';
 import http from 'node:http';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import Anthropic from '@anthropic-ai/sdk';
 import { SYSTEM_PROMPT, TOOLS } from './prompt.mjs';
 import { PORT, originAllowed, requestAllowed } from './requestGate.mjs';
@@ -18,6 +21,34 @@ if (!process.env.ANTHROPIC_API_KEY) {
 }
 
 const client = new Anthropic();
+
+// Research is served from disk rather than bundled, because some of it stays out
+// of the public repo. Only markdown under these folders can be read, and a path
+// must match this listing exactly, so a request can't walk elsewhere on the Mac.
+const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const RESEARCH_DIRS = ['reports', 'research_notes', 'docs/packages', 'docs/scouting'];
+
+async function listResearch() {
+  const files = [];
+  for (const dir of RESEARCH_DIRS) {
+    const entries = await readdir(path.join(REPO, dir), { recursive: true, withFileTypes: true }).catch(() => []);
+    for (const e of entries) {
+      if (e.isFile() && e.name.endsWith('.md')) {
+        files.push(path.relative(REPO, path.join(e.parentPath, e.name)));
+      }
+    }
+  }
+  return files.sort();
+}
+
+async function handleResearch(req, res, headers) {
+  const wanted = new URL(req.url, 'http://localhost').searchParams.get('path');
+  const files = await listResearch();
+  res.writeHead(wanted && !files.includes(wanted) ? 404 : 200, { ...headers, 'Content-Type': 'application/json' });
+  if (!wanted) res.end(JSON.stringify({ files }));
+  else if (!files.includes(wanted)) res.end(JSON.stringify({ error: `No research file "${wanted}".` }));
+  else res.end(JSON.stringify({ path: wanted, text: await readFile(path.join(REPO, wanted), 'utf8') }));
+}
 
 function corsHeaders(origin) {
   return originAllowed(origin)
@@ -145,6 +176,8 @@ const server = http.createServer(async (req, res) => {
   } else if (req.method === 'GET' && req.url === '/health') {
     res.writeHead(200, { ...headers, 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ ok: true, model: MODEL }));
+  } else if (req.method === 'GET' && req.url.startsWith('/research')) {
+    await handleResearch(req, res, headers);
   } else if (req.method === 'POST' && req.url === '/chat') {
     await handleChat(req, res, headers);
   } else {

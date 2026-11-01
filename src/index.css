@@ -3996,7 +3996,7 @@ body:has(.drawer--on) .tweaks__fab { display: none; }
 .chat__changes { list-style: none; margin: 8px 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
 .chat__changes span { color: var(--ink-soft); font-size: 12px; }
 .chat__changes em { display: block; color: var(--ink-soft); font-size: 12px; }
-.chat__cardbtns { display: flex; gap: 8px; }
+.chat__cardbtns { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .chat__cardstate { color: var(--ink-soft); font-size: 12px; }
 .chat__btn {
   padding: 6px 14px; border-radius: 6px; cursor: pointer; font: inherit; font-size: 13px;

@@ -1,5 +1,5 @@
-// Claude's proposed sheet edits. Pure so the rules that protect the real sheet
-// are testable: nothing unverified gets on it, and Kenny's own note is untouched.
+// Claude's sheet edits. Pure so the rules that protect the real sheet are
+// testable: nothing unverified gets on it, and Kenny's own note is untouched.
 
 import { SITUATIONS } from '../../data/situations';
 
@@ -51,19 +51,24 @@ export function validateProposal({ side, changes }, playbooks, sheet) {
       } else if (onSheet) {
         errors.push(`${play.name} is already in ${block.name}.`);
       } else {
-        hydrated.push({ action: 'add', situationId: block.id, situationName: block.name, play, note: c.note });
+        hydrated.push({ action: 'add', situationId: block.id, situationName: block.name, play, note: c.note, position: c.position });
       }
     } else if (!onSheet) {
       errors.push(`"${c.playId}" is not on the sheet in ${block.name}.`);
     } else {
-      hydrated.push({ action: c.action, situationId: block.id, situationName: block.name, play: onSheet, note: c.note });
+      hydrated.push({ action: c.action, situationId: block.id, situationName: block.name, play: onSheet, note: c.note, position: c.position });
     }
   }
   return { errors, changes: hydrated };
 }
 
-// Applied against the sheet as it is now, which may have moved since the card
-// was shown; a change that no longer fits is skipped rather than forced.
+// A position of -1, or past the end, means the end of the block.
+function insertAt(list, play, position) {
+  const at = position >= 0 && position < list.length ? position : list.length;
+  return [...list.slice(0, at), play, ...list.slice(at)];
+}
+
+// A change that no longer fits the sheet is skipped rather than forced.
 export function applySheetChanges(sideSheet, changes) {
   const next = { ...sideSheet };
   let applied = 0;
@@ -73,10 +78,14 @@ export function applySheetChanges(sideSheet, changes) {
     if (c.action === 'add' && !exists) {
       const play = { ...c.play };
       if (c.note) play.note = c.note;
-      next[c.situationId] = [...list, play];
+      next[c.situationId] = insertAt(list, play, c.position);
       applied += 1;
     } else if (c.action === 'remove' && exists) {
       next[c.situationId] = list.filter((p) => p.playId !== c.play.playId);
+      applied += 1;
+    } else if (c.action === 'move' && exists) {
+      const moved = list.find((p) => p.playId === c.play.playId);
+      next[c.situationId] = insertAt(list.filter((p) => p !== moved), moved, c.position);
       applied += 1;
     } else if (c.action === 'set_note' && exists) {
       next[c.situationId] = list.map((p) => (p.playId === c.play.playId ? { ...p, note: c.note } : p));

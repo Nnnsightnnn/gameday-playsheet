@@ -5,17 +5,17 @@ import { useEffect, useRef, useState } from 'react'
 import { useClaudeChat } from '../../hooks/useClaudeChat'
 import { chatOptedIn, serverIsUp } from '../../lib/chat/client'
 
-const ACTION_LABEL = { add: 'Add', remove: 'Remove', set_note: 'Note' }
+const ACTION_LABEL = { add: 'Add', remove: 'Remove', move: 'Move', set_note: 'Note' }
 
-function ProposalCard({ proposal, onDecide }) {
+function ChangeCard({ change, canUndo, onUndo }) {
   return (
     <div className="chat__card">
       <div className="chat__cardhd">
-        {proposal.summary}
-        <span>{proposal.game === 'cfb' ? 'CFB' : 'Madden'} · {proposal.side}</span>
+        {change.summary}
+        <span>{change.game === 'cfb' ? 'CFB' : 'Madden'} · {change.side}</span>
       </div>
       <ul className="chat__changes">
-        {proposal.changes.map((c, i) => (
+        {change.changes.map((c, i) => (
           <li key={i}>
             <b>{ACTION_LABEL[c.action]}</b> {c.play.name}
             <span> {c.play.formation} · {c.situationName}</span>
@@ -23,23 +23,19 @@ function ProposalCard({ proposal, onDecide }) {
           </li>
         ))}
       </ul>
-      {proposal.status === 'open' ? (
-        <div className="chat__cardbtns">
-          <button className="chat__btn chat__btn--on" onClick={() => onDecide(true)}>Apply</button>
-          <button className="chat__btn" onClick={() => onDecide(false)}>Skip</button>
-        </div>
-      ) : (
-        <div className="chat__cardstate">
-          {proposal.status === 'applied'
-            ? `Applied. Undo by loading the auto-backup in Tweaks.${proposal.outcome?.skipped ? ` ${proposal.outcome.skipped} no longer fit.` : ''}`
-            : 'Skipped.'}
-        </div>
-      )}
+      <div className="chat__cardbtns">
+        <span className="chat__cardstate">
+          {change.status === 'applied' && (change.skipped ? `Done. ${change.skipped} no longer fit.` : 'Done.')}
+          {change.status === 'undone' && 'Undone.'}
+          {change.status !== 'applied' && change.status !== 'undone' && 'Not applied.'}
+        </span>
+        {canUndo && <button className="chat__btn" onClick={onUndo}>Undo</button>}
+      </div>
     </div>
   )
 }
 
-function Message({ message, proposals, onDecide }) {
+function Message({ message, proposals, undoableId, onUndo }) {
   const blocks = typeof message.content === 'string'
     ? [{ type: 'text', text: message.content }]
     : message.content
@@ -54,10 +50,11 @@ function Message({ message, proposals, onDecide }) {
     }
     if (b.type === 'tool_use' && proposals[b.id]) {
       return (
-        <ProposalCard
+        <ChangeCard
           key={i}
-          proposal={proposals[b.id]}
-          onDecide={(apply) => onDecide(b.id, apply)}
+          change={proposals[b.id]}
+          canUndo={b.id === undoableId}
+          onUndo={() => onUndo(b.id)}
         />
       )
     }
@@ -66,10 +63,14 @@ function Message({ message, proposals, onDecide }) {
 }
 
 function Panel({ game, side, view, playbooks, onClose }) {
-  const { thread, live, error, send, stop, decide, reset } = useClaudeChat({ game, side, view, playbooks })
+  const { thread, live, error, send, stop, undo, reset } = useClaudeChat({ game, side, view, playbooks })
   const [draft, setDraft] = useState('')
   const endRef = useRef(null)
   const messages = thread?.messages ?? []
+  // Newest change only: undoing in order means each one restores a known sheet.
+  const undoableId = live
+    ? null
+    : Object.keys(thread?.proposals ?? {}).filter((id) => thread.proposals[id].status === 'applied').at(-1)
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ block: 'end' })
@@ -98,8 +99,9 @@ function Panel({ game, side, view, playbooks, onClose }) {
       <div className="chat__log">
         {thread && messages.length === 0 && (
           <div className="chat__empty">
-            Build the call sheet together. Claude can read your sheet, debriefs, plans, packages
-            and the play catalog. Changes come back as a card you apply or skip.
+            Build the whole game plan together. Claude can see your sheet, every playbook, the meta
+            research, packages, scouting, personnel and debriefs, and can change the sheet when you
+            ask. Every sheet change gets an Undo.
           </div>
         )}
         {messages.map((m, i) => (
@@ -107,7 +109,8 @@ function Panel({ game, side, view, playbooks, onClose }) {
             key={i}
             message={m}
             proposals={thread.proposals}
-            onDecide={decide}
+            undoableId={undoableId}
+            onUndo={undo}
           />
         ))}
         {live?.text && <div className="chat__msg">{live.text}</div>}
