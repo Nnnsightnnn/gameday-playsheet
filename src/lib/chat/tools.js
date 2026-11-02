@@ -97,7 +97,7 @@ async function playArt({ playIds }, { game, playbooks, loadArt }) {
       blocks.push({ type: 'text', text: `${label}: ${err.message}` });
     }
   }
-  return { blocks };
+  return { apiContent: blocks };
 }
 
 function debriefs({ limit }, { debriefs: rows }) {
@@ -219,7 +219,7 @@ export async function runTool(block, ctx) {
   if (!runner) return { result: reply(`Unknown tool ${block.name}`, true) };
   try {
     const out = await runner(block.input, ctx);
-    if (out?.blocks) return { result: reply(out.blocks) };
+    if (out?.apiContent) return { result: reply(out.apiContent) };
     if (out?.change) return { result: reply('Applied.'), change: out.change };
     return { result: reply(JSON.stringify(out)) };
   } catch (err) {
