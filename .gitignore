@@ -51,3 +51,7 @@ CLAUDE.md
 
 # Play art cached by the local chat server, never published
 .play-art/
+
+# Private research, read by the local chat server, never published
+reports/
+research_notes/
