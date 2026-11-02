@@ -31,7 +31,14 @@ for s in 16 32 128 256 512; do
   sips -z $((s * 2)) $((s * 2)) "$WORK/icon.png" --out "$SET/icon_${s}x${s}@2x.png" >/dev/null
 done
 iconutil -c icns "$SET" -o "$APP/Contents/Resources/applet.icns"
+# osacompile also ships a compiled default icon that macOS prefers over the icns,
+# and editing the bundle breaks its signature, so drop the one and redo the other.
+rm -f "$APP/Contents/Resources/Assets.car"
+/usr/libexec/PlistBuddy -c "Delete :CFBundleIconName" "$APP/Contents/Info.plist" || true
+xattr -cr "$APP"
+codesign --force --deep --sign - "$APP"
 cp "$WORK/icon.png" "${1:-/dev/null}"
 touch "$APP"
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "$APP"
 rm -rf "$WORK"
 echo "Built $APP"
